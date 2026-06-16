@@ -17,7 +17,7 @@ button.danger{background:#ef4444;color:#fff}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.full{grid-column:1/-1}
 .score{font-size:46px;font-weight:bold;text-align:center;margin:8px 0}
 .box{text-align:center;background:#020617;border:1px solid #2b4264;border-radius:14px;padding:10px}
-.tabs{position:fixed;left:0;right:0;bottom:0;background:#020617;border-top:1px solid #2b4264;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:6px;z-index:10}
+.tabs{position:fixed;left:0;right:0;bottom:0;background:#020617;border-top:1px solid #2b4264;display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:6px;z-index:10}
 .tabs button{font-size:11px;padding:10px 2px;margin:0;background:#1b2d49;color:#fff}.tabs button.on{background:#fbbf24;color:#111827}
 .hide{display:none}table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-bottom:1px solid #2b4264;padding:8px 4px;text-align:left}th{color:#b6c3d8}.right{text-align:right}
 .note{color:#b6c3d8;font-size:13px;line-height:1.35}.leader{font-size:24px;font-weight:bold;color:#fbbf24}.item{border-bottom:1px solid #2b4264;padding:10px 0}
@@ -27,7 +27,12 @@ button.danger{background:#ef4444;color:#fff}
 </head>
 <body>
 <div id="err" class="err"></div>
-<header><h1>🏒 Air Hockey Liga</h1><div class="note">Handy-Safe Version</div></header>
+<header><h1>🏒 Air Hockey Liga</h1><div class="note">Handy-Safe Version</div>
+<button id="quickLogout" style="position:fixed;top:10px;right:10px;width:auto;padding:8px 12px;z-index:20;background:#ef4444;color:white;border:none;border-radius:8px;">
+Logout
+</button>
+
+</header>
 
 <main>
 <div id="game">
@@ -82,6 +87,18 @@ button.danger{background:#ef4444;color:#fff}
 <div id="history" class="hide">
  <div class="card"><h2>Historie</h2><div id="hist"></div></div>
 </div>
+
+<div id="adminlogin" class="hide">
+ <div class="card">
+  <h2>Admin Login</h2>
+  <label>Passwort</label>
+  <input id="adminpass" type="password" placeholder="Passwort eingeben">
+  <button id="adminLoginBtn">Einloggen</button>
+  <button class="secondary" id="adminLogoutBtn">Admin abmelden</button>
+  <p class="note">Ohne Passwort sieht man nur Ballon d’Or, Jahr und Historie.</p>
+ </div>
+</div>
+
 </main>
 
 <div class="tabs">
@@ -90,12 +107,15 @@ button.danger{background:#ef4444;color:#fff}
 <button id="ty">Jahr</button>
 <button id="tp">Spieler</button>
 <button id="th">Historie</button>
+
 </div>
 
 <script>
 (function(){
 try{
 var KEY='airhockey_handysafe_v1';
+var ADMIN_PASSWORD='5074';
+var isAdmin=localStorage.getItem('airhockey_is_admin')==='true';
 var d;
 try{d=JSON.parse(localStorage.getItem(KEY)||'');}catch(e){d=null;}
 if(!d){d={players:['Ich','Freund'],games:[]};}
@@ -158,7 +178,11 @@ function renderHist(){
 }
 function renderAll(){sync();renderBallon();renderYear();renderPlayers();renderHist();}
 function show(p){
+ if(!isAdmin && (p=='game' || p=='players')){alert('Bitte zuerst über den Login-Button anmelden.'); p='ballon';}
  E('game').className=p=='game'?'':'hide';E('ballon').className=p=='ballon'?'':'hide';E('yearpage').className=p=='year'?'':'hide';E('players').className=p=='players'?'':'hide';E('history').className=p=='history'?'':'hide';
+ E('tg').style.display=isAdmin?'block':'none';
+ E('tp').style.display=isAdmin?'block':'none';
+ 
  E('tg').className=p=='game'?'on':'';E('tb').className=p=='ballon'?'on':'';E('ty').className=p=='year'?'on':'';E('tp').className=p=='players'?'on':'';E('th').className=p=='history'?'on':'';
  renderAll();
 }
@@ -177,9 +201,58 @@ E('month').onchange=renderBallon;E('myear').oninput=renderBallon;E('year').oninp
 E('addp').onclick=function(){var p=E('newp').value.replace(/^\s+|\s+$/g,'');if(!p)return;d.players.push(p);E('newp').value='';saveData();fill();renderAll();};
 E('wipe').onclick=function(){if(confirm('Alles löschen?')){d={players:['Ich','Freund'],games:[]};saveData();fill();show('game');}};
 E('export').onclick=function(){var o='Datum,Modus,Spieler A,Tore A,Spieler B,Tore B,Sieger,Notiz\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[g.date,g.mode,g.a,g.sa,g.b,g.sb,g.sa>g.sb?g.a:g.b,g.note].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='airhockey.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
+
+E('adminLoginBtn').onclick=function(){
+ if(E('adminpass').value===ADMIN_PASSWORD){
+  localStorage.setItem('airhockey_is_admin','true');
+  isAdmin=true;
+  E('adminpass').value='';
+  show('game');
+ }else{
+  alert('Falsches Passwort');
+ }
+};
+E('adminLogoutBtn').onclick=function(){
+ localStorage.removeItem('airhockey_is_admin');
+ isAdmin=false;
+ show('ballon');
+};
+
 document.body.onclick=function(ev){var t=ev.target;if(t.className&&String(t.className).indexOf('rem')>=0){var i=parseInt(t.getAttribute('data-i'),10);if(confirm('Spieler löschen?')){d.players.splice(i,1);saveData();fill();renderAll();}} if(t.className&&String(t.className).indexOf('del')>=0){var j=parseInt(t.getAttribute('data-i'),10);if(confirm('Spiel löschen?')){d.games.splice(j,1);saveData();renderAll();}}};
+show(isAdmin?'game':'ballon');
 }catch(e){var x=document.getElementById('err');x.className='err show';x.innerHTML='Fehler: '+(e.message||e);}
 })();
+
+document.getElementById('quickLogout').onclick=function(){
+ localStorage.removeItem('airhockey_is_admin');
+ location.reload();
+};
+
+
+(function(){
+var btn=document.getElementById('quickLogout');
+function updateAdminButton(){
+ var isAdmin=localStorage.getItem('airhockey_is_admin')==='true';
+ btn.textContent=isAdmin?'Logout':'Login';
+}
+btn.onclick=function(){
+ var isAdmin=localStorage.getItem('airhockey_is_admin')==='true';
+ if(isAdmin){
+   localStorage.removeItem('airhockey_is_admin');
+   location.reload();
+ }else{
+   var pw=prompt('Admin Passwort eingeben:');
+   if(pw==='5074'){
+      localStorage.setItem('airhockey_is_admin','true');
+      location.reload();
+   }else if(pw!==null){
+      alert('Falsches Passwort');
+   }
+ }
+};
+updateAdminButton();
+})();
+
 </script>
 </body>
 </html>
