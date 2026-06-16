@@ -77,6 +77,11 @@ button.danger{background:#ef4444;color:#fff}
  .logoSub{font-size:10px;letter-spacing:6px;margin-left:42px}
 }
 
+
+.loginModal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:9999}
+.loginBox{background:#101c30;border:1px solid #2b4264;border-radius:16px;padding:20px;width:min(90%,380px)}
+.loginBox h2{margin-top:0}
+
 </style>
 </head>
 <body>
@@ -90,6 +95,16 @@ Logout
 </button>
 
 </header>
+
+<div id="loginModal" class="loginModal">
+ <div class="loginBox">
+  <h2>Admin Login</h2>
+  <input id="popupPassword" type="password" placeholder="Passwort eingeben">
+  <button id="popupLoginBtn">Einloggen</button>
+  <button id="popupCancelBtn" class="secondary">Abbrechen</button>
+ </div>
+</div>
+
 
 <main>
 
@@ -178,7 +193,7 @@ Logout
   <input id="adminpass" type="password" placeholder="Passwort eingeben">
   <button id="adminLoginBtn">Einloggen</button>
   <button class="secondary" id="adminLogoutBtn">Admin abmelden</button>
-  <p class="note">Ohne Passwort sieht man nur Ballon d’Or, Jahr und Historie.</p>
+  <p class="note">Ohne Passwort ist nur Ansicht möglich.</p>
  </div>
 </div>
 
@@ -255,20 +270,47 @@ Logout
 
 </div>
 
+
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+
 <script>
 (function(){
 try{
-var KEY='airhockey_handysafe_v1';
 var ADMIN_PASSWORD='5074';
 var isAdmin=localStorage.getItem('airhockey_is_admin')==='true';
-var d;
-try{d=JSON.parse(localStorage.getItem(KEY)||'');}catch(e){d=null;}
-if(!d){d={players:['Ich','Freund'],games:[],tournaments:[]};}
-if(!d.tournaments){d.tournaments=[];}
+
+var firebaseConfig = {
+  apiKey: "AIzaSyDbmsQZWY01adrfPcM0YAkTRqi7zLdVwyU",
+  authDomain: "rumlileague.firebaseapp.com",
+  projectId: "rumlileague",
+  storageBucket: "rumlileague.firebasestorage.app",
+  messagingSenderId: "93283021621",
+  appId: "1:93283021621:web:09b1c8213feaa80413927c",
+  measurementId: "G-LL9C1K0XC7"
+};
+
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+var leagueRef = db.collection("rumliLeague").doc("main");
+
+function freshData(){return {players:['Ich','Freund'],games:[],tournaments:[]};}
+var d = freshData();
+
+function cleanData(){
+ if(!d.players){d.players=['Ich','Freund'];}
+ if(!d.games){d.games=[];}
+ if(!d.tournaments){d.tournaments=[];}
+}
 
 function E(id){return document.getElementById(id);}
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function saveData(){try{localStorage.setItem(KEY,JSON.stringify(d));}catch(e){alert('Speichern blockiert. Öffne die Datei in Safari/Chrome, nicht in der Vorschau.');}}
+function saveData(){
+ cleanData();
+ leagueRef.set(d).catch(function(e){
+  alert('Firebase speichern fehlgeschlagen: '+(e.message||e));
+ });
+}
 function num(id){var x=parseInt(E(id).value,10);return isNaN(x)||x<0?0:x;}
 function today(){var x=new Date();var m=x.getTimezoneOffset();x=new Date(x.getTime()-m*60000);return x.toISOString().slice(0,10);}
 function dt(s){return new Date((s||today())+'T00:00:00');}
@@ -598,6 +640,23 @@ E('saveTournament').onclick=function(){
 document.body.onchange=function(ev){var t=ev.target;if(t.className&&String(t.className).indexOf('matchWinner')>=0){var ti=parseInt(t.getAttribute('data-t'),10),ri=parseInt(t.getAttribute('data-r'),10),mi=parseInt(t.getAttribute('data-m'),10);if(d.tournaments[ti]&&d.tournaments[ti].rounds&&d.tournaments[ti].rounds[ri]&&d.tournaments[ti].rounds[ri][mi]){d.tournaments[ti].rounds[ri][mi].winner=t.value;propagate(d.tournaments[ti]);saveData();renderAll();}}};
 document.body.onclick=function(ev){var t=ev.target;if(t.className&&String(t.className).indexOf('editTournament')>=0){var ei=parseInt(t.getAttribute('data-i'),10);loadTournamentForEdit(ei);return;} if(t.className&&String(t.className).indexOf('rem')>=0){var i=parseInt(t.getAttribute('data-i'),10);if(confirm('Spieler löschen?')){d.players.splice(i,1);saveData();fill();renderAll();}} if(t.className&&String(t.className).indexOf('delTournament')>=0){var ti=parseInt(t.getAttribute('data-i'),10);if(confirm('Turnier löschen?')){d.tournaments.splice(ti,1);saveData();renderAll();}}
  if(t.className&&String(t.className).indexOf('del')>=0 && String(t.className).indexOf('delTournament')<0){var j=parseInt(t.getAttribute('data-i'),10);if(confirm('Spiel löschen?')){d.games.splice(j,1);saveData();renderAll();}}};
+leagueRef.onSnapshot(function(doc){
+ if(doc.exists){
+  d = doc.data() || freshData();
+  cleanData();
+  fill();
+  renderAll();
+ }else{
+  d = freshData();
+  cleanData();
+  saveData();
+ }
+},function(e){
+ var x=document.getElementById('err');
+ x.className='err show';
+ x.innerHTML='Firebase Fehler: '+(e.message||e);
+});
+
 show('home');
 }catch(e){var x=document.getElementById('err');x.className='err show';x.innerHTML='Fehler: '+(e.message||e);}
 })();
@@ -620,16 +679,35 @@ btn.onclick=function(){
    localStorage.removeItem('airhockey_is_admin');
    location.reload();
  }else{
-   var pw=prompt('Admin Passwort eingeben:');
-   if(pw==='5074'){
-      localStorage.setItem('airhockey_is_admin','true');
-      location.reload();
-   }else if(pw!==null){
-      alert('Falsches Passwort');
-   }
+   var lm=document.getElementById('loginModal');var pp=document.getElementById('popupPassword');if(lm&&pp){lm.style.display='flex';pp.value='';setTimeout(function(){pp.focus();},50);}
  }
 };
 updateAdminButton();
+
+function setupLoginPopup(){
+ var modal=document.getElementById('loginModal');
+ var pass=document.getElementById('popupPassword');
+ var login=document.getElementById('popupLoginBtn');
+ var cancel=document.getElementById('popupCancelBtn');
+ if(!modal||!pass||!login||!cancel){return;}
+ cancel.onclick=function(){
+  modal.style.display='none';
+ };
+ login.onclick=function(){
+  var pw=pass.value;
+  if(pw==='5074'){
+    localStorage.setItem('airhockey_is_admin','true');
+    location.reload();
+  }else{
+    alert('Falsches Passwort');
+  }
+ };
+ pass.onkeydown=function(e){
+  if(e.key==='Enter'){login.click();}
+ };
+}
+setupLoginPopup();
+
 })();
 
 </script>
