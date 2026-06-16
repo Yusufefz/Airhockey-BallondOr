@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Air Hockey Handy Safe</title>
+<style>
+body{margin:0;background:#081225;color:#fff;font-family:Arial,sans-serif;font-size:16px}
+header{background:#020617;padding:14px;border-bottom:1px solid #2b4264;position:sticky;top:0;z-index:5}
+h1{font-size:20px;margin:0}main{padding:10px 10px 80px;max-width:720px;margin:auto}
+.card{background:#101c30;border:1px solid #2b4264;border-radius:16px;padding:12px;margin-bottom:12px}
+label{display:block;color:#b6c3d8;font-size:12px;margin:8px 0 4px}
+input,select,textarea,button{width:100%;box-sizing:border-box;font-size:17px;padding:13px;border-radius:12px;border:1px solid #2b4264;background:#020617;color:#fff}
+button{background:#fbbf24;color:#111827;font-weight:bold;border:0;margin-top:8px}
+button.secondary{background:#1b2d49;color:#fff;border:1px solid #2b4264}
+button.danger{background:#ef4444;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.full{grid-column:1/-1}
+.score{font-size:46px;font-weight:bold;text-align:center;margin:8px 0}
+.box{text-align:center;background:#020617;border:1px solid #2b4264;border-radius:14px;padding:10px}
+.tabs{position:fixed;left:0;right:0;bottom:0;background:#020617;border-top:1px solid #2b4264;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:6px;z-index:10}
+.tabs button{font-size:11px;padding:10px 2px;margin:0;background:#1b2d49;color:#fff}.tabs button.on{background:#fbbf24;color:#111827}
+.hide{display:none}table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-bottom:1px solid #2b4264;padding:8px 4px;text-align:left}th{color:#b6c3d8}.right{text-align:right}
+.note{color:#b6c3d8;font-size:13px;line-height:1.35}.leader{font-size:24px;font-weight:bold;color:#fbbf24}.item{border-bottom:1px solid #2b4264;padding:10px 0}
+.err{display:none;background:#991b1b;color:#fff;padding:10px;white-space:pre-wrap}
+.err.show{display:block}
+</style>
+</head>
+<body>
+<div id="err" class="err"></div>
+<header><h1>🏒 Air Hockey Liga</h1><div class="note">Handy-Safe Version</div></header>
+
+<main>
+<div id="game">
+ <div class="card">
+  <h2>Spiel eintragen</h2>
+  <div class="grid">
+   <div><label>Spieler A</label><select id="a"></select></div>
+   <div><label>Spieler B</label><select id="b"></select></div>
+   <div><label>Tore A</label><input id="sa" type="number" value="9" min="0"></div>
+   <div><label>Tore B</label><input id="sb" type="number" value="7" min="0"></div>
+   <div><label>Modus</label><select id="mode"><option>Normal</option><option>Jahresranking</option><option>Finale</option><option>Training</option></select></div>
+   <div><label>Datum</label><input id="date" type="date"></div>
+   <div class="full"><label>Notiz</label><textarea id="note"></textarea></div>
+  </div>
+  <button id="save">Spiel speichern 🏆</button>
+ </div>
+
+ <div class="card">
+  <h2>Live-Zähler</h2>
+  <div class="grid">
+   <div class="box"><b id="na">A</b><div id="la" class="score">9</div><button id="pa">+1</button><button class="secondary" id="ma">-1</button></div>
+   <div class="box"><b id="nb">B</b><div id="lb" class="score">7</div><button id="pb">+1</button><button class="secondary" id="mb">-1</button></div>
+  </div>
+  <button class="secondary" id="resetScore">Score auf 0:0</button>
+ </div>
+</div>
+
+<div id="ballon" class="hide">
+ <div class="card">
+  <h2>Ballon d’Or</h2>
+  <div class="grid">
+   <div><label>Monat</label><select id="month"></select></div>
+   <div><label>Jahr</label><input id="myear" type="number"></div>
+  </div>
+ </div>
+ <div class="card"><div class="note">Leader</div><div id="leader" class="leader">–</div></div>
+ <div class="card"><h2>Monats-Tabelle</h2><div id="rank"></div></div>
+ <div class="card"><h2>Monats-Sieger</h2><div id="months"></div></div>
+</div>
+
+<div id="yearpage" class="hide">
+ <div class="card"><h2>Jahresranking</h2><label>Jahr</label><input id="year" type="number"></div>
+ <div class="card"><div id="yrank"></div></div>
+</div>
+
+<div id="players" class="hide">
+ <div class="card"><h2>Spieler</h2><label>Name</label><input id="newp"><button id="addp">Spieler hinzufügen</button></div>
+ <div class="card"><div id="plist"></div></div>
+ <div class="card"><button class="secondary" id="export">CSV Export</button><button class="danger" id="wipe">Alles löschen</button></div>
+</div>
+
+<div id="history" class="hide">
+ <div class="card"><h2>Historie</h2><div id="hist"></div></div>
+</div>
+</main>
+
+<div class="tabs">
+<button id="tg" class="on">Spiel</button>
+<button id="tb">Ballon</button>
+<button id="ty">Jahr</button>
+<button id="tp">Spieler</button>
+<button id="th">Historie</button>
+</div>
+
+<script>
+(function(){
+try{
+var KEY='airhockey_handysafe_v1';
+var d;
+try{d=JSON.parse(localStorage.getItem(KEY)||'');}catch(e){d=null;}
+if(!d){d={players:['Ich','Freund'],games:[]};}
+
+function E(id){return document.getElementById(id);}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function saveData(){try{localStorage.setItem(KEY,JSON.stringify(d));}catch(e){alert('Speichern blockiert. Öffne die Datei in Safari/Chrome, nicht in der Vorschau.');}}
+function num(id){var x=parseInt(E(id).value,10);return isNaN(x)||x<0?0:x;}
+function today(){var x=new Date();var m=x.getTimezoneOffset();x=new Date(x.getTime()-m*60000);return x.toISOString().slice(0,10);}
+function dt(s){return new Date((s||today())+'T00:00:00');}
+function mname(m){return ['','Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'][m];}
+function fill(){
+ var opts='',i;
+ for(i=0;i<d.players.length;i++){opts+='<option>'+esc(d.players[i])+'</option>';}
+ E('a').innerHTML=opts; E('b').innerHTML=opts; if(d.players.length>1)E('b').selectedIndex=1;
+ var mo='';for(i=1;i<=12;i++){mo+='<option value="'+i+'">'+mname(i)+'</option>';}E('month').innerHTML=mo;
+ var now=new Date();E('month').value=now.getMonth()+1;E('myear').value=now.getFullYear();E('year').value=now.getFullYear();E('date').value=today();
+}
+function sync(){E('na').innerHTML=esc(E('a').value);E('nb').innerHTML=esc(E('b').value);E('la').innerHTML=num('sa');E('lb').innerHTML=num('sb');}
+function points(g,p){
+ var own=(g.a==p)?g.sa:g.sb, opp=(g.a==p)?g.sb:g.sa, won=own>opp, x=own+(won?3:0);
+ if(won&&own>=9&&opp==0)x+=2; if(won&&(own-opp)>=5)x+=1; if(won&&g.mode=='Finale')x+=2; if(won&&g.mode=='Jahresranking')x+=1;
+ return x;
+}
+function stats(games){
+ var s={},i,g,w,l,k,a=[];
+ for(i=0;i<d.players.length;i++){s[d.players[i]]={name:d.players[i],p:0,w:0,l:0,gf:0,ga:0};}
+ for(i=0;i<games.length;i++){
+  g=games[i]; if(!s[g.a])s[g.a]={name:g.a,p:0,w:0,l:0,gf:0,ga:0}; if(!s[g.b])s[g.b]={name:g.b,p:0,w:0,l:0,gf:0,ga:0};
+  w=g.sa>g.sb?g.a:g.b; l=g.sa>g.sb?g.b:g.a;
+  s[w].w++; s[l].l++; s[g.a].gf+=g.sa; s[g.a].ga+=g.sb; s[g.b].gf+=g.sb; s[g.b].ga+=g.sa;
+  s[g.a].p+=points(g,g.a); s[g.b].p+=points(g,g.b);
+ }
+ for(k in s){a.push(s[k]);}
+ a.sort(function(x,y){return (y.p-x.p)||(y.w-x.w)||((y.gf-y.ga)-(x.gf-x.ga));});
+ return a;
+}
+function drawTable(arr){
+ if(arr.length==0)return '<p class="note">Keine Daten.</p>';
+ var o='<table><tr><th>#</th><th>Spieler</th><th class="right">Pkt</th><th class="right">S</th><th class="right">N</th><th class="right">Tore</th></tr>',i,r;
+ for(i=0;i<arr.length;i++){r=arr[i];o+='<tr><td>'+(i+1)+'</td><td><b>'+esc(r.name)+'</b></td><td class="right"><b>'+r.p+'</b></td><td class="right">'+r.w+'</td><td class="right">'+r.l+'</td><td class="right">'+r.gf+':'+r.ga+'</td></tr>';}
+ return o+'</table>';
+}
+function monthGames(y,m){var a=[],i,g,t;for(i=0;i<d.games.length;i++){g=d.games[i];t=dt(g.date);if(t.getFullYear()==y&&(t.getMonth()+1)==m)a.push(g);}return a;}
+function yearGames(y){var a=[],i,g,t;for(i=0;i<d.games.length;i++){g=d.games[i];t=dt(g.date);if(t.getFullYear()==y)a.push(g);}return a;}
+function renderBallon(){
+ var y=parseInt(E('myear').value,10),m=parseInt(E('month').value,10),arr=stats(monthGames(y,m));
+ E('leader').innerHTML=(arr[0]&&arr[0].p>0)?esc(arr[0].name)+' – '+arr[0].p+' Punkte':'Noch kein Leader';
+ E('rank').innerHTML=drawTable(arr);
+ var o='<table><tr><th>Monat</th><th>Gewinner</th><th class="right">Pkt</th></tr>',i,r;
+ for(i=1;i<=12;i++){r=stats(monthGames(y,i))[0];o+='<tr><td>'+mname(i)+'</td><td>'+(r&&r.p>0?'<b>'+esc(r.name)+'</b>':'–')+'</td><td class="right">'+(r&&r.p>0?r.p:'–')+'</td></tr>';}
+ E('months').innerHTML=o+'</table>';
+}
+function renderYear(){E('yrank').innerHTML=drawTable(stats(yearGames(parseInt(E('year').value,10))));}
+function renderPlayers(){
+ var o='',i;for(i=0;i<d.players.length;i++){o+='<div class="item"><b>'+esc(d.players[i])+'</b><button class="danger rem" data-i="'+i+'">löschen</button></div>';}E('plist').innerHTML=o||'<p class="note">Keine Spieler.</p>';
+}
+function renderHist(){
+ var o='',i,g,w;for(i=d.games.length-1;i>=0;i--){g=d.games[i];w=g.sa>g.sb?g.a:g.b;o+='<div class="item"><b>'+esc(g.date)+'</b> '+esc(g.mode)+'<br>'+esc(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+esc(g.b)+'<br><span class="note">Sieger: '+esc(w)+'</span><button class="secondary del" data-i="'+i+'">löschen</button></div>';}E('hist').innerHTML=o||'<p class="note">Noch keine Spiele.</p>';
+}
+function renderAll(){sync();renderBallon();renderYear();renderPlayers();renderHist();}
+function show(p){
+ E('game').className=p=='game'?'':'hide';E('ballon').className=p=='ballon'?'':'hide';E('yearpage').className=p=='year'?'':'hide';E('players').className=p=='players'?'':'hide';E('history').className=p=='history'?'':'hide';
+ E('tg').className=p=='game'?'on':'';E('tb').className=p=='ballon'?'on':'';E('ty').className=p=='year'?'on':'';E('tp').className=p=='players'?'on':'';E('th').className=p=='history'?'on':'';
+ renderAll();
+}
+function saveGame(){
+ var a=E('a').value,b=E('b').value,sa=num('sa'),sb=num('sb');
+ if(a==b){alert('Bitte zwei verschiedene Spieler wählen.');return;}
+ if(sa==sb){alert('Unentschieden geht nicht.');return;}
+ d.games.push({date:E('date').value||today(),mode:E('mode').value,a:a,b:b,sa:sa,sb:sb,note:E('note').value});
+ E('note').value='';saveData();show('ballon');
+}
+fill();renderAll();
+E('a').onchange=sync;E('b').onchange=sync;E('sa').oninput=sync;E('sb').oninput=sync;
+E('save').onclick=saveGame;E('pa').onclick=function(){E('sa').value=num('sa')+1;sync();};E('ma').onclick=function(){E('sa').value=Math.max(0,num('sa')-1);sync();};E('pb').onclick=function(){E('sb').value=num('sb')+1;sync();};E('mb').onclick=function(){E('sb').value=Math.max(0,num('sb')-1);sync();};E('resetScore').onclick=function(){E('sa').value=0;E('sb').value=0;sync();};
+E('tg').onclick=function(){show('game')};E('tb').onclick=function(){show('ballon')};E('ty').onclick=function(){show('year')};E('tp').onclick=function(){show('players')};E('th').onclick=function(){show('history')};
+E('month').onchange=renderBallon;E('myear').oninput=renderBallon;E('year').oninput=renderYear;
+E('addp').onclick=function(){var p=E('newp').value.replace(/^\s+|\s+$/g,'');if(!p)return;d.players.push(p);E('newp').value='';saveData();fill();renderAll();};
+E('wipe').onclick=function(){if(confirm('Alles löschen?')){d={players:['Ich','Freund'],games:[]};saveData();fill();show('game');}};
+E('export').onclick=function(){var o='Datum,Modus,Spieler A,Tore A,Spieler B,Tore B,Sieger,Notiz\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[g.date,g.mode,g.a,g.sa,g.b,g.sb,g.sa>g.sb?g.a:g.b,g.note].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='airhockey.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
+document.body.onclick=function(ev){var t=ev.target;if(t.className&&String(t.className).indexOf('rem')>=0){var i=parseInt(t.getAttribute('data-i'),10);if(confirm('Spieler löschen?')){d.players.splice(i,1);saveData();fill();renderAll();}} if(t.className&&String(t.className).indexOf('del')>=0){var j=parseInt(t.getAttribute('data-i'),10);if(confirm('Spiel löschen?')){d.games.splice(j,1);saveData();renderAll();}}};
+}catch(e){var x=document.getElementById('err');x.className='err show';x.innerHTML='Fehler: '+(e.message||e);}
+})();
+</script>
+</body>
+</html>
