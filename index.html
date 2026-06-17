@@ -120,6 +120,7 @@ button.danger{background:#ef4444;color:#fff}
 
 
 <div id="adminMenu" class="adminMenu">
+ <button id="amPendingAdmin" class="adminOnly">Offene Spiele (0)</button>
  <button id="amGame" class="adminOnly">Spiel</button>
  <button id="amPlayers" class="adminOnly">Spieler</button>
  <button id="amHistoryAdmin" class="adminOnly">Historie</button>
@@ -128,6 +129,7 @@ button.danger{background:#ef4444;color:#fff}
  <button id="amBallonAdmin" class="adminOnly">Ballon d'Or Kandidaten</button>
  <button id="menuLogout" class="danger adminOnly">Logout</button>
 
+ <button id="nmSubmitGame" class="normalOnly">Spiel melden</button>
  <button id="nmTop" class="normalOnly">Top Scorer</button>
  <button id="nmBallon" class="normalOnly">Ballon d'Or Kandidaten</button>
  <button id="nmTournament" class="normalOnly">Aktuelles Turnier</button>
@@ -191,6 +193,7 @@ button.danger{background:#ef4444;color:#fff}
    <div><label>Tore A</label><input id="sa" type="number" value="9" min="0"></div>
    <div><label>Tore B</label><input id="sb" type="number" value="7" min="0"></div>
    <div><label>Modus</label><select id="mode"><option>Normal</option><option>Jahresranking</option><option>Finale</option><option>Training</option></select></div>
+   <div><label>Wer meldet?</label><select id="reporter"></select></div>
    <div><label>Datum</label><input id="date" type="date"></div>
    <div class="full"><label>Notiz</label><textarea id="note"></textarea></div>
   </div>
@@ -229,6 +232,10 @@ button.danger{background:#ef4444;color:#fff}
  <div class="card"><h2>Spieler</h2><label>Name</label><input id="newp"><button id="addp">Spieler hinzufügen</button></div>
  <div class="card"><div id="plist"></div></div>
  <div class="card"><button class="secondary" id="export">CSV Export</button><button class="danger" id="wipe">Alles löschen</button></div>
+</div>
+
+<div id="pending" class="hide">
+ <div class="card"><h2>Offene Spiele</h2><div id="pendingList"></div></div>
 </div>
 
 <div id="history" class="hide">
@@ -343,12 +350,12 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 var leagueRef = db.collection("rumliLeague").doc("main");
 
-function freshData(){return {players:['Ich','Freund'],games:[],tournaments:[],settings:{news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}}};}
+function freshData(){return {players:['Ich','Freund'],games:[],pendingGames:[],tournaments:[],settings:{news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}}};}
 var d = freshData();
 
 function cleanData(){
  if(!d.players){d.players=['Ich','Freund'];}
- if(!d.games){d.games=[];}
+ if(!d.games){d.games=[];} if(!d.pendingGames){d.pendingGames=[];}
  if(!d.tournaments){d.tournaments=[];}
  if(!d.settings){d.settings={news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}};}
  if(!d.settings.rewards){d.settings.rewards={top1:'',top2:'',top3:'',ballon:''};}
@@ -369,7 +376,7 @@ function mname(m){return ['','Januar','Februar','März','April','Mai','Juni','Ju
 function fill(){
  var opts='',i;
  for(i=0;i<d.players.length;i++){opts+='<option>'+esc(d.players[i])+'</option>';}
- E('a').innerHTML=opts; E('b').innerHTML=opts; if(d.players.length>1)E('b').selectedIndex=1;
+ E('a').innerHTML=opts; E('b').innerHTML=opts; if(E('reporter'))E('reporter').innerHTML=opts; if(d.players.length>1)E('b').selectedIndex=1;
  var mo='';for(i=1;i<=12;i++){mo+='<option value="'+i+'">'+mname(i)+'</option>';}E('month').innerHTML=mo;
  var now=new Date();E('month').value=now.getMonth()+1;E('myear').value=now.getFullYear();E('year').value=now.getFullYear();E('date').value=today();
 }
@@ -593,7 +600,17 @@ function renderHome(){
  renderDashboardAdmin();
 }
 
-function renderAll(){sync();renderBallon();renderYear();renderPlayers();renderHist();renderTournament();renderHome();}
+
+function renderPending(){
+ var o='',i,g;
+ for(i=0;i<(d.pendingGames||[]).length;i++){
+  g=d.pendingGames[i];
+  o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>'+esc(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+esc(g.b)+'<br><span class="note">'+esc(g.date||'')+' · '+esc(g.mode||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
+ }
+ E('pendingList').innerHTML=o||'<p class="note">Keine offenen Spiele.</p>'; updateMenuVisibility();
+}
+
+function renderAll(){sync();renderPending();renderBallon();renderYear();renderPlayers();renderHist();renderTournament();renderHome();}
 
 function updateMenuVisibility(){
  var m=E('adminMenu');
@@ -602,6 +619,7 @@ function updateMenuVisibility(){
  var normalEls=document.querySelectorAll('.normalOnly');
  for(var i=0;i<adminEls.length;i++){adminEls[i].style.display=isAdmin?'block':'none';}
  for(var j=0;j<normalEls.length;j++){normalEls[j].style.display=isAdmin?'none':'block';}
+ if(E('amPendingAdmin')){E('amPendingAdmin').innerHTML='Offene Spiele ('+((d.pendingGames&&d.pendingGames.length)||0)+')';}
 }
 function toggleMenu(){
  updateMenuVisibility();
@@ -615,8 +633,8 @@ function closeMenu(){
 
 function show(p){
  var tabsEl=document.querySelector('.tabs');if(tabsEl){tabsEl.style.display=isAdmin?'none':'grid';}
- if(!isAdmin && (p=='game' || p=='players')){alert('Bitte zuerst über den Login-Button anmelden.'); p='ballon';}
- E('home').className=p=='home'?'':'hide';E('game').className=p=='game'?'':'hide';E('ballon').className=p=='ballon'?'':'hide';E('yearpage').className=p=='year'?'':'hide';E('players').className=p=='players'?'':'hide';E('tournament').className=p=='tournament'?'':'hide';E('history').className=p=='history'?'':'hide';
+ if(!isAdmin && (p=='players' || p=='pending')){alert('Bitte zuerst über den Login-Button anmelden.'); p='ballon';}
+ E('home').className=p=='home'?'':'hide';E('pending').className=p=='pending'?'':'hide';E('game').className=p=='game'?'':'hide';E('ballon').className=p=='ballon'?'':'hide';E('yearpage').className=p=='year'?'':'hide';E('players').className=p=='players'?'':'hide';E('tournament').className=p=='tournament'?'':'hide';E('history').className=p=='history'?'':'hide';
  E('tg').style.display=isAdmin?'block':'none';
  E('tb').style.display='none';
  E('ty').style.display='none';
@@ -628,6 +646,7 @@ function show(p){
  updateMenuVisibility();
  if(E('amGame'))E('amGame').className='adminOnly '+(p=='game'?'on':'');
  if(E('amPlayers'))E('amPlayers').className='adminOnly '+(p=='players'?'on':'');
+ if(E('amPendingAdmin'))E('amPendingAdmin').className='adminOnly '+(p=='pending'?'on':'');
  if(E('amHistoryAdmin'))E('amHistoryAdmin').className='adminOnly '+(p=='history'?'on':'');
  if(E('amTournamentAdmin'))E('amTournamentAdmin').className='adminOnly '+(p=='tournament'?'on':'');
  if(E('amTopAdmin'))E('amTopAdmin').className='adminOnly '+(p=='ballon'?'on':'');
@@ -636,13 +655,32 @@ function show(p){
  if(E('nmBallon'))E('nmBallon').className='normalOnly '+(p=='year'?'on':'');
  if(E('nmTournament'))E('nmTournament').className='normalOnly '+(p=='tournament'?'on':'');
  if(E('nmHistory'))E('nmHistory').className='normalOnly '+(p=='history'?'on':'');
+ if(E('save'))E('save').innerHTML=isAdmin?'Spiel speichern 🏆':'Spiel zur Prüfung einreichen';
  renderAll();
 }
 function saveGame(){
  var a=E('a').value,b=E('b').value,sa=num('sa'),sb=num('sb');
  if(a==b){alert('Bitte zwei verschiedene Spieler wählen.');return;}
+ if(isAdmin){
   d.games.push({date:E('date').value||today(),mode:E('mode').value,a:a,b:b,sa:sa,sb:sb,note:E('note').value});
- E('note').value='';saveData();show('ballon');
+  E('note').value='';
+  saveData();
+  show('ballon');
+ }else{
+  var rep=E('reporter').value;
+  if(!rep){alert('Bitte auswählen, wer das Spiel meldet.');return;}
+  for(var i=0;i<(d.pendingGames||[]).length;i++){
+   if(d.pendingGames[i].reporter===rep){
+    alert('Du hast bereits ein offenes Spiel. Warte, bis ein Admin es bestätigt oder ablehnt.');
+    return;
+   }
+  }
+  d.pendingGames.push({reporter:rep,date:E('date').value||today(),mode:E('mode').value,a:a,b:b,sa:sa,sb:sb,note:E('note').value});
+  E('note').value='';
+  saveData();
+  alert('Spiel wurde eingereicht und wartet auf Admin-Bestätigung.');
+  show('home');
+ }
 }
 fill();renderAll();
 E('a').onchange=sync;E('b').onchange=sync;E('sa').oninput=sync;E('sb').oninput=sync;
@@ -650,12 +688,14 @@ E('save').onclick=saveGame;E('pa').onclick=function(){E('sa').value=num('sa')+1;
 if(E('logoHome')){E('logoHome').onclick=function(){show('home');};}
 E('amGame').onclick=function(){show('game');closeMenu();};
 E('amPlayers').onclick=function(){show('players');closeMenu();};
+E('amPendingAdmin').onclick=function(){show('pending');closeMenu();};
 E('amHistoryAdmin').onclick=function(){show('history');closeMenu();};
 E('amTournamentAdmin').onclick=function(){show('tournament');closeMenu();};
 E('amTopAdmin').onclick=function(){show('ballon');closeMenu();};
 E('amBallonAdmin').onclick=function(){show('year');closeMenu();};
 E('menuLogout').onclick=function(){localStorage.removeItem('airhockey_is_admin');location.reload();};
 
+E('nmSubmitGame').onclick=function(){show('game');closeMenu();};
 E('nmTop').onclick=function(){show('ballon');closeMenu();};
 E('nmBallon').onclick=function(){show('year');closeMenu();};
 E('nmTournament').onclick=function(){show('tournament');closeMenu();};
@@ -684,7 +724,7 @@ E('saveRewards').onclick=function(){
 };E('tg').onclick=function(){show('game')};E('tb').onclick=function(){show('ballon')};E('ty').onclick=function(){show('year')};E('tp').onclick=function(){show('players')};E('tt').onclick=function(){show('tournament')};E('th').onclick=function(){show('history')};
 E('month').onchange=renderBallon;E('myear').oninput=renderBallon;E('year').oninput=renderYear;
 E('addp').onclick=function(){var p=E('newp').value.replace(/^\s+|\s+$/g,'');if(!p)return;d.players.push(p);E('newp').value='';saveData();fill();renderAll();};
-E('wipe').onclick=function(){if(confirm('Alles löschen?')){d={players:['Ich','Freund'],games:[],tournaments:[]};saveData();fill();show('game');}};
+E('wipe').onclick=function(){if(confirm('Alles löschen?')){d={players:['Ich','Freund'],games:[],pendingGames:[],tournaments:[],settings:{news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}}};saveData();fill();show('game');}};
 E('export').onclick=function(){var o='Datum,Modus,Spieler A,Tore A,Spieler B,Tore B,Sieger,Notiz\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[g.date,g.mode,g.a,g.sa,g.b,g.sb,g.sa>g.sb?g.a:g.b,g.note].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='airhockey.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
 
 E('adminLoginBtn').onclick=function(){
@@ -778,7 +818,24 @@ E('saveTournament').onclick=function(){
 };
 
 document.body.onchange=function(ev){var t=ev.target;if(t.className&&String(t.className).indexOf('matchWinner')>=0){var ti=parseInt(t.getAttribute('data-t'),10),ri=parseInt(t.getAttribute('data-r'),10),mi=parseInt(t.getAttribute('data-m'),10);if(d.tournaments[ti]&&d.tournaments[ti].rounds&&d.tournaments[ti].rounds[ri]&&d.tournaments[ti].rounds[ri][mi]){d.tournaments[ti].rounds[ri][mi].winner=t.value;propagate(d.tournaments[ti]);saveData();renderAll();}}};
-document.body.onclick=function(ev){var t=ev.target;if(t.className&&String(t.className).indexOf('editTournament')>=0){var ei=parseInt(t.getAttribute('data-i'),10);loadTournamentForEdit(ei);return;} if(t.className&&String(t.className).indexOf('rem')>=0){var i=parseInt(t.getAttribute('data-i'),10);if(confirm('Spieler löschen?')){d.players.splice(i,1);saveData();fill();renderAll();}} if(t.className&&String(t.className).indexOf('delTournament')>=0){var ti=parseInt(t.getAttribute('data-i'),10);if(confirm('Turnier löschen?')){d.tournaments.splice(ti,1);saveData();renderAll();}}
+document.body.onclick=function(ev){var t=ev.target;if(t.className&&String(t.className).indexOf('editTournament')>=0){var ei=parseInt(t.getAttribute('data-i'),10);loadTournamentForEdit(ei);return;} if(t.className&&String(t.className).indexOf('rem')>=0){var i=parseInt(t.getAttribute('data-i'),10);if(confirm('Spieler löschen?')){d.players.splice(i,1);saveData();fill();renderAll();}} if(t.className&&String(t.className).indexOf('approveGame')>=0){
+ var pi=parseInt(t.getAttribute('data-i'),10),pg=d.pendingGames[pi];
+ if(pg){
+  d.games.push({date:pg.date,mode:pg.mode,a:pg.a,b:pg.b,sa:pg.sa,sb:pg.sb,note:pg.note});
+  d.pendingGames.splice(pi,1);
+  saveData();renderAll();
+ }
+ return;
+}
+if(t.className&&String(t.className).indexOf('rejectGame')>=0){
+ var ri=parseInt(t.getAttribute('data-i'),10);
+ if(d.pendingGames[ri]){
+  d.pendingGames.splice(ri,1);
+  saveData();renderAll();
+ }
+ return;
+}
+if(t.className&&String(t.className).indexOf('delTournament')>=0){var ti=parseInt(t.getAttribute('data-i'),10);if(confirm('Turnier löschen?')){d.tournaments.splice(ti,1);saveData();renderAll();}}
  if(t.className&&String(t.className).indexOf('del')>=0 && String(t.className).indexOf('delTournament')<0){var j=parseInt(t.getAttribute('data-i'),10);if(confirm('Spiel löschen?')){d.games.splice(j,1);saveData();renderAll();}}};
 leagueRef.onSnapshot(function(doc){
  if(doc.exists){
