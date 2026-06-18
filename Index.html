@@ -245,6 +245,7 @@ input,select,textarea{border:2px solid var(--sage);background:rgba(0,0,0,.15);co
     <label>Best of 3 Gewinner</label>
     <select id="bo3Winner"></select>
    </div>
+   <div class="full"><label>Notiz</label><textarea id="note"></textarea></div>
   </div>
   <button id="save">Spiel speichern 🏆</button>
  </div>
@@ -702,11 +703,12 @@ function saveGame(){
  if(a==b){alert('Bitte zwei verschiedene Spieler wählen.');return;} if(isBo3() && E('bo3Winner').value!==a && E('bo3Winner').value!==b){alert('Der Best of 3 Gewinner muss Spieler A oder Spieler B sein.');return;}
  if(isAdmin){
   if(isBo3()){
-   d.games.push({bestOf3:true,date:E('date').value||today(),mode:'Best of 3',a:a,b:b,winner:E('bo3Winner').value,sa:0,sb:0});
+   d.games.push({bestOf3:true,date:E('date').value||today(),mode:'Best of 3',a:a,b:b,winner:E('bo3Winner').value,sa:0,sb:0,note:E('note').value});
   }else{
-   d.games.push({date:E('date').value||today(),mode:'Normal',a:a,b:b,sa:sa,sb:sb});
+   d.games.push({date:E('date').value||today(),mode:'Normal',a:a,b:b,sa:sa,sb:sb,note:E('note').value});
   }
-    saveData();
+  E('note').value='';
+  saveData();
   show('ballon');
  }else{
   var rep=E('reporter').value;
@@ -718,11 +720,12 @@ function saveGame(){
    }
   }
   if(isBo3()){
-  d.pendingGames.push({bestOf3:true,reporter:rep,date:E('date').value||today(),mode:'Best of 3',a:a,b:b,winner:E('bo3Winner').value,sa:0,sb:0});
+  d.pendingGames.push({bestOf3:true,reporter:rep,date:E('date').value||today(),mode:'Best of 3',a:a,b:b,winner:E('bo3Winner').value,sa:0,sb:0,note:E('note').value});
  }else{
-  d.pendingGames.push({reporter:rep,date:E('date').value||today(),mode:'Normal',a:a,b:b,sa:sa,sb:sb});
+  d.pendingGames.push({reporter:rep,date:E('date').value||today(),mode:'Normal',a:a,b:b,sa:sa,sb:sb,note:E('note').value});
  }
-    saveData();
+  E('note').value='';
+  saveData();
   alert('Spiel wurde eingereicht und wartet auf Admin-Bestätigung.');
   show('home');
  }
@@ -766,7 +769,7 @@ E('saveRewards').onclick=function(){
 E('month').onchange=renderBallon;E('myear').oninput=renderBallon;E('year').oninput=renderYear;
 E('addp').onclick=function(){var p=E('newp').value.replace(/^\s+|\s+$/g,'');if(!p)return;d.players.push(p);E('newp').value='';saveData();fill();renderAll();};
 E('wipe').onclick=function(){if(confirm('Alles löschen?')){d={players:['Ich','Freund'],games:[],pendingGames:[],tournaments:[],settings:{news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}}};saveData();fill();show('game');}};
-E('export').onclick=function(){var o='Datum,Spieler A,Tore A,Spieler B,Tore B,Sieger\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[g.date,g.a,g.bestOf3?'BO3':g.sa,g.b,g.bestOf3?'BO3':g.sb,g.bestOf3?bo3Winner(g):(g.sa>g.sb?g.a:g.b)].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='airhockey.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
+E('export').onclick=function(){var o='Datum,Spieler A,Tore A,Spieler B,Tore B,Sieger,Notiz\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[g.date,g.a,g.bestOf3?'BO3':g.sa,g.b,g.bestOf3?'BO3':g.sb,g.bestOf3?bo3Winner(g):(g.sa>g.sb?g.a:g.b),g.note].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='airhockey.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
 
 E('adminLoginBtn').onclick=function(){
  if(E('adminpass').value===ADMIN_PASSWORD){
