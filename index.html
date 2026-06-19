@@ -154,6 +154,22 @@ input,select,textarea{border:2px solid var(--sage);background:rgba(0,0,0,.15);co
  color:#000000 !important;
 }
 
+
+/* Spielerprofile */
+.profileHero{background:rgba(0,0,0,.18);border:2px solid var(--cream);border-radius:16px;padding:14px;text-align:center;margin-bottom:12px}
+.profileAvatar{font-size:44px;margin-bottom:6px}
+.profileName{font-size:26px;font-weight:bold}
+.profileGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.profileStat{background:rgba(0,0,0,.16);border:1px solid var(--cream);border-radius:12px;padding:10px;text-align:center}
+.profileStat b{display:block;font-size:22px;margin-top:4px}.profileStat small{display:block;font-size:11px;opacity:.75;margin-top:3px}
+.profileForm{font-size:24px;letter-spacing:4px;margin-top:8px}
+.playerLink{cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-weight:bold}
+.profileList{display:grid;grid-template-columns:1fr;gap:8px}
+.profilePick{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.16);border:1px solid var(--cream);border-radius:12px;padding:12px;cursor:pointer;font-weight:bold}
+.profilePick span:last-child{opacity:.75}
+.profileBack{margin-bottom:10px}
+@media(max-width:420px){.profileGrid{grid-template-columns:1fr}.profileName{font-size:22px}}
+
 </style>
 </head>
 <body>
@@ -181,12 +197,14 @@ input,select,textarea{border:2px solid var(--sage);background:rgba(0,0,0,.15);co
  <button id="amPendingAdmin" class="adminOnly">Offene Spiele (0)</button>
  <button id="amGame" class="adminOnly">Spiel</button>
  <button id="amPlayers" class="adminOnly">Spieler</button>
+ <button id="amProfilesAdmin" class="adminOnly">Spielerprofile</button>
  <button id="amHistoryAdmin" class="adminOnly">Historie</button>
  <button id="amTopAdmin" class="adminOnly">Top Scorer</button>
  <button id="amBallonAdmin" class="adminOnly">Ballon d'Or Kandidaten</button>
  <button id="menuLogout" class="danger adminOnly">Logout</button>
 
  <button id="nmSubmitGame" class="normalOnly">Spiel melden</button>
+ <button id="nmProfiles" class="normalOnly">Spielerprofile</button>
  <button id="nmTop" class="normalOnly">Top Scorer</button>
  <button id="nmBallon" class="normalOnly">Ballon d'Or Kandidaten</button>
  <button id="nmHistory" class="normalOnly">Historie</button>
@@ -213,14 +231,14 @@ input,select,textarea{border:2px solid var(--sage);background:rgba(0,0,0,.15);co
    <div id="homeLastMatch"></div>
   </div>
   <div class="card">
-   <h2>Belohnungen</h2>
+   <h2>Benefits</h2>
    <div id="homeRewards"></div>
    <div id="rewardsAdminBox" class="dashboardAdminBox hide">
 <label>🏆 Ballon d'Or</label><input id="rewardBallon">
 <label>🥇 1. Top Scorer</label><input id="rewardTop1">
 <label>🥈 2.</label><input id="rewardTop2">
 <label>🥉 3.</label><input id="rewardTop3">
-<button id="saveRewards">Belohnungen speichern</button>
+<button id="saveRewards">Benefits speichern</button>
 </div>
   </div>
  </div>
@@ -234,14 +252,14 @@ input,select,textarea{border:2px solid var(--sage);background:rgba(0,0,0,.15);co
   <div class="grid" id="normalGameFields">
    <div><label>Spieler A</label><select id="a"></select></div>
    <div><label>Spieler B</label><select id="b"></select></div>
-   <div class="normalScoreField"><label>Tore A</label><input id="sa" type="number" value="0" min="0"></div>
-   <div class="normalScoreField"><label>Tore B</label><input id="sb" type="number" value="0" min="0"></div>
+   <div class="normalScoreField"><label>Goals A</label><input id="sa" type="number" value="0" min="0"></div>
+   <div class="normalScoreField"><label>Goals B</label><input id="sb" type="number" value="0" min="0"></div>
    <div><label>Wer meldet?</label><select id="reporter"></select></div>
    <div><label>Datum</label><input id="date" type="date"></div>
   </div>
   <div id="bo3Box" class="hide">
     <h3>Best of 3</h3>
-    <p class="note">Keine Tore. Einfach auswählen, wer das Best of 3 gewonnen hat. Gewinner bekommt 12 Punkte fürs Ballon d’Or Ranking.</p>
+    <p class="note">Keine Goals. Einfach auswählen, wer das Best of 3 gewonnen hat. Gewinner bekommt 12 Punkte fürs Ballon d’Or Ranking.</p>
     <label>Best of 3 Gewinner</label>
     <select id="bo3Winner"></select>
    </div>
@@ -259,8 +277,8 @@ input,select,textarea{border:2px solid var(--sage);background:rgba(0,0,0,.15);co
   </div>
  </div>
  <div class="card"><div class="note">Top Scorer</div><div id="leader" class="leader">–</div></div>
- <div class="card"><h2>Monats-Tabelle</h2><p class="note">Top Scorer zählt nur Tore, keine Extra-Punkte.</p><div id="rank"></div></div>
- <div class="card"><h2>Monats-Sieger</h2><div id="months"></div></div>
+ <div class="card"><h2 id="rankTitle">Top Scorer Ranking</h2><p class="note">Top Scorer zählt nur Goals, keine Extra-Punkte.</p><div id="rank"></div></div>
+ <div class="card"><h2 id="monthsTitle">Top Scorer</h2><div id="months"></div></div>
 </div>
 
 <div id="yearpage" class="hide">
@@ -272,6 +290,15 @@ input,select,textarea{border:2px solid var(--sage);background:rgba(0,0,0,.15);co
  <div class="card"><h2>Spieler</h2><label>Name</label><input id="newp"><button id="addp">Spieler hinzufügen</button></div>
  <div class="card"><div id="plist"></div></div>
  <div class="card"><button class="secondary" id="export">CSV Export</button><button class="danger" id="wipe">Alles löschen</button></div>
+</div>
+
+
+<div id="profile" class="hide">
+ <div class="card">
+  <h2>Spielerprofile</h2>
+  <p class="note">Alphabetische Liste. Klicke auf einen Namen, um das Profil zu öffnen.</p>
+ </div>
+ <div id="profileView"></div>
 </div>
 
 <div id="pending" class="hide">
@@ -333,6 +360,7 @@ var leagueRef = db.collection("rumliLeague").doc("main");
 
 function freshData(){return {players:['Ich','Freund'],games:[],pendingGames:[],tournaments:[],settings:{news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}}};}
 var d = freshData();
+var selectedProfilePlayer = "";
 
 function cleanData(){
  if(!d.players){d.players=['Ich','Freund'];}
@@ -344,6 +372,61 @@ function cleanData(){
 
 function E(id){return document.getElementById(id);}
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function playerLink(name){return '<span class="playerLink" data-profile="'+esc(name)+'">'+esc(name)+'</span>';}
+function gameWinner(g){
+ if(g.bestOf3){return bo3Winner(g)||'';}
+ if(g.sa>g.sb)return g.a;
+ if(g.sb>g.sa)return g.b;
+ return '';
+}
+function isPlayerInGame(g,p){return g&&(g.a===p||g.b===p);}
+function playerProfileStats(p){
+ var res={name:p,played:0,wins:0,losses:0,draws:0,gf:0,ga:0,topTitles:0,ballonTitles:0,streak:0,form:[]};
+ var played=[]; var i,g,w,own,opp;
+ for(i=0;i<d.games.length;i++){
+  g=d.games[i]; if(!isPlayerInGame(g,p))continue;
+  res.played++; played.push(g); w=gameWinner(g);
+  if(g.bestOf3){
+   if(w===p){res.wins++;}else if(w){res.losses++;}
+  }else{
+   own=(g.a===p)?g.sa:g.sb; opp=(g.a===p)?g.sb:g.sa;
+   res.gf+=own; res.ga+=opp;
+   if(own>opp)res.wins++; else if(own<opp)res.losses++; else res.draws++;
+  }
+ }
+ for(i=played.length-1;i>=0;i--){
+  g=played[i]; w=gameWinner(g);
+  if(w===p){res.streak++;}else{break;}
+ }
+ for(i=played.length-1;i>=0&&res.form.length<5;i--){
+  g=played[i]; w=gameWinner(g);
+  if(w===p)res.form.push('✅'); else if(!w)res.form.push('➖'); else res.form.push('❌');
+ }
+ var years={},yy,m,r,now=new Date(),curY=now.getFullYear(),curM=now.getMonth()+1,yi;
+ for(i=0;i<d.games.length;i++){yy=dt(d.games[i].date).getFullYear();years[yy]=true;}
+ for(yy in years){
+  yi=parseInt(yy,10);
+
+  /* Ballon d'Or Titel zählen erst, wenn das Jahr abgeschlossen ist. */
+  if(yi<curY){
+   r=stats(yearGames(yi),[],'ballon')[0];
+   if(r&&r.name===p&&r.p>0)res.ballonTitles++;
+  }
+
+  /* Top Scorer zählen erst, wenn der Monat abgeschlossen ist. */
+  for(m=1;m<=12;m++){
+   if(yi<curY || (yi===curY && m<curM)){
+    r=stats(monthGames(yi,m),tournamentMonth(yi,m),'top')[0];
+    if(r&&r.name===p&&r.p>0)res.topTitles++;
+   }
+  }
+ }
+ res.winrate=res.played?Math.round((res.wins/res.played)*1000)/10:0;
+ res.avgGoals=res.played?Math.round((res.gf/res.played)*10)/10:0;
+ return res;
+}
+
 function saveData(){
  cleanData();
  leagueRef.set(d).catch(function(e){
@@ -441,8 +524,8 @@ function stats(games,tours,kind){
 }
 function drawTable(arr){
  if(arr.length==0)return '<p class="note">Keine Daten.</p>';
- var o='<table><tr><th>#</th><th>Spieler</th><th class="right">Pkt</th><th class="right">Extra</th><th class="right">Win</th><th class="right">Lose</th><th class="right">Tore</th></tr>',i,r;
- for(i=0;i<arr.length;i++){r=arr[i];o+='<tr><td>'+(i+1)+'</td><td><b>'+esc(r.name)+'</b></td><td class="right"><b>'+r.p+'</b></td><td class="right">'+(r.tb||0)+'</td><td class="right">'+r.w+'</td><td class="right">'+r.l+'</td><td class="right">'+r.gf+':'+r.ga+'</td></tr>';}
+ var o='<table><tr><th>#</th><th>Spieler</th><th class="right">Pkt</th><th class="right">Extra</th><th class="right">Win</th><th class="right">Lose</th><th class="right">Goals</th></tr>',i,r;
+ for(i=0;i<arr.length;i++){r=arr[i];o+='<tr><td>'+(i+1)+'</td><td><b>'+playerLink(r.name)+'</b></td><td class="right"><b>'+r.p+'</b></td><td class="right">'+(r.tb||0)+'</td><td class="right">'+r.w+'</td><td class="right">'+r.l+'</td><td class="right">'+r.gf+':'+r.ga+'</td></tr>';}
  return o+'</table>';
 }
 function monthGames(y,m){var a=[],i,g,t;for(i=0;i<d.games.length;i++){g=d.games[i];t=dt(g.date);if(t.getFullYear()==y&&(t.getMonth()+1)==m)a.push(g);}return a;}
@@ -451,23 +534,34 @@ function tournamentMonth(y,m){var a=[],i,t,dd;for(i=0;i<d.tournaments.length;i++
 function tournamentYear(y){var a=[],i,t,dd;for(i=0;i<d.tournaments.length;i++){t=d.tournaments[i];dd=dt(t.date);if(dd.getFullYear()==y)a.push(t);}return a;}
 
 function renderBallon(){
- var y=parseInt(E('myear').value,10),m=parseInt(E('month').value,10),arr=stats(monthGames(y,m),tournamentMonth(y,m),'top');
- E('leader').innerHTML=(arr[0]&&arr[0].p>0)?esc(arr[0].name)+' – '+arr[0].p+' Punkte':'Noch kein Leader';
+ var y=parseInt(E('myear').value,10),m=parseInt(E('month').value,10);
+ if(E('rankTitle'))E('rankTitle').innerHTML='Top Scorer Ranking '+mname(m)+' '+y;
+ if(E('monthsTitle'))E('monthsTitle').innerHTML='Top Scorer '+y;
+ var arr=stats(monthGames(y,m),tournamentMonth(y,m),'top').filter(function(r){return r.gf>0;});
+ E('leader').innerHTML=(arr[0]&&arr[0].gf>0)?esc(arr[0].name)+' – '+arr[0].gf+' Goals':'Noch kein Leader';
  E('rank').innerHTML=drawTable(arr);
- var o='<table><tr><th>Monat</th><th>Top Scorer</th><th class="right">Tore</th></tr>',i,r;
- for(i=1;i<=12;i++){r=stats(monthGames(y,i),tournamentMonth(y,i),'top')[0];o+='<tr><td>'+mname(i)+'</td><td>'+(r&&r.p>0?'<b>'+esc(r.name)+'</b>':'–')+'</td><td class="right">'+(r&&r.p>0?r.p:'–')+'</td></tr>';}
+ var o='<table><tr><th>Monat</th><th>Top Scorer</th><th class="right">Goals</th></tr>',i,r,monthArr;
+ for(i=1;i<=12;i++){
+  monthArr=stats(monthGames(y,i),tournamentMonth(y,i),'top').filter(function(x){return x.gf>0;});
+  r=monthArr[0];
+  o+='<tr><td>'+mname(i)+'</td><td>'+(r&&r.gf>0?'<b>'+esc(r.name)+'</b>':'–')+'</td><td class="right">'+(r&&r.gf>0?r.gf:'–')+'</td></tr>';
+ }
  E('months').innerHTML=o+'</table>';
 }
-function renderYear(){var y=parseInt(E('year').value,10);E('championsTitle').innerHTML='Ballon d’Or Kandidaten '+y;E('yrank').innerHTML=drawTable(stats(yearGames(y),[],'ballon'));}
+function renderYear(){
+ var y=parseInt(E('year').value,10);
+ E('championsTitle').innerHTML='Ballon d’Or Kandidaten '+y;
+ E('yrank').innerHTML=drawTable(stats(yearGames(y),[],'ballon').filter(function(r){return r.gf>0;}));
+}
 function renderPlayers(){
- var o='',i;for(i=0;i<d.players.length;i++){o+='<div class="item"><b>'+esc(d.players[i])+'</b><button class="danger rem" data-i="'+i+'">löschen</button></div>';}E('plist').innerHTML=o||'<p class="note">Keine Spieler.</p>';
+ var o='',i;for(i=0;i<d.players.length;i++){o+='<div class="item"><b>'+playerLink(d.players[i])+'</b>'+(isAdmin?'<button class="danger rem" data-i="'+i+'">löschen</button>':'')+'</div>';}E('plist').innerHTML=o||'<p class="note">Keine Spieler.</p>';
 }
 function renderHist(){
  var o='',i,g,w;for(i=d.games.length-1;i>=0;i--){g=d.games[i];w=g.sa>g.sb?g.a:g.b;if(g.bestOf3){
    var bw=bo3Winner(g);
-   o+='<div class="item"><b>'+esc(g.date)+'</b> · Best of 3<br>'+esc(g.a)+' vs '+esc(g.b)+'<br><span class="note">Sieger: '+esc(bw||'offen')+' · +12 Ballon d’Or Punkte</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
+   o+='<div class="item"><b>'+esc(g.date)+'</b> · Best of 3<br>'+playerLink(g.a)+' vs '+playerLink(g.b)+'<br><span class="note">Sieger: '+esc(bw||'offen')+' · +12 Ballon d’Or Punkte</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
   }else{
-   o+='<div class="item"><b>'+esc(g.date)+'</b><br>'+esc(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+esc(g.b)+'<br><span class="note">Sieger: '+esc(w)+'</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
+   o+='<div class="item"><b>'+esc(g.date)+'</b><br>'+playerLink(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+playerLink(g.b)+'<br><span class="note">Sieger: '+esc(w)+'</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
   }}E('hist').innerHTML=o||'<p class="note">Noch keine Spiele.</p>';
 }
 
@@ -593,19 +687,19 @@ function renderDashboardAdmin(){
 
 function renderHome(){
  var now=new Date(),y=now.getFullYear(),m=now.getMonth()+1;E('topScorerDashTitle').innerHTML='Top Scorer '+mname(m)+' '+y;
- var top=stats(monthGames(y,m),tournamentMonth(y,m),'top');
+ var top=stats(monthGames(y,m),tournamentMonth(y,m),'top').filter(function(r){return r.gf>0;});
  function pbox(rank,cls,medal){
   var r=top[rank-1];
-  return '<div class="podiumBox '+cls+'"><div class="medal">'+medal+'</div><div class="podName">'+esc(r&&r.p>0?r.name:'-')+'</div><div class="podPts">'+(r&&r.p>0?r.p+' Punkte':'noch offen')+'</div></div>';
+  return '<div class="podiumBox '+cls+'"><div class="medal">'+medal+'</div><div class="podName">'+(r&&r.p>0?esc(r.name):'-')+'</div><div class="podPts">'+(r&&r.p>0?r.p+' Punkte':'noch offen')+'</div></div>';
  }
  E('homePodium').innerHTML='<div class="podium">'+pbox(2,'second','🥈')+pbox(1,'first','🥇')+pbox(3,'third','🥉')+'</div>';
  var years={},i,g,t,yy,rows,w,o='',list=[];
  for(i=0;i<d.games.length;i++){yy=dt(d.games[i].date).getFullYear();years[yy]=true;}
  /* Turniere zählen nicht mehr für Ballon d’Or */
  for(yy in years){
-  rows=stats(yearGames(parseInt(yy,10)),[],'ballon');
+  rows=stats(yearGames(parseInt(yy,10)),[],'ballon').filter(function(r){return r.gf>0;});
   w=rows[0];
-  if(w&&w.p>0){list.push({year:parseInt(yy,10),name:w.name,p:w.p});}
+  if(w&&w.gf>0){list.push({year:parseInt(yy,10),name:w.name,p:w.p});}
  }
  list.sort(function(a,b){return b.p-a.p||b.year-a.year;});
  for(i=0;i<list.length;i++){
@@ -634,6 +728,44 @@ function renderHome(){
 }
 
 
+
+function renderProfile(){
+ if(!E('profileView'))return;
+ if(selectedProfilePlayer && d.players.indexOf(selectedProfilePlayer)<0){selectedProfilePlayer='';}
+ if(!selectedProfilePlayer){
+  var names=d.players.slice().sort(function(a,b){return String(a).localeCompare(String(b),'de',{sensitivity:'base'});});
+  var o='<div class="card"><h2>👥 Spielerliste</h2><div class="profileList">',i;
+  for(i=0;i<names.length;i++){
+   o+='<div class="profilePick" data-profile="'+esc(names[i])+'"><span>'+esc(names[i])+'</span><span>›</span></div>';
+  }
+  o+='</div></div>';
+  E('profileView').innerHTML=names.length?o:'<div class="card"><p class="note">Noch keine Spieler vorhanden.</p></div>';
+  return;
+ }
+ var s=playerProfileStats(selectedProfilePlayer);
+ var diff=s.gf-s.ga;
+ E('profileView').innerHTML=
+  '<div class="card">'+
+   '<button class="secondary profileBack" type="button">← Zur Spielerliste</button>'+
+   '<div class="profileHero"><div class="profileAvatar">👤</div><div class="profileName">'+esc(s.name)+'</div><div class="profileForm">'+(s.form.length?s.form.join(' '):'–')+'</div><p class="note">Letzte 5 Spiele · ✅ Sieg · ❌ Niederlage · ➖ Unentschieden</p></div>'+
+   '<div class="profileGrid">'+
+    '<div class="profileStat">🎮 Spiele<b>'+s.played+'</b></div>'+
+    '<div class="profileStat">🏆 Siege<b>'+s.wins+'</b></div>'+
+    '<div class="profileStat">❌ Niederlagen<b>'+s.losses+'</b></div>'+
+    '<div class="profileStat">🤝 Unentschieden<b>'+s.draws+'</b></div>'+
+    '<div class="profileStat">📊 Siegquote<b>'+s.winrate+'%</b></div>'+
+    '<div class="profileStat">🔥 Siegesserie<b>'+s.streak+'</b></div>'+
+    '<div class="profileStat">⚽ Goals<b>'+s.gf+'</b></div>'+
+    '<div class="profileStat">🥅 Kassierte Goals<b>'+s.ga+'</b></div>'+
+    '<div class="profileStat">📈 Goal-Differenz<b>'+(diff>0?'+':'')+diff+'</b></div>'+
+    '<div class="profileStat">🎯 Goals/Spiel<b>'+s.avgGoals+'</b></div>'+
+    '<div class="profileStat">🥇 Top Scorer<b>'+s.topTitles+'</b><small>abgeschlossene Monate</small></div>'+
+    '<div class="profileStat">🏆 Ballon d’Or<b>'+s.ballonTitles+'</b><small>abgeschlossene Jahre</small></div>'+
+   '</div>'+
+  '</div>';
+}
+function openProfile(name){selectedProfilePlayer=name||selectedProfilePlayer;show('profile');}
+
 function renderPending(){
  var o='',i,g;
  for(i=0;i<(d.pendingGames||[]).length;i++){
@@ -641,15 +773,15 @@ function renderPending(){
   if(g.bestOf3){
    var pr='';
    for(var px=0;px<(g.rounds||[]).length;px++){pr+='Spiel '+(px+1)+': '+g.rounds[px].sa+':'+g.rounds[px].sb+'<br>';}
-   o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Best of 3 · '+esc(g.a)+' vs '+esc(g.b)+'<br>'+pr+'<span class="note">'+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
+   o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Best of 3 · '+playerLink(g.a)+' vs '+playerLink(g.b)+'<br>'+pr+'<span class="note">'+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
   }else{
-   o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>'+esc(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+esc(g.b)+'<br><span class="note">'+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
+   o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>'+playerLink(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+playerLink(g.b)+'<br><span class="note">'+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
   }
  }
  E('pendingList').innerHTML=o||'<p class="note">Keine offenen Spiele.</p>'; updateMenuVisibility();
 }
 
-function renderAll(){sync();renderPending();renderBallon();renderYear();renderPlayers();renderHist();renderHome();}
+function renderAll(){sync();renderPending();renderBallon();renderYear();renderPlayers();renderHist();renderHome();renderProfile();}
 
 function updateMenuVisibility(){
  var m=E('adminMenu');
@@ -673,7 +805,7 @@ function closeMenu(){
 function show(p){
  var tabsEl=document.querySelector('.tabs');if(tabsEl){tabsEl.style.display=isAdmin?'none':'grid';}
  if(!isAdmin && (p=='players' || p=='pending')){alert('Bitte zuerst über den Login-Button anmelden.'); p='ballon';}
- E('home').className=p=='home'?'':'hide';E('pending').className=p=='pending'?'':'hide';E('game').className=p=='game'?'':'hide';E('ballon').className=p=='ballon'?'':'hide';E('yearpage').className=p=='year'?'':'hide';E('players').className=p=='players'?'':'hide';E('history').className=p=='history'?'':'hide';
+ E('home').className=p=='home'?'':'hide';E('pending').className=p=='pending'?'':'hide';E('game').className=p=='game'?'':'hide';E('ballon').className=p=='ballon'?'':'hide';E('yearpage').className=p=='year'?'':'hide';E('players').className=p=='players'?'':'hide';E('profile').className=p=='profile'?'':'hide';E('history').className=p=='history'?'':'hide';
  E('tg').style.display=isAdmin?'block':'none';
  E('tb').style.display='none';
  E('ty').style.display='none';
@@ -685,11 +817,13 @@ function show(p){
  updateMenuVisibility();
  if(E('amGame'))E('amGame').className='adminOnly '+(p=='game'?'on':'');
  if(E('amPlayers'))E('amPlayers').className='adminOnly '+(p=='players'?'on':'');
+ if(E('amProfilesAdmin'))E('amProfilesAdmin').className='adminOnly '+(p=='profile'?'on':'');
  if(E('amPendingAdmin'))E('amPendingAdmin').className='adminOnly '+(p=='pending'?'on':'');
  if(E('amHistoryAdmin'))E('amHistoryAdmin').className='adminOnly '+(p=='history'?'on':'');
  
  if(E('amTopAdmin'))E('amTopAdmin').className='adminOnly '+(p=='ballon'?'on':'');
  if(E('amBallonAdmin'))E('amBallonAdmin').className='adminOnly '+(p=='year'?'on':'');
+ if(E('nmProfiles'))E('nmProfiles').className='normalOnly '+(p=='profile'?'on':'');
  if(E('nmTop'))E('nmTop').className='normalOnly '+(p=='ballon'?'on':'');
  if(E('nmBallon'))E('nmBallon').className='normalOnly '+(p=='year'?'on':'');
  
@@ -733,6 +867,7 @@ E('save').onclick=saveGame;
 if(E('logoHome')){E('logoHome').onclick=function(){show('home');};}
 E('amGame').onclick=function(){show('game');closeMenu();};
 E('amPlayers').onclick=function(){show('players');closeMenu();};
+E('amProfilesAdmin').onclick=function(){selectedProfilePlayer='';show('profile');closeMenu();};
 E('amPendingAdmin').onclick=function(){show('pending');closeMenu();};
 E('amHistoryAdmin').onclick=function(){show('history');closeMenu();};
 
@@ -741,6 +876,7 @@ E('amBallonAdmin').onclick=function(){show('year');closeMenu();};
 E('menuLogout').onclick=function(){localStorage.removeItem('airhockey_is_admin');location.reload();};
 
 E('nmSubmitGame').onclick=function(){show('game');closeMenu();};
+E('nmProfiles').onclick=function(){selectedProfilePlayer='';show('profile');closeMenu();};
 E('nmTop').onclick=function(){show('ballon');closeMenu();};
 E('nmBallon').onclick=function(){show('year');closeMenu();};
 
@@ -766,7 +902,7 @@ E('saveRewards').onclick=function(){
 E('month').onchange=renderBallon;E('myear').oninput=renderBallon;E('year').oninput=renderYear;
 E('addp').onclick=function(){var p=E('newp').value.replace(/^\s+|\s+$/g,'');if(!p)return;d.players.push(p);E('newp').value='';saveData();fill();renderAll();};
 E('wipe').onclick=function(){if(confirm('Alles löschen?')){d={players:['Ich','Freund'],games:[],pendingGames:[],tournaments:[],settings:{news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}}};saveData();fill();show('game');}};
-E('export').onclick=function(){var o='Datum,Spieler A,Tore A,Spieler B,Tore B,Sieger\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[g.date,g.a,g.bestOf3?'BO3':g.sa,g.b,g.bestOf3?'BO3':g.sb,g.bestOf3?bo3Winner(g):(g.sa>g.sb?g.a:g.b)].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='airhockey.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
+E('export').onclick=function(){var o='Datum,Spieler A,Goals A,Spieler B,Goals B,Sieger\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[g.date,g.a,g.bestOf3?'BO3':g.sa,g.b,g.bestOf3?'BO3':g.sb,g.bestOf3?bo3Winner(g):(g.sa>g.sb?g.a:g.b)].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='airhockey.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
 
 E('adminLoginBtn').onclick=function(){
  if(E('adminpass').value===ADMIN_PASSWORD){
@@ -818,7 +954,7 @@ function loadTournamentForEdit(idx){
 }
 
 document.body.onchange=function(ev){var t=ev.target;if(t.className&&String(t.className).indexOf('matchWinner')>=0){var ti=parseInt(t.getAttribute('data-t'),10),ri=parseInt(t.getAttribute('data-r'),10),mi=parseInt(t.getAttribute('data-m'),10);if(d.tournaments[ti]&&d.tournaments[ti].rounds&&d.tournaments[ti].rounds[ri]&&d.tournaments[ti].rounds[ri][mi]){d.tournaments[ti].rounds[ri][mi].winner=t.value;propagate(d.tournaments[ti]);saveData();renderAll();}}};
-document.body.onclick=function(ev){var t=ev.target;if(t.className&&String(t.className).indexOf('editTournament')>=0){var ei=parseInt(t.getAttribute('data-i'),10);loadTournamentForEdit(ei);return;} if(t.className&&String(t.className).indexOf('rem')>=0){var i=parseInt(t.getAttribute('data-i'),10);if(confirm('Spieler löschen?')){d.players.splice(i,1);saveData();fill();renderAll();}} if(t.className&&String(t.className).indexOf('approveGame')>=0){
+document.body.onclick=function(ev){var t=ev.target;if(t.className&&String(t.className).indexOf('profileBack')>=0){selectedProfilePlayer='';renderProfile();return;} if(t.getAttribute&&t.getAttribute('data-profile')){openProfile(t.getAttribute('data-profile'));return;} if(t.className&&String(t.className).indexOf('editTournament')>=0){var ei=parseInt(t.getAttribute('data-i'),10);loadTournamentForEdit(ei);return;} if(t.className&&String(t.className).indexOf('rem')>=0){var i=parseInt(t.getAttribute('data-i'),10);if(confirm('Spieler löschen?')){d.players.splice(i,1);saveData();fill();renderAll();}} if(t.className&&String(t.className).indexOf('approveGame')>=0){
  var pi=parseInt(t.getAttribute('data-i'),10),pg=d.pendingGames[pi];
  if(pg){
   d.games.push(pg);
