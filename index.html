@@ -863,6 +863,83 @@ input[type="date"]{
   .homeChampionSlot h3{letter-spacing:3px !important;font-size:11px !important;}
 }
 
+
+/* Poker Dashboard wie Air Hockey: Monats-Top-3, Jahresranking und letztes Spiel */
+#pokerDashView{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:720px){#pokerDashView{grid-template-columns:1.2fr .8fr}.pokerYearCardWide{grid-column:auto}}
+.pokerMiniRank .champItem{border-bottom-color:rgba(244,238,180,.25)!important}
+.pokerMiniRank .champYear{color:var(--pokerGold)!important}
+
+
+/* Poker echte Unterseiten: Dashboard und Ranking/Historie/Stats werden nie gleichzeitig angezeigt */
+#pokerPage.poker-view-dash #pokerDashView{display:grid!important}
+#pokerPage.poker-view-dash #pokerNewView,
+#pokerPage.poker-view-dash #pokerPendingView,
+#pokerPage.poker-view-dash #pokerRankingView,
+#pokerPage.poker-view-dash #pokerHistoryView,
+#pokerPage.poker-view-dash #pokerStatsView{display:none!important}
+#pokerPage.poker-view-new #pokerNewView,
+#pokerPage.poker-view-pending #pokerPendingView,
+#pokerPage.poker-view-ranking #pokerRankingView,
+#pokerPage.poker-view-history #pokerHistoryView,
+#pokerPage.poker-view-stats #pokerStatsView{display:block!important}
+#pokerPage.poker-view-new #pokerDashView,
+#pokerPage.poker-view-pending #pokerDashView,
+#pokerPage.poker-view-ranking #pokerDashView,
+#pokerPage.poker-view-history #pokerDashView,
+#pokerPage.poker-view-stats #pokerDashView{display:none!important}
+#pokerPage.poker-view-new #pokerPendingView,#pokerPage.poker-view-new #pokerRankingView,#pokerPage.poker-view-new #pokerHistoryView,#pokerPage.poker-view-new #pokerStatsView,
+#pokerPage.poker-view-pending #pokerNewView,#pokerPage.poker-view-pending #pokerRankingView,#pokerPage.poker-view-pending #pokerHistoryView,#pokerPage.poker-view-pending #pokerStatsView,
+#pokerPage.poker-view-ranking #pokerNewView,#pokerPage.poker-view-ranking #pokerPendingView,#pokerPage.poker-view-ranking #pokerHistoryView,#pokerPage.poker-view-ranking #pokerStatsView,
+#pokerPage.poker-view-history #pokerNewView,#pokerPage.poker-view-history #pokerPendingView,#pokerPage.poker-view-history #pokerRankingView,#pokerPage.poker-view-history #pokerStatsView,
+#pokerPage.poker-view-stats #pokerNewView,#pokerPage.poker-view-stats #pokerPendingView,#pokerPage.poker-view-stats #pokerRankingView,#pokerPage.poker-view-stats #pokerHistoryView{display:none!important}
+.pokerBackBtn{margin-bottom:12px!important;background:linear-gradient(180deg,var(--pokerGreen2),var(--pokerGreen))!important}
+
+
+
+/* Dart League Design */
+body.dartMode{background:#18321f!important;color:#f4eeb4!important}
+body.dartMode header,body.dartMode .adminMenu,body.dartMode .tabs{background:#102515!important}
+body.dartMode .leagueDashboardHero{background:radial-gradient(circle at 50% 0%,rgba(244,238,180,.18),transparent 36%),linear-gradient(135deg,#102515,#2f5f3b 55%,#7b1f2d)!important;border-color:#f4eeb4!important}
+body.dartMode .leagueDashboardHero h2{color:#f4df75!important;text-shadow:0 8px 18px rgba(0,0,0,.45)}
+body.dartMode #dashBallonCard,body.dartMode #ballon .card,body.dartMode #game .card{background:#2f5f3b!important;color:#f4eeb4!important}
+body.dartMode #dashChampionsCard,body.dartMode #yearpage .card,body.dartMode #pending .card{background:#7b1f2d!important;color:#f4eeb4!important}
+body.dartMode #dashHistoryCard,body.dartMode #history .card{background:#102515!important;color:#f4eeb4!important}
+body.dartMode button{background:#7b1f2d!important;color:#f4eeb4!important;border:2px solid #f4eeb4!important}
+body.dartMode button.secondary{background:#2f5f3b!important}
+body.dartMode input,body.dartMode select,body.dartMode textarea{background:rgba(0,0,0,.22)!important;border-color:#f4eeb4!important;color:#f4eeb4!important}
+body.dartMode .card{border-color:#f4eeb4!important;box-shadow:4px 4px 0 rgba(0,0,0,.42),inset 0 0 18px rgba(244,238,180,.05)!important}
+
+
+
+/* Dart Live Scorer */
+.dartScorer{margin-top:12px}
+.dartSetupGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.dartPlayerSetup{display:grid;grid-template-columns:1fr;gap:8px;margin:10px 0}
+.dartBoard{display:grid;gap:10px;margin:12px 0}
+.dartPlayerRow{display:grid;grid-template-columns:86px 1fr 70px;gap:8px;align-items:center;background:rgba(0,0,0,.18);border:2px solid rgba(244,238,180,.55);border-radius:16px;padding:10px}
+.dartPlayerRow.active{border-color:#ef4444;box-shadow:0 0 18px rgba(239,68,68,.24), inset 0 0 18px rgba(244,238,180,.08)}
+.dartScore{font-size:34px;font-weight:900;color:#fff;line-height:1}.dartPlayerName{font-weight:bold;color:var(--cream)}
+.dartMini{font-size:12px;color:rgba(244,238,180,.78);line-height:1.35}.dartPlace{font-size:24px;text-align:center;color:#f4df75;font-weight:bold}
+.dartKeypad{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:12px}
+.dartKeypad button{min-height:54px;margin:0;background:rgba(0,0,0,.22)!important;color:var(--cream)!important;border:2px solid rgba(244,238,180,.65)!important;font-size:20px}
+.dartMods{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}.dartMods button{margin:0}.dartMods button.on{background:#ef4444!important;color:#fff!important}
+.dartActionRow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.dartActionRow button{margin:0}
+.dartThrowInfo{text-align:center;margin-top:8px;color:#f4df75;font-weight:bold;min-height:22px}
+.dartFinished{opacity:.68}.dartFinished .dartScore{text-decoration:line-through}
+@media(max-width:520px){.dartSetupGrid{grid-template-columns:1fr}.dartPlayerRow{grid-template-columns:72px 1fr 50px}.dartScore{font-size:30px}.dartKeypad{grid-template-columns:repeat(5,1fr)}.dartKeypad button{min-height:48px;font-size:18px}.dartMods{grid-template-columns:1fr}.dartActionRow{grid-template-columns:1fr}}
+
+
+
+/* Einheitliche Zurück-zum-Dashboard Buttons */
+.leagueBackBtn{
+  margin:0 0 12px 0!important;
+  background:linear-gradient(180deg,var(--teal,#55897D),var(--slate,#425454))!important;
+  color:var(--cream,#F4EEB4)!important;
+  border:2px solid var(--cream,#F4EEB4)!important;
+}
+body.dartMode .leagueBackBtn{background:linear-gradient(180deg,#2f5f3b,#102515)!important;color:#f4eeb4!important;border-color:#f4eeb4!important}
+
 </style>
 </head>
 <body>
@@ -911,7 +988,7 @@ input[type="date"]{
  <button id="amPokerDashboard" class="adminOnly pokerOnly">Poker Dashboard</button>
  <button id="amPokerNew" class="adminOnly pokerOnly">Spiel eintragen</button>
  <button id="amPokerPending" class="adminOnly pokerOnly">Offene Spiele (0)</button>
- <button id="amPokerRanking" class="adminOnly pokerOnly">Poker Ranking</button>
+ <button id="amPokerRanking" class="adminOnly pokerOnly">Poker Rankings</button>
  <button id="amPokerHistory" class="adminOnly pokerOnly">Poker Historie</button>
  <button id="amPokerStats" class="adminOnly pokerOnly">Poker Stats</button>
  <button id="amPendingAdmin" class="adminOnly leagueOnly">Offene Spiele (0)</button>
@@ -928,7 +1005,7 @@ input[type="date"]{
  <button id="nmHallOfFame" class="normalOnly homeOnly">Hall of Fame</button>
  <button id="nmPokerDashboard" class="normalOnly pokerOnly">Poker Dashboard</button>
  <button id="nmPokerNew" class="normalOnly pokerOnly">Spiel melden</button>
- <button id="nmPokerRanking" class="normalOnly pokerOnly">Poker Ranking</button>
+ <button id="nmPokerRanking" class="normalOnly pokerOnly">Poker Rankings</button>
  <button id="nmPokerHistory" class="normalOnly pokerOnly">Poker Historie</button>
  <button id="nmPokerStats" class="normalOnly pokerOnly">Poker Stats</button>
  <button id="nmDashboard" class="normalOnly leagueOnly">Dashboard</button>
@@ -951,7 +1028,7 @@ input[type="date"]{
   <div class="gameSelectGrid">
    <div class="card gameTile featured" id="pickAirHockey"><div class="gameIcon">🏒</div><div class="gameName">Air Hockey</div><div class="gameStatus">Dashboard öffnen</div></div>
    <div class="card gameTile featured" id="pickPoker"><div class="gameIcon">♠️</div><div class="gameName">Poker</div><div class="gameStatus">Poker League öffnen</div></div>
-   <div class="card gameTile soonGame" data-game="Dart"><div class="gameIcon">🎯</div><div class="gameName">Dart</div><div class="gameStatus">Ist in Arbeit</div></div>
+   <div class="card gameTile featured" id="pickDart"><div class="gameIcon">🎯</div><div class="gameName">Dart</div><div class="gameStatus">Dart Dashboard öffnen</div></div>
    <div class="card gameTile featured" id="pickFifa"><div class="gameIcon">⚽</div><div class="gameName">FIFA</div><div class="gameStatus">Dashboard öffnen</div></div>
    <div class="card gameTile soonGame" data-game="Hotel"><div class="gameIcon">🏨</div><div class="gameName">Hotel</div><div class="gameStatus">Ist in Arbeit</div></div>
   </div>
@@ -976,10 +1053,11 @@ input[type="date"]{
   <button id="pokerTabStats" type="button">Stats</button>
  </div>
  <div id="pokerDashView">
-  <div class="card pokerTheme homeClickCard" id="pokerTop3Card" style="cursor:pointer"><h2>Top 3 Poker</h2><div id="pokerTop3" class="pokerRanking"></div></div>
+  <div class="card pokerTheme homeClickCard" id="pokerTop3Card" style="cursor:pointer"><h2 id="pokerTop3Title">Top 3 Poker</h2><p class="note">Top 3 des aktuellen Monats</p><div id="pokerTop3" class="pokerRanking"></div></div>
+  <div class="card pokerTheme homeClickCard" id="pokerYearCard" style="cursor:pointer"><h2 id="pokerYearDashTitle">Jahresranking</h2><p class="note">Gesamtpunkte des aktuellen Jahres</p><div id="pokerYearDash"></div></div>
   <div class="card pokerTheme homeClickCard" id="pokerLastCard" style="cursor:pointer"><h2>Letztes Spiel</h2><div id="pokerLast"></div></div>
  </div>
- <div id="pokerNewView" class="hide">
+ <div id="pokerNewView" class="hide"><button type="button" class="secondary pokerBackBtn">← Zurück zum Poker Dashboard</button>
   <div class="card pokerTheme">
    <h2 id="pokerNewTitle">Spiel melden</h2>
    <label>Spielname</label><input id="pokerName" placeholder="z.B. Friday Night Poker">
@@ -991,23 +1069,25 @@ input[type="date"]{
    <button id="savePokerTournament" type="button">Poker-Spiel speichern ♠️</button>
   </div>
  </div>
- <div id="pokerPendingView" class="hide">
+ <div id="pokerPendingView" class="hide"><button type="button" class="secondary pokerBackBtn">← Zurück zum Poker Dashboard</button>
   <div class="card pokerTheme"><h2>Offene Poker-Spiele</h2><p class="note">Gemeldete Poker-Spiele warten hier auf Admin-Bestätigung.</p><div id="pokerPendingList"></div></div>
  </div>
- <div id="pokerRankingView" class="hide">
+ <div id="pokerRankingView" class="hide"><button type="button" class="secondary pokerBackBtn">← Zurück zum Poker Dashboard</button>
   <div class="card pokerTheme">
-   <h2 id="pokerRankingTitle">Poker Ranking</h2>
+   <h2 id="pokerRankingTitle">Poker Rankings</h2>
    <div class="grid">
+    <div><label>Monat</label><select id="pokerMonth"></select></div>
     <div><label>Jahr</label><input id="pokerYear" type="number"></div>
    </div>
-   <p class="note">Poker Ranking zählt pro Jahr neu: Runde = 1 Punkt, Spielsieg = 10 Punkte, All-In-Sieg = 5 Punkte.</p>
-   <div id="pokerRanking" class="pokerRanking"></div>
+   <p class="note">Poker nutzt die gleichen Punkte für Monats- und Jahresranking: Runde = 1, Spielsieg = 10, All-In-Sieg = 5.</p>
   </div>
+  <div class="card pokerTheme"><h2 id="pokerMonthRankingTitle">Monatsranking</h2><div id="pokerMonthRanking" class="pokerRanking"></div></div>
+  <div class="card pokerTheme"><h2 id="pokerYearRankingTitle">Jahresranking</h2><div id="pokerRanking" class="pokerRanking"></div></div>
  </div>
- <div id="pokerHistoryView" class="hide">
+ <div id="pokerHistoryView" class="hide"><button type="button" class="secondary pokerBackBtn">← Zurück zum Poker Dashboard</button>
   <div class="card pokerTheme"><h2>Poker Historie</h2><div id="pokerHistory"></div></div>
  </div>
- <div id="pokerStatsView" class="hide">
+ <div id="pokerStatsView" class="hide"><button type="button" class="secondary pokerBackBtn">← Zurück zum Poker Dashboard</button>
   <div class="card pokerTheme"><h2>Poker Stats</h2><p class="note">Spielerprofile für Poker: Punkte, Runden, Siege und All-In-Boni.</p><div id="pokerStatsList"></div></div>
  </div>
 </div>
@@ -1061,10 +1141,42 @@ input[type="date"]{
   <div class="grid" id="normalGameFields">
    <div><label>Spieler A</label><select id="a"></select></div>
    <div><label>Spieler B</label><select id="b"></select></div>
-   <div class="normalScoreField"><label>Goals A</label><input id="sa" type="number" value="0" min="0"></div>
-   <div class="normalScoreField"><label>Goals B</label><input id="sb" type="number" value="0" min="0"></div>
+   <div class="normalScoreField"><label id="scoreALabel">Goals A</label><input id="sa" type="number" value="0" min="0"></div>
+   <div class="normalScoreField"><label id="scoreBLabel">Goals B</label><input id="sb" type="number" value="0" min="0"></div>
+   <div class="dartOnly hide"><label>Bullseyes A</label><input id="bullA" type="number" value="0" min="0"></div>
+   <div class="dartOnly hide"><label>Bullseyes B</label><input id="bullB" type="number" value="0" min="0"></div>
    <div><label>Wer meldet?</label><select id="reporter"></select></div>
    <div><label>Datum</label><input id="date" type="date"></div>
+  </div>
+  <div id="dartScorer" class="dartScorer hide">
+   <div class="card dartModeCard">
+    <h3>🎯 Dart Live Scorer</h3>
+    <p class="note">Wähle Spieler und Startpunktzahl. Danach drückst du nur noch, was geworfen wurde. Die Seite zählt automatisch runter und merkt sich Sieger, Zweiten und Bullseyes.</p>
+    <div class="dartSetupGrid">
+     <div><label>Startpunktzahl</label><select id="dartStartScore"><option value="301">301</option><option value="501" selected>501</option><option value="701">701</option><option value="1001">1001</option></select></div>
+     <div><label>Wie viele spielen?</label><input id="dartPlayerCount" type="number" min="2" max="8" value="2"></div>
+     <div><label>Wer meldet?</label><select id="dartReporter"></select></div>
+     <div><label>Datum</label><input id="dartDate" type="date"></div>
+    </div>
+    <button id="buildDartPlayers" type="button" class="secondary">Spieler auswählen</button>
+    <div id="dartPlayerSetup" class="dartPlayerSetup"></div>
+    <button id="startDartGame" type="button">Dart-Spiel starten</button>
+   </div>
+   <div id="dartLiveBox" class="card dartModeCard hide">
+    <h3>Live Spiel</h3>
+    <div id="dartBoard" class="dartBoard"></div>
+    <div id="dartThrowInfo" class="dartThrowInfo"></div>
+    <div class="dartKeypad" id="dartKeypad"></div>
+    <div class="dartMods">
+     <button id="dartSingle" type="button" class="on">Single</button>
+     <button id="dartDouble" type="button">Double</button>
+     <button id="dartTriple" type="button">Triple</button>
+    </div>
+    <div class="dartActionRow">
+     <button id="dartUndo" type="button" class="secondary">↩ Letzten Wurf zurück</button>
+     <button id="dartReset" type="button" class="danger">Spiel zurücksetzen</button>
+    </div>
+   </div>
   </div>
   <div id="bo3Box" class="hide">
     <h3>Best of 3</h3>
@@ -1173,7 +1285,7 @@ var ADMIN_PASSWORD='5074';
 var isAdmin=localStorage.getItem('airhockey_is_admin')==='true';
 var currentPage='gameSelect';
 var currentLeague='airhockey';
-var leagueNames={airhockey:'Air Hockey',fifa:'FIFA'};
+var leagueNames={airhockey:'Air Hockey',fifa:'FIFA',dart:'Dart'};
 var activeUnsub=null;
 var allLeagueData={airhockey:null,fifa:null,poker:null};
 var pokerData={players:[],pokerGames:[],pendingPokerGames:[]};
@@ -1221,6 +1333,7 @@ function globalPlayers(){
  return mergePlayerLists(
   allLeagueData.airhockey&&allLeagueData.airhockey.players,
   allLeagueData.fifa&&allLeagueData.fifa.players,
+  allLeagueData.dart&&allLeagueData.dart.players,
   d&&d.players
  );
 }
@@ -1228,6 +1341,7 @@ function syncPlayersToLeagueDocs(arr){
  arr=mergePlayerLists(arr);
  db.collection('rumliLeague').doc('main').set({players:arr},{merge:true}).catch(function(e){console.log('Air Hockey Spieler sync fehlgeschlagen',e);});
  db.collection('rumliLeague').doc('fifa').set({players:arr},{merge:true}).catch(function(e){console.log('FIFA Spieler sync fehlgeschlagen',e);});
+ db.collection('rumliLeague').doc('dart').set({players:arr},{merge:true}).catch(function(e){console.log('Dart Spieler sync fehlgeschlagen',e);});
  db.collection('rumliLeague').doc('poker').set({players:arr},{merge:true}).catch(function(e){console.log('Poker Spieler sync fehlgeschlagen',e);});
 }
 function saveGlobalPlayers(nextPlayers){
@@ -1257,6 +1371,7 @@ function initGlobalData(){
  });
  db.collection('rumliLeague').doc('main').onSnapshot(function(doc){allLeagueData.airhockey=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
  db.collection('rumliLeague').doc('fifa').onSnapshot(function(doc){allLeagueData.fifa=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
+ db.collection('rumliLeague').doc('dart').onSnapshot(function(doc){allLeagueData.dart=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.dart._league='dart';migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
  db.collection('rumliLeague').doc('poker').onSnapshot(function(doc){pokerData=doc.exists?(doc.data()||{players:[],pokerGames:[],pendingPokerGames:[]}):{players:[],pokerGames:[],pendingPokerGames:[]};if(!pokerData.pokerTournaments)pokerData.pokerTournaments=[];allLeagueData.poker=pokerData;migrateOldPlayersToGlobal();renderPokerPage();renderHallOfFame();});
 }
 var d = freshData();
@@ -1342,12 +1457,20 @@ function playerProfileStats(p){
 }
 
 function currentLeagueName(){return leagueNames[currentLeague]||'Air Hockey';}
-function leagueDocId(league){return league==='fifa'?'fifa':'main';}
+function leagueDocId(league){return league==='fifa'?'fifa':(league==='dart'?'dart':'main');}
 function updateLeagueLabels(){
  var name=currentLeagueName();
  if(E('leagueDashboardTitle'))E('leagueDashboardTitle').innerHTML=name+' Dashboard';
- if(E('leagueDashboardSub'))E('leagueDashboardSub').innerHTML=name==='FIFA'?'Deine FIFA League mit Matches, Goals und Rankings.':'Dein Air Hockey Match-Center.';
- if(E('gameTitle'))E('gameTitle').innerHTML=isBo3()?'Best of 3 melden':name+' Spiel melden';
+ if(E('leagueDashboardSub'))E('leagueDashboardSub').innerHTML=currentLeague==='fifa'?'Deine FIFA League mit Matches, Goals und Rankings.':(currentLeague==='dart'?'Deine Dart League mit Siegen, zweiten Plätzen und Bullseyes.':'Dein Air Hockey Match-Center.');
+ if(E('topScorerDashTitle'))E('topScorerDashTitle').innerHTML=currentLeague==='dart'?'Dart Monatsranking':'Top Scorer';
+ if(E('scoreALabel'))E('scoreALabel').innerHTML=currentLeague==='dart'?'Platz/Punkte A':'Goals A';
+ if(E('scoreBLabel'))E('scoreBLabel').innerHTML=currentLeague==='dart'?'Platz/Punkte B':'Goals B';
+ var ds=document.querySelectorAll('.dartOnly');for(var di=0;di<ds.length;di++){ds[di].className=currentLeague==='dart'?'dartOnly':'dartOnly hide';}
+ if(E('normalGameFields'))E('normalGameFields').style.display=currentLeague==='dart'?'none':'grid';
+ if(E('dartScorer'))E('dartScorer').className=currentLeague==='dart'?'dartScorer':'dartScorer hide';
+ if(E('gameType'))E('gameType').style.display=currentLeague==='dart'?'none':'block';
+ if(E('gameTitle'))E('gameTitle').innerHTML=currentLeague==='dart'?'Dart Spiel':'Best of 3 melden';
+ if(currentLeague!=='dart' && E('gameTitle'))E('gameTitle').innerHTML=isBo3()?'Best of 3 melden':name+' Spiel melden';
  if(E('topScorerDashTitle')){}
 }
 function listenLeague(){
@@ -1357,12 +1480,14 @@ function listenLeague(){
  activeUnsub=leagueRef.onSnapshot(function(doc){
   if(doc.exists){
    d = doc.data() || freshData();
+   d._league=leagueKey;
    allLeagueData[leagueKey]=d;
    cleanData();
    fill();
    renderAll();
   }else{
    d = freshData();
+   d._league=leagueKey;
    cleanData();
    saveData();
   }
@@ -1373,7 +1498,7 @@ function listenLeague(){
  });
 }
 function switchLeague(league){
- currentLeague=league==='fifa'?'fifa':'airhockey';
+ currentLeague=(league==='fifa'||league==='dart')?league:'airhockey';
  selectedProfilePlayer='';
  d=freshData();
  cleanData();
@@ -1397,9 +1522,9 @@ function fill(){
  var opts='',i;
  var gp=globalPlayers();
  for(i=0;i<gp.length;i++){opts+='<option>'+esc(gp[i])+'</option>';}
- E('a').innerHTML=opts; E('b').innerHTML=opts; if(E('reporter'))E('reporter').innerHTML=opts; if(E('bo3Winner'))E('bo3Winner').innerHTML=opts; if(gp.length>1)E('b').selectedIndex=1;
+ E('a').innerHTML=opts; E('b').innerHTML=opts; if(E('reporter'))E('reporter').innerHTML=opts; if(E('dartReporter'))E('dartReporter').innerHTML=opts; if(E('bo3Winner'))E('bo3Winner').innerHTML=opts; if(gp.length>1)E('b').selectedIndex=1;
  var mo='';for(i=1;i<=12;i++){mo+='<option value="'+i+'">'+mname(i)+'</option>';}E('month').innerHTML=mo;
- var now=new Date();E('month').value=now.getMonth()+1;E('myear').value=now.getFullYear();E('year').value=now.getFullYear();E('date').value=today();
+ var now=new Date();E('month').value=now.getMonth()+1;E('myear').value=now.getFullYear();E('year').value=now.getFullYear();E('date').value=today(); if(E('dartDate'))E('dartDate').value=today();
 }
 function sync(){
  if(E('na'))E('na').innerHTML=esc(E('a').value);
@@ -1447,7 +1572,23 @@ function ballonPoints(g,p){
  if(own==opp)return 1;
  return 0;
 }
+
+function isDartData(){return (d&&d._league==='dart')||currentLeague==='dart';}
+function dartPlayerPoints(g,p){
+ if(!g||g.bestOf3)return 0;
+ if(g.dartLive){
+  var order=g.finishOrder||[], bulls=g.bulls||{}, base=0;
+  if(order[0]===p)base=3; else if(order[1]===p)base=2;
+  return base+((parseInt(bulls[p],10)||0)*2);
+ }
+ var own=(g.a==p)?g.sa:g.sb, opp=(g.a==p)?g.sb:g.sa;
+ var bull=(g.a==p)?(parseInt(g.bullA,10)||0):(parseInt(g.bullB,10)||0);
+ var base=0;
+ if(own>opp)base=3; else if(own<opp)base=2; else base=0;
+ return base+(bull*2);
+}
 function points(g,p,kind){
+ if(isDartData())return dartPlayerPoints(g,p);
  return kind==='ballon'?ballonPoints(g,p):topScorerPoints(g,p);
 }
 function stats(games,tours,kind){
@@ -1456,7 +1597,17 @@ function stats(games,tours,kind){
  var gp=globalPlayers();
  for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],p:0,w:0,l:0,gf:0,ga:0,tb:0};}
  for(i=0;i<games.length;i++){
-  g=games[i]; if(!s[g.a])s[g.a]={name:g.a,p:0,w:0,l:0,gf:0,ga:0,tb:0}; if(!s[g.b])s[g.b]={name:g.b,p:0,w:0,l:0,gf:0,ga:0,tb:0};
+  g=games[i];
+  if(g.dartLive && g.players){
+   var order=g.finishOrder||[], winner=order[0]||'', players=g.players||[], dp, pl;
+   for(var dpi=0;dpi<players.length;dpi++){
+    pl=players[dpi]; if(!s[pl])s[pl]={name:pl,p:0,w:0,l:0,gf:0,ga:0,tb:0};
+    dp=dartPlayerPoints(g,pl); s[pl].p+=dp; s[pl].gf+=dp;
+    if(pl===winner)s[pl].w++; else if(winner)s[pl].l++;
+   }
+   continue;
+  }
+  if(!s[g.a])s[g.a]={name:g.a,p:0,w:0,l:0,gf:0,ga:0,tb:0}; if(!s[g.b])s[g.b]={name:g.b,p:0,w:0,l:0,gf:0,ga:0,tb:0};
   if(g.bestOf3){
    w=bo3Winner(g); l=w==g.a?g.b:(w==g.b?g.a:'');
    if(w){s[w].w++;s[l].l++;}
@@ -1465,8 +1616,7 @@ function stats(games,tours,kind){
   }
   w=g.sa>g.sb?g.a:(g.sb>g.sa?g.b:''); l=w==g.a?g.b:(w==g.b?g.a:'');
   if(w){s[w].w++; s[l].l++;}
-  s[g.a].gf+=g.sa; s[g.a].ga+=g.sb; s[g.b].gf+=g.sb; s[g.b].ga+=g.sa;
-  s[g.a].p+=points(g,g.a,kind); s[g.b].p+=points(g,g.b,kind);
+  if(isDartData()){var dpa=points(g,g.a,kind), dpb=points(g,g.b,kind); s[g.a].gf+=dpa; s[g.b].gf+=dpb; s[g.a].ga+=dpb; s[g.b].ga+=dpa; s[g.a].p+=dpa; s[g.b].p+=dpb;}else{s[g.a].gf+=g.sa; s[g.a].ga+=g.sb; s[g.b].gf+=g.sb; s[g.b].ga+=g.sa; s[g.a].p+=points(g,g.a,kind); s[g.b].p+=points(g,g.b,kind);}
  }
  if(kind==='ballon'){
   for(i=0;i<tours.length;i++){
@@ -1482,7 +1632,7 @@ function stats(games,tours,kind){
 }
 function drawTable(arr){
  if(arr.length==0)return '<p class="note">Keine Daten.</p>';
- var o='<table><tr><th>#</th><th>Spieler</th><th class="right">Pkt</th><th class="right">Zum Überholen</th><th class="right">Win</th><th class="right">Lose</th><th class="right">Goals</th></tr>',i,r,need,nameHtml;
+ var o='<table><tr><th>#</th><th>Spieler</th><th class="right">Pkt</th><th class="right">Zum Überholen</th><th class="right">Win</th><th class="right">Lose</th><th class="right">'+(isDartData()?'Dart-Pkt':'Goals')+'</th></tr>',i,r,need,nameHtml;
  for(i=0;i<arr.length;i++){
   r=arr[i];
   need=i===0?'Leader':((arr[i-1].p-r.p)+1);
@@ -1498,22 +1648,22 @@ function tournamentYear(y){var a=[],i,t,dd;for(i=0;i<d.tournaments.length;i++){t
 
 function renderBallon(){
  var y=parseInt(E('myear').value,10),m=parseInt(E('month').value,10);
- if(E('rankTitle'))E('rankTitle').innerHTML='Top Scorer Ranking '+mname(m)+' '+y;
- if(E('monthsTitle'))E('monthsTitle').innerHTML='Top Scorer '+y;
+ if(E('rankTitle'))E('rankTitle').innerHTML=(currentLeague==='dart'?'Dart Monatsranking ':'Top Scorer Ranking ')+mname(m)+' '+y;
+ if(E('monthsTitle'))E('monthsTitle').innerHTML=(currentLeague==='dart'?'Dart Monatssieger ':'Top Scorer ')+y;
  var arr=stats(monthGames(y,m),tournamentMonth(y,m),'top').filter(function(r){return r.gf>0;});
- E('leader').innerHTML=(arr[0]&&arr[0].gf>0)?esc(arr[0].name)+' – '+arr[0].gf+' Goals':'Noch kein Leader';
+ E('leader').innerHTML=(arr[0]&&arr[0].p>0)?esc(arr[0].name)+' – '+arr[0].p+(currentLeague==='dart'?' Punkte':' Goals'):'Noch kein Leader';
  E('rank').innerHTML=drawTable(arr);
- var o='<table><tr><th>Monat</th><th>Top Scorer</th><th class="right">Goals</th></tr>',i,r,monthArr;
+ var o='<table><tr><th>Monat</th><th>Top Scorer</th><th class="right">'+(isDartData()?'Dart-Pkt':'Goals')+'</th></tr>',i,r,monthArr;
  for(i=1;i<=12;i++){
   monthArr=stats(monthGames(y,i),tournamentMonth(y,i),'top').filter(function(x){return x.gf>0;});
   r=monthArr[0];
-  o+='<tr><td>'+mname(i)+'</td><td>'+(r&&r.gf>0?'<b>'+esc(r.name)+'</b>':'–')+'</td><td class="right">'+(r&&r.gf>0?r.gf:'–')+'</td></tr>';
+  o+='<tr><td>'+mname(i)+'</td><td>'+(r&&r.gf>0?'<b>'+esc(r.name)+'</b>':'–')+'</td><td class="right">'+(r&&r.p>0?(currentLeague==='dart'?r.p:r.gf):'–')+'</td></tr>';
  }
  E('months').innerHTML=o+'</table>';
 }
 function renderYear(){
  var y=parseInt(E('year').value,10);
- E('championsTitle').innerHTML='Ballon d’Or Kandidaten '+y;
+ E('championsTitle').innerHTML=(currentLeague==='dart'?'Dart Jahresranking ':'Ballon d’Or Kandidaten ')+y;
  E('yrank').innerHTML=drawTable(stats(yearGames(y),[],'ballon').filter(function(r){return r.gf>0;}));
 }
 function renderPlayers(){
@@ -1554,7 +1704,7 @@ function renderHist(){
    var bw=bo3Winner(g);
    o+='<div class="item"><b>'+esc(g.date)+'</b> · Best of 3<br>'+playerLink(g.a)+' vs '+playerLink(g.b)+'<br><span class="note">Sieger: '+esc(bw||'offen')+' · +12 Ballon d’Or Punkte</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
   }else{
-   o+='<div class="item"><b>'+esc(g.date)+'</b><br>'+playerLink(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+playerLink(g.b)+'<br><span class="note">Sieger: '+esc(w)+'</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
+   o+='<div class="item"><b>'+esc(g.date)+'</b><br>'+playerLink(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+playerLink(g.b)+'<br><span class="note">'+(currentLeague==='dart'?'Dart-Punkte: '+dartPlayerPoints(g,g.a)+' : '+dartPlayerPoints(g,g.b)+' · Bullseyes: '+(g.bullA||0)+' : '+(g.bullB||0):'Sieger: '+esc(w))+'</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
   }}E('hist').innerHTML=o||'<p class="note">Noch keine Spiele.</p>';
 }
 
@@ -1770,7 +1920,7 @@ function calcLeagueStatsFor(p,key){
   g=games[i]; if(!g||(g.a!==p&&g.b!==p))continue;
   res.played++; w=gameWinner(g);
   if(g.bestOf3){ if(w===p){res.wins++;res.points+=12;} else if(w){res.losses++;} else {res.draws++;} }
-  else{ own=(g.a===p)?g.sa:g.sb; opp=(g.a===p)?g.sb:g.sa; res.gf+=own; res.ga+=opp; res.points+=own; if(own>opp)res.wins++; else if(own<opp)res.losses++; else res.draws++; }
+  else{ own=(g.a===p)?g.sa:g.sb; opp=(g.a===p)?g.sb:g.sa; if(key==='dart'){var dp=dartPlayerPoints(g,p); var op=(g.a===p)?dartPlayerPoints(g,g.b):dartPlayerPoints(g,g.a); res.gf+=dp; res.ga+=op; res.points+=dp;}else{res.gf+=own; res.ga+=opp; res.points+=own;} if(own>opp)res.wins++; else if(own<opp)res.losses++; else res.draws++; }
   yy=dt(g.date).getFullYear(); years[yy]=true;
   ts=dt(g.date).getTime(); if(ts>lastTs){lastTs=ts;res.lastPlayed=g.date||'';}
  }
@@ -1786,7 +1936,7 @@ function calcLeagueStatsFor(p,key){
  return res;
 }
 function calcGlobalStats(p){
- var air=calcLeagueStatsFor(p,'airhockey'), fifa=calcLeagueStatsFor(p,'fifa');
+ var air=calcLeagueStatsFor(p,'airhockey'), fifa=calcLeagueStatsFor(p,'fifa'), dart=calcLeagueStatsFor(p,'dart');
  var pokerRows=(typeof pokerStatsAll==='function'?pokerStatsAll(true):[]), poker={name:p,points:0,played:0,wins:0,rounds:0,allIns:0,last:''}, pi;
  for(pi=0;pi<pokerRows.length;pi++){
   if(cleanPlayerName(pokerRows[pi].name).toLowerCase()===cleanPlayerName(p).toLowerCase()){poker=pokerRows[pi];break;}
@@ -1795,14 +1945,18 @@ function calcGlobalStats(p){
  var pokerTitles=(pokerChamp&&cleanPlayerName(pokerChamp.name).toLowerCase()===cleanPlayerName(p).toLowerCase())?1:0;
  var res={
   name:p,
-  played:air.played+fifa.played+(poker.played||0),
-  wins:air.wins+fifa.wins+(poker.wins||0),
-  losses:air.losses+fifa.losses,
-  draws:air.draws+fifa.draws,
-  gf:air.gf+fifa.gf,
-  ga:air.ga+fifa.ga,
+  played:air.played+fifa.played+dart.played+(poker.played||0),
+  wins:air.wins+fifa.wins+dart.wins+(poker.wins||0),
+  losses:air.losses+fifa.losses+dart.losses,
+  draws:air.draws+fifa.draws+dart.draws,
+  gf:air.gf+fifa.gf+dart.gf,
+  ga:air.ga+fifa.ga+dart.ga,
   airhockey:air.played,
   fifa:fifa.played,
+  dart:dart.played,
+  dartPoints:dart.points,
+  dartWins:dart.wins,
+  dartTitles:dart.titles,
   poker:(poker.played||0),
   pokerPoints:(poker.points||0),
   pokerWins:(poker.wins||0),
@@ -1811,14 +1965,14 @@ function calcGlobalStats(p){
   airTitles:air.titles,
   fifaTitles:fifa.titles,
   pokerTitles:pokerTitles,
-  titles:air.titles+fifa.titles+pokerTitles,
+  titles:air.titles+fifa.titles+dart.titles+pokerTitles,
   form:[]
  };
  res.winrate=res.played?Math.round((res.wins/res.played)*1000)/10:0;
  res.avgGoals=(air.played+fifa.played)?Math.round((res.gf/(air.played+fifa.played))*10)/10:0;
- res.air=air;res.fifaStats=fifa;res.pokerStats=poker;
- var aTs=air.lastPlayed?dt(air.lastPlayed).getTime():0, fTs=fifa.lastPlayed?dt(fifa.lastPlayed).getTime():0, pTs=poker.last?dt(poker.last).getTime():0;
- if(aTs>=fTs&&aTs>=pTs){res.lastPlayed=air.lastPlayed;}else if(fTs>=aTs&&fTs>=pTs){res.lastPlayed=fifa.lastPlayed;}else{res.lastPlayed=poker.last||'';}
+ res.air=air;res.fifaStats=fifa;res.dartStats=dart;res.pokerStats=poker;
+ var aTs=air.lastPlayed?dt(air.lastPlayed).getTime():0, fTs=fifa.lastPlayed?dt(fifa.lastPlayed).getTime():0, dTs=dart.lastPlayed?dt(dart.lastPlayed).getTime():0, pTs=poker.last?dt(poker.last).getTime():0;
+ if(aTs>=fTs&&aTs>=dTs&&aTs>=pTs){res.lastPlayed=air.lastPlayed;}else if(fTs>=aTs&&fTs>=dTs&&fTs>=pTs){res.lastPlayed=fifa.lastPlayed;}else if(dTs>=aTs&&dTs>=fTs&&dTs>=pTs){res.lastPlayed=dart.lastPlayed;}else{res.lastPlayed=poker.last||'';}
  res.inactiveYear=!!(res.lastPlayed && ((new Date()).getTime()-dt(res.lastPlayed).getTime())>=365*24*60*60*1000);
  res.ratings=playerRatings(res);
  res.isIcon=!!(res.played>0 && res.inactiveYear && res.ratings.ovr>85);
@@ -1831,16 +1985,18 @@ function playerRatings(s){
  var gp=globalPlayers(), pokerArr=(typeof pokerStatsAll==='function'?pokerStatsAll(true):[]), pokerMap={}, i, row;
  for(i=0;i<pokerArr.length;i++){pokerMap[cleanPlayerName(pokerArr[i].name).toLowerCase()]=pokerArr[i];}
  function activityFor(name){
-  var a=calcLeagueStatsFor(name,'airhockey'), f=calcLeagueStatsFor(name,'fifa'), pr=pokerMap[cleanPlayerName(name).toLowerCase()]||{played:0,rounds:0};
-  return (a.played||0)+(f.played||0)+(pr.played||0)+((pr.rounds||0)*0.18);
+  var a=calcLeagueStatsFor(name,'airhockey'), f=calcLeagueStatsFor(name,'fifa'), da=calcLeagueStatsFor(name,'dart'), pr=pokerMap[cleanPlayerName(name).toLowerCase()]||{played:0,rounds:0};
+  return (a.played||0)+(f.played||0)+(da.played||0)+(pr.played||0)+((pr.rounds||0)*0.18);
  }
  var maxAct=1, ownAct=activityFor(s.name);
  for(i=0;i<gp.length;i++){maxAct=Math.max(maxAct,activityFor(gp[i]));}
  var act=clampRating(45+(ownAct/maxAct)*54);
  if(maxAct>0 && ownAct>=maxAct*.94){act=99;}
 
- var sportGames=(s.air&&s.fifaStats)?((s.air.played||0)+(s.fifaStats.played||0)):((s.airhockey||0)+(s.fifa||0));
+ var sportGames=(s.air&&s.fifaStats)?((s.air.played||0)+(s.fifaStats.played||0)+(s.dartStats?s.dartStats.played||0:0)):((s.airhockey||0)+(s.fifa||0)+(s.dart||0));
  var pokerPlayed=s.poker||0, pokerPoints=s.pokerPoints||0, pokerWins=s.pokerWins||0, pokerRounds=s.pokerRounds||0, pokerAllIns=s.pokerAllIns||0;
+ var dartPlayed=s.dart||0, dartPoints=s.dartPoints||0, dartWins=s.dartWins||0;
+ var dartPtsPerGame=dartPlayed?(dartPoints/dartPlayed):0;
  var pokerPtsPerGame=pokerPlayed?(pokerPoints/pokerPlayed):0;
  var pokerWinrate=pokerPlayed?(pokerWins/pokerPlayed*100):0;
  var pokerRoundsPerGame=pokerPlayed?(pokerRounds/pokerPlayed):0;
@@ -1849,11 +2005,11 @@ function playerRatings(s){
  var goalsAgainstPerGame=sportGames?(s.ga/sportGames):0;
  var goalDiffPerGame=sportGames?((s.gf-s.ga)/sportGames):0;
 
- var off=clampRating(42+goalsForPerGame*7.5+sportWinrate*.14+pokerRoundsPerGame*4.2+pokerWins*3.2+pokerAllIns*1.8+s.titles*3.5);
- var def=clampRating(58-goalsAgainstPerGame*6.2+goalDiffPerGame*2.8+sportWinrate*.18+pokerWinrate*.06+s.titles*3.2);
- var tec=clampRating(42+sportWinrate*.26+goalDiffPerGame*3.0+pokerPtsPerGame*1.55+pokerRoundsPerGame*2.6+pokerAllIns*1.6+s.titles*4);
- var con=clampRating(43+s.winrate*.20+Math.min(18,s.played*1.15)+Math.min(16,pokerPlayed*1.5)+Math.min(12,pokerPoints*.06)+s.titles*4);
- var dom=clampRating(40+s.winrate*.22+s.titles*8+Math.min(18,s.wins*1.15)+Math.min(16,pokerWins*4)+Math.min(12,pokerPoints*.05));
+ var off=clampRating(42+goalsForPerGame*7.5+sportWinrate*.14+pokerRoundsPerGame*4.2+pokerWins*3.2+pokerAllIns*1.8+dartPtsPerGame*2.0+dartWins*1.4+s.titles*3.5);
+ var def=clampRating(58-goalsAgainstPerGame*6.2+goalDiffPerGame*2.8+sportWinrate*.18+pokerWinrate*.06+dartPtsPerGame*1.4+s.titles*3.2);
+ var tec=clampRating(42+sportWinrate*.26+goalDiffPerGame*3.0+pokerPtsPerGame*1.55+pokerRoundsPerGame*2.6+pokerAllIns*1.6+dartPtsPerGame*1.8+s.titles*4);
+ var con=clampRating(43+s.winrate*.20+Math.min(18,s.played*1.15)+Math.min(16,pokerPlayed*1.5)+Math.min(12,pokerPoints*.06)+Math.min(12,dartPoints*.18)+s.titles*4);
+ var dom=clampRating(40+s.winrate*.22+s.titles*8+Math.min(18,s.wins*1.15)+Math.min(16,pokerWins*4)+Math.min(12,pokerPoints*.05)+Math.min(12,dartPoints*.15));
  var ovr=clampRating((act*.10+off*.20+tec*.15+def*.20+con*.20+dom*.15));
  return {ovr:ovr,act:act,off:off,def:def,tec:tec,con:con,dom:dom};
 }
@@ -1958,13 +2114,13 @@ function renderHomeHallOfFame(best,airChamp,fifaChamp){
  o+=championSlotHtml('👑 Rümli League GOAT',best,'goat');
  o+=championSlotHtml('🏒 Air Hockey Champion',airChamp?airChamp.name:'','');
  o+=championSlotHtml('⚽ FIFA Champion',fifaChamp?fifaChamp.name:'','');
- o+=championSlotHtml('🎯 Dart Champion','','');
+ var dartChamp=championForLeague('dart'); o+=championSlotHtml('🎯 Dart Champion',dartChamp?dartChamp.name:'','');
  o+=championSlotHtml('♠️ Poker Champion','','');
  o+=championSlotHtml('🏨 Hotel Champion','','');
  E('homeHallOfFameView').innerHTML=o;
 }
 function renderHallOfFame(){
- var games=[{key:'airhockey',label:'🏒 Air Hockey Champion'},{key:'fifa',label:'⚽ FIFA Champion'},{key:'dart',label:'🎯 Dart Champion',soon:true},{key:'poker',label:'♠️ Poker Champion',poker:true},{key:'hotel',label:'🏨 Hotel Champion',soon:true}], o='<div class="hofGrid">',i,c,st;
+ var games=[{key:'airhockey',label:'🏒 Air Hockey Champion'},{key:'fifa',label:'⚽ FIFA Champion'},{key:'dart',label:'🎯 Dart Champion'},{key:'poker',label:'♠️ Poker Champion',poker:true},{key:'hotel',label:'🏨 Hotel Champion',soon:true}], o='<div class="hofGrid">',i,c,st;
  var names=globalPlayers(), best=null,bs=null,airChamp=championForLeague('airhockey'),fifaChamp=championForLeague('fifa');
  for(i=0;i<names.length;i++){st=calcGlobalStats(names[i]); if(st.titles>0 && (!best||st.titles>bs.titles||(st.titles===bs.titles&&st.wins>bs.wins)||(st.titles===bs.titles&&st.wins===bs.wins&&st.played>bs.played))){best=names[i];bs=st;}}
  renderHomeHallOfFame(best,airChamp,fifaChamp);
@@ -2010,7 +2166,7 @@ function renderGlobalProfiles(){
    '<div class="modeRatingGrid">'+
     '<div class="modeRating">🏒 Air Hockey<b>'+clampRating(45+s.air.wins*4+s.air.winrate*.35+s.air.titles*7)+'</b><small>'+s.air.wins+' Siege · '+s.air.titles+' Titel</small></div>'+ 
     '<div class="modeRating">⚽ FIFA<b>'+clampRating(45+s.fifaStats.wins*4+s.fifaStats.winrate*.35+s.fifaStats.titles*7)+'</b><small>'+s.fifaStats.wins+' Siege · '+s.fifaStats.titles+' Titel</small></div>'+ 
-    '<div class="modeRating">🎯 Dart<b>—</b><small>In Arbeit</small></div>'+ 
+    '<div class="modeRating">🎯 Dart<b>'+clampRating(45+s.dartStats.wins*4+s.dartStats.winrate*.35+s.dartStats.titles*7+s.dartStats.points*.08)+'</b><small>'+s.dartStats.points+' Punkte · '+s.dartStats.titles+' Titel</small></div>'+ 
     '<div class="modeRating">♠️ Poker<b>'+clampRating(45+(pokerStatsAll(true).filter(function(x){return x.name===s.name;})[0]||{points:0}).points*.08)+'</b><small>'+((pokerStatsAll(true).filter(function(x){return x.name===s.name;})[0]||{points:0,wins:0}).points)+' Punkte · '+((pokerStatsAll(true).filter(function(x){return x.name===s.name;})[0]||{wins:0}).wins)+' Siege</small></div>'+ 
     '<div class="modeRating">🏨 Hotel<b>—</b><small>In Arbeit</small></div>'+ 
    '</div>'+ 
@@ -2053,6 +2209,38 @@ function pokerStatsAll(includeCurrentYear){
  arr.sort(function(a,b){return (b.points-a.points)||(b.wins-a.wins)||(b.rounds-a.rounds)||String(a.name).localeCompare(String(b.name),'de',{sensitivity:'base'});});
  return arr;
 }
+
+function pokerStatsMonth(y,m){
+ var gp=globalPlayers(), s={}, i,j,t,row,p,pts,dd;
+ y=parseInt(y,10)||((new Date()).getFullYear());
+ m=parseInt(m,10)||((new Date()).getMonth()+1);
+ for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],points:0,played:0,wins:0,rounds:0,allIns:0,last:''};}
+ var games=(pokerData&&((pokerData.pokerGames)||pokerData.pokerTournaments))||[];
+ for(i=0;i<games.length;i++){
+  t=games[i]; dd=dt(t.date||today()); if(dd.getFullYear()!==y || (dd.getMonth()+1)!==m)continue;
+  for(j=0;j<(t.results||[]).length;j++){
+   row=t.results[j]; p=row.player; if(!p)continue; if(!s[p])s[p]={name:p,points:0,played:0,wins:0,rounds:0,allIns:0,last:''};
+   if(row.place){pts=row.points||0; s[p].points+=pts; s[p].played++; if(row.place===1)s[p].wins++; s[p].last=t.date||'';}
+   else{pts=pokerGamePoints(row); s[p].points+=pts; s[p].played++; s[p].rounds+=(parseInt(row.rounds,10)||0); if(row.winner)s[p].wins++; if(row.allIn)s[p].allIns++; s[p].last=t.date||'';}
+  }
+ }
+ var arr=[];for(p in s){arr.push(s[p]);}
+ arr.sort(function(a,b){return (b.points-a.points)||(b.wins-a.wins)||(b.rounds-a.rounds)||String(a.name).localeCompare(String(b.name),'de',{sensitivity:'base'});});
+ return arr;
+}
+function pokerRankingTable(arr){
+ var o='',i,r;
+ for(i=0;i<arr.length;i++){
+  r=arr[i]; if(r.points<=0)continue;
+  o+='<div class="item"><span class="pokerChip">#'+(i+1)+'</span> <b>'+esc(r.name)+'</b><br><span class="note">'+r.points+' Punkte · '+r.wins+' Spielsieg(e) · '+r.rounds+' Runden · '+r.allIns+' All-In</span></div>';
+ }
+ return o||'<p class="note">Noch keine Poker-Spiele.</p>';
+}
+function renderPokerMonthOptions(){
+ var el=E('pokerMonth'), i, cur; if(!el)return; cur=el.value||String((new Date()).getMonth()+1);
+ var o=''; for(i=1;i<=12;i++){o+='<option value="'+i+'">'+mname(i)+'</option>';}
+ el.innerHTML=o; el.value=cur;
+}
 function pokerStatsYear(y){
  var gp=globalPlayers(), s={}, i,j,t,row,p,pts;
  y=parseInt(y,10)||((new Date()).getFullYear());
@@ -2088,9 +2276,32 @@ function renderPokerPlacements(){
  }
  box.innerHTML=o||'<p class="note">Bitte zuerst Spieler über das Home-Menü anlegen.</p>'; if(E('pokerDate'))E('pokerDate').value=today();
 }
-function pokerSetView(v){
- var views=['Dash','New','Pending','Ranking','History','Stats'],i; 
- for(i=0;i<views.length;i++){var key=views[i]; if(E('poker'+key+'View'))E('poker'+key+'View').className=(v===key.toLowerCase())?'':'hide'; if(E('pokerTab'+key))E('pokerTab'+key).className=(v===key.toLowerCase())?'on':'';}
+function pokerSetView(v,opts){
+ opts=opts||{};
+ if(!v)v='dash';
+ var allowed={dash:1,new:1,pending:1,ranking:1,history:1,stats:1};
+ if(!allowed[v])v='dash';
+ if(currentPage!=='pokerPage'){show('pokerPage');}
+ currentPage='pokerPage';
+ var page=E('pokerPage');
+ if(page){page.className='poker-view-'+v;}
+ var viewIds={dash:'pokerDashView',new:'pokerNewView',pending:'pokerPendingView',ranking:'pokerRankingView',history:'pokerHistoryView',stats:'pokerStatsView'};
+ var k,el;
+ for(k in viewIds){
+  el=E(viewIds[k]);
+  if(el){
+   if(k===v){el.classList.remove('hide');el.style.display=(k==='dash'?'grid':'block');}
+   else{el.classList.add('hide');el.style.display='none';}
+  }
+ }
+ var tabs={dash:'pokerTabDash',new:'pokerTabNew',ranking:'pokerTabRanking',history:'pokerTabHistory',stats:'pokerTabStats'};
+ for(k in tabs){if(E(tabs[k]))E(tabs[k]).className=(k===v?'on':'');}
+ var titles={dash:'♠️ Poker League',new:(isAdmin?'♠️ Spiel eintragen':'♠️ Spiel melden'),pending:'♠️ Offene Poker-Spiele',ranking:'♠️ Poker Rankings',history:'♠️ Poker Historie',stats:'♠️ Poker Stats'};
+ var notes={dash:'Rundenpunkte, Spielsieg und All-In Bonus im eleganten Poker-Modus.',new:'Trage zuerst ein, wie viele mitmachen, und danach die Spieler.',pending:'Gemeldete Spiele warten hier auf Admin-Bestätigung.',ranking:'Monats- und Jahresranking sind eigene Poker-Seiten.',history:'Alle gespeicherten Poker-Spiele.',stats:'Wähle zuerst einen Spieler, dann siehst du seine Poker-Stats.'};
+ var hero=E('pokerPage')?E('pokerPage').querySelector('.pokerHero h2'):null;
+ var note=E('pokerPage')?E('pokerPage').querySelector('.pokerHero .note'):null;
+ if(hero)hero.innerHTML=titles[v]||titles.dash;
+ if(note)note.innerHTML=notes[v]||notes.dash;
  if(v==='new')renderPokerPlacements();
  if(v==='pending')renderPokerPending();
  if(v==='stats'){selectedPokerStatsPlayer='';renderPokerStats();}
@@ -2103,7 +2314,13 @@ function pokerSetView(v){
  if(E('amPokerHistory'))E('amPokerHistory').className='adminOnly pokerOnly '+(v==='history'?'on':'');
  if(E('amPokerStats'))E('amPokerStats').className='adminOnly pokerOnly '+(v==='stats'?'on':'');
  updateMenuVisibility();
+ if(opts.push!==false){
+  var newHash='#'+pokerRouteFor(v);
+  if(window.location.hash!==newHash){history.pushState({pokerView:v},'',newHash);}
+ }
+ if(opts.scroll!==false){window.scrollTo({top:0,behavior:'smooth'});}
 }
+
 function savePokerTournament(){
  var results=[],count=parseInt((E('pokerPlayerCount')||{}).value,10)||2,i,rounds,winner,allIn,hasAny=false,totalWinners=0,player,seen={};
  if(count<1)count=1; if(count>20)count=20;
@@ -2183,21 +2400,29 @@ function pokerPodiumBox(r,cls,medal,place){
 }
 function renderPokerPage(){
  if(!E('pokerTop3')&&!E('pokerRanking'))return;
- var nowYear=(new Date()).getFullYear();
+ var now=new Date(), nowYear=now.getFullYear(), nowMonth=now.getMonth()+1;
+ renderPokerMonthOptions();
  if(E('pokerYear') && !E('pokerYear').value)E('pokerYear').value=nowYear;
+ if(E('pokerMonth') && !E('pokerMonth').value)E('pokerMonth').value=nowMonth;
  var rankingYear=parseInt((E('pokerYear')||{}).value,10)||nowYear;
- var dashArr=pokerStatsYear(nowYear), arr=pokerStatsYear(rankingYear), o='',top='',i,r;
- if(E('pokerRankingTitle'))E('pokerRankingTitle').innerHTML='Poker Ranking '+rankingYear;
- for(i=0;i<arr.length;i++){
-  r=arr[i]; if(r.points<=0)continue;
-  var line='<div class="item"><span class="pokerChip">#'+(i+1)+'</span> <b>'+esc(r.name)+'</b><br><span class="note">'+r.points+' Punkte · '+r.wins+' Spielsieg(e) · '+r.rounds+' Runden · '+r.allIns+' All-In</span></div>';
-  o+=line;
- }
+ var rankingMonth=parseInt((E('pokerMonth')||{}).value,10)||nowMonth;
+ var dashMonthArr=pokerStatsMonth(nowYear,nowMonth), dashYearArr=pokerStatsYear(nowYear), monthArr=pokerStatsMonth(rankingYear,rankingMonth), yearArr=pokerStatsYear(rankingYear), top='',i,r;
+ if(E('pokerTop3Title'))E('pokerTop3Title').innerHTML='Top 3 Poker '+mname(nowMonth)+' '+nowYear;
+ if(E('pokerYearDashTitle'))E('pokerYearDashTitle').innerHTML='Jahresranking '+nowYear;
+ if(E('pokerRankingTitle'))E('pokerRankingTitle').innerHTML='Poker Rankings';
+ if(E('pokerMonthRankingTitle'))E('pokerMonthRankingTitle').innerHTML='Monatsranking '+mname(rankingMonth)+' '+rankingYear;
+ if(E('pokerYearRankingTitle'))E('pokerYearRankingTitle').innerHTML='Jahresranking '+rankingYear;
  if(E('pokerTop3')){
-  top='<div class="pokerPodium">'+pokerPodiumBox(dashArr[1],'second','🥈',2)+pokerPodiumBox(dashArr[0],'first','🥇',1)+pokerPodiumBox(dashArr[2],'third','🥉',3)+'</div>';
-  E('pokerTop3').innerHTML=dashArr.filter(function(x){return x.points>0;}).length?top:'<p class="note">Noch keine Poker-Spiele in diesem Jahr.</p>';
+  top='<div class="pokerPodium">'+pokerPodiumBox(dashMonthArr[1],'second','🥈',2)+pokerPodiumBox(dashMonthArr[0],'first','🥇',1)+pokerPodiumBox(dashMonthArr[2],'third','🥉',3)+'</div>';
+  E('pokerTop3').innerHTML=dashMonthArr.filter(function(x){return x.points>0;}).length?top:'<p class="note">Noch keine Poker-Spiele in diesem Monat.</p>';
  }
- if(E('pokerRanking'))E('pokerRanking').innerHTML=o||'<p class="note">Noch keine Poker-Spiele.</p>';
+ if(E('pokerYearDash')){
+  var yd='<div class="pokerMiniRank">';
+  for(i=0;i<Math.min(5,dashYearArr.length);i++){r=dashYearArr[i];if(r.points<=0)continue;yd+='<div class="champItem"><div><span class="champYear">#'+(i+1)+'</span> · <b>'+esc(r.name)+'</b></div><div>'+r.points+' Pkt</div></div>';}
+  yd+='</div>'; E('pokerYearDash').innerHTML=yd.indexOf('champItem')>=0?yd:'<p class="note">Noch keine Poker-Punkte in diesem Jahr.</p>';
+ }
+ if(E('pokerMonthRanking'))E('pokerMonthRanking').innerHTML=pokerRankingTable(monthArr);
+ if(E('pokerRanking'))E('pokerRanking').innerHTML=pokerRankingTable(yearArr);
  var games=(pokerData&&((pokerData.pokerGames)||pokerData.pokerTournaments))||[], t=games[games.length-1], h='',j,row;
  if(t){h='<b>'+esc(t.date||'')+' · '+esc(t.name||'Poker Spiel')+'</b><br>';for(j=0;j<(t.results||[]).length;j++){row=t.results[j];h+='<div class="item">'+esc(row.player)+' · '+(row.rounds||0)+' Runde(n)'+(row.winner?' · Spielsieg':'')+(row.allIn?' · All-In':'')+' <span class="pokerChip">+'+(row.points||pokerGamePoints(row))+'</span></div>';}}
  if(E('pokerLast'))E('pokerLast').innerHTML=h||'<p class="note">Noch kein Poker-Spiel gespielt.</p>';
@@ -2206,7 +2431,7 @@ function renderPokerPage(){
  renderPokerPending();
  renderPokerStats();
 }
-function openPoker(){currentPage='pokerPage';renderPokerPage();pokerSetView('dash');show('pokerPage');}
+function openPoker(){document.body.classList.remove('dartMode');currentPage='pokerPage';renderPokerPage();pokerSetView('dash');show('pokerPage');}
 
 function renderPending(){
  var o='',i,g;
@@ -2217,7 +2442,13 @@ function renderPending(){
    for(var px=0;px<(g.rounds||[]).length;px++){pr+='Spiel '+(px+1)+': '+g.rounds[px].sa+':'+g.rounds[px].sb+'<br>';}
    o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Best of 3 · '+playerLink(g.a)+' vs '+playerLink(g.b)+'<br>'+pr+'<span class="note">'+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
   }else{
-   o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>'+playerLink(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+playerLink(g.b)+'<br><span class="note">'+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
+   if(g.dartLive){
+    var order=g.finishOrder||[], bulls=g.bulls||{}, players=g.players||[], line='';
+    for(var dpi3=0;dpi3<players.length;dpi3++){line+=esc(players[dpi3])+': '+dartPlayerPoints(g,players[dpi3])+' Pkt · Bullseyes '+((bulls[players[dpi3]]||0))+'<br>';}
+    o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Dart Live · <b>1.</b> '+esc(order[0]||'-')+' · <b>2.</b> '+esc(order[1]||'-')+'<br><span class="note">'+line+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
+   }else{
+    o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>'+playerLink(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+playerLink(g.b)+'<br><span class="note">'+(currentLeague==='dart'?'Bullseyes: '+(g.bullA||0)+' : '+(g.bullB||0)+' · ':'')+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
+   }
   }
  }
  E('pendingList').innerHTML=o||'<p class="note">Keine offenen Spiele.</p>'; updateMenuVisibility();
@@ -2281,7 +2512,7 @@ document.addEventListener('click',function(ev){
 
 
 function show(p){
- currentPage=p;
+ currentPage=p; document.body.classList.toggle('dartMode', currentLeague==='dart' && p!=='gameSelect' && p!=='pokerPage');
  var tabsEl=document.querySelector('.tabs');if(tabsEl){tabsEl.style.display=(p==='gameSelect'||p==='construction'||p==='pokerPage'||isAdmin)?'none':'grid';}
  if(!isAdmin && (p=='players' || p=='pending')){alert('Bitte zuerst über den Login-Button anmelden.'); p='home';currentPage=p;}
  E('gameSelect').className=p=='gameSelect'?'':'hide';E('pokerPage').className=p=='pokerPage'?'':'hide';E('construction').className=p=='construction'?'':'hide';E('home').className=p=='home'?'':'hide';E('pending').className=p=='pending'?'':'hide';E('game').className=p=='game'?'':'hide';E('ballon').className=p=='ballon'?'':'hide';E('yearpage').className=p=='year'?'':'hide';E('players').className=p=='players'?'':'hide';E('profile').className=p=='profile'?'':'hide';E('globalProfiles').className=p=='globalProfiles'?'':'hide';E('hallOfFame').className=p=='hallOfFame'?'':'hide';E('history').className=p=='history'?'':'hide';
@@ -2318,14 +2549,130 @@ function show(p){
  renderAll();
  appearPage(p);
 }
+
+var dartState={start:501,players:[],scores:[],active:0,finishOrder:[],bulls:{},last:null,history:[],mod:1,dartsInTurn:0};
+function buildDartPlayers(){
+ var c=Math.max(2,Math.min(8,parseInt((E('dartPlayerCount')&&E('dartPlayerCount').value)||2,10)||2)), gp=globalPlayers(), html='',i,j;
+ for(i=0;i<c;i++){
+  html+='<div><label>Spieler '+(i+1)+'</label><select class="dartPlayerSelect">';
+  for(j=0;j<gp.length;j++){html+='<option>'+esc(gp[j])+'</option>';}
+  html+='</select></div>';
+ }
+ if(E('dartPlayerSetup'))E('dartPlayerSetup').innerHTML=html;
+ var sels=document.querySelectorAll('.dartPlayerSelect');
+ for(i=0;i<sels.length;i++){if(gp[i])sels[i].value=gp[i];}
+}
+function startDartLive(){
+ var sels=document.querySelectorAll('.dartPlayerSelect'), players=[], seen={}, i,n,start=parseInt((E('dartStartScore')&&E('dartStartScore').value)||501,10)||501;
+ if(!sels.length)buildDartPlayers(); sels=document.querySelectorAll('.dartPlayerSelect');
+ for(i=0;i<sels.length;i++){n=cleanPlayerName(sels[i].value); if(n&&!seen[n.toLowerCase()]){seen[n.toLowerCase()]=true;players.push(n);}}
+ if(players.length<2){alert('Bitte mindestens zwei verschiedene Spieler auswählen.');return;}
+ dartState={start:start,players:players,scores:players.map(function(){return start;}),active:0,finishOrder:[],bulls:{},last:null,history:[],mod:1,dartsInTurn:0};
+ for(i=0;i<players.length;i++){dartState.bulls[players[i]]=0;}
+ if(E('dartLiveBox'))E('dartLiveBox').className='card dartModeCard';
+ renderDartLive();
+}
+function dartIsFinished(i){return dartState.finishOrder.indexOf(dartState.players[i])>=0;}
+function dartNextActive(){
+ var i, n=dartState.players.length;
+ for(i=1;i<=n;i++){var idx=(dartState.active+i)%n;if(!dartIsFinished(idx)){dartState.active=idx;return;}}
+}
+function dartAutoCompleteLast(){
+ var remaining=[],i;
+ for(i=0;i<dartState.players.length;i++){if(!dartIsFinished(i))remaining.push(dartState.players[i]);}
+ if(remaining.length===1 && dartState.finishOrder.length>=1){dartState.finishOrder.push(remaining[0]);}
+}
+function dartSnapshot(){
+ return {scores:dartState.scores.slice(),finishOrder:dartState.finishOrder.slice(),bulls:JSON.parse(JSON.stringify(dartState.bulls||{})),active:dartState.active,mod:dartState.mod,dartsInTurn:dartState.dartsInTurn||0,msg:E('dartThrowInfo')?E('dartThrowInfo').innerHTML:''};
+}
+function dartRestore(snap){
+ if(!snap)return;
+ dartState.scores=snap.scores.slice();
+ dartState.finishOrder=snap.finishOrder.slice();
+ dartState.bulls=JSON.parse(JSON.stringify(snap.bulls||{}));
+ dartState.active=snap.active||0;
+ dartState.mod=snap.mod||1;
+ dartState.dartsInTurn=snap.dartsInTurn||0;
+ if(E('dartThrowInfo'))E('dartThrowInfo').innerHTML='Letzter Wurf zurückgenommen.';
+ renderDartLive();
+}
+function dartThrow(base){
+ if(!dartState.players.length)return;
+ if(!dartState.history)dartState.history=[];
+ var idx=dartState.active, name=dartState.players[idx];
+ if(dartIsFinished(idx)){dartNextActive();idx=dartState.active;name=dartState.players[idx];}
+ var mod=dartState.mod||1, val=base*mod, old=dartState.scores[idx], next=old-val;
+ var snap=dartSnapshot();
+ dartState.history.push(snap); dartState.last=snap;
+ if(base===25 && mod===2){dartState.bulls[name]=(dartState.bulls[name]||0)+1;}
+ if(next<0){
+  if(E('dartThrowInfo'))E('dartThrowInfo').innerHTML='Bust: '+esc(name)+' bleibt bei '+old;
+  dartState.dartsInTurn=0; dartNextActive();
+ }
+ else if(next===0){
+  dartState.scores[idx]=0;
+  if(dartState.finishOrder.indexOf(name)<0)dartState.finishOrder.push(name);
+  if(E('dartThrowInfo'))E('dartThrowInfo').innerHTML=esc(name)+' ist fertig! Platz '+dartState.finishOrder.length;
+  dartAutoCompleteLast(); dartState.dartsInTurn=0; dartNextActive();
+ }
+ else{
+  dartState.scores[idx]=next;
+  dartState.dartsInTurn=(dartState.dartsInTurn||0)+1;
+  if(E('dartThrowInfo'))E('dartThrowInfo').innerHTML=esc(name)+' wirft '+val+' → '+next+' · Dart '+dartState.dartsInTurn+'/3';
+  if(dartState.dartsInTurn>=3){dartState.dartsInTurn=0;dartNextActive();}
+ }
+ dartState.mod=1; renderDartLive();
+}
+function dartUndo(){
+ if(!dartState.history)dartState.history=[];
+ var l=dartState.history.pop();
+ if(!l)return;
+ dartState.last=dartState.history.length?dartState.history[dartState.history.length-1]:null;
+ dartRestore(l);
+}
+function dartSetMod(m){dartState.mod=m;renderDartLive();}
+function renderDartLive(){
+ var html='',i,name,place;
+ for(i=0;i<dartState.players.length;i++){
+  name=dartState.players[i]; place=dartState.finishOrder.indexOf(name)+1;
+  html+='<div class="dartPlayerRow '+(i===dartState.active?'active ':'')+(place?'dartFinished':'')+'"><div><div class="dartScore">'+dartState.scores[i]+'</div><div class="dartMini">Start '+dartState.start+'</div></div><div><div class="dartPlayerName">'+esc(name)+'</div><div class="dartMini">Bullseyes: '+(dartState.bulls[name]||0)+' · Punkte aktuell: '+((place===1?3:(place===2?2:0))+((dartState.bulls[name]||0)*2))+'</div></div><div class="dartPlace">'+(place?('#'+place):(i===dartState.active?'▶':''))+'</div></div>';
+ }
+ if(E('dartBoard'))E('dartBoard').innerHTML=html;
+ var keys='',nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,25];
+ for(i=0;i<nums.length;i++){keys+='<button type="button" class="dartHit" data-v="'+nums[i]+'">'+nums[i]+'</button>';}
+ keys+='<button type="button" class="dartHit" data-v="0">0</button><button type="button" class="dartHit" data-v="25" data-bull="1">BULL</button>';
+ if(E('dartKeypad'))E('dartKeypad').innerHTML=keys;
+ if(E('dartSingle'))E('dartSingle').className=dartState.mod===1?'on':'';
+ if(E('dartDouble'))E('dartDouble').className=dartState.mod===2?'on':'';
+ if(E('dartTriple'))E('dartTriple').className=dartState.mod===3?'on':'';
+}
+function dartLiveGameObject(){
+ if(!dartState.players.length)return null;
+ var order=dartState.finishOrder.slice();
+ if(order.length===0)return null;
+ return {dartLive:true,date:(E('dartDate')&&E('dartDate').value)||today(),mode:'Dart Live',players:dartState.players.slice(),startScore:dartState.start,finishOrder:order,bulls:JSON.parse(JSON.stringify(dartState.bulls)),a:order[0]||dartState.players[0],b:order[1]||dartState.players[1],sa:order[0]?1:0,sb:0};
+}
+
 function saveGame(){
- var a=E('a').value,b=E('b').value,sa=num('sa'),sb=num('sb');
+ if(currentLeague==='dart'){
+  var dg=dartLiveGameObject();
+  if(!dg){alert('Bitte zuerst ein Dart-Spiel starten und mindestens einen Gewinner erspielen.');return;}
+  if(isAdmin){d.games.push(dg);saveData();show('ballon');}
+  else{
+   var rep=(E('dartReporter')&&E('dartReporter').value)||''; if(!rep){alert('Bitte auswählen, wer das Spiel meldet.');return;}
+   dg.reporter=rep;
+   for(var pi=0;pi<(d.pendingGames||[]).length;pi++){if(d.pendingGames[pi].reporter===rep){alert('Du hast bereits ein offenes Spiel. Warte, bis ein Admin es bestätigt oder ablehnt.');return;}}
+   d.pendingGames.push(dg);saveData();alert('Dart-Spiel wurde eingereicht und wartet auf Admin-Bestätigung.');show('home');
+  }
+  return;
+ }
+ var a=E('a').value,b=E('b').value,sa=num('sa'),sb=num('sb'),bullA=num('bullA'),bullB=num('bullB');
  if(a==b){alert('Bitte zwei verschiedene Spieler wählen.');return;} if(isBo3() && E('bo3Winner').value!==a && E('bo3Winner').value!==b){alert('Der Best of 3 Gewinner muss Spieler A oder Spieler B sein.');return;}
  if(isAdmin){
   if(isBo3()){
    d.games.push({bestOf3:true,date:E('date').value||today(),mode:'Best of 3',a:a,b:b,winner:E('bo3Winner').value,sa:0,sb:0});
   }else{
-   d.games.push({date:E('date').value||today(),mode:'Normal',a:a,b:b,sa:sa,sb:sb});
+   d.games.push({date:E('date').value||today(),mode:(currentLeague==='dart'?'Dart':'Normal'),a:a,b:b,sa:sa,sb:sb,bullA:bullA,bullB:bullB});
   }
     saveData();
   show('ballon');
@@ -2341,7 +2688,7 @@ function saveGame(){
   if(isBo3()){
   d.pendingGames.push({bestOf3:true,reporter:rep,date:E('date').value||today(),mode:'Best of 3',a:a,b:b,winner:E('bo3Winner').value,sa:0,sb:0});
  }else{
-  d.pendingGames.push({reporter:rep,date:E('date').value||today(),mode:'Normal',a:a,b:b,sa:sa,sb:sb});
+  d.pendingGames.push({reporter:rep,date:E('date').value||today(),mode:(currentLeague==='dart'?'Dart':'Normal'),a:a,b:b,sa:sa,sb:sb,bullA:bullA,bullB:bullB});
  }
     saveData();
   alert('Spiel wurde eingereicht und wartet auf Admin-Bestätigung.');
@@ -2352,11 +2699,21 @@ window.show=show;window.switchLeague=switchLeague;
 initGlobalData();
 fill();renderAll();
 if(E('a'))E('a').onchange=sync;if(E('b'))E('b').onchange=sync;if(E('sa'))E('sa').oninput=sync;if(E('sb'))E('sb').oninput=sync;if(E('gameType'))E('gameType').onchange=toggleBo3;toggleBo3();
+if(E('buildDartPlayers'))E('buildDartPlayers').onclick=buildDartPlayers;
+if(E('startDartGame'))E('startDartGame').onclick=startDartLive;
+if(E('dartSingle'))E('dartSingle').onclick=function(){dartSetMod(1);};
+if(E('dartDouble'))E('dartDouble').onclick=function(){dartSetMod(2);};
+if(E('dartTriple'))E('dartTriple').onclick=function(){dartSetMod(3);};
+if(E('dartUndo'))E('dartUndo').onclick=dartUndo;
+if(E('dartReset'))E('dartReset').onclick=startDartLive;
+if(E('dartKeypad'))E('dartKeypad').onclick=function(ev){var b=ev.target.closest('.dartHit');if(b)dartThrow(parseInt(b.getAttribute('data-v'),10)||0);};
+buildDartPlayers();
 E('save').onclick=saveGame;
 if(E('logoHome')){E('logoHome').onclick=function(){if(window.show)window.show('gameSelect');};}
 if(E('pickAirHockey')){E('pickAirHockey').onclick=function(){switchLeague('airhockey');};}
 if(E('pickFifa')){E('pickFifa').onclick=function(){switchLeague('fifa');};}
 if(E('pickPoker')){E('pickPoker').onclick=function(){openPoker();};}
+if(E('pickDart')){E('pickDart').onclick=function(){switchLeague('dart');};}
 if(E('pokerTabDash'))E('pokerTabDash').onclick=function(){pokerSetView('dash');};
 if(E('pokerTabNew'))E('pokerTabNew').onclick=function(){pokerSetView('new');};
 if(E('pokerTabRanking'))E('pokerTabRanking').onclick=function(){pokerSetView('ranking');};
@@ -2377,8 +2734,10 @@ if(E('savePokerTournament'))E('savePokerTournament').onclick=savePokerTournament
 if(E('buildPokerPlayers'))E('buildPokerPlayers').onclick=renderPokerPlacements;
 if(E('pokerTop3Card'))E('pokerTop3Card').onclick=function(){pokerSetView('ranking');};
 if(E('pokerLastCard'))E('pokerLastCard').onclick=function(){pokerSetView('history');};
+if(E('pokerYearCard'))E('pokerYearCard').onclick=function(){pokerSetView('ranking');};
 if(E('pokerPlayerCount'))E('pokerPlayerCount').oninput=renderPokerPlacements;
 if(E('pokerYear'))E('pokerYear').oninput=renderPokerPage;
+if(E('pokerMonth'))E('pokerMonth').onchange=renderPokerPage;
 var soonGames=document.querySelectorAll('.soonGame');
 for(var sg=0;sg<soonGames.length;sg++){soonGames[sg].onclick=function(){if(E('constructionTitle'))E('constructionTitle').innerHTML=this.getAttribute('data-game')+' ist in Arbeit';if(window.show)window.show('construction');};}
 if(E('backToGameSelect')){E('backToGameSelect').onclick=function(){if(window.show)window.show('gameSelect');};}
@@ -2684,6 +3043,57 @@ window.addEventListener('load',function(){
   if(back){back.addEventListener('click',function(e){e.preventDefault();if(window.show)window.show('gameSelect');});}
  }
  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',readyGameHomeClicks);}else{readyGameHomeClicks();}
+})();
+</script>
+
+<script>
+(function(){
+ function ready(fn){if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fn);}else{fn();}}
+ function clickFirst(ids){
+  for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el){el.click();return true;}}
+  return false;
+ }
+ function addLeagueBackButtons(){
+  var targets=[
+   ['game','Spiel melden'],['pending','Offene Spiele'],['ballon','Top Scorer'],['yearpage','Ballon d’Or'],['profile','Stats'],['history','Historie'],['players','Spieler']
+  ];
+  targets.forEach(function(pair){
+   var box=document.getElementById(pair[0]); if(!box||box.querySelector('.leagueBackBtn'))return;
+   var btn=document.createElement('button');
+   btn.type='button'; btn.className='secondary leagueBackBtn';
+   btn.textContent='← Zurück zum Dashboard';
+   btn.addEventListener('click',function(e){e.preventDefault(); clickFirst(['amDashboard','nmDashboard']);});
+   box.insertBefore(btn,box.firstChild);
+  });
+ }
+ function fixPokerBackButtons(){
+  var buttons=document.querySelectorAll('.pokerBackBtn');
+  buttons.forEach(function(btn){
+   btn.removeAttribute('onclick');
+   btn.addEventListener('click',function(e){
+    e.preventDefault(); e.stopPropagation();
+    clickFirst(['amPokerDashboard','nmPokerDashboard','pokerTabDash']);
+   },true);
+  });
+ }
+ function fixHomePokerButton(){
+  var poker=document.getElementById('pickPoker');
+  if(poker){poker.addEventListener('click',function(e){
+   e.preventDefault(); e.stopPropagation();
+   if(window.openPoker){window.openPoker();return;}
+   var oldHash=window.location.hash;
+   clickFirst(['amPokerDashboard','nmPokerDashboard']);
+   var page=document.getElementById('pokerPage');
+   if(page){
+    ['gameSelect','construction','home','pending','game','ballon','yearpage','players','profile','globalProfiles','hallOfFame','history'].forEach(function(id){var x=document.getElementById(id);if(x)x.className='hide';});
+    page.className='poker-view-dash';
+    var dash=document.getElementById('pokerDashView'); if(dash){dash.classList.remove('hide');dash.style.display='grid';}
+    window.location.hash=oldHash||'#poker';
+   }
+  },true);}
+ }
+ ready(function(){addLeagueBackButtons();fixPokerBackButtons();fixHomePokerButton();});
+ window.addEventListener('load',function(){setTimeout(function(){addLeagueBackButtons();fixPokerBackButtons();fixHomePokerButton();},400);});
 })();
 </script>
 </body>
