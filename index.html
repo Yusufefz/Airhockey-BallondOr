@@ -931,6 +931,14 @@ body.dartMode .card{border-color:#f4eeb4!important;box-shadow:4px 4px 0 rgba(0,0
 
 
 
+
+
+/* Poker Fix: oberer Balken bleibt nicht sticky auf Poker-Unterseiten */
+body:has(#pokerPage:not(.hide)) header{
+  position:relative !important;
+  top:auto !important;
+}
+
 /* Einheitliche Zurück-zum-Dashboard Buttons */
 .leagueBackBtn{
   margin:0 0 12px 0!important;
@@ -939,6 +947,180 @@ body.dartMode .card{border-color:#f4eeb4!important;box-shadow:4px 4px 0 rgba(0,0
   border:2px solid var(--cream,#F4EEB4)!important;
 }
 body.dartMode .leagueBackBtn{background:linear-gradient(180deg,#2f5f3b,#102515)!important;color:#f4eeb4!important;border-color:#f4eeb4!important}
+
+
+/* Poker Header nur im Dashboard anzeigen */
+#pokerPage:not(.poker-view-dash) .pokerHero{
+  display:none !important;
+}
+
+
+
+/* Poker Spiel melden: hochwertiger Casino-Style */
+.pokerNewShell{display:grid;grid-template-columns:1fr;gap:12px}
+.pokerFormHero{position:relative;overflow:hidden;padding:18px!important;text-align:center;background:radial-gradient(circle at 50% 0%,rgba(244,223,117,.22),transparent 42%),linear-gradient(145deg,#050806,#0f4f39 56%,#050806)!important}
+.pokerFormHero:before{content:"♠︎  ♥︎  ♦︎  ♣︎";position:absolute;left:0;right:0;top:8px;text-align:center;letter-spacing:14px;font-size:34px;color:rgba(244,238,180,.09);pointer-events:none}
+.pokerFormHero h2{position:relative;margin:6px 0 6px!important;font-family:Georgia,'Times New Roman',serif!important;font-style:italic!important;font-size:36px!important;color:var(--pokerGold)!important;text-shadow:0 10px 22px rgba(0,0,0,.55),0 0 16px rgba(244,223,117,.25)!important}
+.pokerFormHero .note{position:relative;margin:0 auto;max-width:520px}
+.pokerFormGrid{display:grid;grid-template-columns:1.15fr .85fr .85fr;gap:10px;align-items:end;margin-top:12px}
+.pokerRuleStrip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.pokerRule{background:rgba(0,0,0,.24);border:1px solid rgba(244,223,117,.44);border-radius:14px;padding:10px;text-align:center;color:var(--pokerCream)}
+.pokerRule b{display:block;color:var(--pokerGold);font-size:22px;margin-bottom:2px}
+.pokerPlayersGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:12px}
+.pokerPlayerCard{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(15,79,57,.78),rgba(0,0,0,.34))!important;border:1px solid rgba(244,223,117,.60)!important;border-radius:18px!important;box-shadow:0 14px 28px rgba(0,0,0,.28),inset 0 0 18px rgba(244,223,117,.06)!important}
+.pokerPlayerCard:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.10),transparent 42%);pointer-events:none}
+.pokerPlayerHead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;position:relative}
+.pokerSeat{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;background:var(--pokerGold);color:#152015;font-weight:900;box-shadow:0 8px 16px rgba(0,0,0,.32)}
+.pokerPlayerHead h3{margin:0!important;color:#fff5bc!important;font-family:Georgia,'Times New Roman',serif!important;font-style:italic!important}
+.pokerCheckLine{display:flex!important;align-items:center;gap:8px;margin:9px 0!important;padding:9px 10px;border:1px solid rgba(244,238,180,.34);border-radius:12px;background:rgba(0,0,0,.20);color:var(--pokerCream)!important}
+.pokerCheckLine input{width:auto!important;margin:0!important;accent-color:#f4df75}
+.pokerTotalPreview{margin-top:10px;padding:10px;border-radius:14px;background:rgba(0,0,0,.26);border:1px solid rgba(244,223,117,.36);text-align:center;color:#fff2b7;font-weight:bold}
+.pokerSaveButton{margin-top:14px!important;font-size:18px!important;padding:15px!important;background:linear-gradient(180deg,#f4df75,#9f7b22)!important;color:#161006!important;border-color:#fff2b7!important;box-shadow:0 14px 30px rgba(0,0,0,.35)!important}
+@media(max-width:720px){.pokerFormGrid{grid-template-columns:1fr}.pokerRuleStrip{grid-template-columns:1fr}.pokerFormHero h2{font-size:30px!important}}
+
+
+
+/* FIFA League eigenes Design – EA FC / Ultimate-Team Look */
+body.fifaMode{
+  background:
+    radial-gradient(circle at 50% -10%,rgba(212,175,55,.20),transparent 34%),
+    radial-gradient(circle at 12% 18%,rgba(27,43,74,.35),transparent 28%),
+    linear-gradient(145deg,#05070d 0%,#0b1220 46%,#02040a 100%)!important;
+  color:#f4eed8!important;
+}
+body.fifaMode header,
+body.fifaMode .adminMenu,
+body.fifaMode .tabs{
+  background:#05070d!important;
+  border-color:rgba(212,175,55,.45)!important;
+}
+body.fifaMode .card{
+  background:
+    linear-gradient(145deg,rgba(8,11,20,.98),rgba(16,25,43,.96) 54%,rgba(4,6,12,.98))!important;
+  border:2px solid rgba(212,175,55,.72)!important;
+  color:#f4eed8!important;
+  box-shadow:
+    0 18px 42px rgba(0,0,0,.50),
+    inset 0 0 30px rgba(212,175,55,.06)!important;
+}
+body.fifaMode .leagueDashboardHero{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,175,55,.22),transparent 38%),
+    linear-gradient(135deg,#05070d 0%,#10192b 45%,#241a08 100%)!important;
+  border-color:#d4af37!important;
+}
+body.fifaMode .leagueDashboardHero:before{
+  content:"ULTIMATE TEAM";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:10px;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:7px;
+  color:rgba(244,238,216,.12);
+  pointer-events:none;
+}
+body.fifaMode .leagueDashboardHero h2{
+  font-family:Georgia,'Times New Roman',serif!important;
+  font-style:italic!important;
+  letter-spacing:.5px;
+  color:#f4df75!important;
+  text-shadow:0 12px 26px rgba(0,0,0,.65),0 0 16px rgba(212,175,55,.28)!important;
+}
+body.fifaMode .leagueDashboardHero .note{
+  color:rgba(244,238,216,.82)!important;
+}
+body.fifaMode #dashBallonCard,
+body.fifaMode #dashTournamentCard,
+body.fifaMode #dashChampionsCard,
+body.fifaMode #dashHistoryCard,
+body.fifaMode #game .card,
+body.fifaMode #players .card,
+body.fifaMode #history .card,
+body.fifaMode #pending .card,
+body.fifaMode #yearpage .card,
+body.fifaMode #ballon .card{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,175,55,.10),transparent 36%),
+    linear-gradient(145deg,#070912 0%,#10192b 54%,#05070d 100%)!important;
+  border-color:rgba(212,175,55,.74)!important;
+}
+body.fifaMode #dashBallonCard h2,
+body.fifaMode #dashTournamentCard h2,
+body.fifaMode #dashChampionsCard h2,
+body.fifaMode #dashHistoryCard h2,
+body.fifaMode .leader,
+body.fifaMode .champYear,
+body.fifaMode th,
+body.fifaMode h2,
+body.fifaMode h3{
+  color:#f4df75!important;
+}
+body.fifaMode .note,
+body.fifaMode label{
+  color:rgba(244,238,216,.78)!important;
+}
+body.fifaMode input,
+body.fifaMode select,
+body.fifaMode textarea{
+  background:rgba(0,0,0,.34)!important;
+  border:2px solid rgba(212,175,55,.60)!important;
+  color:#f4eed8!important;
+}
+body.fifaMode button{
+  background:linear-gradient(180deg,#d4af37,#8b6418)!important;
+  color:#070912!important;
+  border:2px solid #f7e7a1!important;
+  box-shadow:0 10px 22px rgba(0,0,0,.32)!important;
+}
+body.fifaMode button.secondary{
+  background:linear-gradient(180deg,#17233a,#0b1220)!important;
+  color:#f4eed8!important;
+  border-color:rgba(212,175,55,.72)!important;
+}
+body.fifaMode .tabs button.on,
+body.fifaMode .adminMenu button.on{
+  background:linear-gradient(180deg,#f4df75,#b98a23)!important;
+  color:#05070d!important;
+}
+body.fifaMode table td,
+body.fifaMode table th,
+body.fifaMode .item,
+body.fifaMode .champItem{
+  border-bottom-color:rgba(212,175,55,.24)!important;
+}
+body.fifaMode .podiumBox{
+  background:linear-gradient(180deg,rgba(212,175,55,.12),rgba(0,0,0,.34))!important;
+  border-color:rgba(212,175,55,.60)!important;
+}
+body.fifaMode .podiumBox.first{
+  border-color:#f4df75!important;
+  box-shadow:0 0 20px rgba(212,175,55,.18),inset 0 0 22px rgba(212,175,55,.08)!important;
+}
+body.fifaMode .leagueBackBtn{
+  background:linear-gradient(180deg,#17233a,#0b1220)!important;
+  color:#f4df75!important;
+  border-color:#d4af37!important;
+}
+body.fifaMode #gameTitle:before{
+  content:"⚽ ";
+}
+body.fifaMode .score{
+  color:#f4df75!important;
+  text-shadow:0 8px 18px rgba(0,0,0,.55);
+}
+body.fifaMode .box{
+  background:rgba(0,0,0,.24)!important;
+  border-color:rgba(212,175,55,.55)!important;
+}
+@media(max-width:520px){
+  body.fifaMode .leagueDashboardHero h2{font-size:28px!important}
+  body.fifaMode .leagueDashboardHero:before{letter-spacing:4px;font-size:10px}
+}
 
 </style>
 </head>
@@ -1058,15 +1240,24 @@ body.dartMode .leagueBackBtn{background:linear-gradient(180deg,#2f5f3b,#102515)!
   <div class="card pokerTheme homeClickCard" id="pokerLastCard" style="cursor:pointer"><h2>Letztes Spiel</h2><div id="pokerLast"></div></div>
  </div>
  <div id="pokerNewView" class="hide"><button type="button" class="secondary pokerBackBtn">← Zurück zum Poker Dashboard</button>
-  <div class="card pokerTheme">
-   <h2 id="pokerNewTitle">Spiel melden</h2>
-   <label>Spielname</label><input id="pokerName" placeholder="z.B. Friday Night Poker">
-   <label>Datum</label><input id="pokerDate" type="date">
-   <label>Wie viele machen mit?</label><input id="pokerPlayerCount" type="number" min="1" max="20" value="2">
-   <button id="buildPokerPlayers" type="button" class="secondary">Spieler auswählen</button>
-   <p class="note">Punkte: +1 pro gewonnene Runde, +10 für Spielsieg, +5 für Sieg durch All-In.</p>
-   <div id="pokerPlacements"></div>
-   <button id="savePokerTournament" type="button">Poker-Spiel speichern ♠️</button>
+  <div class="pokerNewShell">
+   <div class="card pokerTheme pokerFormHero">
+    <h2 id="pokerNewTitle">Poker-Runde melden</h2>
+    <p class="note">Trage die Runde sauber ein: Spieler wählen, gewonnene Runden erfassen und den Sieger markieren.</p>
+    <div class="pokerFormGrid">
+     <div><label>Spielname</label><input id="pokerName" placeholder="z.B. Friday Night Poker"></div>
+     <div><label>Datum</label><input id="pokerDate" type="date"></div>
+     <div><label>Mitspieler</label><input id="pokerPlayerCount" type="number" min="1" max="20" value="2"></div>
+    </div>
+    <div class="pokerRuleStrip">
+     <div class="pokerRule"><b>+1</b>pro gewonnene Runde</div>
+     <div class="pokerRule"><b>+10</b>für den Spielsieg</div>
+     <div class="pokerRule"><b>+5</b>All-In Sieg-Bonus</div>
+    </div>
+    <button id="buildPokerPlayers" type="button" class="secondary">♣ Spielerfelder aktualisieren</button>
+   </div>
+   <div id="pokerPlacements" class="pokerPlayersGrid"></div>
+   <button id="savePokerTournament" type="button" class="pokerSaveButton">Poker-Runde speichern ♠️</button>
   </div>
  </div>
  <div id="pokerPendingView" class="hide"><button type="button" class="secondary pokerBackBtn">← Zurück zum Poker Dashboard</button>
@@ -2264,17 +2455,31 @@ function renderPokerPlacements(){
  var count=parseInt((E('pokerPlayerCount')||{}).value,10)||2;
  if(count<1)count=1; if(count>20)count=20;
  for(i=0;i<count;i++){
-  o+='<div class="card" style="background:rgba(0,0,0,.20);border-color:rgba(248,231,216,.20)">'+
-     '<h3>Spieler '+(i+1)+'</h3>'+ 
-     '<label>Wer?</label><select id="pokerPlayer'+i+'">';
+  o+='<div class="card pokerPlayerCard">'+
+     '<div class="pokerPlayerHead"><div><span class="pokerSeat">'+(i+1)+'</span></div><h3>Seat '+(i+1)+'</h3><span class="pokerChip">Poker</span></div>'+
+     '<label>Spieler</label><select id="pokerPlayer'+i+'">';
   for(j=0;j<gp.length;j++){o+='<option value="'+esc(gp[j])+'">'+esc(gp[j])+'</option>';}
-  o+='</select>'+ 
-     '<label>Gewonnene Runden</label><input id="pokerRounds'+i+'" type="number" min="0" value="0">'+
-     '<label><input id="pokerWinner'+i+'" type="checkbox" style="width:auto;margin-right:8px">Spiel gewonnen (+10)</label>'+ 
-     '<label><input id="pokerAllIn'+i+'" type="checkbox" style="width:auto;margin-right:8px">Durch All-In gewonnen (+5)</label>'+ 
+  o+='</select>'+
+     '<label>Gewonnene Runden</label><input id="pokerRounds'+i+'" class="pokerRoundInput" data-poker-index="'+i+'" type="number" min="0" value="0" placeholder="0">'+
+     '<label class="pokerCheckLine"><input id="pokerWinner'+i+'" class="pokerBonusInput" data-poker-index="'+i+'" type="checkbox">Spielsieg markieren <b>+10</b></label>'+
+     '<label class="pokerCheckLine"><input id="pokerAllIn'+i+'" class="pokerBonusInput" data-poker-index="'+i+'" type="checkbox">Sieg durch All-In <b>+5</b></label>'+
+     '<div class="pokerTotalPreview" id="pokerTotal'+i+'">0 Punkte</div>'+
      '</div>';
  }
  box.innerHTML=o||'<p class="note">Bitte zuerst Spieler über das Home-Menü anlegen.</p>'; if(E('pokerDate'))E('pokerDate').value=today();
+ var inputs=box.querySelectorAll('.pokerRoundInput,.pokerBonusInput');
+ for(i=0;i<inputs.length;i++){inputs[i].addEventListener('input',updatePokerPointPreviews);inputs[i].addEventListener('change',updatePokerPointPreviews);}
+ updatePokerPointPreviews();
+}
+function updatePokerPointPreviews(){
+ var count=parseInt((E('pokerPlayerCount')||{}).value,10)||2,i,rounds,winner,allIn,pts,el;
+ for(i=0;i<count;i++){
+  rounds=parseInt((E('pokerRounds'+i)||{}).value,10)||0;
+  winner=!!(E('pokerWinner'+i)&&E('pokerWinner'+i).checked);
+  allIn=!!(E('pokerAllIn'+i)&&E('pokerAllIn'+i).checked);
+  pts=pokerGamePoints({rounds:rounds,winner:winner,allIn:allIn});
+  el=E('pokerTotal'+i); if(el)el.innerHTML=pts+' Punkt'+(pts===1?'':'e');
+ }
 }
 function pokerSetView(v,opts){
  opts=opts||{};
@@ -2305,8 +2510,8 @@ function pokerSetView(v,opts){
  if(v==='new')renderPokerPlacements();
  if(v==='pending')renderPokerPending();
  if(v==='stats'){selectedPokerStatsPlayer='';renderPokerStats();}
- if(E('pokerNewTitle'))E('pokerNewTitle').innerHTML=isAdmin?'Spiel eintragen':'Spiel melden';
- if(E('savePokerTournament'))E('savePokerTournament').innerHTML=isAdmin?'Poker-Spiel speichern ♠️':'Poker-Spiel melden ♠️';
+ if(E('pokerNewTitle'))E('pokerNewTitle').innerHTML=isAdmin?'Poker-Runde eintragen':'Poker-Runde melden';
+ if(E('savePokerTournament'))E('savePokerTournament').innerHTML=isAdmin?'Poker-Runde speichern ♠️':'Poker-Runde melden ♠️';
  if(E('amPokerDashboard'))E('amPokerDashboard').className='adminOnly pokerOnly '+(v==='dash'?'on':'');
  if(E('amPokerNew'))E('amPokerNew').className='adminOnly pokerOnly '+(v==='new'?'on':'');
  if(E('amPokerPending'))E('amPokerPending').className='adminOnly pokerOnly '+(v==='pending'?'on':'');
@@ -2431,7 +2636,7 @@ function renderPokerPage(){
  renderPokerPending();
  renderPokerStats();
 }
-function openPoker(){document.body.classList.remove('dartMode');currentPage='pokerPage';renderPokerPage();pokerSetView('dash');show('pokerPage');}
+function openPoker(){document.body.classList.remove('dartMode');document.body.classList.remove('fifaMode');currentPage='pokerPage';renderPokerPage();pokerSetView('dash');show('pokerPage');}
 
 function renderPending(){
  var o='',i,g;
@@ -2512,7 +2717,7 @@ document.addEventListener('click',function(ev){
 
 
 function show(p){
- currentPage=p; document.body.classList.toggle('dartMode', currentLeague==='dart' && p!=='gameSelect' && p!=='pokerPage');
+ currentPage=p; document.body.classList.toggle('dartMode', currentLeague==='dart' && p!=='gameSelect' && p!=='pokerPage'); document.body.classList.toggle('fifaMode', currentLeague==='fifa' && p!=='gameSelect' && p!=='pokerPage');
  var tabsEl=document.querySelector('.tabs');if(tabsEl){tabsEl.style.display=(p==='gameSelect'||p==='construction'||p==='pokerPage'||isAdmin)?'none':'grid';}
  if(!isAdmin && (p=='players' || p=='pending')){alert('Bitte zuerst über den Login-Button anmelden.'); p='home';currentPage=p;}
  E('gameSelect').className=p=='gameSelect'?'':'hide';E('pokerPage').className=p=='pokerPage'?'':'hide';E('construction').className=p=='construction'?'':'hide';E('home').className=p=='home'?'':'hide';E('pending').className=p=='pending'?'':'hide';E('game').className=p=='game'?'':'hide';E('ballon').className=p=='ballon'?'':'hide';E('yearpage').className=p=='year'?'':'hide';E('players').className=p=='players'?'':'hide';E('profile').className=p=='profile'?'':'hide';E('globalProfiles').className=p=='globalProfiles'?'':'hide';E('hallOfFame').className=p=='hallOfFame'?'':'hide';E('history').className=p=='history'?'':'hide';
@@ -2604,7 +2809,7 @@ function dartThrow(base){
  var mod=dartState.mod||1, val=base*mod, old=dartState.scores[idx], next=old-val;
  var snap=dartSnapshot();
  dartState.history.push(snap); dartState.last=snap;
- if(base===25 && mod===2){dartState.bulls[name]=(dartState.bulls[name]||0)+1;}
+ if(base===25){dartState.bulls[name]=(dartState.bulls[name]||0)+1;}
  if(next<0){
   if(E('dartThrowInfo'))E('dartThrowInfo').innerHTML='Bust: '+esc(name)+' bleibt bei '+old;
   dartState.dartsInTurn=0; dartNextActive();
