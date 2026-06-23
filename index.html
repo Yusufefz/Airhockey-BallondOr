@@ -1122,6 +1122,422 @@ body.fifaMode .box{
   body.fifaMode .leagueDashboardHero:before{letter-spacing:4px;font-size:10px}
 }
 
+
+/* Kartenbewertung Einfluss-Box */
+.cardInfluenceBox{
+  position:relative;
+  overflow:hidden;
+  border-color:rgba(244,223,117,.88)!important;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(244,223,117,.16),transparent 38%),
+    linear-gradient(145deg,rgba(0,0,0,.18),rgba(0,0,0,.06))!important;
+}
+.cardInfluenceBox h2{margin-bottom:4px}
+.influenceGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+.influenceStat{background:rgba(0,0,0,.18);border:1px solid rgba(244,238,180,.38);border-radius:12px;padding:9px}
+.influenceStat b{display:block;font-size:17px;color:#f4df75;margin-bottom:2px}
+.influenceStars{letter-spacing:1px;color:#f4df75;font-weight:bold}
+.influenceSmall{font-size:11px;opacity:.82;line-height:1.25;margin-top:3px}
+.influenceLegend{margin-top:10px;font-size:12px;line-height:1.35;color:rgba(244,238,180,.84)}
+@media(max-width:520px){.influenceGrid{grid-template-columns:1fr}}
+
+
+/* Hotel Modus – Retro Lobby Design */
+body.hotelMode{
+  background:
+    radial-gradient(circle at 50% -12%,rgba(255,214,153,.18),transparent 34%),
+    linear-gradient(145deg,#2b1712 0%,#6b3b2a 45%,#1c100d 100%)!important;
+  color:#fff0d6!important;
+}
+body.hotelMode header,
+body.hotelMode .adminMenu,
+body.hotelMode .tabs{
+  background:#2b1712!important;
+  border-color:rgba(255,214,153,.46)!important;
+}
+body.hotelMode .card{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(255,214,153,.10),transparent 36%),
+    linear-gradient(145deg,#3a1f18 0%,#7b4a32 54%,#28140f 100%)!important;
+  border:2px solid rgba(255,214,153,.82)!important;
+  color:#fff0d6!important;
+  box-shadow:4px 4px 0 rgba(0,0,0,.38),0 18px 38px rgba(0,0,0,.42),inset 0 0 28px rgba(255,214,153,.07)!important;
+}
+body.hotelMode .leagueDashboardHero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(255,214,153,.24),transparent 36%),
+    linear-gradient(135deg,#2b1712,#8a5534 58%,#1c100d)!important;
+  border-color:#ffd699!important;
+}
+body.hotelMode .leagueDashboardHero:before{
+  content:"HOTEL";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:8px;
+  text-align:center;
+  letter-spacing:12px;
+  font-size:12px;
+  color:rgba(255,240,214,.18);
+  pointer-events:none;
+}
+body.hotelMode .leagueDashboardHero h2,
+body.hotelMode h2,
+body.hotelMode h3,
+body.hotelMode .leader,
+body.hotelMode .champYear,
+body.hotelMode th{
+  color:#ffd699!important;
+  text-shadow:0 8px 18px rgba(0,0,0,.45);
+}
+body.hotelMode .note,
+body.hotelMode label{
+  color:rgba(255,240,214,.82)!important;
+}
+body.hotelMode input,
+body.hotelMode select,
+body.hotelMode textarea{
+  background:rgba(0,0,0,.25)!important;
+  border-color:rgba(255,214,153,.72)!important;
+  color:#fff0d6!important;
+}
+body.hotelMode button{
+  background:linear-gradient(180deg,#c88a4a,#7b4a32)!important;
+  color:#21100b!important;
+  border:2px solid #ffe2ad!important;
+}
+body.hotelMode button.secondary{
+  background:linear-gradient(180deg,#5a2f24,#2b1712)!important;
+  color:#fff0d6!important;
+}
+body.hotelMode #dashBallonCard,
+body.hotelMode #dashChampionsCard,
+body.hotelMode #dashHistoryCard,
+body.hotelMode #dashCardInfluence,
+body.hotelMode #game .card,
+body.hotelMode #ballon .card,
+body.hotelMode #yearpage .card,
+body.hotelMode #history .card,
+body.hotelMode #profile .card{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(255,214,153,.12),transparent 36%),
+    linear-gradient(145deg,#3a1f18,#6b3b2a 55%,#25120d)!important;
+}
+.hotelPlaceGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+.hotelRuleStrip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin:12px 0;
+}
+.hotelRule{
+  text-align:center;
+  background:rgba(0,0,0,.22);
+  border:1px solid rgba(255,214,153,.52);
+  border-radius:14px;
+  padding:9px 6px;
+}
+.hotelRule b{display:block;font-size:22px;color:#ffd699}
+.hotelModePill{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,214,153,.58);
+  background:rgba(0,0,0,.24);
+  color:#fff0d6;
+  font-size:12px;
+  font-weight:bold;
+}
+@media(max-width:520px){
+  .hotelPlaceGrid{grid-template-columns:1fr}
+  .hotelRuleStrip{grid-template-columns:1fr 1fr}
+  body.hotelMode .leagueDashboardHero:before{letter-spacing:7px}
+}
+
+
+/* Hotel Spieleranzahl Hinweis */
+.hotelPlayerCountBox{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+.hotelPlayerCountBox div{
+  background:rgba(0,0,0,.22);
+  border:1px solid rgba(255,214,153,.48);
+  border-radius:14px;
+  padding:9px 6px;
+  text-align:center;
+}
+.hotelPlayerCountBox b{
+  display:block;
+  color:#ffd699;
+  font-size:18px;
+}
+@media(max-width:520px){.hotelPlayerCountBox{grid-template-columns:1fr}}
+
+
+/* Poker Mode – vollständiges Casino-Theme für Hintergrund, Header, Menü und Dashboard */
+body.pokerMode{
+  background:
+    radial-gradient(circle at 50% -12%,rgba(244,223,117,.18),transparent 34%),
+    radial-gradient(circle at 12% 18%,rgba(15,79,57,.32),transparent 28%),
+    linear-gradient(145deg,#050806 0%,#07110d 42%,#0f2f24 100%)!important;
+  color:var(--pokerCream,#f4eeb4)!important;
+}
+body.pokerMode header,
+body.pokerMode .adminMenu,
+body.pokerMode .tabs{
+  background:#050806!important;
+  border-color:rgba(244,238,180,.45)!important;
+}
+body.pokerMode .menuToggle{
+  background:linear-gradient(180deg,var(--pokerGold,#f4df75),#9f7b22)!important;
+  color:#07110d!important;
+  border:2px solid var(--pokerCream,#f4eeb4)!important;
+}
+body.pokerMode .adminMenu{
+  box-shadow:0 18px 42px rgba(0,0,0,.58),inset 0 0 20px rgba(244,223,117,.06)!important;
+}
+body.pokerMode .adminMenu button,
+body.pokerMode .tabs button{
+  background:linear-gradient(180deg,#123a2d,#07110d)!important;
+  color:var(--pokerCream,#f4eeb4)!important;
+  border:1px solid rgba(244,238,180,.54)!important;
+}
+body.pokerMode .adminMenu button.on,
+body.pokerMode .tabs button.on{
+  background:linear-gradient(180deg,var(--pokerGold,#f4df75),#9f7b22)!important;
+  color:#07110d!important;
+}
+body.pokerMode .adminMenu button.danger{
+  background:linear-gradient(180deg,#9f1d2e,#5f0b16)!important;
+  color:#fff!important;
+}
+body.pokerMode .card,
+body.pokerMode .pokerTheme{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(244,223,117,.11),transparent 36%),
+    linear-gradient(145deg,#07110d 0%,#0f3b2e 52%,#050806 100%)!important;
+  border:2px solid rgba(244,238,180,.78)!important;
+  color:var(--pokerCream,#f4eeb4)!important;
+  box-shadow:4px 4px 0 rgba(0,0,0,.42),0 18px 42px rgba(0,0,0,.48),inset 0 0 30px rgba(244,223,117,.07)!important;
+}
+body.pokerMode .pokerHero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(244,223,117,.24),transparent 35%),
+    linear-gradient(135deg,#050806 0%,#0f4f39 55%,#07110d 100%)!important;
+  border-color:var(--pokerCream,#f4eeb4)!important;
+}
+body.pokerMode .pokerHero:after{
+  content:"♠︎  ♥︎  ♦︎  ♣︎";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:8px;
+  text-align:center;
+  letter-spacing:18px;
+  font-size:20px;
+  color:rgba(244,238,180,.14);
+  pointer-events:none;
+}
+body.pokerMode .pokerHero h2,
+body.pokerMode h2,
+body.pokerMode h3,
+body.pokerMode .leader,
+body.pokerMode .champYear,
+body.pokerMode th{
+  color:var(--pokerGold,#f4df75)!important;
+  text-shadow:0 8px 18px rgba(0,0,0,.55),0 0 14px rgba(244,223,117,.18)!important;
+}
+body.pokerMode .note,
+body.pokerMode label{
+  color:rgba(244,238,180,.84)!important;
+}
+body.pokerMode input,
+body.pokerMode select,
+body.pokerMode textarea{
+  background:rgba(0,0,0,.30)!important;
+  border:2px solid rgba(244,238,180,.66)!important;
+  color:var(--pokerCream,#f4eeb4)!important;
+}
+body.pokerMode button{
+  background:linear-gradient(180deg,#7B564E,#4d2f2a)!important;
+  color:var(--pokerCream,#f4eeb4)!important;
+  border:2px solid var(--pokerCream,#f4eeb4)!important;
+  box-shadow:0 10px 22px rgba(0,0,0,.30)!important;
+}
+body.pokerMode button.secondary,
+body.pokerMode .pokerBackBtn{
+  background:linear-gradient(180deg,var(--pokerGreen2,#16704d),var(--pokerGreen,#0f4f39))!important;
+  color:#fff!important;
+  border-color:var(--pokerCream,#f4eeb4)!important;
+}
+body.pokerMode table td,
+body.pokerMode table th,
+body.pokerMode .item,
+body.pokerMode .champItem{
+  border-bottom-color:rgba(244,238,180,.24)!important;
+}
+body.pokerMode .logoMain,
+body.pokerMode .logoSub{
+  color:var(--pokerCream,#f4eeb4)!important;
+}
+body.pokerMode .loginBox{
+  background:linear-gradient(145deg,#07110d,#0f3b2e)!important;
+  border-color:var(--pokerCream,#f4eeb4)!important;
+}
+@media(max-width:520px){
+  body.pokerMode .pokerHero:after{letter-spacing:10px;font-size:17px}
+}
+
+
+/* Homescreen selbst etwas neutraler-premium, damit alle Kacheln wirken */
+.luxHome{
+  background:
+    radial-gradient(circle at 50% 5%,rgba(244,238,180,.16),transparent 30%),
+    linear-gradient(145deg,#111817 0%,#263536 48%,#101716 100%)!important;
+}
+.homeHofTitle{
+  color:#f4df75!important;
+}
+@media(max-width:560px){
+  .gameTile{border-radius:18px!important}
+}
+
+
+/* Homescreen Gesamt-Theme – Hintergrund, Header, Menü und Navigation */
+body.homeScreenMode{
+  background:
+    radial-gradient(circle at 50% -12%,rgba(244,223,117,.18),transparent 34%),
+    radial-gradient(circle at 18% 22%,rgba(255,255,255,.07),transparent 22%),
+    linear-gradient(145deg,#101716 0%,#2f4140 48%,#111817 100%)!important;
+  color:var(--cream,#F4EEB4)!important;
+}
+body.homeScreenMode header,
+body.homeScreenMode .adminMenu,
+body.homeScreenMode .tabs,
+body.homeScreenMode .loginBox{
+  background:
+    linear-gradient(145deg,#101716 0%,#263536 54%,#0c1211 100%)!important;
+  border-color:rgba(244,238,180,.55)!important;
+}
+body.homeScreenMode .menuToggle{
+  background:linear-gradient(180deg,#f4df75,#9f7b22)!important;
+  color:#101716!important;
+  border:2px solid var(--cream,#F4EEB4)!important;
+}
+body.homeScreenMode .adminMenu{
+  box-shadow:0 18px 42px rgba(0,0,0,.52),inset 0 0 24px rgba(244,223,117,.06)!important;
+}
+body.homeScreenMode .adminMenu button,
+body.homeScreenMode .tabs button{
+  background:linear-gradient(180deg,#425454,#263536)!important;
+  color:var(--cream,#F4EEB4)!important;
+  border:1px solid rgba(244,238,180,.56)!important;
+}
+body.homeScreenMode .adminMenu button.on,
+body.homeScreenMode .tabs button.on{
+  background:linear-gradient(180deg,#f4df75,#a88628)!important;
+  color:#101716!important;
+}
+body.homeScreenMode .adminMenu button.danger{
+  background:linear-gradient(180deg,#9f1d2e,#5f0b16)!important;
+  color:#fff!important;
+}
+body.homeScreenMode .logoMain,
+body.homeScreenMode .logoSub{
+  color:var(--cream,#F4EEB4)!important;
+  text-shadow:0 0 14px rgba(244,238,180,.22),0 8px 18px rgba(0,0,0,.45)!important;
+}
+body.homeScreenMode .luxHome{
+  background:
+    radial-gradient(circle at 50% 6%,rgba(244,223,117,.20),transparent 32%),
+    radial-gradient(circle at 14% 24%,rgba(255,255,255,.08),transparent 17%),
+    linear-gradient(145deg,#111817 0%,#2f4140 45%,#101716 100%)!important;
+  border-color:rgba(244,238,180,.92)!important;
+  box-shadow:0 28px 70px rgba(0,0,0,.50),inset 0 0 58px rgba(244,238,180,.08)!important;
+}
+body.homeScreenMode .gameTile{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+body.homeScreenMode .homeHofTitle{
+  color:#f4df75!important;
+  text-shadow:0 8px 18px rgba(0,0,0,.45),0 0 14px rgba(244,226,122,.24)!important;
+}
+
+
+/* Startanimation an Homescreen angepasst */
+#introSplash{
+  background:
+    radial-gradient(circle at 50% -12%,rgba(244,223,117,.20),transparent 34%),
+    radial-gradient(circle at 18% 22%,rgba(255,255,255,.08),transparent 22%),
+    linear-gradient(145deg,#101716 0%,#2f4140 48%,#111817 100%)!important;
+}
+.introLogo{
+  text-align:center!important;
+  transform-origin:center center!important;
+  animation:introMoveHome 2.35s ease forwards!important;
+}
+.introLogo .logoMain{
+  color:var(--cream,#F4EEB4)!important;
+  text-shadow:0 0 18px rgba(244,238,180,.28),0 10px 24px rgba(0,0,0,.55)!important;
+}
+.introLogo .logoSub{
+  color:var(--cream,#F4EEB4)!important;
+  text-shadow:0 0 12px rgba(244,238,180,.22),0 8px 18px rgba(0,0,0,.45)!important;
+}
+@keyframes introMoveHome{
+  0%{opacity:0;transform:scale(1.8)}
+  15%{opacity:1}
+  65%{opacity:1;transform:scale(1.8)}
+  100%{opacity:1;transform:translate(calc(-50vw + 94px),calc(-50vh + 32px)) scale(.52)}
+}
+@media(max-width:420px){
+  @keyframes introMoveHome{
+    0%{opacity:0;transform:scale(1.8)}
+    15%{opacity:1}
+    65%{opacity:1;transform:scale(1.8)}
+    100%{opacity:1;transform:translate(calc(-50vw + 82px),calc(-50vh + 31px)) scale(.50)}
+  }
+}
+
+
+/* Header Logo kompakt: Rümli League direkt übereinander */
+.logoText{
+  display:inline-flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:0!important;
+}
+.logoText .logoMain{
+  font-size:30px!important;
+  line-height:.95!important;
+}
+.logoText .logoSub{
+  font-size:11px!important;
+  letter-spacing:6px!important;
+  margin-left:28px!important;
+  margin-top:0!important;
+  line-height:1!important;
+}
+@media(max-width:420px){
+  .logoText .logoMain{font-size:26px!important}
+  .logoText .logoSub{font-size:10px!important;letter-spacing:5px!important;margin-left:24px!important}
+}
+
 </style>
 </head>
 <body>
@@ -1212,7 +1628,7 @@ body.fifaMode .box{
    <div class="card gameTile featured" id="pickPoker"><div class="gameIcon">♠️</div><div class="gameName">Poker</div><div class="gameStatus">Poker League öffnen</div></div>
    <div class="card gameTile featured" id="pickDart"><div class="gameIcon">🎯</div><div class="gameName">Dart</div><div class="gameStatus">Dart Dashboard öffnen</div></div>
    <div class="card gameTile featured" id="pickFifa"><div class="gameIcon">⚽</div><div class="gameName">FIFA</div><div class="gameStatus">Dashboard öffnen</div></div>
-   <div class="card gameTile soonGame" data-game="Hotel"><div class="gameIcon">🏨</div><div class="gameName">Hotel</div><div class="gameStatus">Ist in Arbeit</div></div>
+   <div class="card gameTile featured" id="pickHotel"><div class="gameIcon">🏨</div><div class="gameName">Hotel</div><div class="gameStatus">Hotel Dashboard öffnen</div></div>
   </div>
   <div class="homeHofSection">
    <div class="homeHofTitle">Hall of Fame</div>
@@ -1238,6 +1654,8 @@ body.fifaMode .box{
   <div class="card pokerTheme homeClickCard" id="pokerTop3Card" style="cursor:pointer"><h2 id="pokerTop3Title">Top 3 Poker</h2><p class="note">Top 3 des aktuellen Monats</p><div id="pokerTop3" class="pokerRanking"></div></div>
   <div class="card pokerTheme homeClickCard" id="pokerYearCard" style="cursor:pointer"><h2 id="pokerYearDashTitle">Jahresranking</h2><p class="note">Gesamtpunkte des aktuellen Jahres</p><div id="pokerYearDash"></div></div>
   <div class="card pokerTheme homeClickCard" id="pokerLastCard" style="cursor:pointer"><h2>Letztes Spiel</h2><div id="pokerLast"></div></div>
+
+  <div class="card pokerTheme cardInfluenceBox" id="pokerCardInfluence"><h2>🎴 Kartenbewertung</h2><p class="note">So beeinflusst Poker die Player Cards.</p><div id="pokerCardInfluenceDash"></div></div>
  </div>
  <div id="pokerNewView" class="hide"><button type="button" class="secondary pokerBackBtn">← Zurück zum Poker Dashboard</button>
   <div class="pokerNewShell">
@@ -1310,6 +1728,13 @@ body.fifaMode .box{
    <p class="note">Klick zur Historie</p>
    <div id="homeLastMatch"></div>
   </div>
+
+  <div class="card cardInfluenceBox" id="dashCardInfluence">
+   <h2>🎴 Kartenbewertung</h2>
+   <p class="note">So beeinflusst dieser Modus die Player Cards.</p>
+   <div id="cardInfluenceDash"></div>
+  </div>
+
   <div class="card hide" id="legacyBenefitsBox" style="display:none!important">
    <h2>Benefits</h2>
    <div id="homeRewards"></div>
@@ -1339,6 +1764,26 @@ body.fifaMode .box{
    <div><label>Wer meldet?</label><select id="reporter"></select></div>
    <div><label>Datum</label><input id="date" type="date"></div>
   </div>
+
+  <div id="hotelGameFields" class="hide">
+   <div class="hotelRuleStrip">
+    <div class="hotelRule"><b>10</b>🥇 1. Platz</div>
+    <div class="hotelRule"><b>6</b>🥈 2. Platz</div>
+    <div class="hotelRule"><b>3</b>🥉 3. Platz</div>
+    <div class="hotelRule"><b>1</b>4. Platz</div>
+   </div>
+   <div class="hotelModePill">2 bis 4 Spieler · Monat und Jahr zählen über Gesamtpunkte</div>
+   <p class="note">Für 2 Spieler nur Platz 1 und 2 ausfüllen. Für 3 Spieler Platz 1 bis 3. Platz 4 ist optional.</p>
+   <div class="hotelPlaceGrid">
+    <div><label>🥇 1. Platz</label><select id="hotelP1"></select></div>
+    <div><label>🥈 2. Platz</label><select id="hotelP2"></select></div>
+    <div><label>🥉 3. Platz</label><select id="hotelP3"></select></div>
+    <div><label>4. Platz</label><select id="hotelP4"></select></div>
+    <div><label>Wer meldet?</label><select id="hotelReporter"></select></div>
+    <div><label>Datum</label><input id="hotelDate" type="date"></div>
+   </div>
+  </div>
+
   <div id="dartScorer" class="dartScorer hide">
    <div class="card dartModeCard">
     <h3>🎯 Dart Live Scorer</h3>
@@ -1476,9 +1921,9 @@ var ADMIN_PASSWORD='5074';
 var isAdmin=localStorage.getItem('airhockey_is_admin')==='true';
 var currentPage='gameSelect';
 var currentLeague='airhockey';
-var leagueNames={airhockey:'Air Hockey',fifa:'FIFA',dart:'Dart'};
+var leagueNames={airhockey:'Air Hockey',fifa:'FIFA',dart:'Dart',hotel:'Hotel'};
 var activeUnsub=null;
-var allLeagueData={airhockey:null,fifa:null,poker:null};
+var allLeagueData={airhockey:null,fifa:null,dart:null,hotel:null,poker:null};
 var pokerData={players:[],pokerGames:[],pendingPokerGames:[]};
 var pokerRef=null;
 var globalData={players:null,deletedPlayers:[],playerMeta:{}};
@@ -1525,6 +1970,7 @@ function globalPlayers(){
   allLeagueData.airhockey&&allLeagueData.airhockey.players,
   allLeagueData.fifa&&allLeagueData.fifa.players,
   allLeagueData.dart&&allLeagueData.dart.players,
+  allLeagueData.hotel&&allLeagueData.hotel.players,
   d&&d.players
  );
 }
@@ -1533,6 +1979,7 @@ function syncPlayersToLeagueDocs(arr){
  db.collection('rumliLeague').doc('main').set({players:arr},{merge:true}).catch(function(e){console.log('Air Hockey Spieler sync fehlgeschlagen',e);});
  db.collection('rumliLeague').doc('fifa').set({players:arr},{merge:true}).catch(function(e){console.log('FIFA Spieler sync fehlgeschlagen',e);});
  db.collection('rumliLeague').doc('dart').set({players:arr},{merge:true}).catch(function(e){console.log('Dart Spieler sync fehlgeschlagen',e);});
+ db.collection('rumliLeague').doc('hotel').set({players:arr},{merge:true}).catch(function(e){console.log('Hotel Spieler sync fehlgeschlagen',e);});
  db.collection('rumliLeague').doc('poker').set({players:arr},{merge:true}).catch(function(e){console.log('Poker Spieler sync fehlgeschlagen',e);});
 }
 function saveGlobalPlayers(nextPlayers){
@@ -1563,6 +2010,7 @@ function initGlobalData(){
  db.collection('rumliLeague').doc('main').onSnapshot(function(doc){allLeagueData.airhockey=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
  db.collection('rumliLeague').doc('fifa').onSnapshot(function(doc){allLeagueData.fifa=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
  db.collection('rumliLeague').doc('dart').onSnapshot(function(doc){allLeagueData.dart=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.dart._league='dart';migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
+ db.collection('rumliLeague').doc('hotel').onSnapshot(function(doc){allLeagueData.hotel=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.hotel._league='hotel';migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
  db.collection('rumliLeague').doc('poker').onSnapshot(function(doc){pokerData=doc.exists?(doc.data()||{players:[],pokerGames:[],pendingPokerGames:[]}):{players:[],pokerGames:[],pendingPokerGames:[]};if(!pokerData.pokerTournaments)pokerData.pokerTournaments=[];allLeagueData.poker=pokerData;migrateOldPlayersToGlobal();renderPokerPage();renderHallOfFame();});
 }
 var d = freshData();
@@ -1582,7 +2030,11 @@ function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'
 
 function playerLink(name){return '<span class="playerLink" data-profile="'+esc(name)+'">'+esc(name)+'</span>';}
 function gameWinner(g){
- if(g.bestOf3){return bo3Winner(g)||'';}
+ if(g.hotelGame){
+   var line='',hps=g.players||[];
+   for(var hri=0;hri<hps.length;hri++){line+=(hri===0?'🥇 ':hri===1?'🥈 ':hri===2?'🥉 ':'4. ')+playerLink(hps[hri])+' · '+hotelPointsByPlace(hri+1)+' Pkt<br>';}
+   o+='<div class="item"><b>'+esc(g.date)+'</b> · Hotel<br>'+line+'<span class="note">Sieger: '+esc(hps[0]||'-')+'</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
+  }else if(g.bestOf3){return bo3Winner(g)||'';}
  if(g.sa>g.sb)return g.a;
  if(g.sb>g.sa)return g.b;
  return '';
@@ -1648,20 +2100,21 @@ function playerProfileStats(p){
 }
 
 function currentLeagueName(){return leagueNames[currentLeague]||'Air Hockey';}
-function leagueDocId(league){return league==='fifa'?'fifa':(league==='dart'?'dart':'main');}
+function leagueDocId(league){return league==='fifa'?'fifa':(league==='dart'?'dart':(league==='hotel'?'hotel':'main'));}
 function updateLeagueLabels(){
  var name=currentLeagueName();
  if(E('leagueDashboardTitle'))E('leagueDashboardTitle').innerHTML=name+' Dashboard';
- if(E('leagueDashboardSub'))E('leagueDashboardSub').innerHTML=currentLeague==='fifa'?'Deine FIFA League mit Matches, Goals und Rankings.':(currentLeague==='dart'?'Deine Dart League mit Siegen, zweiten Plätzen und Bullseyes.':'Dein Air Hockey Match-Center.');
- if(E('topScorerDashTitle'))E('topScorerDashTitle').innerHTML=currentLeague==='dart'?'Dart Monatsranking':'Top Scorer';
+ if(E('leagueDashboardSub'))E('leagueDashboardSub').innerHTML=currentLeague==='fifa'?'Deine FIFA League mit Matches, Goals und Rankings.':(currentLeague==='dart'?'Deine Dart League mit Siegen, zweiten Plätzen und Bullseyes.':(currentLeague==='hotel'?'Deine Hotel League mit 10–6–3–1 Platzierungspunkten.':'Dein Air Hockey Match-Center.'));
+ if(E('topScorerDashTitle'))E('topScorerDashTitle').innerHTML=currentLeague==='dart'?'Dart Monatsranking':(currentLeague==='hotel'?'Hotel Monatstabelle':'Top Scorer');
  if(E('scoreALabel'))E('scoreALabel').innerHTML=currentLeague==='dart'?'Platz/Punkte A':'Goals A';
  if(E('scoreBLabel'))E('scoreBLabel').innerHTML=currentLeague==='dart'?'Platz/Punkte B':'Goals B';
  var ds=document.querySelectorAll('.dartOnly');for(var di=0;di<ds.length;di++){ds[di].className=currentLeague==='dart'?'dartOnly':'dartOnly hide';}
- if(E('normalGameFields'))E('normalGameFields').style.display=currentLeague==='dart'?'none':'grid';
+ if(E('normalGameFields'))E('normalGameFields').style.display=(currentLeague==='dart'||currentLeague==='hotel')?'none':'grid';
+ if(E('hotelGameFields'))E('hotelGameFields').className=currentLeague==='hotel'?'':'hide';
  if(E('dartScorer'))E('dartScorer').className=currentLeague==='dart'?'dartScorer':'dartScorer hide';
- if(E('gameType'))E('gameType').style.display=currentLeague==='dart'?'none':'block';
- if(E('gameTitle'))E('gameTitle').innerHTML=currentLeague==='dart'?'Dart Spiel':'Best of 3 melden';
- if(currentLeague!=='dart' && E('gameTitle'))E('gameTitle').innerHTML=isBo3()?'Best of 3 melden':name+' Spiel melden';
+ if(E('gameType'))E('gameType').style.display=(currentLeague==='dart'||currentLeague==='hotel')?'none':'block';
+ if(E('gameTitle'))E('gameTitle').innerHTML=currentLeague==='dart'?'Dart Spiel':(currentLeague==='hotel'?'Hotel Spiel melden':'Best of 3 melden');
+ if(currentLeague!=='dart' && currentLeague!=='hotel' && E('gameTitle'))E('gameTitle').innerHTML=isBo3()?'Best of 3 melden':name+' Spiel melden';
  if(E('topScorerDashTitle')){}
 }
 function listenLeague(){
@@ -1689,7 +2142,7 @@ function listenLeague(){
  });
 }
 function switchLeague(league){
- currentLeague=(league==='fifa'||league==='dart')?league:'airhockey';
+ currentLeague=(league==='fifa'||league==='dart'||league==='hotel')?league:'airhockey';
  selectedProfilePlayer='';
  d=freshData();
  cleanData();
@@ -1713,9 +2166,9 @@ function fill(){
  var opts='',i;
  var gp=globalPlayers();
  for(i=0;i<gp.length;i++){opts+='<option>'+esc(gp[i])+'</option>';}
- E('a').innerHTML=opts; E('b').innerHTML=opts; if(E('reporter'))E('reporter').innerHTML=opts; if(E('dartReporter'))E('dartReporter').innerHTML=opts; if(E('bo3Winner'))E('bo3Winner').innerHTML=opts; if(gp.length>1)E('b').selectedIndex=1;
+ E('a').innerHTML=opts; E('b').innerHTML=opts; if(E('reporter'))E('reporter').innerHTML=opts; if(E('dartReporter'))E('dartReporter').innerHTML=opts; if(E('hotelReporter'))E('hotelReporter').innerHTML=opts; if(E('bo3Winner'))E('bo3Winner').innerHTML=opts; if(E('hotelP1')){E('hotelP1').innerHTML=opts;E('hotelP2').innerHTML=opts;E('hotelP3').innerHTML='<option value="">-</option>'+opts;E('hotelP4').innerHTML='<option value="">-</option>'+opts;} if(gp.length>1)E('b').selectedIndex=1;
  var mo='';for(i=1;i<=12;i++){mo+='<option value="'+i+'">'+mname(i)+'</option>';}E('month').innerHTML=mo;
- var now=new Date();E('month').value=now.getMonth()+1;E('myear').value=now.getFullYear();E('year').value=now.getFullYear();E('date').value=today(); if(E('dartDate'))E('dartDate').value=today();
+ var now=new Date();E('month').value=now.getMonth()+1;E('myear').value=now.getFullYear();E('year').value=now.getFullYear();E('date').value=today(); if(E('dartDate'))E('dartDate').value=today(); if(E('hotelDate'))E('hotelDate').value=today();
 }
 function sync(){
  if(E('na'))E('na').innerHTML=esc(E('a').value);
@@ -1764,10 +2217,29 @@ function ballonPoints(g,p){
  return 0;
 }
 
+
+function isHotelData(){return (d&&d._league==='hotel')||currentLeague==='hotel';}
+function hotelPointsByPlace(place){return place===1?10:(place===2?6:(place===3?3:(place===4?1:0)));}
+function hotelBallonPointsByPlace(place){return place===1?3:(place===2?2:(place===3?1:0));}
+function hotelPlayersOfGame(g){return (g&&g.hotelGame&&Array.isArray(g.players))?g.players:[];}
+function hotelPlayerPoints(g,p){
+ if(!g||!g.hotelGame)return 0;
+ var ps=hotelPlayersOfGame(g),i;
+ for(i=0;i<ps.length;i++){if(ps[i]===p)return hotelPointsByPlace(i+1);}
+ return 0;
+}
+function hotelPlayerBallonPoints(g,p){
+ if(!g||!g.hotelGame)return 0;
+ var ps=hotelPlayersOfGame(g),i;
+ for(i=0;i<ps.length;i++){if(ps[i]===p)return hotelBallonPointsByPlace(i+1);}
+ return 0;
+}
+
 function isDartData(){return (d&&d._league==='dart')||currentLeague==='dart';}
 function dartPlayerPoints(g,p){
  if(!g||g.bestOf3)return 0;
- if(g.dartLive){
+ if(g.hotelGame){var hline='',hps=g.players||[];for(var hx=0;hx<hps.length;hx++){hline+=(hx===0?'🥇 ':hx===1?'🥈 ':hx===2?'🥉 ':'4. ')+esc(hps[hx])+' · '+hotelPointsByPlace(hx+1)+' Pkt<br>';}o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Hotel<br><span class="note">'+hline+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';}
+   else if(g.dartLive){
   var order=g.finishOrder||[], bulls=g.bulls||{}, base=0;
   if(order[0]===p)base=3; else if(order[1]===p)base=2;
   return base+((parseInt(bulls[p],10)||0)*2);
@@ -1779,6 +2251,8 @@ function dartPlayerPoints(g,p){
  return base+(bull*2);
 }
 function points(g,p,kind){
+ if(g&&g.hotelGame)return kind==='ballon'?hotelPlayerBallonPoints(g,p):hotelPlayerPoints(g,p);
+ if(isHotelData())return kind==='ballon'?hotelPlayerBallonPoints(g,p):hotelPlayerPoints(g,p);
  if(isDartData())return dartPlayerPoints(g,p);
  return kind==='ballon'?ballonPoints(g,p):topScorerPoints(g,p);
 }
@@ -1789,6 +2263,19 @@ function stats(games,tours,kind){
  for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],p:0,w:0,l:0,gf:0,ga:0,tb:0};}
  for(i=0;i<games.length;i++){
   g=games[i];
+
+  if(g.hotelGame && g.players){
+   var hps=g.players||[], hp, hpt;
+   for(var hi=0;hi<hps.length;hi++){
+    hp=hps[hi]; if(!hp)continue;
+    if(!s[hp])s[hp]={name:hp,p:0,w:0,l:0,gf:0,ga:0,tb:0};
+    hpt=hotelPointsByPlace(hi+1);
+    s[hp].p+=hpt; s[hp].gf+=hpt;
+    if(hi===0)s[hp].w++; else s[hp].l++;
+   }
+   continue;
+  }
+
   if(g.dartLive && g.players){
    var order=g.finishOrder||[], winner=order[0]||'', players=g.players||[], dp, pl;
    for(var dpi=0;dpi<players.length;dpi++){
@@ -1823,7 +2310,7 @@ function stats(games,tours,kind){
 }
 function drawTable(arr){
  if(arr.length==0)return '<p class="note">Keine Daten.</p>';
- var o='<table><tr><th>#</th><th>Spieler</th><th class="right">Pkt</th><th class="right">Zum Überholen</th><th class="right">Win</th><th class="right">Lose</th><th class="right">'+(isDartData()?'Dart-Pkt':'Goals')+'</th></tr>',i,r,need,nameHtml;
+ var o='<table><tr><th>#</th><th>Spieler</th><th class="right">Pkt</th><th class="right">Zum Überholen</th><th class="right">Win</th><th class="right">Lose</th><th class="right">'+(isHotelData()?'Hotel-Pkt':(isDartData()?'Dart-Pkt':'Goals'))+'</th></tr>',i,r,need,nameHtml;
  for(i=0;i<arr.length;i++){
   r=arr[i];
   need=i===0?'Leader':((arr[i-1].p-r.p)+1);
@@ -1844,7 +2331,7 @@ function renderBallon(){
  var arr=stats(monthGames(y,m),tournamentMonth(y,m),'top').filter(function(r){return r.gf>0;});
  E('leader').innerHTML=(arr[0]&&arr[0].p>0)?esc(arr[0].name)+' – '+arr[0].p+(currentLeague==='dart'?' Punkte':' Goals'):'Noch kein Leader';
  E('rank').innerHTML=drawTable(arr);
- var o='<table><tr><th>Monat</th><th>Top Scorer</th><th class="right">'+(isDartData()?'Dart-Pkt':'Goals')+'</th></tr>',i,r,monthArr;
+ var o='<table><tr><th>Monat</th><th>Top Scorer</th><th class="right">'+(isHotelData()?'Hotel-Pkt':(isDartData()?'Dart-Pkt':'Goals'))+'</th></tr>',i,r,monthArr;
  for(i=1;i<=12;i++){
   monthArr=stats(monthGames(y,i),tournamentMonth(y,i),'top').filter(function(x){return x.gf>0;});
   r=monthArr[0];
@@ -1882,6 +2369,8 @@ function deleteGlobalPlayerByName(name){
  globalData.players=next.slice();
  if(allLeagueData.airhockey){allLeagueData.airhockey.players=next.slice();}
  if(allLeagueData.fifa){allLeagueData.fifa.players=next.slice();}
+ if(allLeagueData.dart){allLeagueData.dart.players=next.slice();}
+ if(allLeagueData.hotel){allLeagueData.hotel.players=next.slice();}
  if(d){d.players=next.slice();}
  if(!globalRef){globalRef=db.collection('rumliLeague').doc('globalPlayers');}
  globalRef.set({players:next,deletedPlayers:globalData.deletedPlayers},{merge:true}).catch(function(e){alert('Globale Spieler konnten nicht gespeichert werden: '+(e.message||e));});
@@ -2022,7 +2511,7 @@ function renderDashboardAdmin(){
 
 function renderHome(){
  var now=new Date(),y=now.getFullYear(),m=now.getMonth()+1;E('topScorerDashTitle').innerHTML='Top Scorer '+mname(m)+' '+y;
- var top=stats(monthGames(y,m),tournamentMonth(y,m),'top').filter(function(r){return r.gf>0;});
+ var top=stats(monthGames(y,m),tournamentMonth(y,m),'top').filter(function(r){return r.p>0||r.gf>0;});
  function pbox(rank,cls,medal){
   var r=top[rank-1];
   return '<div class="podiumBox '+cls+'"><div class="medal">'+medal+'</div><div class="podName">'+(r&&r.p>0?esc(r.name):'-')+'</div><div class="podPts">'+(r&&r.p>0?r.p+' Punkte':'noch offen')+'</div></div>';
@@ -2043,7 +2532,8 @@ function renderHome(){
  E('homeChampions').innerHTML=o||'<p class="note">Noch keine Champions.</p>';
  var lg=d.games&&d.games.length?d.games[d.games.length-1]:null;
  if(lg){
-  if(lg.bestOf3){
+  if(lg.hotelGame){var hps=lg.players||[];E('homeLastMatch').innerHTML='<div class="currentTournamentTitle">🏨 '+esc(hps[0]||'-')+' gewinnt Hotel</div><div class="currentTournamentMeta">'+esc(lg.date||'')+' · 10–6–3–1 Punkte</div>';}
+  else if(lg.bestOf3){
    var bwin=bo3Winner(lg);
    E('homeLastMatch').innerHTML='<div class="currentTournamentTitle">Best of 3: '+esc(lg.a)+' vs '+esc(lg.b)+'</div><div class="currentTournamentMeta">'+esc(lg.date||'')+' · Sieger: '+esc(bwin||'offen')+' · +12 Ballon d’Or</div>';
   }else{
@@ -2171,36 +2661,57 @@ function calcGlobalStats(p){
 }
 function clampRating(x){x=Math.round(x);return Math.max(40,Math.min(99,x));}
 function playerRatings(s){
- /* Karten werden jetzt auch von Poker beeinflusst.
-    Gewichtung OVR: ACT 10%, OFF 20%, TEC 15%, DEF 20%, CON 20%, DOM 15%. */
- var gp=globalPlayers(), pokerArr=(typeof pokerStatsAll==='function'?pokerStatsAll(true):[]), pokerMap={}, i, row;
+ /* Neue Kartenlogik:
+    Jeder Wert wird pro Modus nach deiner Gewichtung beeinflusst.
+    ACT = alle Modi, OFF = FIFA/Air Hockey, TEC = FIFA/Dart/Hotel,
+    DEF = FIFA/Air Hockey/Hotel, CON = Poker/Dart/Hotel, DOM = Titel aus allen Modi. */
+ var gp=globalPlayers(), pokerArr=(typeof pokerStatsAll==='function'?pokerStatsAll(true):[]), pokerMap={}, i;
  for(i=0;i<pokerArr.length;i++){pokerMap[cleanPlayerName(pokerArr[i].name).toLowerCase()]=pokerArr[i];}
- function activityFor(name){
-  var a=calcLeagueStatsFor(name,'airhockey'), f=calcLeagueStatsFor(name,'fifa'), da=calcLeagueStatsFor(name,'dart'), pr=pokerMap[cleanPlayerName(name).toLowerCase()]||{played:0,rounds:0};
-  return (a.played||0)+(f.played||0)+(da.played||0)+(pr.played||0)+((pr.rounds||0)*0.18);
+ function pokerFor(name){return pokerMap[cleanPlayerName(name).toLowerCase()]||{played:0,points:0,wins:0,rounds:0,allIns:0};}
+ function rawModeScore(name,mode){
+  var st, pr, games, winr, gfpg, gapg, diff, ptsg;
+  if(mode==='poker'){
+   pr=pokerFor(name); games=pr.played||0; if(!games)return 0;
+   winr=(pr.wins||0)/games; ptsg=(pr.points||0)/games;
+   return games*5 + (pr.points||0)*1.2 + (pr.rounds||0)*2.0 + (pr.allIns||0)*5 + winr*45 + ptsg*3;
+  }
+  st=calcLeagueStatsFor(name,mode); games=st.played||0; if(!games)return 0;
+  winr=(st.wins||0)/games; gfpg=(st.gf||0)/games; gapg=(st.ga||0)/games; diff=gfpg-gapg; ptsg=(st.points||0)/games;
+  if(mode==='dart'){
+   return games*5 + (st.points||0)*1.15 + ptsg*4 + winr*45 + (st.titles||0)*35;
+  }
+  if(mode==='hotel'){
+   return games*5 + ptsg*6 + winr*45 + Math.max(0,diff)*8 + (st.titles||0)*35;
+  }
+  return games*5 + gfpg*8 + Math.max(0,diff)*10 + winr*45 + (st.titles||0)*35;
  }
- var maxAct=1, ownAct=activityFor(s.name);
- for(i=0;i<gp.length;i++){maxAct=Math.max(maxAct,activityFor(gp[i]));}
- var act=clampRating(45+(ownAct/maxAct)*54);
- if(maxAct>0 && ownAct>=maxAct*.94){act=99;}
-
- var sportGames=(s.air&&s.fifaStats)?((s.air.played||0)+(s.fifaStats.played||0)+(s.dartStats?s.dartStats.played||0:0)):((s.airhockey||0)+(s.fifa||0)+(s.dart||0));
- var pokerPlayed=s.poker||0, pokerPoints=s.pokerPoints||0, pokerWins=s.pokerWins||0, pokerRounds=s.pokerRounds||0, pokerAllIns=s.pokerAllIns||0;
- var dartPlayed=s.dart||0, dartPoints=s.dartPoints||0, dartWins=s.dartWins||0;
- var dartPtsPerGame=dartPlayed?(dartPoints/dartPlayed):0;
- var pokerPtsPerGame=pokerPlayed?(pokerPoints/pokerPlayed):0;
- var pokerWinrate=pokerPlayed?(pokerWins/pokerPlayed*100):0;
- var pokerRoundsPerGame=pokerPlayed?(pokerRounds/pokerPlayed):0;
- var sportWinrate=sportGames?(((s.air.wins||0)+(s.fifaStats.wins||0))/sportGames*100):0;
- var goalsForPerGame=sportGames?(s.gf/sportGames):0;
- var goalsAgainstPerGame=sportGames?(s.ga/sportGames):0;
- var goalDiffPerGame=sportGames?((s.gf-s.ga)/sportGames):0;
-
- var off=clampRating(42+goalsForPerGame*7.5+sportWinrate*.14+pokerRoundsPerGame*4.2+pokerWins*3.2+pokerAllIns*1.8+dartPtsPerGame*2.0+dartWins*1.4+s.titles*3.5);
- var def=clampRating(58-goalsAgainstPerGame*6.2+goalDiffPerGame*2.8+sportWinrate*.18+pokerWinrate*.06+dartPtsPerGame*1.4+s.titles*3.2);
- var tec=clampRating(42+sportWinrate*.26+goalDiffPerGame*3.0+pokerPtsPerGame*1.55+pokerRoundsPerGame*2.6+pokerAllIns*1.6+dartPtsPerGame*1.8+s.titles*4);
- var con=clampRating(43+s.winrate*.20+Math.min(18,s.played*1.15)+Math.min(16,pokerPlayed*1.5)+Math.min(12,pokerPoints*.06)+Math.min(12,dartPoints*.18)+s.titles*4);
- var dom=clampRating(40+s.winrate*.22+s.titles*8+Math.min(18,s.wins*1.15)+Math.min(16,pokerWins*4)+Math.min(12,pokerPoints*.05)+Math.min(12,dartPoints*.15));
+ function normMode(name,mode){
+  var max=0, own=rawModeScore(name,mode), j;
+  for(j=0;j<gp.length;j++){max=Math.max(max,rawModeScore(gp[j],mode));}
+  if(!max)return 0;
+  return Math.max(0,Math.min(1,own/max));
+ }
+ function weighted(name,attr){
+  var modes=['fifa','airhockey','dart','poker','hotel'], sum=0, wsum=0, j, m, w;
+  for(j=0;j<modes.length;j++){
+   m=modes[j]; w=(CARD_MODE_IMPACT[m]&&CARD_MODE_IMPACT[m][attr])||0;
+   if(!w)continue;
+   sum+=normMode(name,m)*w; wsum+=w;
+  }
+  return wsum?(sum/wsum):0;
+ }
+ function titlesFor(name){
+  var a=calcLeagueStatsFor(name,'airhockey'), f=calcLeagueStatsFor(name,'fifa'), da=calcLeagueStatsFor(name,'dart'), h=calcLeagueStatsFor(name,'hotel'), pr=pokerFor(name);
+  return (a.titles||0)+(f.titles||0)+(da.titles||0)+(h.titles||0)+((pr.wins||0)?Math.min(1,Math.floor((pr.wins||0)/5)):0);
+ }
+ function ratingFrom(v){return clampRating(40+v*59);}
+ var act=ratingFrom(weighted(s.name,'act'));
+ var off=ratingFrom(weighted(s.name,'off'));
+ var tec=ratingFrom(weighted(s.name,'tec'));
+ var def=ratingFrom(weighted(s.name,'def'));
+ var con=ratingFrom(weighted(s.name,'con'));
+ var domBase=weighted(s.name,'dom'), titleBonus=Math.min(0.22,titlesFor(s.name)*0.055);
+ var dom=ratingFrom(Math.min(1,domBase+titleBonus));
  var ovr=clampRating((act*.10+off*.20+tec*.15+def*.20+con*.20+dom*.15));
  return {ovr:ovr,act:act,off:off,def:def,tec:tec,con:con,dom:dom};
 }
@@ -2307,11 +2818,11 @@ function renderHomeHallOfFame(best,airChamp,fifaChamp){
  o+=championSlotHtml('⚽ FIFA Champion',fifaChamp?fifaChamp.name:'','');
  var dartChamp=championForLeague('dart'); o+=championSlotHtml('🎯 Dart Champion',dartChamp?dartChamp.name:'','');
  o+=championSlotHtml('♠️ Poker Champion','','');
- o+=championSlotHtml('🏨 Hotel Champion','','');
+ var hotelChamp=championForLeague('hotel'); o+=championSlotHtml('🏨 Hotel Champion',hotelChamp?hotelChamp.name:'','');
  E('homeHallOfFameView').innerHTML=o;
 }
 function renderHallOfFame(){
- var games=[{key:'airhockey',label:'🏒 Air Hockey Champion'},{key:'fifa',label:'⚽ FIFA Champion'},{key:'dart',label:'🎯 Dart Champion'},{key:'poker',label:'♠️ Poker Champion',poker:true},{key:'hotel',label:'🏨 Hotel Champion',soon:true}], o='<div class="hofGrid">',i,c,st;
+ var games=[{key:'airhockey',label:'🏒 Air Hockey Champion'},{key:'fifa',label:'⚽ FIFA Champion'},{key:'dart',label:'🎯 Dart Champion'},{key:'poker',label:'♠️ Poker Champion',poker:true},{key:'hotel',label:'🏨 Hotel Champion'}], o='<div class="hofGrid">',i,c,st;
  var names=globalPlayers(), best=null,bs=null,airChamp=championForLeague('airhockey'),fifaChamp=championForLeague('fifa');
  for(i=0;i<names.length;i++){st=calcGlobalStats(names[i]); if(st.titles>0 && (!best||st.titles>bs.titles||(st.titles===bs.titles&&st.wins>bs.wins)||(st.titles===bs.titles&&st.wins===bs.wins&&st.played>bs.played))){best=names[i];bs=st;}}
  renderHomeHallOfFame(best,airChamp,fifaChamp);
@@ -2636,7 +3147,7 @@ function renderPokerPage(){
  renderPokerPending();
  renderPokerStats();
 }
-function openPoker(){document.body.classList.remove('dartMode');document.body.classList.remove('fifaMode');currentPage='pokerPage';renderPokerPage();pokerSetView('dash');show('pokerPage');}
+function openPoker(){document.body.classList.remove('dartMode');document.body.classList.remove('fifaMode');document.body.classList.remove('hotelMode');document.body.classList.remove('homeScreenMode');document.body.classList.add('pokerMode');currentPage='pokerPage';renderPokerPage();pokerSetView('dash');show('pokerPage');}
 
 function renderPending(){
  var o='',i,g;
@@ -2659,7 +3170,38 @@ function renderPending(){
  E('pendingList').innerHTML=o||'<p class="note">Keine offenen Spiele.</p>'; updateMenuVisibility();
 }
 
-function renderAll(){updateLeagueLabels();sync();renderPending();renderBallon();renderYear();renderPlayers();renderHist();renderHome();renderProfile();renderGlobalProfiles();renderHallOfFame();renderPokerPage();updateLeagueLabels();}
+
+var CARD_MODE_IMPACT={
+ fifa:{icon:'⚽',name:'FIFA',act:3,off:5,tec:5,def:4,con:3,dom:5,strong:'OFF, TEC, DOM'},
+ airhockey:{icon:'🏒',name:'Air Hockey',act:3,off:4,tec:3,def:5,con:2,dom:4,strong:'DEF, OFF, DOM'},
+ dart:{icon:'🎯',name:'Dart',act:3,off:1,tec:5,def:1,con:5,dom:3,strong:'TEC, CON'},
+ poker:{icon:'♠️',name:'Poker',act:3,off:1,tec:4,def:2,con:5,dom:4,strong:'CON, TEC, DOM'},
+ hotel:{icon:'🏨',name:'Hotel',act:3,off:1,tec:5,def:4,con:4,dom:4,strong:'TEC, DEF, CON, DOM'}
+};
+var CARD_ATTR_LABELS={
+ act:'ACT · Aktivität',
+ off:'OFF · Angriff',
+ tec:'TEC · Technik',
+ def:'DEF · Defensive',
+ con:'CON · Konstanz',
+ dom:'DOM · Dominanz/Titel'
+};
+function stars(n){var s='',i;for(i=0;i<n;i++)s+='+';return s;}
+function cardInfluenceHTML(mode){
+ var m=CARD_MODE_IMPACT[mode]||CARD_MODE_IMPACT.airhockey, keys=['act','off','tec','def','con','dom'], html='<div class="influenceGrid">',i,k;
+ for(i=0;i<keys.length;i++){
+  k=keys[i];
+  html+='<div class="influenceStat"><b>'+CARD_ATTR_LABELS[k]+'</b><div class="influenceStars">'+stars(m[k])+'</div></div>';
+ }
+ html+='</div><div class="influenceLegend"><b>Stärkste Modi:</b><br>ACT: alle Modi · OFF: FIFA/Air Hockey · TEC: FIFA/Dart/Hotel · DEF: FIFA/Air Hockey/Hotel · CON: Poker/Dart/Hotel · DOM: Titel aus allen Modi</div>';
+ return html;
+}
+function renderCardInfluenceBoxes(){
+ if(E('cardInfluenceDash'))E('cardInfluenceDash').innerHTML=cardInfluenceHTML(currentLeague);
+ if(E('pokerCardInfluenceDash'))E('pokerCardInfluenceDash').innerHTML=cardInfluenceHTML('poker');
+}
+
+function renderAll(){updateLeagueLabels();sync();renderPending();renderBallon();renderYear();renderPlayers();renderHist();renderHome();renderProfile();renderGlobalProfiles();renderHallOfFame();renderPokerPage();renderCardInfluenceBoxes();updateLeagueLabels();}
 
 function updateMenuVisibility(){
  var m=E('adminMenu');
@@ -2717,7 +3259,7 @@ document.addEventListener('click',function(ev){
 
 
 function show(p){
- currentPage=p; document.body.classList.toggle('dartMode', currentLeague==='dart' && p!=='gameSelect' && p!=='pokerPage'); document.body.classList.toggle('fifaMode', currentLeague==='fifa' && p!=='gameSelect' && p!=='pokerPage');
+ currentPage=p; document.body.classList.toggle('homeScreenMode', p==='gameSelect'); document.body.classList.toggle('pokerMode', p==='pokerPage'); document.body.classList.toggle('dartMode', currentLeague==='dart' && p!=='gameSelect' && p!=='pokerPage'); document.body.classList.toggle('fifaMode', currentLeague==='fifa' && p!=='gameSelect' && p!=='pokerPage'); document.body.classList.toggle('hotelMode', currentLeague==='hotel' && p!=='gameSelect' && p!=='pokerPage'); document.body.classList.toggle('pokerMode', p==='pokerPage');
  var tabsEl=document.querySelector('.tabs');if(tabsEl){tabsEl.style.display=(p==='gameSelect'||p==='construction'||p==='pokerPage'||isAdmin)?'none':'grid';}
  if(!isAdmin && (p=='players' || p=='pending')){alert('Bitte zuerst über den Login-Button anmelden.'); p='home';currentPage=p;}
  E('gameSelect').className=p=='gameSelect'?'':'hide';E('pokerPage').className=p=='pokerPage'?'':'hide';E('construction').className=p=='construction'?'':'hide';E('home').className=p=='home'?'':'hide';E('pending').className=p=='pending'?'':'hide';E('game').className=p=='game'?'':'hide';E('ballon').className=p=='ballon'?'':'hide';E('yearpage').className=p=='year'?'':'hide';E('players').className=p=='players'?'':'hide';E('profile').className=p=='profile'?'':'hide';E('globalProfiles').className=p=='globalProfiles'?'':'hide';E('hallOfFame').className=p=='hallOfFame'?'':'hide';E('history').className=p=='history'?'':'hide';
@@ -2859,6 +3401,25 @@ function dartLiveGameObject(){
 }
 
 function saveGame(){
+
+ if(currentLeague==='hotel'){
+  var p1=E('hotelP1').value,p2=E('hotelP2').value,p3=E('hotelP3').value,p4=E('hotelP4').value;
+  var hp=[p1,p2,p3,p4].filter(function(x){return !!x;});
+  var seen={},dupe=false;
+  for(var hpi=0;hpi<hp.length;hpi++){if(seen[hp[hpi]])dupe=true;seen[hp[hpi]]=true;}
+  if(hp.length<2){alert('Hotel kann mit 2, 3 oder 4 Spielern gespielt werden. Bitte mindestens Platz 1 und Platz 2 ausfüllen.');return;}
+  if(hp.length>4){alert('Hotel ist auf maximal 4 Spieler begrenzt.');return;}
+  if(dupe){alert('Bitte jeden Spieler nur einmal auswählen.');return;}
+  var hg={hotelGame:true,date:(E('hotelDate')&&E('hotelDate').value)||today(),mode:'Hotel',players:hp,a:p1,b:p2||'',sa:10,sb:p2?6:0};
+  if(isAdmin){d.games.push(hg);saveData();show('ballon');}
+  else{
+   var hrep=(E('hotelReporter')&&E('hotelReporter').value)||''; if(!hrep){alert('Bitte auswählen, wer das Spiel meldet.');return;}
+   hg.reporter=hrep;
+   for(var hgi=0;hgi<(d.pendingGames||[]).length;hgi++){if(d.pendingGames[hgi].reporter===hrep){alert('Du hast bereits ein offenes Spiel. Warte, bis ein Admin es bestätigt oder ablehnt.');return;}}
+   d.pendingGames.push(hg);saveData();alert('Hotel-Spiel wurde eingereicht und wartet auf Admin-Bestätigung.');show('home');
+  }
+  return;
+ }
  if(currentLeague==='dart'){
   var dg=dartLiveGameObject();
   if(!dg){alert('Bitte zuerst ein Dart-Spiel starten und mindestens einen Gewinner erspielen.');return;}
@@ -2916,7 +3477,8 @@ buildDartPlayers();
 E('save').onclick=saveGame;
 if(E('logoHome')){E('logoHome').onclick=function(){if(window.show)window.show('gameSelect');};}
 if(E('pickAirHockey')){E('pickAirHockey').onclick=function(){switchLeague('airhockey');};}
-if(E('pickFifa')){E('pickFifa').onclick=function(){switchLeague('fifa');};}
+if(E('pickFifa')){E('pickFifa').onclick=function(){switchLeague('fifa');};
+if(E('pickHotel'))E('pickHotel').onclick=function(){switchLeague('hotel');};}
 if(E('pickPoker')){E('pickPoker').onclick=function(){openPoker();};}
 if(E('pickDart')){E('pickDart').onclick=function(){switchLeague('dart');};}
 if(E('pokerTabDash'))E('pokerTabDash').onclick=function(){pokerSetView('dash');};
@@ -2992,7 +3554,7 @@ E('saveRewards').onclick=function(){
 E('month').onchange=renderBallon;E('myear').oninput=renderBallon;E('year').oninput=renderYear;
 E('addp').onclick=function(){var p=cleanPlayerName(E('newp').value);if(!p)return;var gp=globalPlayers();for(var gi=0;gi<gp.length;gi++){if(gp[gi].toLowerCase()===p.toLowerCase()){alert('Diesen Spieler gibt es schon.');return;}}var nextPlayers=mergePlayerLists(gp,[p]);globalData.players=nextPlayers;E('newp').value='';saveGlobalPlayers(nextPlayers);fill();renderAll();};
 E('wipe').onclick=function(){if(confirm('Alles löschen?')){d={players:[],games:[],pendingGames:[],tournaments:[],settings:{news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}}};saveData();fill();show('game');}};
-E('export').onclick=function(){var o='Datum,Spieler A,Goals A,Spieler B,Goals B,Sieger\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[g.date,g.a,g.bestOf3?'BO3':g.sa,g.b,g.bestOf3?'BO3':g.sb,g.bestOf3?bo3Winner(g):(g.sa>g.sb?g.a:g.b)].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(currentLeague==='fifa'?'fifa':'airhockey')+'.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
+E('export').onclick=function(){var o='Datum,Spieler A,Goals A,Spieler B,Goals B,Sieger\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[g.date,g.a,g.bestOf3?'BO3':g.sa,g.b,g.bestOf3?'BO3':g.sb,g.bestOf3?bo3Winner(g):(g.sa>g.sb?g.a:g.b)].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(currentLeague==='fifa'?'fifa':(currentLeague==='dart'?'dart':(currentLeague==='hotel'?'hotel':'airhockey')))+'.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
 
 E('adminLoginBtn').onclick=function(){
  if(E('adminpass').value===ADMIN_PASSWORD){
@@ -3301,5 +3863,37 @@ window.addEventListener('load',function(){
  window.addEventListener('load',function(){setTimeout(function(){addLeagueBackButtons();fixPokerBackButtons();fixHomePokerButton();},400);});
 })();
 </script>
+
+<script>
+(function(){
+  function E(id){return document.getElementById(id);}
+  function ensureHotelRulesCard(){
+    if(typeof currentLeague==='undefined' || currentLeague!=='hotel') {
+      var old=E('hotelRulesDashboardCard'); if(old) old.remove();
+      return;
+    }
+    if(E('hotelRulesDashboardCard')) return;
+    var home=E('home');
+    if(!home) return;
+    var card=document.createElement('div');
+    card.id='hotelRulesDashboardCard';
+    card.className='card homeClickCard';
+    card.innerHTML='<h2>🏨 Hotel Wertung</h2><p class="note">Hotel kann zu zweit, zu dritt oder zu viert gespielt werden. Es zählen nur die belegten Plätze.</p><div class="hotelPlayerCountBox"><div><b>2 Spieler</b>10 / 6</div><div><b>3 Spieler</b>10 / 6 / 3</div><div><b>4 Spieler</b>10 / 6 / 3 / 1</div></div>';
+    var grid=home.querySelector('.homeGrid');
+    if(grid) grid.parentNode.insertBefore(card, grid);
+    else home.insertBefore(card, home.firstChild);
+  }
+  var oldRenderAll=window.renderAll;
+  if(typeof oldRenderAll==='function'){
+    window.renderAll=function(){oldRenderAll.apply(this,arguments); ensureHotelRulesCard();};
+  }
+  var oldShow=window.show;
+  if(typeof oldShow==='function'){
+    window.show=function(p){oldShow.apply(this,arguments); setTimeout(ensureHotelRulesCard,30);};
+  }
+  document.addEventListener('DOMContentLoaded', ensureHotelRulesCard);
+})();
+</script>
+
 </body>
 </html>
