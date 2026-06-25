@@ -2485,7 +2485,7 @@ function initGlobalData(){
  db.collection('rumliLeague').doc('fifa').onSnapshot(function(doc){allLeagueData.fifa=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
  db.collection('rumliLeague').doc('dart').onSnapshot(function(doc){allLeagueData.dart=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.dart._league='dart';migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
  db.collection('rumliLeague').doc('hotel').onSnapshot(function(doc){allLeagueData.hotel=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.hotel._league='hotel';migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
- db.collection('rumliLeague').doc('poker').onSnapshot(function(doc){pokerData=doc.exists?(doc.data()||{players:[],pokerGames:[],pendingPokerGames:[]}):{players:[],pokerGames:[],pendingPokerGames:[]};if(!pokerData.pokerTournaments)pokerData.pokerTournaments=[];allLeagueData.poker=pokerData;migrateOldPlayersToGlobal();renderPokerPage();renderHallOfFame();});
+ db.collection('rumliLeague').doc('poker').onSnapshot(function(doc){pokerData=doc.exists?(doc.data()||{players:[],pokerGames:[],pendingPokerGames:[]}):{players:[],pokerGames:[],pendingPokerGames:[]};pokerData.pokerGames=[];pokerData.pokerTournaments=[];pokerData.pendingPokerGames=[];allLeagueData.poker=pokerData;migrateOldPlayersToGlobal();try{db.collection('rumliLeague').doc('poker').set({pokerGames:[],pokerTournaments:[],pendingPokerGames:[]},{merge:true}).catch(function(){});}catch(e){}renderPokerPage();renderHallOfFame();});
 }
 var d = freshData();
 var selectedProfilePlayer = "";
@@ -3493,10 +3493,25 @@ function pokerGamePoints(row){
  return pts;
 }
 function pokerTournamentYear(t){return dt(t.date||today()).getFullYear();}
+function allPokerGamesForCards(){
+ var out=[], seen={}, clean=(window.pokerCleanData&&window.pokerCleanData.games)||[], stored=[], cardStored=[], i,g,id;
+ try{stored=(JSON.parse(localStorage.getItem('rumliPokerNew')||'{"games":[]}').games)||[];}catch(e){stored=[];}
+ try{cardStored=JSON.parse(localStorage.getItem('rumliPokerCardGames')||'[]')||[];}catch(e){cardStored=[];}
+ function add(game){
+  if(!game)return;
+  id=String(game.id||((game.date||'')+'|'+(game.name||'')+'|'+JSON.stringify(game.results||[])));
+  if(seen[id])return;
+  seen[id]=1; out.push(game);
+ }
+ for(i=0;i<clean.length;i++)add(clean[i]);
+ for(i=0;i<stored.length;i++)add(stored[i]);
+ for(i=0;i<cardStored.length;i++)add(cardStored[i]);
+ return out;
+}
 function pokerStatsAll(includeCurrentYear){
  var gp=globalPlayers(), s={}, i,j,t,row,p,pts;
  for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],points:0,played:0,wins:0,rounds:0,allIns:0,last:''};}
- var games=(pokerData&&((pokerData.pokerGames)||pokerData.pokerTournaments))||[];
+ var games=allPokerGamesForCards();
  for(i=0;i<games.length;i++){
   t=games[i]; if(!includeCurrentYear && !seasonIsComplete(seasonKeyForDate(t.date||today())))continue;
   for(j=0;j<(t.results||[]).length;j++){
@@ -3518,7 +3533,7 @@ function pokerStatsMonth(y,m){
  y=parseInt(y,10)||((new Date()).getFullYear());
  m=parseInt(m,10)||((new Date()).getMonth()+1);
  for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],points:0,played:0,wins:0,rounds:0,allIns:0,last:''};}
- var games=(pokerData&&((pokerData.pokerGames)||pokerData.pokerTournaments))||[];
+ var games=allPokerGamesForCards();
  for(i=0;i<games.length;i++){
   t=games[i]; dd=dt(t.date||today()); if(dd.getFullYear()!==y || (dd.getMonth()+1)!==m)continue;
   for(j=0;j<(t.results||[]).length;j++){
@@ -3548,7 +3563,7 @@ function pokerStatsYear(y){
  var gp=globalPlayers(), s={}, i,j,t,row,p,pts;
  y=parseInt(y,10)||((new Date()).getFullYear());
  for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],points:0,played:0,wins:0,rounds:0,allIns:0,last:''};}
- var games=(pokerData&&((pokerData.pokerGames)||pokerData.pokerTournaments))||[];
+ var games=allPokerGamesForCards();
  for(i=0;i<games.length;i++){
   t=games[i]; if(pokerTournamentYear(t)!==y)continue;
   for(j=0;j<(t.results||[]).length;j++){
@@ -3565,7 +3580,7 @@ function pokerStatsSeason(key){
  var gp=globalPlayers(), s={}, i,j,t,row,p,pts;
  key=key||currentSeasonKey();
  for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],points:0,played:0,wins:0,rounds:0,allIns:0,last:''};}
- var games=(pokerData&&((pokerData.pokerGames)||pokerData.pokerTournaments))||[];
+ var games=allPokerGamesForCards();
  for(i=0;i<games.length;i++){
   t=games[i]; if(seasonKeyForDate(t.date||today())!==key)continue;
   for(j=0;j<(t.results||[]).length;j++){
@@ -4537,7 +4552,13 @@ window.addEventListener('load',function(){
     if(!Array.isArray(x.pending))x.pending=[];
     window.pokerCleanData=x;
     localStorage.setItem('rumliPokerNew',JSON.stringify(x));
+    localStorage.setItem('rumliPokerCardGames',JSON.stringify(x.games));
     try{if(typeof db!=='undefined'&&db.collection){db.collection('rumliLeague').doc('poker_new').set(x,{merge:true}).catch(function(){});}}catch(e){}
+  }
+  function refreshCardsAfterPoker(){
+    if(typeof renderGlobalProfiles==='function')renderGlobalProfiles();
+    if(typeof renderHallOfFame==='function')renderHallOfFame();
+    if(typeof renderHome==='function')renderHome();
   }
   function startPokerDbSync(){
     if(window.pokerCleanSyncStarted)return;
@@ -4553,7 +4574,11 @@ window.addEventListener('load',function(){
           remote=mergePokerData(remote,local);
           window.pokerCleanData=remote;
           localStorage.setItem('rumliPokerNew',JSON.stringify(remote));
+          localStorage.setItem('rumliPokerCardGames',JSON.stringify(remote.games||[]));
           if(JSON.stringify(remote)!==JSON.stringify(doc.data()||{})){db.collection('rumliLeague').doc('poker_new').set(remote,{merge:true}).catch(function(){});}
+          if(typeof renderGlobalProfiles==='function')renderGlobalProfiles();
+          if(typeof renderHallOfFame==='function')renderHallOfFame();
+          if(typeof renderHome==='function')renderHome();
           if((typeof currentPage!=='undefined'&&currentPage==='pokerPage')||document.body.classList.contains('pokerMode'))showPokerView('dash');
         }else if((local.games&&local.games.length)||(local.pending&&local.pending.length)){
           savePoker(local);
@@ -4826,7 +4851,7 @@ window.addEventListener('load',function(){
     if(winners!==1){alert('Bitte genau einen Spielsieger markieren.');return;}
     var g={id:String(Date.now()),name:E('pokerNameNew').value||'Poker Spiel',date:E('pokerDateNew').value||today(),results:res};
     if(pokerIsAdmin())data.games.push(g);else data.pending.push(g);
-    savePoker(data);alert(pokerIsAdmin()?'Poker-Spiel gespeichert.':'Poker-Spiel wurde gemeldet.');showPokerView('dash');if(typeof renderAll==='function')renderAll();
+    savePoker(data);refreshCardsAfterPoker();alert(pokerIsAdmin()?'Poker-Spiel gespeichert.':'Poker-Spiel wurde gemeldet.');showPokerView('dash');if(typeof renderAll==='function')renderAll();
   }
 
   window.showPokerView=function(v){
@@ -4855,9 +4880,9 @@ window.addEventListener('load',function(){
     root.querySelectorAll('[data-pv]').forEach(function(el){el.onclick=function(){showPokerView(el.getAttribute('data-pv'));};});
     root.querySelectorAll('[data-poker-profile]').forEach(function(el){el.onclick=function(){window.selectedPokerStatsPlayer=el.getAttribute('data-poker-profile')||'';renderStats();};});
     root.querySelectorAll('.pokerStatsBack').forEach(function(b){b.onclick=function(){window.selectedPokerStatsPlayer='';renderStats();};});
-    root.querySelectorAll('.pokerApprove').forEach(function(b){b.onclick=function(){var data=loadPoker(),id=b.getAttribute('data-id'),idx=data.pending.findIndex(function(g){return String(g.id)===String(id);});if(idx>=0){data.games.push(data.pending[idx]);data.pending.splice(idx,1);savePoker(data);if(typeof renderAll==='function')renderAll();showPokerView('pending');}};});
+    root.querySelectorAll('.pokerApprove').forEach(function(b){b.onclick=function(){var data=loadPoker(),id=b.getAttribute('data-id'),idx=data.pending.findIndex(function(g){return String(g.id)===String(id);});if(idx>=0){data.games.push(data.pending[idx]);data.pending.splice(idx,1);savePoker(data);refreshCardsAfterPoker();if(typeof renderAll==='function')renderAll();showPokerView('pending');}};});
     root.querySelectorAll('.pokerReject').forEach(function(b){b.onclick=function(){var data=loadPoker(),id=b.getAttribute('data-id'),idx=data.pending.findIndex(function(g){return String(g.id)===String(id);});if(idx>=0&&confirm('Ablehnen?')){data.pending.splice(idx,1);savePoker(data);showPokerView('pending');}};});
-    root.querySelectorAll('.pokerDelete').forEach(function(b){b.onclick=function(){var data=loadPoker(),id=b.getAttribute('data-id'),idx=data.games.findIndex(function(g){return String(g.id)===String(id);});if(idx>=0&&confirm('Poker-Spiel löschen?')){data.games.splice(idx,1);savePoker(data);showPokerView('history');if(typeof renderAll==='function')renderAll();}};});
+    root.querySelectorAll('.pokerDelete').forEach(function(b){b.onclick=function(){var data=loadPoker(),id=b.getAttribute('data-id'),idx=data.games.findIndex(function(g){return String(g.id)===String(id);});if(idx>=0&&confirm('Poker-Spiel löschen?')){data.games.splice(idx,1);savePoker(data);refreshCardsAfterPoker();showPokerView('history');if(typeof renderAll==='function')renderAll();}};});
   }
   function bindPokerMenu(){
     var tile=E('pickPoker');if(tile)tile.onclick=function(){openPoker();};
