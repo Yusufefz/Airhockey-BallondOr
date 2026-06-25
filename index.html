@@ -4471,6 +4471,24 @@ window.addEventListener('load',function(){
     for(i=0;i<list.length;i++){o+='<option value="'+esc(list[i])+'" '+(list[i]===selected?'selected':'')+'>'+esc(pokerSeasonLabel(list[i]))+'</option>';}
     return o;
   }
+  function mergePokerData(a,b){
+    var out={games:[],pending:[]}, seenGames={}, seenPending={};
+    function addGame(g){
+      if(!g)return;
+      var id=String(g.id||((g.date||'')+'|'+(g.name||'')+'|'+JSON.stringify(g.results||[])));
+      if(seenGames[id])return;
+      seenGames[id]=1; out.games.push(g);
+    }
+    function addPending(g){
+      if(!g)return;
+      var id=String(g.id||((g.date||'')+'|'+(g.name||'')+'|'+JSON.stringify(g.results||[])));
+      if(seenPending[id])return;
+      seenPending[id]=1; out.pending.push(g);
+    }
+    ((a&&a.games)||[]).forEach(addGame);((b&&b.games)||[]).forEach(addGame);
+    ((a&&a.pending)||[]).forEach(addPending);((b&&b.pending)||[]).forEach(addPending);
+    return out;
+  }
 
   function pokerPlayers(){
     var arr=[];
@@ -4507,15 +4525,41 @@ window.addEventListener('load',function(){
 
   function loadPoker(){
     try{
-      var x=JSON.parse(localStorage.getItem('rumliPokerNew')||'{"games":[],"pending":[]}')||{games:[],pending:[]};
+      var x=window.pokerCleanData||JSON.parse(localStorage.getItem('rumliPokerNew')||'{"games":[],"pending":[]}')||{games:[],pending:[]};
       if(!Array.isArray(x.games))x.games=[];
       if(!Array.isArray(x.pending))x.pending=[];
       return x;
     }catch(e){return {games:[],pending:[]};}
   }
   function savePoker(x){
+    if(!x)x={games:[],pending:[]};
+    if(!Array.isArray(x.games))x.games=[];
+    if(!Array.isArray(x.pending))x.pending=[];
+    window.pokerCleanData=x;
     localStorage.setItem('rumliPokerNew',JSON.stringify(x));
     try{if(typeof db!=='undefined'&&db.collection){db.collection('rumliLeague').doc('poker_new').set(x,{merge:true}).catch(function(){});}}catch(e){}
+  }
+  function startPokerDbSync(){
+    if(window.pokerCleanSyncStarted)return;
+    if(typeof db==='undefined'||!db.collection)return;
+    window.pokerCleanSyncStarted=true;
+    try{
+      db.collection('rumliLeague').doc('poker_new').onSnapshot(function(doc){
+        var local=JSON.parse(localStorage.getItem('rumliPokerNew')||'{"games":[],"pending":[]}')||{games:[],pending:[]};
+        var remote=doc&&doc.exists?(doc.data()||{}):null;
+        if(remote){
+          if(!Array.isArray(remote.games))remote.games=[];
+          if(!Array.isArray(remote.pending))remote.pending=[];
+          remote=mergePokerData(remote,local);
+          window.pokerCleanData=remote;
+          localStorage.setItem('rumliPokerNew',JSON.stringify(remote));
+          if(JSON.stringify(remote)!==JSON.stringify(doc.data()||{})){db.collection('rumliLeague').doc('poker_new').set(remote,{merge:true}).catch(function(){});}
+          if((typeof currentPage!=='undefined'&&currentPage==='pokerPage')||document.body.classList.contains('pokerMode'))showPokerView('dash');
+        }else if((local.games&&local.games.length)||(local.pending&&local.pending.length)){
+          savePoker(local);
+        }
+      });
+    }catch(e){}
   }
   function pokerIsAdmin(){
     return localStorage.getItem('airhockey_is_admin')==='true';
@@ -4820,7 +4864,8 @@ window.addEventListener('load',function(){
     var map={amPokerDashboard:'dash',amPokerNew:'new',amPokerPending:'pending',amPokerRanking:'year',amPokerStats:'stats',amPokerHistory:'history',nmPokerDashboard:'dash',nmPokerNew:'new',nmPokerRanking:'year',nmPokerStats:'stats',nmPokerHistory:'history'};
     Object.keys(map).forEach(function(id){var el=E(id);if(el)el.onclick=function(){openPoker();showPokerView(map[id]);};});
   }
-  document.addEventListener('DOMContentLoaded',function(){bindPokerMenu();setTimeout(bindPokerMenu,500);});
+  startPokerDbSync();
+  document.addEventListener('DOMContentLoaded',function(){startPokerDbSync();bindPokerMenu();setTimeout(bindPokerMenu,500);});
 })();
 </script>
 
