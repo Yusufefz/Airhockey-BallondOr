@@ -2555,448 +2555,6 @@ main{
 }
 
 
-/* Poker Clean Rebuild */
-#pokerPage.cleanPoker{
-  color:var(--pokerCream,#f4eeb4)!important;
-}
-.cleanPokerGrid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-}
-@media(min-width:720px){
-  .cleanPokerGrid{grid-template-columns:1.15fr .85fr}
-  .cleanPokerWide{grid-column:1/-1}
-}
-.cleanPokerHero{
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 50% 0%,rgba(244,223,117,.22),transparent 36%),
-    linear-gradient(135deg,#050806,#0f4f39 55%,#07110d)!important;
-}
-.cleanPokerHero:before{
-  content:"♠︎ ♥︎ ♦︎ ♣︎";
-  position:absolute;
-  left:0;right:0;top:8px;
-  text-align:center;
-  letter-spacing:18px;
-  color:rgba(244,238,180,.12);
-  font-size:38px;
-}
-.cleanPokerHero h2{
-  position:relative;
-  font-family:Georgia,'Times New Roman',serif!important;
-  font-style:italic!important;
-  font-size:38px!important;
-  color:var(--pokerGold,#f4df75)!important;
-}
-.cleanPokerPlaceGrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:10px;
-}
-.cleanPokerRules{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin:12px 0;
-}
-.cleanPokerRule{
-  text-align:center;
-  border:1px solid rgba(244,238,180,.52);
-  background:rgba(0,0,0,.22);
-  border-radius:14px;
-  padding:9px 6px;
-}
-.cleanPokerRule b{
-  display:block;
-  color:var(--pokerGold,#f4df75);
-  font-size:22px;
-}
-.cleanPokerList .champItem{
-  border-bottom-color:rgba(244,238,180,.24)!important;
-}
-.cleanPokerStatGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-}
-.cleanPokerStat{
-  background:rgba(0,0,0,.20);
-  border:1px solid rgba(244,238,180,.48);
-  border-radius:14px;
-  padding:10px;
-  text-align:center;
-}
-.cleanPokerStat b{
-  display:block;
-  color:var(--pokerGold,#f4df75);
-  font-size:22px;
-}
-.cleanPokerBack{
-  margin-bottom:12px!important;
-}
-@media(max-width:520px){
-  .cleanPokerPlaceGrid{grid-template-columns:1fr}
-  .cleanPokerRules{grid-template-columns:1fr 1fr}
-  .cleanPokerHero h2{font-size:32px!important}
-}
-
-
-/* Poker Clean Rebuild – kompletter Ersatz */
-body.pokerMode{
-  background:
-    radial-gradient(circle at 50% -12%,rgba(244,223,117,.18),transparent 34%),
-    radial-gradient(circle at 12% 18%,rgba(15,79,57,.32),transparent 28%),
-    linear-gradient(145deg,#050806 0%,#07110d 42%,#0f2f24 100%)!important;
-  color:#f4eeb4!important;
-}
-body.pokerMode header,
-body.pokerMode .adminMenu,
-body.pokerMode .tabs,
-body.pokerMode .loginBox{
-  background:#050806!important;
-  border-color:rgba(244,238,180,.45)!important;
-}
-body.pokerMode .menuToggle{
-  background:linear-gradient(180deg,#f4df75,#9f7b22)!important;
-  color:#07110d!important;
-  border:2px solid #f4eeb4!important;
-}
-body.pokerMode .adminMenu button,
-body.pokerMode .tabs button{
-  background:linear-gradient(180deg,#123a2d,#07110d)!important;
-  color:#f4eeb4!important;
-  border:1px solid rgba(244,238,180,.54)!important;
-}
-body.pokerMode .adminMenu button.on,
-body.pokerMode .tabs button.on{
-  background:linear-gradient(180deg,#f4df75,#9f7b22)!important;
-  color:#07110d!important;
-}
-#pokerPage.cleanPoker{color:#f4eeb4!important}
-#pokerPage.cleanPoker .card{
-  background:
-    radial-gradient(circle at 50% 0%,rgba(244,223,117,.11),transparent 36%),
-    linear-gradient(145deg,#07110d 0%,#0f3b2e 52%,#050806 100%)!important;
-  border:2px solid rgba(244,238,180,.78)!important;
-  color:#f4eeb4!important;
-  box-shadow:4px 4px 0 rgba(0,0,0,.42),0 18px 42px rgba(0,0,0,.48),inset 0 0 30px rgba(244,223,117,.07)!important;
-}
-.cleanPokerGrid{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:720px){.cleanPokerGrid{grid-template-columns:1.15fr .85fr}.cleanPokerWide{grid-column:1/-1}}
-.cleanPokerHero{text-align:center;position:relative;overflow:hidden}
-.cleanPokerHero:before{
-  content:"♠︎ ♥︎ ♦︎ ♣︎";
-  position:absolute;left:0;right:0;top:8px;text-align:center;
-  letter-spacing:18px;color:rgba(244,238,180,.12);font-size:38px;
-}
-.cleanPokerHero h2{
-  position:relative;font-family:Georgia,'Times New Roman',serif!important;
-  font-style:italic!important;font-size:38px!important;color:#f4df75!important;
-}
-.cleanPokerPlaceGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.cleanPokerRules{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
-.cleanPokerRule{text-align:center;border:1px solid rgba(244,238,180,.52);background:rgba(0,0,0,.22);border-radius:14px;padding:9px 6px}
-.cleanPokerRule b{display:block;color:#f4df75;font-size:22px}
-.cleanPokerList .champItem{border-bottom-color:rgba(244,238,180,.24)!important}
-.cleanPokerBack{margin-bottom:12px!important}
-.cleanPokerStatGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.cleanPokerStat{background:rgba(0,0,0,.20);border:1px solid rgba(244,238,180,.48);border-radius:14px;padding:10px;text-align:center}
-.cleanPokerStat b{display:block;color:#f4df75;font-size:22px}
-@media(max-width:520px){.cleanPokerPlaceGrid{grid-template-columns:1fr}.cleanPokerRules{grid-template-columns:1fr 1fr}.cleanPokerHero h2{font-size:32px!important}}
-
-
-/* Neuer Poker-Modus: Air-Hockey Aufbau + Poker Punkte */
-body.pokerMode{
-  background:
-    radial-gradient(circle at 50% -12%,rgba(244,223,117,.18),transparent 34%),
-    radial-gradient(circle at 14% 20%,rgba(15,79,57,.30),transparent 28%),
-    linear-gradient(145deg,#050806 0%,#07110d 44%,#0f2f24 100%)!important;
-  color:#f4eeb4!important;
-}
-body.pokerMode header,
-body.pokerMode .adminMenu,
-body.pokerMode .loginBox{
-  background:#050806!important;
-  border-color:rgba(244,238,180,.50)!important;
-}
-body.pokerMode .menuToggle{
-  background:linear-gradient(180deg,#f4df75,#9f7b22)!important;
-  color:#07110d!important;
-  border:2px solid #f4eeb4!important;
-}
-body.pokerMode .adminMenu button{
-  background:linear-gradient(180deg,#123a2d,#07110d)!important;
-  color:#f4eeb4!important;
-  border:1px solid rgba(244,238,180,.54)!important;
-}
-body.pokerMode .adminMenu button.on{
-  background:linear-gradient(180deg,#f4df75,#9f7b22)!important;
-  color:#07110d!important;
-}
-.pokerCleanPage .card{
-  background:
-    radial-gradient(circle at 50% 0%,rgba(244,223,117,.10),transparent 36%),
-    linear-gradient(145deg,#07110d 0%,#0f3b2e 52%,#050806 100%)!important;
-  border:2px solid rgba(244,238,180,.78)!important;
-  color:#f4eeb4!important;
-  box-shadow:4px 4px 0 rgba(0,0,0,.42),0 18px 42px rgba(0,0,0,.48),inset 0 0 30px rgba(244,223,117,.07)!important;
-}
-.pokerCleanHero{
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.pokerCleanHero:before{
-  content:"♠︎ ♥︎ ♦︎ ♣︎";
-  position:absolute;
-  left:0;right:0;top:8px;
-  text-align:center;
-  letter-spacing:18px;
-  color:rgba(244,238,180,.12);
-  font-size:38px;
-}
-.pokerCleanHero h2{
-  position:relative;
-  font-family:Georgia,'Times New Roman',serif!important;
-  font-style:italic!important;
-  font-size:38px!important;
-  color:#f4df75!important;
-}
-.pokerCleanGrid{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:720px){.pokerCleanGrid{grid-template-columns:1.15fr .85fr}.pokerCleanWide{grid-column:1/-1}}
-.pokerBackClean{margin-bottom:12px!important;background:linear-gradient(180deg,#16704d,#0f4f39)!important;color:#fff!important}
-.pokerSetupGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.pokerPointRules{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
-.pokerPointRule{
-  text-align:center;
-  border:1px solid rgba(244,238,180,.48);
-  background:rgba(0,0,0,.20);
-  border-radius:14px;
-  padding:12px 6px;
-}
-.pokerPointRule b{display:block;color:#f4df75;font-size:28px;margin-bottom:3px}
-.pokerSeats{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
-.pokerSeatCard{
-  position:relative;
-  overflow:hidden;
-  border:2px solid rgba(244,238,180,.72)!important;
-  border-radius:22px!important;
-  padding:14px!important;
-  background:
-    radial-gradient(circle at 80% 0%,rgba(244,223,117,.12),transparent 32%),
-    linear-gradient(145deg,#0b2018,#0f3b2e 60%,#06110d)!important;
-}
-.pokerSeatTop{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:10px;
-}
-.pokerSeatNo{
-  width:48px;height:48px;
-  border-radius:50%;
-  background:#f4df75;
-  color:#07110d;
-  font-weight:bold;
-  font-size:22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.pokerSeatTitle{
-  font-family:Georgia,'Times New Roman',serif;
-  font-style:italic;
-  color:#f4df75;
-  font-size:28px;
-  font-weight:bold;
-}
-.pokerBadge{
-  border:1px solid #f4df75;
-  color:#f4eeb4;
-  border-radius:999px;
-  padding:5px 12px;
-  font-size:12px;
-  font-weight:bold;
-}
-.pokerSeatCard input[type="number"], .pokerSeatCard select{
-  margin-bottom:8px;
-}
-.pokerCheck{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px;
-  border:1px solid rgba(244,238,180,.35);
-  border-radius:14px;
-  margin:8px 0;
-  background:rgba(0,0,0,.18);
-}
-.pokerCheck input{width:auto!important;min-width:26px;height:26px}
-.pokerSeatPoints{
-  text-align:center;
-  border:1px solid rgba(244,223,117,.35);
-  border-radius:14px;
-  padding:12px;
-  margin-top:8px;
-  font-size:22px;
-  color:#f4df75;
-  font-weight:bold;
-  background:rgba(0,0,0,.22);
-}
-.pokerList .champItem{border-bottom-color:rgba(244,238,180,.24)!important}
-.pokerStatGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.pokerStatBox{
-  background:rgba(0,0,0,.20);
-  border:1px solid rgba(244,238,180,.48);
-  border-radius:14px;
-  padding:10px;
-  text-align:center;
-}
-.pokerStatBox b{display:block;color:#f4df75;font-size:22px}
-@media(max-width:520px){
-  .pokerSetupGrid{grid-template-columns:1fr}
-  .pokerPointRules{grid-template-columns:1fr}
-  .pokerCleanHero h2{font-size:32px!important}
-  .pokerSeatTitle{font-size:24px}
-}
-
-
-/* Poker Final Clean Mode */
-body.pokerMode{
-  background:radial-gradient(circle at 50% -12%,rgba(244,223,117,.18),transparent 34%),
-  radial-gradient(circle at 14% 20%,rgba(15,79,57,.30),transparent 28%),
-  linear-gradient(145deg,#050806 0%,#07110d 44%,#0f2f24 100%)!important;
-  color:#f4eeb4!important;
-}
-body.pokerMode header,body.pokerMode .adminMenu,body.pokerMode .loginBox{
-  background:#050806!important;border-color:rgba(244,238,180,.50)!important;
-}
-body.pokerMode .menuToggle{
-  background:linear-gradient(180deg,#f4df75,#9f7b22)!important;color:#07110d!important;border:2px solid #f4eeb4!important;
-}
-body.pokerMode .adminMenu button{background:linear-gradient(180deg,#123a2d,#07110d)!important;color:#f4eeb4!important;border:1px solid rgba(244,238,180,.54)!important}
-body.pokerMode .adminMenu button.on{background:linear-gradient(180deg,#f4df75,#9f7b22)!important;color:#07110d!important}
-.pokerCleanPage .card{
-  background:radial-gradient(circle at 50% 0%,rgba(244,223,117,.10),transparent 36%),
-  linear-gradient(145deg,#07110d 0%,#0f3b2e 52%,#050806 100%)!important;
-  border:2px solid rgba(244,238,180,.78)!important;color:#f4eeb4!important;
-  box-shadow:4px 4px 0 rgba(0,0,0,.42),0 18px 42px rgba(0,0,0,.48),inset 0 0 30px rgba(244,223,117,.07)!important;
-}
-.pokerCleanHero{text-align:center;position:relative;overflow:hidden}
-.pokerCleanHero:before{content:"♠︎ ♥︎ ♦︎ ♣︎";position:absolute;left:0;right:0;top:8px;text-align:center;letter-spacing:18px;color:rgba(244,238,180,.12);font-size:38px}
-.pokerCleanHero h2{position:relative;font-family:Georgia,'Times New Roman',serif!important;font-style:italic!important;font-size:38px!important;color:#f4df75!important}
-.pokerCleanGrid{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:720px){.pokerCleanGrid{grid-template-columns:1.15fr .85fr}}
-.pokerBackClean{margin-bottom:12px!important;background:linear-gradient(180deg,#16704d,#0f4f39)!important;color:#fff!important}
-.pokerSetupGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.pokerPointRules{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
-.pokerPointRule{text-align:center;border:1px solid rgba(244,238,180,.48);background:rgba(0,0,0,.20);border-radius:14px;padding:12px 6px}
-.pokerPointRule b{display:block;color:#f4df75;font-size:28px;margin-bottom:3px}
-.pokerSeats{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
-.pokerSeatCard{position:relative;overflow:hidden;border:2px solid rgba(244,238,180,.72)!important;border-radius:22px!important;padding:14px!important;background:radial-gradient(circle at 80% 0%,rgba(244,223,117,.12),transparent 32%),linear-gradient(145deg,#0b2018,#0f3b2e 60%,#06110d)!important}
-.pokerSeatTop{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.pokerSeatNo{width:48px;height:48px;border-radius:50%;background:#f4df75;color:#07110d;font-weight:bold;font-size:22px;display:flex;align-items:center;justify-content:center}
-.pokerSeatTitle{font-family:Georgia,'Times New Roman',serif;font-style:italic;color:#f4df75;font-size:28px;font-weight:bold}
-.pokerBadge{border:1px solid #f4df75;color:#f4eeb4;border-radius:999px;padding:5px 12px;font-size:12px;font-weight:bold}
-.pokerCheck{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid rgba(244,238,180,.35);border-radius:14px;margin:8px 0;background:rgba(0,0,0,.18)}
-.pokerCheck input{width:auto!important;min-width:26px;height:26px}
-.pokerSeatPoints{text-align:center;border:1px solid rgba(244,223,117,.35);border-radius:14px;padding:12px;margin-top:8px;font-size:22px;color:#f4df75;font-weight:bold;background:rgba(0,0,0,.22)}
-.pokerList .champItem{border-bottom-color:rgba(244,238,180,.24)!important}
-@media(max-width:520px){.pokerSetupGrid{grid-template-columns:1fr}.pokerPointRules{grid-template-columns:1fr}.pokerCleanHero h2{font-size:32px!important}.pokerSeatTitle{font-size:24px}}
-
-
-/* Poker eigenes Menü */
-.pokerModeMenu{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin:0 0 12px;
-}
-.pokerModeMenu button{
-  margin:0!important;
-  font-size:13px!important;
-  padding:10px 6px!important;
-  background:linear-gradient(180deg,#123a2d,#07110d)!important;
-  color:#f4eeb4!important;
-  border:1px solid rgba(244,238,180,.58)!important;
-}
-.pokerModeMenu button.on{
-  background:linear-gradient(180deg,#f4df75,#9f7b22)!important;
-  color:#07110d!important;
-}
-@media(max-width:520px){
-  .pokerModeMenu{grid-template-columns:repeat(2,1fr)}
-}
-
-
-/* Poker Menü über den globalen ☰ Button */
-.pokerDropdownMenu{
-  display:none;
-  position:fixed;
-  top:58px;
-  right:10px;
-  z-index:60;
-  width:230px;
-  background:#07110d;
-  border:2px solid rgba(244,238,180,.72);
-  border-radius:14px;
-  padding:8px;
-  box-shadow:0 18px 42px rgba(0,0,0,.58),inset 0 0 20px rgba(244,223,117,.06);
-}
-.pokerDropdownMenu.show{display:block}
-.pokerDropdownMenu button{
-  width:100%;
-  font-size:14px;
-  padding:10px 12px;
-  margin:4px 0!important;
-  text-align:left;
-  background:linear-gradient(180deg,#123a2d,#07110d)!important;
-  color:#f4eeb4!important;
-  border:1px solid rgba(244,238,180,.56)!important;
-}
-.pokerDropdownMenu button.on{
-  background:linear-gradient(180deg,#f4df75,#9f7b22)!important;
-  color:#07110d!important;
-}
-
-
-/* Poker Admin/Pending Fix */
-.pokerPendingBadge{
-  display:inline-block;
-  margin-left:6px;
-  padding:2px 7px;
-  border-radius:999px;
-  background:#f4df75;
-  color:#07110d;
-  font-size:11px;
-  font-weight:bold;
-}
-.pokerEmptyPlayers{
-  padding:12px;
-  border:1px solid rgba(244,238,180,.45);
-  border-radius:14px;
-  background:rgba(0,0,0,.22);
-  margin-top:10px;
-}
-
-
-/* Poker Menü Admin/Login Feinschliff */
-.pokerDropdownMenu .adminOnlyPoker{display:none}
-body.adminMode .pokerDropdownMenu .adminOnlyPoker{display:block}
-.pokerDropdownMenu .pokerAuthBtn{
-  margin-top:8px!important;
-  border-color:#f4df75!important;
-}
-.pokerPendingCount{
-  opacity:.9;
-}
-
-
 /* Neuer Poker Modus */
 body.pokerMode{
   background:
@@ -3427,10 +2985,7 @@ var currentPage='gameSelect';
 var currentLeague='airhockey';
 var leagueNames={airhockey:'Air Hockey',fifa:'FIFA',dart:'Dart',hotel:'Hotel'};
 var activeUnsub=null;
-var allLeagueData={airhockey:null,fifa:null,dart:null,hotel:null,poker:null};
-var pokerData={players:[],pokerGames:[],pendingPokerGames:[]};
-var pokerRef=null;
-var globalData={players:null,deletedPlayers:[],playerMeta:{}};
+var allLeagueData={airhockey:null,fifa:null,dart:null,hotel:null,poker:null};var globalData={players:null,deletedPlayers:[],playerMeta:{}};
 var globalRef=null;
 
 var firebaseConfig = {
@@ -3445,9 +3000,7 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
-var leagueRef = db.collection("rumliLeague").doc("main");
-pokerRef = db.collection('rumliLeague').doc('poker');
-
+var leagueRef = db.collection("rumliLeague").doc("main");
 function freshData(){return {players:[],games:[],pendingGames:[],tournaments:[],settings:{news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}}};}
 function cleanPlayerName(x){return String(x||'').replace(/^\s+|\s+$/g,'');}
 function isDeletedPlayerName(name){
@@ -3523,13 +3076,9 @@ function initGlobalData(){
   db.collection('rumliLeague').doc('main').onSnapshot(function(doc){allLeagueData.airhockey=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();scheduleRenderAll();});
   db.collection('rumliLeague').doc('fifa').onSnapshot(function(doc){allLeagueData.fifa=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();scheduleRenderAll();});
   db.collection('rumliLeague').doc('dart').onSnapshot(function(doc){allLeagueData.dart=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.dart._league='dart';migrateOldPlayersToGlobal();scheduleRenderAll();});
-  db.collection('rumliLeague').doc('hotel').onSnapshot(function(doc){allLeagueData.hotel=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.hotel._league='hotel';migrateOldPlayersToGlobal();scheduleRenderAll();});
-  db.collection('rumliLeague').doc('poker').onSnapshot(function(doc){pokerData=doc.exists?(doc.data()||{players:[],pokerGames:[],pendingPokerGames:[]}):{players:[],pokerGames:[],pendingPokerGames:[]};if(!Array.isArray(pokerData.pokerGames))pokerData.pokerGames=Array.isArray(pokerData.pokerTournaments)?pokerData.pokerTournaments:[];if(!Array.isArray(pokerData.pendingPokerGames))pokerData.pendingPokerGames=[];delete pokerData.pokerTournaments;allLeagueData.poker=pokerData;migrateOldPlayersToGlobal();scheduleRenderAll();});
-}
+  db.collection('rumliLeague').doc('hotel').onSnapshot(function(doc){allLeagueData.hotel=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.hotel._league='hotel';migrateOldPlayersToGlobal();scheduleRenderAll();});}
 var d = freshData();
-var selectedProfilePlayer = "";
-var selectedPokerStatsPlayer = "";
-
+var selectedProfilePlayer = "";
 function cleanData(){
  d.players=globalPlayers();
  if(!d.games){d.games=[];} if(!d.pendingGames){d.pendingGames=[];}
@@ -4522,301 +4071,6 @@ function renderGlobalProfiles(){
 }
 
 
-function pokerGamePoints(row){
- var rounds=parseInt(row.rounds,10)||0;
- var pts=rounds;
- if(row.winner)pts+=10;
- if(row.allIn)pts+=5;
- return pts;
-}
-function pokerTournamentYear(t){return dt(t.date||today()).getFullYear();}
-function allPokerGamesForCards(){
- var out=[], seen={}, clean=(window.pokerCleanData&&window.pokerCleanData.games)||[], stored=[], i,g,id;
- try{stored=(JSON.parse(localStorage.getItem('rumliPokerClean')||'{"games":[]}').games)||[];}catch(e){stored=[];}
- function add(game){
-  if(!game)return;
-  id=String(game.id||((game.date||'')+'|'+(game.name||'')+'|'+JSON.stringify(game.results||[])));
-  if(seen[id])return;
-  seen[id]=1; out.push(game);
- }
- for(i=0;i<clean.length;i++)add(clean[i]);
- for(i=0;i<stored.length;i++)add(stored[i]);
- return out;
-}
-function pokerStatsAll(includeCurrentYear){
- var gp=globalPlayers(), s={}, i,j,t,row,p,pts;
- for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],points:0,played:0,wins:0,rounds:0,allIns:0,last:''};}
- var games=allPokerGamesForCards();
- for(i=0;i<games.length;i++){
-  t=games[i]; if(!includeCurrentYear && !seasonIsComplete(seasonKeyForDate(t.date||today())))continue;
-  for(j=0;j<(t.results||[]).length;j++){
-   row=t.results[j]; p=row.player; if(!p)continue; if(!s[p])s[p]={name:p,points:0,played:0,wins:0,rounds:0,allIns:0,last:''};
-   if(row.place){ /* alte Turnierdaten weiterhin lesen */
-    pts=row.points||0; s[p].points+=pts; s[p].played++; if(row.place===1)s[p].wins++; s[p].last=t.date||'';
-   }else{
-    pts=pokerGamePoints(row); s[p].points+=pts; s[p].played++; s[p].rounds+=(parseInt(row.rounds,10)||0); if(row.winner)s[p].wins++; if(row.allIn)s[p].allIns++; s[p].last=t.date||'';
-   }
-  }
- }
- var arr=[];for(p in s){arr.push(s[p]);}
- arr.sort(function(a,b){return (b.points-a.points)||(b.wins-a.wins)||(b.rounds-a.rounds)||String(a.name).localeCompare(String(b.name),'de',{sensitivity:'base'});});
- return arr;
-}
-
-function pokerStatsMonth(y,m){
- var gp=globalPlayers(), s={}, i,j,t,row,p,pts,dd;
- y=parseInt(y,10)||((new Date()).getFullYear());
- m=parseInt(m,10)||((new Date()).getMonth()+1);
- for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],points:0,played:0,wins:0,rounds:0,allIns:0,last:''};}
- var games=allPokerGamesForCards();
- for(i=0;i<games.length;i++){
-  t=games[i]; dd=dt(t.date||today()); if(dd.getFullYear()!==y || (dd.getMonth()+1)!==m)continue;
-  for(j=0;j<(t.results||[]).length;j++){
-   row=t.results[j]; p=row.player; if(!p)continue; if(!s[p])s[p]={name:p,points:0,played:0,wins:0,rounds:0,allIns:0,last:''};
-   if(row.place){pts=row.points||0; s[p].points+=pts; s[p].played++; if(row.place===1)s[p].wins++; s[p].last=t.date||'';}
-   else{pts=pokerGamePoints(row); s[p].points+=pts; s[p].played++; s[p].rounds+=(parseInt(row.rounds,10)||0); if(row.winner)s[p].wins++; if(row.allIn)s[p].allIns++; s[p].last=t.date||'';}
-  }
- }
- var arr=[];for(p in s){arr.push(s[p]);}
- arr.sort(function(a,b){return (b.points-a.points)||(b.wins-a.wins)||(b.rounds-a.rounds)||String(a.name).localeCompare(String(b.name),'de',{sensitivity:'base'});});
- return arr;
-}
-function pokerRankingTable(arr){
- var o='',i,r;
- for(i=0;i<arr.length;i++){
-  r=arr[i]; if(r.points<=0)continue;
-  o+='<div class="item"><span class="pokerChip">#'+(i+1)+'</span> <b>'+esc(r.name)+'</b><br><span class="note">'+r.points+' Punkte · '+r.wins+' Spielsieg(e) · '+r.rounds+' Runden · '+r.allIns+' All-In</span></div>';
- }
- return o||'<p class="note">Noch keine Poker-Spiele.</p>';
-}
-function renderPokerMonthOptions(){
- var el=E('pokerMonth'), i, cur; if(!el)return; cur=el.value||String((new Date()).getMonth()+1);
- var o=''; for(i=1;i<=12;i++){o+='<option value="'+i+'">'+mname(i)+'</option>';}
- el.innerHTML=o; el.value=cur;
-}
-function pokerStatsYear(y){
- var gp=globalPlayers(), s={}, i,j,t,row,p,pts;
- y=parseInt(y,10)||((new Date()).getFullYear());
- for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],points:0,played:0,wins:0,rounds:0,allIns:0,last:''};}
- var games=allPokerGamesForCards();
- for(i=0;i<games.length;i++){
-  t=games[i]; if(pokerTournamentYear(t)!==y)continue;
-  for(j=0;j<(t.results||[]).length;j++){
-   row=t.results[j]; p=row.player; if(!p)continue; if(!s[p])s[p]={name:p,points:0,played:0,wins:0,rounds:0,allIns:0,last:''};
-   if(row.place){pts=row.points||0; s[p].points+=pts; s[p].played++; if(row.place===1)s[p].wins++; s[p].last=t.date||'';}
-   else{pts=pokerGamePoints(row); s[p].points+=pts; s[p].played++; s[p].rounds+=(parseInt(row.rounds,10)||0); if(row.winner)s[p].wins++; if(row.allIn)s[p].allIns++; s[p].last=t.date||'';}
-  }
- }
- var arr=[];for(p in s){arr.push(s[p]);}
- arr.sort(function(a,b){return (b.points-a.points)||(b.wins-a.wins)||(b.rounds-a.rounds)||String(a.name).localeCompare(String(b.name),'de',{sensitivity:'base'});});
- return arr;
-}
-function pokerStatsSeason(key){
- var gp=globalPlayers(), s={}, i,j,t,row,p,pts;
- key=key||currentSeasonKey();
- for(i=0;i<gp.length;i++){s[gp[i]]={name:gp[i],points:0,played:0,wins:0,rounds:0,allIns:0,last:''};}
- var games=allPokerGamesForCards();
- for(i=0;i<games.length;i++){
-  t=games[i]; if(seasonKeyForDate(t.date||today())!==key)continue;
-  for(j=0;j<(t.results||[]).length;j++){
-   row=t.results[j]; p=row.player; if(!p)continue; if(!s[p])s[p]={name:p,points:0,played:0,wins:0,rounds:0,allIns:0,last:''};
-   if(row.place){pts=row.points||0; s[p].points+=pts; s[p].played++; if(row.place===1)s[p].wins++; s[p].last=t.date||'';}
-   else{pts=pokerGamePoints(row); s[p].points+=pts; s[p].played++; s[p].rounds+=(parseInt(row.rounds,10)||0); if(row.winner)s[p].wins++; if(row.allIn)s[p].allIns++; s[p].last=t.date||'';}
-  }
- }
- var arr=[];for(p in s){arr.push(s[p]);}
- arr.sort(function(a,b){return (b.points-a.points)||(b.wins-a.wins)||(b.rounds-a.rounds)||String(a.name).localeCompare(String(b.name),'de',{sensitivity:'base'});});
- return arr;
-}
-function pokerChampion(){var arr=pokerStatsAll(false).filter(function(x){return x.points>0;});return arr[0]||null;}
-function renderPokerPlacements(){
- var box=E('pokerPlacements'); if(!box)return; var gp=globalPlayers(), o='',i,j;
- var count=parseInt((E('pokerPlayerCount')||{}).value,10)||2;
- if(count<1)count=1; if(count>20)count=20;
- for(i=0;i<count;i++){
-  o+='<div class="card pokerPlayerCard">'+
-     '<div class="pokerPlayerHead"><div><span class="pokerSeat">'+(i+1)+'</span></div><h3>Seat '+(i+1)+'</h3><span class="pokerChip">Poker</span></div>'+
-     '<label>Spieler</label><select id="pokerPlayer'+i+'">';
-  for(j=0;j<gp.length;j++){o+='<option value="'+esc(gp[j])+'">'+esc(gp[j])+'</option>';}
-  o+='</select>'+
-     '<label>Gewonnene Runden</label><input id="pokerRounds'+i+'" class="pokerRoundInput" data-poker-index="'+i+'" type="number" min="0" value="0" placeholder="0">'+
-     '<label class="pokerCheckLine"><input id="pokerWinner'+i+'" class="pokerBonusInput" data-poker-index="'+i+'" type="checkbox">Spielsieg markieren <b>+10</b></label>'+
-     '<label class="pokerCheckLine"><input id="pokerAllIn'+i+'" class="pokerBonusInput" data-poker-index="'+i+'" type="checkbox">Sieg durch All-In <b>+5</b></label>'+
-     '<div class="pokerTotalPreview" id="pokerTotal'+i+'">0 Punkte</div>'+
-     '</div>';
- }
- box.innerHTML=o||'<p class="note">Bitte zuerst Spieler über das Home-Menü anlegen.</p>'; if(E('pokerDate'))E('pokerDate').value=today();
- var inputs=box.querySelectorAll('.pokerRoundInput,.pokerBonusInput');
- for(i=0;i<inputs.length;i++){inputs[i].addEventListener('input',updatePokerPointPreviews);inputs[i].addEventListener('change',updatePokerPointPreviews);}
- updatePokerPointPreviews();
-}
-function updatePokerPointPreviews(){
- var count=parseInt((E('pokerPlayerCount')||{}).value,10)||2,i,rounds,winner,allIn,pts,el;
- for(i=0;i<count;i++){
-  rounds=parseInt((E('pokerRounds'+i)||{}).value,10)||0;
-  winner=!!(E('pokerWinner'+i)&&E('pokerWinner'+i).checked);
-  allIn=!!(E('pokerAllIn'+i)&&E('pokerAllIn'+i).checked);
-  pts=pokerGamePoints({rounds:rounds,winner:winner,allIn:allIn});
-  el=E('pokerTotal'+i); if(el)el.innerHTML=pts+' Punkt'+(pts===1?'':'e');
- }
-}
-function pokerSetView(v,opts){
- opts=opts||{};
- if(!v)v='dash';
- var allowed={dash:1,new:1,pending:1,ranking:1,history:1,stats:1};
- if(!allowed[v])v='dash';
- if(currentPage!=='pokerPage'){show('pokerPage');}
- currentPage='pokerPage';
- var page=E('pokerPage');
- if(page){page.className='poker-view-'+v;}
- var viewIds={dash:'pokerDashView',new:'pokerNewView',pending:'pokerPendingView',ranking:'pokerRankingView',history:'pokerHistoryView',stats:'pokerStatsView'};
- var k,el;
- for(k in viewIds){
-  el=E(viewIds[k]);
-  if(el){
-   if(k===v){el.classList.remove('hide');el.style.display=(k==='dash'?'grid':'block');}
-   else{el.classList.add('hide');el.style.display='none';}
-  }
- }
- var tabs={dash:'pokerTabDash',new:'pokerTabNew',ranking:'pokerTabRanking',history:'pokerTabHistory',stats:'pokerTabStats'};
- for(k in tabs){if(E(tabs[k]))E(tabs[k]).className=(k===v?'on':'');}
- var titles={dash:'♠️ Poker League',new:(isAdmin?'♠️ Spiel eintragen':'♠️ Spiel melden'),pending:'♠️ Offene Poker-Spiele',ranking:'♠️ Poker Rankings',history:'♠️ Poker Historie',stats:'♠️ Poker Stats'};
- var notes={dash:'Rundenpunkte, Spielsieg und All-In Bonus im eleganten Poker-Modus.',new:'Trage zuerst ein, wie viele mitmachen, und danach die Spieler.',pending:'Gemeldete Spiele warten hier auf Admin-Bestätigung.',ranking:'Monats- und Saisonranking sind eigene Poker-Seiten.',history:'Alle gespeicherten Poker-Spiele.',stats:'Wähle zuerst einen Spieler, dann siehst du seine Poker-Stats.'};
- var hero=E('pokerPage')?E('pokerPage').querySelector('.pokerHero h2'):null;
- var note=E('pokerPage')?E('pokerPage').querySelector('.pokerHero .note'):null;
- if(hero)hero.innerHTML=titles[v]||titles.dash;
- if(note)note.innerHTML=notes[v]||notes.dash;
- if(v==='new')renderPokerPlacements();
- if(v==='pending')renderPokerPending();
- if(v==='stats'){selectedPokerStatsPlayer='';renderPokerStats();}
- if(E('pokerNewTitle'))E('pokerNewTitle').innerHTML=isAdmin?'Poker-Runde eintragen':'Poker-Runde melden';
- if(E('savePokerTournament'))E('savePokerTournament').innerHTML=isAdmin?'Poker-Runde speichern ♠️':'Poker-Runde melden ♠️';
- if(E('amPokerDashboard'))E('amPokerDashboard').className='adminOnly pokerOnly '+(v==='dash'?'on':'');
- if(E('amPokerNew'))E('amPokerNew').className='adminOnly pokerOnly '+(v==='new'?'on':'');
- if(E('amPokerPending'))E('amPokerPending').className='adminOnly pokerOnly '+(v==='pending'?'on':'');
- if(E('amPokerRanking'))E('amPokerRanking').className='adminOnly pokerOnly '+(v==='ranking'?'on':'');
- if(E('amPokerHistory'))E('amPokerHistory').className='adminOnly pokerOnly '+(v==='history'?'on':'');
- if(E('amPokerStats'))E('amPokerStats').className='adminOnly pokerOnly '+(v==='stats'?'on':'');
- updateMenuVisibility();
- if(opts.push!==false){
-  var newHash='#'+pokerRouteFor(v);
-  if(window.location.hash!==newHash){history.pushState({pokerView:v},'',newHash);}
- }
- if(opts.scroll!==false){window.scrollTo({top:0,behavior:'smooth'});}
-}
-
-function savePokerTournament(){
- var results=[],count=parseInt((E('pokerPlayerCount')||{}).value,10)||2,i,rounds,winner,allIn,hasAny=false,totalWinners=0,player,seen={};
- if(count<1)count=1; if(count>20)count=20;
- for(i=0;i<count;i++){
-  player=(E('pokerPlayer'+i)||{}).value||'';
-  if(!player)continue;
-  if(seen[player.toLowerCase()]){alert('Ein Spieler wurde doppelt ausgewählt.');return;}
-  seen[player.toLowerCase()]=true;
-  rounds=parseInt((E('pokerRounds'+i)||{}).value,10)||0;
-  winner=!!(E('pokerWinner'+i)&&E('pokerWinner'+i).checked);
-  allIn=!!(E('pokerAllIn'+i)&&E('pokerAllIn'+i).checked);
-  if(winner)totalWinners++;
-  if(rounds>0||winner||allIn){hasAny=true;results.push({player:player,rounds:rounds,winner:winner,allIn:allIn,points:pokerGamePoints({rounds:rounds,winner:winner,allIn:allIn})});}
- }
- if(!hasAny){alert('Bitte mindestens einen Spieler mit Runden oder Sieg eintragen.');return;}
- if(totalWinners>1){alert('Es kann nur einen Spielsieger geben.');return;}
- if(!pokerData)pokerData={players:globalPlayers(),pokerGames:[],pendingPokerGames:[]}; if(!pokerData.pokerGames)pokerData.pokerGames=pokerData.pokerTournaments||[]; if(!pokerData.pendingPokerGames)pokerData.pendingPokerGames=[];
- var entry={name:E('pokerName').value||'Poker Spiel',date:E('pokerDate').value||today(),results:results,reporter:''};
- pokerData.players=globalPlayers();
- if(isAdmin){pokerData.pokerGames.push(entry);}else{pokerData.pendingPokerGames.push(entry);}
- delete pokerData.pokerTournaments;
- if(!pokerRef)pokerRef=db.collection('rumliLeague').doc('poker');
- pokerRef.set(pokerData,{merge:true}).then(function(){alert(isAdmin?'Poker-Spiel gespeichert.':'Poker-Spiel wurde gemeldet und wartet auf Bestätigung.');renderPokerPage();pokerSetView('dash');}).catch(function(e){alert('Poker konnte nicht gespeichert werden: '+(e.message||e));});
-}
-
-function renderPokerStats(){
- var box=E('pokerStatsList'); if(!box)return;
- var arr=pokerStatsAll(true).filter(function(x){return x.points>0 || x.played>0;});
- if(!arr.length){box.innerHTML='<p class="note">Noch keine Poker-Stats.</p>';return;}
- if(selectedPokerStatsPlayer){
-  var r=null,i,avg;
-  for(i=0;i<arr.length;i++){if(String(arr[i].name).toLowerCase()===String(selectedPokerStatsPlayer).toLowerCase()){r=arr[i];break;}}
-  if(!r){selectedPokerStatsPlayer='';renderPokerStats();return;}
-  avg=r.played?Math.round((r.points/r.played)*10)/10:0;
-  box.innerHTML='<button class="secondary pokerStatsBack" type="button">← Zur Spielerliste</button>'+ 
-   '<div class="profileHero"><div class="profileAvatar">♠️</div><div class="profileName">'+esc(r.name)+'</div><p class="note">Poker Stats · Punkte, Runden, Spielsieg und All-In Bonus</p></div>'+ 
-   '<div class="profileGrid">'+
-    '<div class="profileStat">♠️ Punkte<b>'+r.points+'</b></div>'+ 
-    '<div class="profileStat">🏆 Spielsieg(e)<b>'+r.wins+'</b></div>'+ 
-    '<div class="profileStat">🎲 Spiele<b>'+r.played+'</b></div>'+ 
-    '<div class="profileStat">🃏 Runden<b>'+r.rounds+'</b></div>'+ 
-    '<div class="profileStat">🔥 All-In<b>'+r.allIns+'</b></div>'+ 
-    '<div class="profileStat">📈 Ø Punkte<b>'+avg+'</b></div>'+ 
-   '</div>';
-  return;
- }
- var names=arr.slice().sort(function(a,b){return String(a.name).localeCompare(String(b.name),'de',{sensitivity:'base'});});
- var o='<div class="profileList">',i,r;
- for(i=0;i<names.length;i++){
-  r=names[i];
-  o+='<div class="profilePick pokerProfilePick" data-poker-profile="'+esc(r.name)+'"><span>'+esc(r.name)+'</span><span>›</span></div>';
- }
- o+='</div>';
- box.innerHTML=o;
-}
-
-function pokerPendingHtml(){
- var pending=(pokerData&&pokerData.pendingPokerGames)||[], html='', pi;
- if(!pending.length)return '<p class="note">Keine offenen Poker-Spiele.</p>';
- for(pi=0;pi<pending.length;pi++){
-  var t=pending[pi], x='<div class="item"><b>'+esc(t.date||'')+' · '+esc(t.name||'Poker Spiel')+'</b><br>';
-  (t.results||[]).forEach(function(row){
-   x+=esc(row.player)+' · '+(row.rounds||0)+' Runde(n)'+(row.winner?' · Spielsieg':'')+(row.allIn?' · All-In':'')+' <span class="note">+'+(row.points||pokerGamePoints(row))+'</span><br>';
-  });
-  x+='<button class="secondary approvePoker" data-i="'+pi+'">✅ Bestätigen</button><button class="danger rejectPoker" data-i="'+pi+'">❌ Ablehnen</button></div>';
-  html+=x;
- }
- return html;
-}
-function renderPokerPending(){
- if(E('pokerPendingList'))E('pokerPendingList').innerHTML=pokerPendingHtml();
-}
-
-function pokerPodiumBox(r,cls,medal,place){
- if(!r||r.points<=0){return '<div class="pokerPodiumBox '+cls+'"><div class="pokerPodiumMedal">'+medal+'</div><div class="pokerPodiumName">–</div><div class="pokerPodiumPts">noch offen</div></div>';}
- return '<div class="pokerPodiumBox '+cls+'"><div class="pokerPodiumMedal">'+medal+'</div><div class="pokerPodiumName">'+esc(r.name)+'</div><div class="pokerPodiumPts">'+r.points+' Punkte</div><div class="pokerPodiumSub">'+r.wins+' Sieg(e) · '+r.rounds+' Runden</div></div>';
-}
-function renderPokerPage(){
- if(!E('pokerTop3')&&!E('pokerRanking'))return;
- var now=new Date(), nowYear=now.getFullYear(), nowMonth=now.getMonth()+1, nowSeason=currentSeasonKey();
- renderPokerMonthOptions();
- if(E('pokerYear') && !E('pokerYear').value)E('pokerYear').value=nowYear;
- if(E('pokerMonth') && !E('pokerMonth').value)E('pokerMonth').value=nowMonth;
- var rankingYear=parseInt((E('pokerYear')||{}).value,10)||nowYear;
- var rankingMonth=parseInt((E('pokerMonth')||{}).value,10)||nowMonth;
- var dashMonthArr=pokerStatsMonth(nowYear,nowMonth), dashYearArr=pokerStatsSeason(nowSeason), monthArr=pokerStatsMonth(rankingYear,rankingMonth), yearArr=pokerStatsSeason(nowSeason), top='',i,r;
- if(E('pokerTop3Title'))E('pokerTop3Title').innerHTML='Top 3 Poker '+mname(nowMonth)+' '+nowYear;
- if(E('pokerYearDashTitle'))E('pokerYearDashTitle').innerHTML='Saisonranking '+seasonLabel(nowSeason);
- if(E('pokerRankingTitle'))E('pokerRankingTitle').innerHTML='Poker Rankings';
- if(E('pokerMonthRankingTitle'))E('pokerMonthRankingTitle').innerHTML='Monatsranking '+mname(rankingMonth)+' '+rankingYear;
- if(E('pokerYearRankingTitle'))E('pokerYearRankingTitle').innerHTML='Saisonranking '+seasonLabel(nowSeason);
- if(E('pokerTop3')){
-  top='<div class="pokerPodium">'+pokerPodiumBox(dashMonthArr[1],'second','🥈',2)+pokerPodiumBox(dashMonthArr[0],'first','🥇',1)+pokerPodiumBox(dashMonthArr[2],'third','🥉',3)+'</div>';
-  E('pokerTop3').innerHTML=dashMonthArr.filter(function(x){return x.points>0;}).length?top:'<p class="note">Noch keine Poker-Spiele in diesem Monat.</p>';
- }
- if(E('pokerYearDash')){
-  var yd='<div class="pokerMiniRank">';
-  for(i=0;i<Math.min(5,dashYearArr.length);i++){r=dashYearArr[i];if(r.points<=0)continue;yd+='<div class="champItem"><div><span class="champYear">#'+(i+1)+'</span> · <b>'+esc(r.name)+'</b></div><div>'+r.points+' Pkt</div></div>';}
-  yd+='</div>'; E('pokerYearDash').innerHTML=yd.indexOf('champItem')>=0?yd:'<p class="note">Noch keine Poker-Punkte in dieser Season.</p>';
- }
- if(E('pokerMonthRanking'))E('pokerMonthRanking').innerHTML=pokerRankingTable(monthArr);
- if(E('pokerRanking'))E('pokerRanking').innerHTML=pokerRankingTable(yearArr);
- var games=(pokerData&&((pokerData.pokerGames)||pokerData.pokerTournaments))||[], t=games[games.length-1], h='',j,row;
- if(t){h='<b>'+esc(t.date||'')+' · '+esc(t.name||'Poker Spiel')+'</b><br>';for(j=0;j<(t.results||[]).length;j++){row=t.results[j];h+='<div class="item">'+esc(row.player)+' · '+(row.rounds||0)+' Runde(n)'+(row.winner?' · Spielsieg':'')+(row.allIn?' · All-In':'')+' <span class="pokerChip">+'+(row.points||pokerGamePoints(row))+'</span></div>';}}
- if(E('pokerLast'))E('pokerLast').innerHTML=h||'<p class="note">Noch kein Poker-Spiel gespielt.</p>';
- var hist=''; for(i=games.length-1;i>=0;i--){t=games[i];hist+='<div class="item"><b>'+esc(t.date||'')+' · '+esc(t.name||'Poker Spiel')+'</b>'; if(isAdmin)hist+='<button class="danger delPoker" data-i="'+i+'">löschen</button>'; hist+='<br>'; for(j=0;j<(t.results||[]).length;j++){row=t.results[j];hist+=esc(row.player)+' · '+(row.rounds||0)+' Runde(n)'+(row.winner?' · Spielsieg':'')+(row.allIn?' · All-In':'')+' <span class="note">+'+(row.points||pokerGamePoints(row))+'</span><br>';} hist+='</div>';}
- if(E('pokerHistory'))E('pokerHistory').innerHTML=hist||'<p class="note">Noch keine Poker-Historie.</p>';
- renderPokerPending();
- renderPokerStats();
-}
-function openPoker(){document.body.classList.remove('dartMode');document.body.classList.remove('fifaMode');document.body.classList.remove('hotelMode');document.body.classList.remove('homeScreenMode');document.body.classList.add('pokerMode');currentPage='pokerPage';renderPokerPage();pokerSetView('dash');show('pokerPage');}
-
 function renderPending(){
  var o='',i,g;
  for(i=0;i<(d.pendingGames||[]).length;i++){
@@ -4869,7 +4123,7 @@ function renderCardInfluenceBoxes(){
  if(E('pokerCardInfluenceDash'))E('pokerCardInfluenceDash').innerHTML=cardInfluenceHTML('poker');
 }
 
-function renderAll(){updateLeagueLabels();sync();renderPending();renderBallon();renderYear();renderPlayers();renderHist();renderHome();renderProfile();renderGlobalProfiles();renderHallOfFame();renderPokerPage();renderCardInfluenceBoxes();updateLeagueLabels();}
+function renderAll(){updateLeagueLabels();sync();renderPending();renderBallon();renderYear();renderPlayers();renderHist();renderHome();renderProfile();renderGlobalProfiles();renderHallOfFame();if(typeof window.renderPokerPage==='function')window.renderPokerPage();renderCardInfluenceBoxes();updateLeagueLabels();}
 
 function updateMenuVisibility(){
  var m=E('adminMenu');
@@ -4894,7 +4148,7 @@ function updateMenuVisibility(){
   normalEls[j].style.display=(!isAdmin && !(homeArea&&nLeagueOnly) && !(pokerArea&&nLeagueOnly) && !(!homeArea&&nHomeOnly) && !(homeArea&&nPokerOnly) && !(!pokerArea&&nPokerOnly))?'block':'none';
  }
  if(E('amPendingAdmin')){E('amPendingAdmin').innerHTML='Offene Spiele ('+((d.pendingGames&&d.pendingGames.length)||0)+')';}
- if(E('amPokerPending')){E('amPokerPending').innerHTML='Offene Spiele ('+(((pokerData&&pokerData.pendingPokerGames)||[]).length)+')';}
+ if(E('amPokerPending')){E('amPokerPending').innerHTML='Offene Spiele ('+((((window.pokerCleanData||{}).pending)||[]).length)+')';}
 }
 function toggleMenu(){
  updateMenuVisibility();
@@ -5152,34 +4406,7 @@ E('save').onclick=saveGame;
 if(E('logoHome')){E('logoHome').onclick=function(){if(window.show)window.show('gameSelect');};}
 if(E('pickAirHockey')){E('pickAirHockey').onclick=function(){switchLeague('airhockey');};}
 if(E('pickFifa')){E('pickFifa').onclick=function(){switchLeague('fifa');};
-if(E('pickHotel'))E('pickHotel').onclick=function(){switchLeague('hotel');};}
-if(E('pickPoker')){E('pickPoker').onclick=function(){openPoker();};}
-if(E('pickDart')){E('pickDart').onclick=function(){switchLeague('dart');};}
-if(E('pokerTabDash'))E('pokerTabDash').onclick=function(){pokerSetView('dash');};
-if(E('pokerTabNew'))E('pokerTabNew').onclick=function(){pokerSetView('new');};
-if(E('pokerTabRanking'))E('pokerTabRanking').onclick=function(){pokerSetView('ranking');};
-if(E('pokerTabHistory'))E('pokerTabHistory').onclick=function(){pokerSetView('history');};
-if(E('pokerTabStats'))E('pokerTabStats').onclick=function(){pokerSetView('stats');};
-if(E('amPokerDashboard'))E('amPokerDashboard').onclick=function(){pokerSetView('dash');closeMenu();};
-if(E('amPokerNew'))E('amPokerNew').onclick=function(){pokerSetView('new');closeMenu();};
-if(E('amPokerPending'))E('amPokerPending').onclick=function(){pokerSetView('pending');closeMenu();};
-if(E('amPokerRanking'))E('amPokerRanking').onclick=function(){pokerSetView('ranking');closeMenu();};
-if(E('amPokerHistory'))E('amPokerHistory').onclick=function(){pokerSetView('history');closeMenu();};
-if(E('amPokerStats'))E('amPokerStats').onclick=function(){pokerSetView('stats');closeMenu();};
-if(E('nmPokerDashboard'))E('nmPokerDashboard').onclick=function(){pokerSetView('dash');closeMenu();};
-if(E('nmPokerNew'))E('nmPokerNew').onclick=function(){pokerSetView('new');closeMenu();};
-if(E('nmPokerRanking'))E('nmPokerRanking').onclick=function(){pokerSetView('ranking');closeMenu();};
-if(E('nmPokerHistory'))E('nmPokerHistory').onclick=function(){pokerSetView('history');closeMenu();};
-if(E('nmPokerStats'))E('nmPokerStats').onclick=function(){pokerSetView('stats');closeMenu();};
-if(E('savePokerTournament'))E('savePokerTournament').onclick=savePokerTournament;
-if(E('buildPokerPlayers'))E('buildPokerPlayers').onclick=renderPokerPlacements;
-if(E('pokerTop3Card'))E('pokerTop3Card').onclick=function(){pokerSetView('ranking');};
-if(E('pokerLastCard'))E('pokerLastCard').onclick=function(){pokerSetView('history');};
-if(E('pokerYearCard'))E('pokerYearCard').onclick=function(){pokerSetView('ranking');};
-if(E('pokerPlayerCount'))E('pokerPlayerCount').oninput=renderPokerPlacements;
-if(E('pokerYear'))E('pokerYear').oninput=renderPokerPage;
-if(E('pokerMonth'))E('pokerMonth').onchange=renderPokerPage;
-var soonGames=document.querySelectorAll('.soonGame');
+if(E('pickHotel'))E('pickHotel').onclick=function(){switchLeague('hotel');};}if(E('pickDart')){E('pickDart').onclick=function(){switchLeague('dart');};}var soonGames=document.querySelectorAll('.soonGame');
 for(var sg=0;sg<soonGames.length;sg++){soonGames[sg].onclick=function(){if(E('constructionTitle'))E('constructionTitle').innerHTML=this.getAttribute('data-game')+' ist in Arbeit';if(window.show)window.show('construction');};}
 if(E('backToGameSelect')){E('backToGameSelect').onclick=function(){if(window.show)window.show('gameSelect');};}
 if(E('pickHallOfFame')){E('pickHallOfFame').onclick=function(){show('hallOfFame');};}
@@ -5331,8 +4558,6 @@ if(E('cardInfoModal'))E('cardInfoModal').onclick=function(ev){if(ev.target===E('
 document.addEventListener('keydown',function(ev){if(ev.key==='Escape')closeCardInfo();});
 
 document.body.onclick=function(ev){var t=ev.target;
-if(t.className&&String(t.className).indexOf('pokerStatsBack')>=0){selectedPokerStatsPlayer='';renderPokerStats();return;}
-if(t.getAttribute&&t.getAttribute('data-poker-profile')){selectedPokerStatsPlayer=t.getAttribute('data-poker-profile');renderPokerStats();return;}
 var infoAttr=t.closest&&t.closest('.futAttr[data-card-info]');if(infoAttr){var infoCard=infoAttr.closest('.futCard');if(infoCard){openCardInfo(infoCard.getAttribute('data-card-player')||infoCard.getAttribute('data-global-profile')||'',infoAttr.getAttribute('data-card-info')||'OVR');}return;} var card=t.closest&&t.closest('.futCard');if(card&&card.getAttribute('data-global-profile')){selectedProfilePlayer=card.getAttribute('data-global-profile');show('globalProfiles');return;} if(t.className&&String(t.className).indexOf('globalProfileBack')>=0){selectedProfilePlayer='';renderGlobalProfiles();return;} if(t.getAttribute&&t.getAttribute('data-global-profile')){selectedProfilePlayer=t.getAttribute('data-global-profile');show('globalProfiles');return;} if(t.className&&String(t.className).indexOf('profileBack')>=0){selectedProfilePlayer='';renderProfile();return;} if(t.getAttribute&&t.getAttribute('data-profile')){openProfile(t.getAttribute('data-profile'));return;} if(t.className&&String(t.className).indexOf('editTournament')>=0){var ei=parseInt(t.getAttribute('data-i'),10);loadTournamentForEdit(ei);return;} if(t.closest&&t.closest('.rem')){var btn=t.closest('.rem');var nm=btn.getAttribute('data-name')||'';if(confirm('Spieler "'+nm+'" global löschen?')){deleteGlobalPlayerByName(nm);}return;} if(t.className&&String(t.className).indexOf('approveGame')>=0){
  var pi=parseInt(t.getAttribute('data-i'),10),pg=d.pendingGames[pi];
  if(pg){
@@ -5350,9 +4575,6 @@ if(t.className&&String(t.className).indexOf('rejectGame')>=0){
  }
  return;
 }
-if(t.className&&String(t.className).indexOf('approvePoker')>=0){var api=parseInt(t.getAttribute('data-i'),10);if(pokerData&&pokerData.pendingPokerGames&&pokerData.pendingPokerGames[api]){if(!pokerData.pokerGames)pokerData.pokerGames=[];pokerData.pokerGames.push(pokerData.pendingPokerGames[api]);pokerData.pendingPokerGames.splice(api,1);if(!pokerRef)pokerRef=db.collection('rumliLeague').doc('poker');pokerRef.set(pokerData,{merge:true});renderPokerPage();}return;}
-if(t.className&&String(t.className).indexOf('rejectPoker')>=0){var rpi=parseInt(t.getAttribute('data-i'),10);if(pokerData&&pokerData.pendingPokerGames&&pokerData.pendingPokerGames[rpi]){pokerData.pendingPokerGames.splice(rpi,1);if(!pokerRef)pokerRef=db.collection('rumliLeague').doc('poker');pokerRef.set(pokerData,{merge:true});renderPokerPage();}return;}
-if(t.className&&String(t.className).indexOf('delPoker')>=0){var dpi=parseInt(t.getAttribute('data-i'),10);if(confirm('Poker-Spiel löschen?')){var pg=(pokerData.pokerGames||pokerData.pokerTournaments);if(pokerData&&pg){pg.splice(dpi,1);pokerData.pokerGames=pg;delete pokerData.pokerTournaments;if(!pokerRef)pokerRef=db.collection('rumliLeague').doc('poker');pokerRef.set(pokerData,{merge:true});renderPokerPage();}}return;}
 if(t.className&&String(t.className).indexOf('delTournament')>=0){var ti=parseInt(t.getAttribute('data-i'),10);if(confirm('Turnier löschen?')){d.tournaments.splice(ti,1);saveData();renderAll();}}
  if(t.className&&String(t.className).indexOf('del')>=0 && String(t.className).indexOf('delTournament')<0){var j=parseInt(t.getAttribute('data-i'),10);if(confirm('Spiel löschen?')){d.games.splice(j,1);saveData();renderAll();}}};
 listenLeague();
@@ -5567,9 +4789,6 @@ window.addEventListener('load',function(){
           if(allLeagueData[k]&&Array.isArray(allLeagueData[k].players))arr=arr.concat(allLeagueData[k].players);
         });
       }
-    }catch(e){}
-    try{
-      if(window.pokerData&&Array.isArray(pokerData.players))arr=arr.concat(pokerData.players);
     }catch(e){}
     try{
       if(window.d&&Array.isArray(d.players))arr=arr.concat(d.players);
@@ -5923,7 +5142,6 @@ window.addEventListener('load',function(){
   function bindPokerInner(){
     var root=E('pokerPage');if(!root)return;
     root.querySelectorAll('[data-pv]').forEach(function(el){el.onclick=function(){showPokerView(el.getAttribute('data-pv'));};});
-    root.querySelectorAll('[data-poker-profile]').forEach(function(el){el.onclick=function(){window.selectedPokerStatsPlayer=el.getAttribute('data-poker-profile')||'';renderStats();};});
     root.querySelectorAll('.pokerStatsBack').forEach(function(b){b.onclick=function(){window.selectedPokerStatsPlayer='';renderStats();};});
     root.querySelectorAll('.pokerApprove').forEach(function(b){b.onclick=function(){var data=loadPoker(),id=b.getAttribute('data-id'),idx=data.pending.findIndex(function(g){return String(g.id)===String(id);});if(idx>=0){data.games.push(data.pending[idx]);data.pending.splice(idx,1);savePoker(data);refreshCardsAfterPoker();if(typeof renderAll==='function')renderAll();showPokerView('pending');}};});
     root.querySelectorAll('.pokerReject').forEach(function(b){b.onclick=function(){var data=loadPoker(),id=b.getAttribute('data-id'),idx=data.pending.findIndex(function(g){return String(g.id)===String(id);});if(idx>=0&&confirm('Ablehnen?')){data.pending.splice(idx,1);savePoker(data);showPokerView('pending');}};});
