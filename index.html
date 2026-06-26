@@ -896,7 +896,984 @@ body.cardHallMode .logoSub{
 .futCard.tierLegend{background:linear-gradient(145deg,#080706 0%,#f7dc71 20%,#fff8c8 40%,#b98613 61%,#120b05 78%,#f4df75 100%)!important;color:#1d1303!important}
 .futCard.tierIcon{background:linear-gradient(145deg,#fffdf4 0%,#f6ecd0 24%,#d0a238 48%,#fff8df 70%,#b68013 100%)!important;color:#2b1b05!important}
 
+/* FIFA-Card Look: Schildform, Goldmuster, grosses Portrait und klassische Stat-Zeilen */
+.futCard{
+  width:min(100%,332px)!important;
+  max-width:332px!important;
+  min-height:468px!important;
+  padding:24px 26px 28px!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:polygon(18% 0,82% 0,97% 10%,100% 25%,94% 43%,94% 78%,82% 91%,50% 100%,18% 91%,6% 78%,6% 43%,0 25%,3% 10%)!important;
+  background:
+    radial-gradient(circle at 29% 28%,rgba(255,255,255,.50) 0 10%,transparent 10.5%),
+    radial-gradient(circle at 46% 27%,rgba(255,255,255,.34) 0 12%,transparent 12.5%),
+    radial-gradient(circle at 20% 39%,rgba(255,255,255,.24) 0 10%,transparent 10.5%),
+    repeating-linear-gradient(28deg,transparent 0 26px,rgba(91,61,8,.10) 27px 29px,transparent 30px 54px),
+    linear-gradient(145deg,#a77618 0%,#f7df69 23%,#fff2a3 41%,#b78318 66%,#f0cd54 100%)!important;
+  box-shadow:0 24px 56px rgba(0,0,0,.50),inset 0 0 0 2px rgba(103,69,10,.35),inset 0 0 46px rgba(255,255,255,.24)!important;
+}
+.futCard:before{
+  inset:13px!important;
+  border:2px solid rgba(105,73,12,.34)!important;
+  border-radius:0!important;
+  clip-path:polygon(18% 0,82% 0,97% 10%,100% 25%,94% 43%,94% 78%,82% 91%,50% 100%,18% 91%,6% 78%,6% 43%,0 25%,3% 10%)!important;
+  background:
+    linear-gradient(135deg,transparent 0 48%,rgba(102,67,7,.34) 49% 50%,rgba(255,255,255,.28) 51%,transparent 61%),
+    linear-gradient(180deg,rgba(255,255,255,.20),transparent 34%,rgba(70,44,5,.14))!important;
+}
+.futCard:after{
+  background:
+    linear-gradient(118deg,transparent 0 20%,rgba(255,255,255,.32) 21%,transparent 35%),
+    radial-gradient(circle at 58% 13%,rgba(255,255,255,.35),transparent 32%),
+    linear-gradient(180deg,transparent 0 58%,rgba(94,62,9,.18) 59% 100%)!important;
+}
+.futTop{
+  position:absolute!important;
+  top:68px!important;
+  left:42px!important;
+  width:72px!important;
+  min-height:0!important;
+  display:block!important;
+  text-align:center!important;
+}
+.futTop>div:first-child,
+.futFlag{
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  padding:0!important;
+  min-width:0!important;
+}
+.futOvr{font-size:54px!important;line-height:.88!important;font-weight:900!important;letter-spacing:0!important;color:#3b2309!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+.futPos{font-size:24px!important;line-height:1!important;letter-spacing:0!important;font-weight:900!important;color:#3b2309!important;margin-top:8px!important}
+.futFlag{justify-self:auto!important;margin-top:14px!important;font-size:28px!important}
+.futNation{display:none!important}
+.futPhoto{
+  width:224px!important;
+  height:230px!important;
+  margin:78px -8px 0 auto!important;
+  align-self:flex-end!important;
+  filter:drop-shadow(0 14px 13px rgba(42,27,5,.42))!important;
+}
+.futPhotoPlaceholder{font-size:132px!important;color:rgba(59,35,9,.72)!important}
+.futName{
+  margin:8px auto 0!important;
+  padding:13px 0 8px!important;
+  border-top:2px solid rgba(67,42,7,.34)!important;
+  border-bottom:2px solid rgba(67,42,7,.30)!important;
+  font-family:'Arial Narrow','Impact',Arial,sans-serif!important;
+  font-style:normal!important;
+  font-size:40px!important;
+  line-height:.96!important;
+  letter-spacing:0!important;
+  color:#3b2309!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.38)!important;
+}
+.futClub{
+  display:none!important;
+}
+.futRatings{
+  grid-template-columns:1fr 1fr!important;
+  gap:2px 22px!important;
+  width:100%!important;
+  margin:8px auto 0!important;
+  padding:0 14px!important;
+  position:relative!important;
+}
+.futRatings:before{
+  content:""!important;
+  position:absolute!important;
+  top:2px!important;
+  bottom:2px!important;
+  left:50%!important;
+  width:2px!important;
+  background:rgba(67,42,7,.45)!important;
+}
+.futAttr{
+  display:grid!important;
+  grid-template-columns:auto 1fr!important;
+  justify-content:start!important;
+  gap:9px!important;
+  padding:3px 0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  color:#3b2309!important;
+  font-family:'Arial Narrow','Impact',Arial,sans-serif!important;
+}
+.futAttr span:first-child{
+  order:2!important;
+  font-size:28px!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+}
+.futAttr span:last-child{
+  order:1!important;
+  min-width:38px!important;
+  text-align:right!important;
+  font-size:34px!important;
+  line-height:.95!important;
+  font-weight:900!important;
+}
+.futSmall{
+  margin-top:10px!important;
+  padding:0!important;
+  background:transparent!important;
+  border-radius:0!important;
+  color:rgba(59,35,9,.72)!important;
+}
+.futInfoBadge{bottom:18px!important;background:rgba(59,35,9,.18)!important;color:#3b2309!important;border-color:rgba(59,35,9,.28)!important}
+.futCard.tierBronze{background:linear-gradient(145deg,#6c371a 0%,#c2834f 24%,#f0b478 43%,#7d431f 67%,#d79359 100%)!important}
+.futCard.tierSilver{background:linear-gradient(145deg,#747d86 0%,#edf1f3 25%,#ffffff 44%,#8f979f 68%,#d8dde1 100%)!important}
+.futCard.tierGold{background:radial-gradient(circle at 29% 28%,rgba(255,255,255,.50) 0 10%,transparent 10.5%),radial-gradient(circle at 46% 27%,rgba(255,255,255,.34) 0 12%,transparent 12.5%),repeating-linear-gradient(28deg,transparent 0 26px,rgba(91,61,8,.10) 27px 29px,transparent 30px 54px),linear-gradient(145deg,#a77618 0%,#f7df69 23%,#fff2a3 41%,#b78318 66%,#f0cd54 100%)!important}
+.futCard.tierElite,.futCard.tierLegend{background:radial-gradient(circle at 28% 25%,rgba(255,255,255,.52) 0 10%,transparent 10.5%),repeating-linear-gradient(30deg,transparent 0 24px,rgba(255,255,255,.18) 25px 27px,transparent 28px 52px),linear-gradient(145deg,#140d06 0%,#c99017 19%,#fff1a4 41%,#d3a029 58%,#211307 78%,#f6d76b 100%)!important}
+.futCard.tierIcon{background:radial-gradient(circle at 50% 9%,rgba(255,255,255,.82),transparent 30%),repeating-linear-gradient(28deg,transparent 0 25px,rgba(168,125,34,.16) 26px 28px,transparent 29px 54px),linear-gradient(145deg,#fffdf4 0%,#f7efd4 24%,#d1a33a 48%,#fff8df 70%,#b78114 100%)!important}
+@media(max-width:560px){
+  .futCard,
+  .homeChampionSlot .futCard,
+  .hofBelt.withCard .futCard{max-width:305px!important;min-height:432px!important;padding:21px 22px 25px!important}
+  .futTop{top:60px!important;left:35px!important;width:64px!important}
+  .futOvr{font-size:48px!important}
+  .futPos{font-size:21px!important}
+  .futFlag{font-size:25px!important}
+  .futPhoto{width:196px!important;height:205px!important;margin-top:70px!important}
+  .futName{font-size:34px!important}
+  .futRatings{gap:2px 18px!important;padding:0 10px!important}
+  .futAttr span:first-child{font-size:24px!important}
+  .futAttr span:last-child{font-size:30px!important;min-width:34px!important}
+}
+@media(max-width:360px){
+  .futCard,
+  .homeChampionSlot .futCard,
+  .hofBelt.withCard .futCard{max-width:286px!important;min-height:410px!important;padding:20px 20px 24px!important}
+  .futTop{top:56px!important;left:31px!important}
+  .futPhoto{width:184px!important;height:192px!important}
+  .futName{font-size:31px!important}
+  .futAttr span:first-child{font-size:22px!important}
+  .futAttr span:last-child{font-size:28px!important}
+}
 
+/* Korrektur: nahe am geschickten FIFA-Goldkarten-Design */
+.futCard{
+  width:min(100%,334px)!important;
+  max-width:334px!important;
+  min-height:478px!important;
+  padding:28px 28px 30px!important;
+  border:0!important;
+  border-radius:0!important;
+  color:#3a220b!important;
+  clip-path:polygon(
+    50% 0%,
+    77% 2%,
+    91% 8%,
+    96% 18%,
+    91% 29%,
+    82% 34%,
+    82% 55%,
+    96% 55%,
+    96% 80%,
+    85% 91%,
+    50% 100%,
+    15% 91%,
+    4% 80%,
+    4% 55%,
+    18% 55%,
+    18% 34%,
+    9% 29%,
+    4% 18%,
+    9% 8%,
+    23% 2%
+  )!important;
+  background:
+    linear-gradient(135deg,transparent 0 45%,rgba(177,129,24,.32) 45.5% 47%,rgba(255,244,159,.58) 47.5% 49%,transparent 49.5%),
+    radial-gradient(circle at 24% 31%,rgba(255,255,205,.70) 0 11%,transparent 11.5%),
+    radial-gradient(circle at 40% 31%,rgba(255,255,205,.46) 0 13%,transparent 13.5%),
+    radial-gradient(circle at 16% 42%,rgba(255,255,205,.34) 0 10%,transparent 10.5%),
+    repeating-linear-gradient(18deg,transparent 0 33px,rgba(117,82,18,.10) 34px 36px,transparent 37px 69px),
+    linear-gradient(145deg,#d5ae3d 0%,#f6df73 28%,#fff1a7 47%,#c99c2b 72%,#ecd064 100%)!important;
+  box-shadow:0 18px 34px rgba(0,0,0,.38),0 0 0 1px rgba(91,62,12,.24),inset 0 0 30px rgba(255,255,255,.22)!important;
+  overflow:hidden!important;
+}
+.futCard:before{
+  content:""!important;
+  position:absolute!important;
+  inset:8px!important;
+  clip-path:inherit!important;
+  border:2px solid rgba(111,77,17,.36)!important;
+  background:
+    linear-gradient(133deg,transparent 0 46%,rgba(117,82,18,.34) 46.5% 47.5%,rgba(255,245,167,.55) 48% 49%,transparent 49.5%),
+    linear-gradient(180deg,rgba(255,255,224,.20),transparent 38%,rgba(115,78,18,.14))!important;
+  z-index:0!important;
+  pointer-events:none!important;
+}
+.futCard:after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:
+    linear-gradient(110deg,transparent 0 17%,rgba(255,255,220,.26) 18%,transparent 30%),
+    radial-gradient(circle at 56% 11%,rgba(255,255,220,.36),transparent 33%),
+    linear-gradient(180deg,transparent 0 57%,rgba(117,82,18,.13) 58% 100%)!important;
+  z-index:0!important;
+  pointer-events:none!important;
+}
+.futTop,.futPhoto,.futName,.futClub,.futRatings,.futSmall,.futInfoBadge{position:relative!important;z-index:2!important}
+.futTop{
+  position:absolute!important;
+  top:72px!important;
+  left:44px!important;
+  width:66px!important;
+  display:block!important;
+  text-align:center!important;
+}
+.futTop>div:first-child,.futFlag{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:0!important;
+}
+.futOvr{
+  font-family:'Arial Narrow',Impact,Arial,sans-serif!important;
+  font-size:56px!important;
+  line-height:.82!important;
+  font-weight:900!important;
+  letter-spacing:0!important;
+  color:#3a220b!important;
+  text-shadow:none!important;
+}
+.futPos{
+  margin-top:9px!important;
+  font-family:'Arial Narrow',Impact,Arial,sans-serif!important;
+  font-size:24px!important;
+  line-height:.9!important;
+  font-weight:900!important;
+  letter-spacing:0!important;
+  color:#3a220b!important;
+}
+.futFlag{
+  margin-top:17px!important;
+  font-size:30px!important;
+  line-height:1!important;
+}
+.futNation{display:none!important}
+.futPhoto{
+  width:220px!important;
+  height:232px!important;
+  margin:76px -8px 0 auto!important;
+  align-self:flex-end!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  filter:drop-shadow(0 12px 11px rgba(78,52,12,.35))!important;
+}
+.futPhoto img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  background:transparent!important;
+}
+.futPhotoPlaceholder{
+  font-size:126px!important;
+  color:rgba(58,34,11,.58)!important;
+}
+.futName{
+  width:100%!important;
+  margin:6px auto 0!important;
+  padding:13px 8px 8px!important;
+  border-top:2px solid rgba(58,34,11,.36)!important;
+  border-bottom:0!important;
+  font-family:'Arial Narrow',Impact,Arial,sans-serif!important;
+  font-style:normal!important;
+  font-size:42px!important;
+  line-height:.95!important;
+  font-weight:900!important;
+  letter-spacing:0!important;
+  color:#3a220b!important;
+  text-shadow:none!important;
+}
+.futClub{display:none!important}
+.futRatings{
+  width:100%!important;
+  margin:7px auto 0!important;
+  padding:0 16px!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:0 25px!important;
+}
+.futRatings:before{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:3px!important;
+  bottom:3px!important;
+  width:2px!important;
+  background:rgba(58,34,11,.43)!important;
+}
+.futAttr{
+  display:grid!important;
+  grid-template-columns:auto 1fr!important;
+  gap:8px!important;
+  align-items:baseline!important;
+  padding:2px 0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  color:#3a220b!important;
+  font-family:'Arial Narrow',Impact,Arial,sans-serif!important;
+}
+.futAttr span:first-child{
+  order:2!important;
+  font-size:28px!important;
+  line-height:1!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+}
+.futAttr span:last-child{
+  order:1!important;
+  min-width:37px!important;
+  text-align:right!important;
+  font-size:34px!important;
+  line-height:.9!important;
+  font-weight:900!important;
+}
+.futSmall{
+  margin-top:9px!important;
+  padding:0!important;
+  background:transparent!important;
+  color:rgba(58,34,11,.64)!important;
+}
+.futCard.tierBronze,.futCard.tierSilver,.futCard.tierGold,.futCard.tierElite,.futCard.tierLegend,.futCard.tierIcon{
+  color:#3a220b!important;
+}
+.futCard.tierBronze{background:linear-gradient(145deg,#b46d36 0%,#e5aa6e 34%,#f6c08a 47%,#ad6530 73%,#d89155 100%)!important}
+.futCard.tierSilver{background:linear-gradient(145deg,#b6bec5 0%,#f2f5f7 34%,#ffffff 48%,#aeb7bf 74%,#d8dde1 100%)!important}
+.futCard.tierGold,.futCard.tierElite,.futCard.tierLegend,.futCard.tierIcon{
+  background:
+    linear-gradient(135deg,transparent 0 45%,rgba(177,129,24,.32) 45.5% 47%,rgba(255,244,159,.58) 47.5% 49%,transparent 49.5%),
+    radial-gradient(circle at 24% 31%,rgba(255,255,205,.70) 0 11%,transparent 11.5%),
+    radial-gradient(circle at 40% 31%,rgba(255,255,205,.46) 0 13%,transparent 13.5%),
+    repeating-linear-gradient(18deg,transparent 0 33px,rgba(117,82,18,.10) 34px 36px,transparent 37px 69px),
+    linear-gradient(145deg,#d5ae3d 0%,#f6df73 28%,#fff1a7 47%,#c99c2b 72%,#ecd064 100%)!important;
+}
+@media(max-width:560px){
+  .futCard,
+  .homeChampionSlot .futCard,
+  .hofBelt.withCard .futCard{max-width:304px!important;min-height:438px!important;padding:25px 24px 28px!important}
+  .futTop{top:64px!important;left:38px!important;width:58px!important}
+  .futOvr{font-size:49px!important}
+  .futPos{font-size:21px!important}
+  .futFlag{font-size:26px!important}
+  .futPhoto{width:198px!important;height:207px!important;margin-top:69px!important}
+  .futName{font-size:35px!important}
+  .futRatings{gap:0 19px!important;padding:0 10px!important}
+  .futAttr span:first-child{font-size:24px!important}
+  .futAttr span:last-child{font-size:30px!important;min-width:34px!important}
+}
+@media(max-width:360px){
+  .futCard,
+  .homeChampionSlot .futCard,
+  .hofBelt.withCard .futCard{max-width:286px!important;min-height:420px!important}
+  .futTop{top:61px!important;left:35px!important}
+  .futPhoto{width:184px!important;height:194px!important}
+  .futName{font-size:32px!important}
+  .futAttr span:first-child{font-size:22px!important}
+  .futAttr span:last-child{font-size:28px!important}
+}
+
+/* Finale Form: FIFA-Goldkarte wie in der Referenz, mit echten Rundungen statt eckigem Polygon */
+.futCard{
+  --futCardShape:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 930' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M360 0 C452 0 540 24 613 64 L632 140 C657 222 604 314 518 326 C499 329 487 339 487 356 L487 526 L632 526 L632 782 C632 841 592 874 528 884 L360 930 L192 884 C128 874 88 841 88 782 L88 526 L233 526 L233 356 C233 339 221 329 202 326 C116 314 63 222 88 140 L107 64 C180 24 268 0 360 0 Z'/%3E%3C/svg%3E");
+  width:min(100%,334px)!important;
+  max-width:334px!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:720/930!important;
+  padding:58px 43px 54px!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  -webkit-mask-image:var(--futCardShape)!important;
+  mask-image:var(--futCardShape)!important;
+  -webkit-mask-size:100% 100%!important;
+  mask-size:100% 100%!important;
+  -webkit-mask-repeat:no-repeat!important;
+  mask-repeat:no-repeat!important;
+  background:
+    linear-gradient(139deg,transparent 0 43%,rgba(147,103,18,.28) 43.5% 45.5%,rgba(255,241,130,.78) 46% 47.5%,rgba(132,91,15,.26) 48% 50%,transparent 50.5%),
+    radial-gradient(circle at 23% 34%,rgba(255,250,174,.72) 0 11%,transparent 11.4%),
+    radial-gradient(circle at 39% 34%,rgba(255,250,174,.48) 0 13%,transparent 13.4%),
+    radial-gradient(circle at 17% 45%,rgba(255,250,174,.38) 0 10%,transparent 10.4%),
+    repeating-linear-gradient(17deg,transparent 0 32px,rgba(109,77,17,.10) 33px 35px,transparent 36px 68px),
+    linear-gradient(145deg,#c99f2f 0%,#f4dc68 28%,#fff0a2 48%,#c09225 72%,#e9cb58 100%)!important;
+  box-shadow:0 18px 38px rgba(0,0,0,.40),inset 0 0 42px rgba(255,255,255,.20)!important;
+}
+.futCard:before{
+  content:""!important;
+  position:absolute!important;
+  inset:9px!important;
+  border:0!important;
+  clip-path:none!important;
+  -webkit-mask-image:var(--futCardShape)!important;
+  mask-image:var(--futCardShape)!important;
+  -webkit-mask-size:100% 100%!important;
+  mask-size:100% 100%!important;
+  background:
+    linear-gradient(139deg,transparent 0 43.5%,rgba(100,70,14,.38) 44% 45%,rgba(255,246,154,.64) 45.5% 47%,transparent 48%),
+    linear-gradient(180deg,rgba(255,255,215,.20),transparent 38%,rgba(96,67,14,.17))!important;
+  z-index:0!important;
+  pointer-events:none!important;
+}
+.futCard:after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:
+    linear-gradient(112deg,transparent 0 18%,rgba(255,255,210,.30) 19%,transparent 31%),
+    radial-gradient(circle at 55% 12%,rgba(255,255,215,.38),transparent 34%),
+    linear-gradient(180deg,transparent 0 56%,rgba(104,72,15,.14) 57% 100%)!important;
+  z-index:0!important;
+  pointer-events:none!important;
+}
+.futTop{
+  top:98px!important;
+  left:58px!important;
+  width:72px!important;
+}
+.futOvr{font-size:58px!important}
+.futPos{font-size:24px!important;margin-top:10px!important}
+.futFlag{font-size:31px!important;margin-top:18px!important}
+.futPhoto{
+  width:224px!important;
+  height:244px!important;
+  margin:88px -14px 0 auto!important;
+}
+.futName{
+  margin:2px auto 0!important;
+  padding:16px 4px 8px!important;
+  font-size:42px!important;
+  border-top:2px solid rgba(58,34,11,.40)!important;
+}
+.futRatings{
+  margin:7px auto 0!important;
+  padding:0 16px!important;
+  gap:0 25px!important;
+}
+.futAttr span:first-child{font-size:28px!important}
+.futAttr span:last-child{font-size:34px!important}
+@media(max-width:560px){
+  .futCard,
+  .homeChampionSlot .futCard,
+  .hofBelt.withCard .futCard{
+    max-width:304px!important;
+    aspect-ratio:720/930!important;
+    min-height:0!important;
+    padding:52px 38px 48px!important;
+  }
+  .futTop{top:88px!important;left:50px!important;width:64px!important}
+  .futOvr{font-size:51px!important}
+  .futPos{font-size:21px!important}
+  .futFlag{font-size:27px!important}
+  .futPhoto{width:202px!important;height:222px!important;margin:80px -13px 0 auto!important}
+  .futName{font-size:36px!important;padding-top:14px!important}
+  .futRatings{gap:0 19px!important;padding:0 10px!important}
+  .futAttr span:first-child{font-size:24px!important}
+  .futAttr span:last-child{font-size:30px!important}
+}
+@media(max-width:360px){
+  .futCard,
+  .homeChampionSlot .futCard,
+  .hofBelt.withCard .futCard{
+    max-width:286px!important;
+    aspect-ratio:720/930!important;
+    min-height:0!important;
+    padding:49px 36px 45px!important;
+  }
+  .futTop{top:82px!important;left:47px!important}
+  .futPhoto{width:188px!important;height:207px!important;margin-top:75px!important}
+  .futName{font-size:33px!important}
+  .futAttr span:first-child{font-size:22px!important}
+  .futAttr span:last-child{font-size:28px!important}
+}
+
+/* Reset: einfache Schildform wie die Referenzkarte */
+.futCard{
+  --futShield:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 930' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M360 10 C462 10 552 39 632 94 L636 708 C636 796 579 852 486 878 L360 930 L234 878 C141 852 84 796 84 708 L88 94 C168 39 258 10 360 10 Z'/%3E%3C/svg%3E");
+  width:min(100%,334px)!important;
+  max-width:334px!important;
+  aspect-ratio:720/930!important;
+  min-height:0!important;
+  padding:62px 45px 58px!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:polygon(50% 1%,88% 10%,88% 76%,81% 90%,50% 100%,19% 90%,12% 76%,12% 10%)!important;
+  -webkit-mask-image:var(--futShield)!important;
+  mask-image:var(--futShield)!important;
+  -webkit-mask-size:100% 100%!important;
+  mask-size:100% 100%!important;
+  -webkit-mask-repeat:no-repeat!important;
+  mask-repeat:no-repeat!important;
+  background:
+    linear-gradient(135deg,transparent 0 43%,rgba(161,116,21,.30) 43.5% 45.5%,rgba(255,244,139,.72) 46% 48%,rgba(128,88,13,.26) 48.5% 50.5%,transparent 51%),
+    radial-gradient(circle at 24% 35%,rgba(255,248,171,.72) 0 12%,transparent 12.5%),
+    radial-gradient(circle at 41% 35%,rgba(255,248,171,.48) 0 14%,transparent 14.5%),
+    radial-gradient(circle at 17% 45%,rgba(255,248,171,.36) 0 10%,transparent 10.5%),
+    repeating-linear-gradient(22deg,transparent 0 32px,rgba(103,73,15,.10) 33px 35px,transparent 36px 66px),
+    linear-gradient(145deg,#cda338 0%,#f4dc69 27%,#fff0a4 47%,#c79a2b 72%,#edd164 100%)!important;
+  color:#3a220b!important;
+  box-shadow:0 20px 38px rgba(0,0,0,.42),inset 0 0 36px rgba(255,255,255,.18)!important;
+}
+.futCard:before{
+  content:""!important;
+  position:absolute!important;
+  inset:10px!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  -webkit-mask-image:var(--futShield)!important;
+  mask-image:var(--futShield)!important;
+  -webkit-mask-size:100% 100%!important;
+  mask-size:100% 100%!important;
+  background:
+    linear-gradient(135deg,transparent 0 43%,rgba(104,72,12,.30) 43.5% 45%,rgba(255,246,154,.58) 45.5% 47.5%,transparent 48%),
+    linear-gradient(180deg,rgba(255,255,214,.20),transparent 39%,rgba(91,63,13,.14))!important;
+  pointer-events:none!important;
+  z-index:0!important;
+}
+.futCard:after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:
+    linear-gradient(112deg,transparent 0 18%,rgba(255,255,221,.28) 19%,transparent 31%),
+    radial-gradient(circle at 55% 12%,rgba(255,255,215,.35),transparent 34%),
+    linear-gradient(180deg,transparent 0 56%,rgba(104,72,15,.13) 57% 100%)!important;
+  pointer-events:none!important;
+  z-index:0!important;
+}
+.futTop,.futPhoto,.futName,.futClub,.futRatings,.futSmall,.futInfoBadge{
+  position:relative!important;
+  z-index:2!important;
+}
+.futTop{
+  position:absolute!important;
+  top:98px!important;
+  left:58px!important;
+  width:72px!important;
+  display:block!important;
+  text-align:center!important;
+}
+.futTop>div:first-child,.futFlag{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:0!important;
+  min-width:0!important;
+}
+.futOvr{
+  font-family:'Arial Narrow',Impact,Arial,sans-serif!important;
+  font-size:58px!important;
+  line-height:.82!important;
+  font-weight:900!important;
+  letter-spacing:0!important;
+  color:#3a220b!important;
+  text-shadow:none!important;
+}
+.futPos{
+  margin-top:10px!important;
+  font-family:'Arial Narrow',Impact,Arial,sans-serif!important;
+  font-size:24px!important;
+  line-height:.9!important;
+  font-weight:900!important;
+  letter-spacing:0!important;
+  color:#3a220b!important;
+}
+.futFlag{
+  margin-top:18px!important;
+  font-size:31px!important;
+  line-height:1!important;
+}
+.futNation{display:none!important}
+.futPhoto{
+  width:224px!important;
+  height:244px!important;
+  margin:88px -14px 0 auto!important;
+  align-self:flex-end!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  filter:drop-shadow(0 12px 11px rgba(78,52,12,.35))!important;
+}
+.futPhoto img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  background:transparent!important;
+}
+.futName{
+  width:100%!important;
+  margin:2px auto 0!important;
+  padding:16px 4px 8px!important;
+  border-top:2px solid rgba(58,34,11,.40)!important;
+  border-bottom:0!important;
+  font-family:'Arial Narrow',Impact,Arial,sans-serif!important;
+  font-style:normal!important;
+  font-size:42px!important;
+  line-height:.95!important;
+  font-weight:900!important;
+  letter-spacing:0!important;
+  color:#3a220b!important;
+  text-shadow:none!important;
+}
+.futClub{display:none!important}
+.futRatings{
+  width:100%!important;
+  margin:7px auto 0!important;
+  padding:0 16px!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:0 25px!important;
+  position:relative!important;
+}
+.futRatings:before{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:3px!important;
+  bottom:3px!important;
+  width:2px!important;
+  background:rgba(58,34,11,.43)!important;
+}
+.futAttr{
+  display:grid!important;
+  grid-template-columns:auto 1fr!important;
+  gap:8px!important;
+  align-items:baseline!important;
+  padding:2px 0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  color:#3a220b!important;
+  font-family:'Arial Narrow',Impact,Arial,sans-serif!important;
+}
+.futAttr span:first-child{
+  order:2!important;
+  font-size:28px!important;
+  line-height:1!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+}
+.futAttr span:last-child{
+  order:1!important;
+  min-width:37px!important;
+  text-align:right!important;
+  font-size:34px!important;
+  line-height:.9!important;
+  font-weight:900!important;
+}
+.futSmall{
+  margin-top:9px!important;
+  padding:0!important;
+  background:transparent!important;
+  color:rgba(58,34,11,.64)!important;
+}
+.futCard.tierBronze{background:linear-gradient(145deg,#b46d36 0%,#e5aa6e 34%,#f6c08a 47%,#ad6530 73%,#d89155 100%)!important}
+.futCard.tierSilver{background:linear-gradient(145deg,#b6bec5 0%,#f2f5f7 34%,#ffffff 48%,#aeb7bf 74%,#d8dde1 100%)!important}
+.futCard.tierGold,.futCard.tierElite,.futCard.tierLegend,.futCard.tierIcon{
+  background:
+    linear-gradient(135deg,transparent 0 43%,rgba(161,116,21,.30) 43.5% 45.5%,rgba(255,244,139,.72) 46% 48%,rgba(128,88,13,.26) 48.5% 50.5%,transparent 51%),
+    radial-gradient(circle at 24% 35%,rgba(255,248,171,.72) 0 12%,transparent 12.5%),
+    radial-gradient(circle at 41% 35%,rgba(255,248,171,.48) 0 14%,transparent 14.5%),
+    repeating-linear-gradient(22deg,transparent 0 32px,rgba(103,73,15,.10) 33px 35px,transparent 36px 66px),
+    linear-gradient(145deg,#cda338 0%,#f4dc69 27%,#fff0a4 47%,#c79a2b 72%,#edd164 100%)!important;
+}
+@media(max-width:560px){
+  .futCard,
+  .homeChampionSlot .futCard,
+  .hofBelt.withCard .futCard{
+    max-width:304px!important;
+    aspect-ratio:720/930!important;
+    min-height:0!important;
+    padding:52px 38px 48px!important;
+  }
+  .futTop{top:88px!important;left:50px!important;width:64px!important}
+  .futOvr{font-size:51px!important}
+  .futPos{font-size:21px!important}
+  .futFlag{font-size:27px!important}
+  .futPhoto{width:202px!important;height:222px!important;margin:80px -13px 0 auto!important}
+  .futName{font-size:36px!important;padding-top:14px!important}
+  .futRatings{gap:0 19px!important;padding:0 10px!important}
+  .futAttr span:first-child{font-size:24px!important}
+  .futAttr span:last-child{font-size:30px!important}
+}
+@media(max-width:360px){
+  .futCard,
+  .homeChampionSlot .futCard,
+  .hofBelt.withCard .futCard{
+    max-width:286px!important;
+    aspect-ratio:720/930!important;
+    min-height:0!important;
+    padding:49px 36px 45px!important;
+  }
+  .futTop{top:82px!important;left:47px!important}
+  .futPhoto{width:188px!important;height:207px!important;margin-top:75px!important}
+  .futName{font-size:33px!important}
+  .futAttr span:first-child{font-size:22px!important}
+  .futAttr span:last-child{font-size:28px!important}
+}
+
+
+
+
+/* 1:1 Schildform aus der gesendeten Referenzkarte */
+.futCard{
+  --futExactShield:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAiwAAAN2CAYAAADaFdLMAAAQGklEQVR42u3dwZKiWBRF0Q3B//+yNa1BVYRmqlx4a807ulsRtkc0t8fjEQDAZIeHAG5n9Xchm0MABAtwfohsouTXwSZqQLAAH15CxMp5j73QAcECLo5c9rkUMiBYQIhwm2NB2IBgAUHC5Y8pQQOCBQQJggYECwgTcA8NCBYQJfCD41/MIFhApMClXifiBcECggQsMSBYcEIFvvnaEzAIFhAm4AZfECwIFMASg2ABcQIIGAQLIgUQMCBYECfAiecLEYNgQaQAlzmfCBcEC+IE8E0k7mP3ECBWAOchsrDgpADg3hcEC0IFcO8LggWBAuCr0wgWRAqAv0iNYBEpAOIFwYJIARAvCBYECoD7XgQLQgXAN44QLIgUAB8bkV+6FSsAOO9mYcELBcC9LggWLw4A3OuCYBEpALjXRbAgVACsLggWkQKA1UWwIFQAsLoIFpECgNWF/A6LWAHAdSELCw5GACwuWVgudgCKFQC8yc3C4mADwOKCYBEqAPhmkWARKgAgXHIPi1gBwHUnC4sDBgCsLVlYAAAECwAgWAAABAsAgGABgHwBRLAAAAgWAECwAAAIlnxmCAAIFgBAsAAACBYAQLCQ+1cAQLAAAAgWAECwAAC5VUGwAAAIFhULgOuTYAEAECwAgGDJ3AYACBYAwBtrwQIACBbVCgCuV4IFAECwqFUAECwAgDfaggUAECwqFQBcvwSLJxsAECwA4I23YAEARItg8QQDAKsHi1gBAMECAHgjLlg8qQCw6PXNwgIACBb1CQCuc4LFkwgAD8HiyQMA1z3B4kkDANYLFrECQFYWwQIAiBbB4kkCANfDuwaLWAGAm14Xd08KAIgWweLJAADXycWDRawAwALXy92DDwCiRbB40AHA9XPBYBErALDYdfTwAAPAstGyZWERKwDg+rpOsIgVAFj8OrsPfwDFCgCIlpH3sIgUAHBfS5MXFrECAD7haOrCIlQAwOLS5IVFrACA+1uauLCIFAC4ZrRsqywsYgUALC5NXFhECgBYXEYGi0gBAPEyMlhECgCIl7fHyyFQAIAvfNKyfSNYhAkA8ImRY3s1WEQJADDpW0fb38EiVACA0b+2u3ssAIDpBAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEABAsAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAACCBQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECACBYAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYPAQAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAACCBQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECACBYAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEABAsAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAIBgAQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAQLACAYAEAECwAgGABABAsAACCBQAQLAAAggUAQLAAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIACBYAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABABAsAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEAECwAgGABABAsAIBgAQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAEi4cAABAsAACCBQAQLAAAggUAQLAAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIACBYAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABABAsAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEAECwAgGABABAsAIBgAQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAQLACAYAEAECwAgGABABAsAACCBQAQLAAAggUAQLAAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIACBYAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABABAsAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEABAsAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAACCBQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECACBYAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAICb2wQLANBVFpbNwwAA+EgIAECwAAArBIuPhQCAJt5wa2EBAMbHimABALraPSw+FgIA3HQLAPCOYLGyAABNun/FwgIAjI+V/wWLlQUAyD0sAAA9P5rsr/4DAAANWlhECwDQ2evKMx8JiRYA4NRYefYeFtECAJwWK6/cdCtaAIBTYsW3hACA8bHyarBslhYA4NuxYmEBAMbHyk+DxdICAHwtVn67sIgWAOAr3XC86V/+8DwAAJ8aONzDAgCMjpX6/cLyr/8gawsACJWm/7Vm97YAgFh5q+PD/7HWFgAQKk2/h8XaAgBipakLi/tbAECkdJWFxeICAGKlKywsFhcAEChd+XdYLC4AIFaauLA880BYXgDAmND0X7q1vACA62+TFhbLCwCIk+70t4QsLwCw4PX0uMmDbHkBgBu/2d89GQAgVrKwWF4AQJxkYbG8ACBW7u1Y+Em0vgAgTLKweNIBwHUrC4v1BQBhkoXFwQIArj9ZWK500FhdABAnWViucGA5uAAQK1lY/N4LAOKELCwORgBcH7KwOCizvAC4BpCFxQEMAFlY8FsvAHgjmoUFBz2A8zZZWNz3AoA4ycKCFwmA8zBZWLxYsrwAiBMqC4sXFYDzKllYsLwAiBOysOBFCOA8mYUFywuAMCELC/66NIBYIQuLF3HWF0CckIUFL3YA5y+ysPDxF73VBRAnZGHBPS8AYoUsLFheAIFCFhacRACcZ8jCgm8aAeIEsrDgpAM4b5CFBScfywsgTsjCgpMU4DxAFhawvADihCwsOKkBXteQhQW/8QIIFLKwgJMf+CVsyMKC1QXwhgKysOAkCVhTyMICvmUE3iRAFhacVAGvK7KwgOUFxAlkYQFArEAWFqwu4HUBWVjAyRoc/5CFBX5/0ra4IFAgCwv4XQkQK5CFBawuIFLIwgJO+mAphCws4BtGIKohCwu4SOA4hCws4C9Ig0CBLCzgYoLjC8jCAr5hhECBLCzgggOOHcjCAu5zQaRAFhbARQnHBWRhAfe5IFCALCzgwoXnHLKwAO5zQaRAFhZwccPzCWRhAasLAgWysACIFSALC/hmEUIFsrAALo6eDyALC2BxESlAFhZw8cTjDVlYAIuLSAGysAAurh5PwMICFheRAmRhAVx8PV5AFhZwEc7aIlIgCwvgwuwxAbKwAO5vESpAFhZw0fb/DWRhAdzfIlSALCyAi7lYgSwsgLVFpABZWAAXeoAsLMCdv00ktiALC4BYAbKwAO5tESpAFhZAGABZWABri4ACsrAA1haxAmRhAeauLUIFyMICTI4IsQIIFmBsTGxiBRAsgAUEyD0sgPtaBBCQhQW439oiVgDBAoyOFrECCBZgdLSIFUCwAKOjRawAggUYHS1iBRAswOhoESuAYAFGR4tYAd7mD8tk7wW+vubEAAAAAElFTkSuQmCC");
+  width:min(100%,334px)!important;
+  max-width:334px!important;
+  aspect-ratio:556/886!important;
+  min-height:0!important;
+  padding:58px 43px 55px!important;
+  clip-path:none!important;
+  -webkit-mask-image:var(--futExactShield)!important;
+  mask-image:var(--futExactShield)!important;
+  -webkit-mask-size:100% 100%!important;
+  mask-size:100% 100%!important;
+  -webkit-mask-repeat:no-repeat!important;
+  mask-repeat:no-repeat!important;
+  border:0!important;
+  border-radius:0!important;
+  background:
+    linear-gradient(135deg,transparent 0 43%,rgba(161,116,21,.30) 43.5% 45.5%,rgba(255,244,139,.72) 46% 48%,rgba(128,88,13,.26) 48.5% 50.5%,transparent 51%),
+    radial-gradient(circle at 24% 35%,rgba(255,248,171,.72) 0 12%,transparent 12.5%),
+    radial-gradient(circle at 41% 35%,rgba(255,248,171,.48) 0 14%,transparent 14.5%),
+    repeating-linear-gradient(22deg,transparent 0 32px,rgba(103,73,15,.10) 33px 35px,transparent 36px 66px),
+    linear-gradient(145deg,#cda338 0%,#f4dc69 27%,#fff0a4 47%,#c79a2b 72%,#edd164 100%)!important;
+}
+.futCard:before{
+  -webkit-mask-image:var(--futExactShield)!important;
+  mask-image:var(--futExactShield)!important;
+  -webkit-mask-size:100% 100%!important;
+  mask-size:100% 100%!important;
+}
+.futTop{top:92px!important;left:57px!important;width:72px!important}
+.futPhoto{width:224px!important;height:240px!important;margin:82px -14px 0 auto!important}
+.futName{margin:2px auto 0!important}
+@media(max-width:560px){
+  .futCard,.homeChampionSlot .futCard,.hofBelt.withCard .futCard{max-width:304px!important;aspect-ratio:556/886!important;min-height:0!important;padding:52px 38px 49px!important}
+  .futTop{top:84px!important;left:50px!important;width:64px!important}
+  .futPhoto{width:202px!important;height:218px!important;margin:75px -13px 0 auto!important}
+}
+@media(max-width:360px){
+  .futCard,.homeChampionSlot .futCard,.hofBelt.withCard .futCard{max-width:286px!important;aspect-ratio:556/886!important;min-height:0!important;padding:49px 36px 46px!important}
+  .futTop{top:79px!important;left:47px!important}
+  .futPhoto{width:188px!important;height:203px!important;margin-top:70px!important}
+}
+
+/* Feinschliff: Inhalt hoeher, Schrift kompakter, edleres Goldmuster */
+.futCard{
+  --futGoldPattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='92' height='92' viewBox='0 0 92 92'%3E%3Cg stroke='%23744d0e' stroke-width='2' stroke-linecap='round' opacity='.20'%3E%3Cpath d='M18 13v10M13 18h10M62 18v10M57 23h10M36 43v10M31 48h10M73 60v10M68 65h10'/%3E%3C/g%3E%3Cg fill='%23744d0e' opacity='.13'%3E%3Ccircle cx='16' cy='70' r='3'/%3E%3Ccircle cx='50' cy='14' r='2.5'/%3E%3Ccircle cx='78' cy='34' r='2.5'/%3E%3C/g%3E%3C/svg%3E");
+  padding:52px 43px 48px!important;
+  background:
+    var(--futGoldPattern),
+    linear-gradient(135deg,transparent 0 42%,rgba(137,93,14,.30) 42.5% 44.5%,rgba(255,246,150,.72) 45% 47%,rgba(120,80,12,.24) 47.5% 50%,transparent 50.5%),
+    radial-gradient(ellipse at 28% 34%,rgba(255,250,180,.68) 0 15%,transparent 15.5%),
+    radial-gradient(ellipse at 43% 35%,rgba(255,250,180,.43) 0 15%,transparent 15.5%),
+    linear-gradient(160deg,transparent 0 55%,rgba(109,75,13,.22) 55.5% 57%,rgba(255,239,126,.42) 58%,transparent 66%),
+    repeating-linear-gradient(24deg,transparent 0 36px,rgba(103,73,15,.08) 37px 39px,transparent 40px 76px),
+    linear-gradient(145deg,#d4ad42 0%,#f7e47b 24%,#fff3a9 45%,#c89c2d 72%,#efd66f 100%)!important;
+}
+.futTop{top:86px!important}
+.futPhoto{
+  width:216px!important;
+  height:224px!important;
+  margin:76px -12px 0 auto!important;
+}
+.futName{
+  margin:-2px auto 0!important;
+  padding:12px 4px 6px!important;
+  font-size:38px!important;
+  line-height:.92!important;
+}
+.futRatings{
+  margin:3px auto 0!important;
+  padding:0 18px!important;
+  gap:0 22px!important;
+  transform:translateY(-8px)!important;
+}
+.futAttr{padding:1px 0!important;gap:7px!important}
+.futAttr span:first-child{font-size:24px!important}
+.futAttr span:last-child{font-size:30px!important;min-width:34px!important}
+.futSmall{
+  margin-top:-5px!important;
+  font-size:10px!important;
+  transform:translateY(-8px)!important;
+}
+@media(max-width:560px){
+  .futCard,.homeChampionSlot .futCard,.hofBelt.withCard .futCard{padding:47px 38px 43px!important}
+  .futTop{top:78px!important}
+  .futPhoto{width:194px!important;height:203px!important;margin:69px -11px 0 auto!important}
+  .futName{font-size:32px!important;padding:10px 4px 5px!important}
+  .futRatings{margin-top:2px!important;padding:0 12px!important;gap:0 17px!important;transform:translateY(-9px)!important}
+  .futAttr span:first-child{font-size:21px!important}
+  .futAttr span:last-child{font-size:27px!important;min-width:30px!important}
+}
+@media(max-width:360px){
+  .futCard,.homeChampionSlot .futCard,.hofBelt.withCard .futCard{padding:45px 35px 40px!important}
+  .futTop{top:74px!important}
+  .futPhoto{width:181px!important;height:190px!important;margin-top:65px!important}
+  .futName{font-size:30px!important}
+  .futAttr span:first-child{font-size:20px!important}
+  .futAttr span:last-child{font-size:25px!important}
+}
+
+/* Neues Kartenmuster: cleaner FIFA-Goldlook mit feinen Symbolen und Lichtbaendern */
+.futCard{
+  --futGoldPattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='118' height='118' viewBox='0 0 118 118'%3E%3Cg stroke='%236b470c' stroke-width='2.1' stroke-linecap='round' opacity='.18'%3E%3Cpath d='M25 18v11M19.5 23.5h11M82 14v11M76.5 19.5h11M51 53v11M45.5 58.5h11M94 70v11M88.5 75.5h11M22 95v9M17.5 99.5h9'/%3E%3C/g%3E%3Cg fill='%236b470c' opacity='.12'%3E%3Ccircle cx='16' cy='63' r='3'/%3E%3Ccircle cx='44' cy='21' r='2.4'/%3E%3Ccircle cx='72' cy='45' r='2.6'/%3E%3Ccircle cx='104' cy='35' r='2.2'/%3E%3Ccircle cx='63' cy='94' r='2.7'/%3E%3C/g%3E%3Cg stroke='%23fff2a8' stroke-width='1.5' opacity='.16'%3E%3Cpath d='M-10 96C20 78 36 76 65 55S102 24 132 16'/%3E%3Cpath d='M-8 103C24 86 44 82 72 61S105 34 130 28'/%3E%3C/g%3E%3C/svg%3E");
+  background:
+    var(--futGoldPattern),
+    radial-gradient(ellipse at 30% 31%,rgba(255,250,178,.72) 0 16%,transparent 16.6%),
+    radial-gradient(ellipse at 46% 32%,rgba(255,250,178,.42) 0 15%,transparent 15.7%),
+    linear-gradient(138deg,transparent 0 39%,rgba(111,74,11,.24) 39.5% 41%,rgba(255,244,139,.72) 41.5% 43.2%,rgba(117,78,12,.22) 44% 46%,transparent 46.5%),
+    linear-gradient(154deg,transparent 0 54%,rgba(106,71,12,.24) 54.5% 56%,rgba(255,242,144,.48) 56.5% 58%,transparent 64%),
+    repeating-linear-gradient(24deg,rgba(255,255,255,.04) 0 18px,rgba(107,71,12,.07) 19px 21px,transparent 22px 58px),
+    linear-gradient(145deg,#caa033 0%,#f5dd70 24%,#fff1a4 44%,#d4aa3e 60%,#b98920 76%,#efd36c 100%)!important;
+}
+.futCard.tierGold,.futCard.tierElite,.futCard.tierLegend,.futCard.tierIcon{
+  background:
+    var(--futGoldPattern),
+    radial-gradient(ellipse at 30% 31%,rgba(255,250,178,.72) 0 16%,transparent 16.6%),
+    radial-gradient(ellipse at 46% 32%,rgba(255,250,178,.42) 0 15%,transparent 15.7%),
+    linear-gradient(138deg,transparent 0 39%,rgba(111,74,11,.24) 39.5% 41%,rgba(255,244,139,.72) 41.5% 43.2%,rgba(117,78,12,.22) 44% 46%,transparent 46.5%),
+    linear-gradient(154deg,transparent 0 54%,rgba(106,71,12,.24) 54.5% 56%,rgba(255,242,144,.48) 56.5% 58%,transparent 64%),
+    repeating-linear-gradient(24deg,rgba(255,255,255,.04) 0 18px,rgba(107,71,12,.07) 19px 21px,transparent 22px 58px),
+    linear-gradient(145deg,#caa033 0%,#f5dd70 24%,#fff1a4 44%,#d4aa3e 60%,#b98920 76%,#efd36c 100%)!important;
+}
+.futCard.tierBronze{
+  background:
+    var(--futGoldPattern),
+    radial-gradient(ellipse at 30% 31%,rgba(255,219,176,.56) 0 16%,transparent 16.6%),
+    radial-gradient(ellipse at 46% 32%,rgba(255,223,187,.32) 0 15%,transparent 15.7%),
+    linear-gradient(138deg,transparent 0 39%,rgba(92,48,18,.26) 39.5% 41%,rgba(255,199,136,.50) 41.5% 43.2%,rgba(93,50,20,.20) 44% 46%,transparent 46.5%),
+    linear-gradient(154deg,transparent 0 54%,rgba(90,49,20,.24) 54.5% 56%,rgba(255,202,145,.34) 56.5% 58%,transparent 64%),
+    repeating-linear-gradient(24deg,rgba(255,255,255,.035) 0 18px,rgba(87,45,18,.08) 19px 21px,transparent 22px 58px),
+    linear-gradient(145deg,#9a552b 0%,#d38d55 24%,#f1b77c 44%,#b56a34 62%,#7f3f20 78%,#d89058 100%)!important;
+}
+.futCard.tierSilver{
+  background:
+    var(--futGoldPattern),
+    radial-gradient(ellipse at 30% 31%,rgba(255,255,255,.70) 0 16%,transparent 16.6%),
+    radial-gradient(ellipse at 46% 32%,rgba(255,255,255,.40) 0 15%,transparent 15.7%),
+    linear-gradient(138deg,transparent 0 39%,rgba(88,96,103,.24) 39.5% 41%,rgba(255,255,255,.70) 41.5% 43.2%,rgba(100,108,116,.22) 44% 46%,transparent 46.5%),
+    linear-gradient(154deg,transparent 0 54%,rgba(88,96,103,.22) 54.5% 56%,rgba(255,255,255,.42) 56.5% 58%,transparent 64%),
+    repeating-linear-gradient(24deg,rgba(255,255,255,.05) 0 18px,rgba(83,91,99,.075) 19px 21px,transparent 22px 58px),
+    linear-gradient(145deg,#8c969f 0%,#d9dee3 24%,#ffffff 44%,#b7c0c8 62%,#828c96 78%,#e8ecef 100%)!important;
+}
+
+/* Feinkorrektur: Stats hoeher + keine harten Diagonalstreifen bei Bronze/Silber/Icon */
+.futName{
+  margin:-6px auto 0!important;
+  padding:10px 4px 5px!important;
+  font-size:36px!important;
+}
+.futRatings{
+  margin:0 auto 0!important;
+  transform:translateY(-14px)!important;
+}
+.futRatings:before{
+  top:1px!important;
+  bottom:1px!important;
+}
+.futAttr{
+  padding:0!important;
+}
+.futAttr span:first-child{
+  font-size:22px!important;
+}
+.futAttr span:last-child{
+  font-size:28px!important;
+  min-width:32px!important;
+}
+.futSmall{
+  margin-top:-10px!important;
+  transform:translateY(-13px)!important;
+}
+.futCard.tierBronze{
+  background:
+    var(--futGoldPattern),
+    radial-gradient(ellipse at 30% 31%,rgba(255,219,176,.56) 0 16%,transparent 16.6%),
+    radial-gradient(ellipse at 46% 32%,rgba(255,223,187,.32) 0 15%,transparent 15.7%),
+    repeating-linear-gradient(24deg,rgba(255,255,255,.035) 0 18px,rgba(87,45,18,.08) 19px 21px,transparent 22px 58px),
+    linear-gradient(145deg,#9a552b 0%,#d38d55 24%,#f1b77c 44%,#b56a34 62%,#7f3f20 78%,#d89058 100%)!important;
+}
+.futCard.tierSilver{
+  background:
+    var(--futGoldPattern),
+    radial-gradient(ellipse at 30% 31%,rgba(255,255,255,.70) 0 16%,transparent 16.6%),
+    radial-gradient(ellipse at 46% 32%,rgba(255,255,255,.40) 0 15%,transparent 15.7%),
+    repeating-linear-gradient(24deg,rgba(255,255,255,.05) 0 18px,rgba(83,91,99,.075) 19px 21px,transparent 22px 58px),
+    linear-gradient(145deg,#8c969f 0%,#d9dee3 24%,#ffffff 44%,#b7c0c8 62%,#828c96 78%,#e8ecef 100%)!important;
+}
+.futCard.tierIcon{
+  background:
+    var(--futGoldPattern),
+    radial-gradient(ellipse at 30% 31%,rgba(255,255,255,.70) 0 16%,transparent 16.6%),
+    radial-gradient(ellipse at 46% 32%,rgba(255,248,192,.45) 0 15%,transparent 15.7%),
+    repeating-linear-gradient(24deg,rgba(255,255,255,.05) 0 18px,rgba(132,95,24,.07) 19px 21px,transparent 22px 58px),
+    linear-gradient(145deg,#fff8dc 0%,#f3df9a 24%,#fffdf0 44%,#d8b84e 62%,#b98920 78%,#f4e5a6 100%)!important;
+}
+@media(max-width:560px){
+  .futName{font-size:31px!important;margin:-7px auto 0!important}
+  .futRatings{transform:translateY(-15px)!important}
+  .futAttr span:first-child{font-size:20px!important}
+  .futAttr span:last-child{font-size:25px!important;min-width:29px!important}
+  .futSmall{transform:translateY(-14px)!important}
+}
+@media(max-width:360px){
+  .futName{font-size:28px!important}
+  .futRatings{transform:translateY(-16px)!important}
+  .futAttr span:first-child{font-size:18px!important}
+  .futAttr span:last-child{font-size:23px!important;min-width:27px!important}
+}
+
+/* Korrektur: Stats etwas runter, Strich-Overlay bei Silber/Bronze/Icon weg */
+.futName{
+  margin:-2px auto 0!important;
+  padding:11px 4px 6px!important;
+}
+.futRatings{
+  margin:2px auto 0!important;
+  transform:translateY(-7px)!important;
+}
+.futSmall{
+  margin-top:-4px!important;
+  transform:translateY(-6px)!important;
+}
+.futCard.tierBronze:before,
+.futCard.tierSilver:before,
+.futCard.tierIcon:before{
+  background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 42%,rgba(60,45,20,.10))!important;
+}
+.futCard.tierBronze:after,
+.futCard.tierSilver:after,
+.futCard.tierIcon:after{
+  background:radial-gradient(circle at 55% 12%,rgba(255,255,255,.22),transparent 34%)!important;
+}
+@media(max-width:560px){
+  .futName{margin:-3px auto 0!important}
+  .futRatings{transform:translateY(-8px)!important}
+  .futSmall{transform:translateY(-7px)!important}
+}
+@media(max-width:360px){
+  .futRatings{transform:translateY(-9px)!important}
+}
 
 /* Handy-Fix Hall of Fame: Champion-Felder bleiben innerhalb des Rahmens */
 .homeHofSection,
