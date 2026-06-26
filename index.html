@@ -3,7 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Air Hockey Handy Safe</title>
+<title>Rümli League</title>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rümli League">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#425454">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <style>
 body{margin:0;background:#081225;color:#fff;font-family:Arial,sans-serif;font-size:16px}
 header{background:#020617;padding:14px;border-bottom:1px solid #2b4264;position:sticky;top:0;z-index:5}
@@ -1635,7 +1643,7 @@ body.cardHallMode .logoSub{
 
 /* 1:1 Schildform aus der gesendeten Referenzkarte */
 .futCard{
-  --futExactShield:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAiwAAAN2CAYAAADaFdLMAAAQGklEQVR42u3dwZKiWBRF0Q3B//+yNa1BVYRmqlx4a807ulsRtkc0t8fjEQDAZIeHAG5n9Xchm0MABAtwfohsouTXwSZqQLAAH15CxMp5j73QAcECLo5c9rkUMiBYQIhwm2NB2IBgAUHC5Y8pQQOCBQQJggYECwgTcA8NCBYQJfCD41/MIFhApMClXifiBcECggQsMSBYcEIFvvnaEzAIFhAm4AZfECwIFMASg2ABcQIIGAQLIgUQMCBYECfAiecLEYNgQaQAlzmfCBcEC+IE8E0k7mP3ECBWAOchsrDgpADg3hcEC0IFcO8LggWBAuCr0wgWRAqAv0iNYBEpAOIFwYJIARAvCBYECoD7XgQLQgXAN44QLIgUAB8bkV+6FSsAOO9mYcELBcC9LggWLw4A3OuCYBEpALjXRbAgVACsLggWkQKA1UWwIFQAsLoIFpECgNWF/A6LWAHAdSELCw5GACwuWVgudgCKFQC8yc3C4mADwOKCYBEqAPhmkWARKgAgXHIPi1gBwHUnC4sDBgCsLVlYAAAECwAgWAAABAsAgGABgHwBRLAAAAgWAECwAAAIlnxmCAAIFgBAsAAACBYAQLCQ+1cAQLAAAAgWAECwAAC5VUGwAAAIFhULgOuTYAEAECwAgGDJ3AYACBYAwBtrwQIACBbVCgCuV4IFAECwqFUAECwAgDfaggUAECwqFQBcvwSLJxsAECwA4I23YAEARItg8QQDAKsHi1gBAMECAHgjLlg8qQCw6PXNwgIACBb1CQCuc4LFkwgAD8HiyQMA1z3B4kkDANYLFrECQFYWwQIAiBbB4kkCANfDuwaLWAGAm14Xd08KAIgWweLJAADXycWDRawAwALXy92DDwCiRbB40AHA9XPBYBErALDYdfTwAAPAstGyZWERKwDg+rpOsIgVAFj8OrsPfwDFCgCIlpH3sIgUAHBfS5MXFrECAD7haOrCIlQAwOLS5IVFrACA+1uauLCIFAC4ZrRsqywsYgUALC5NXFhECgBYXEYGi0gBAPEyMlhECgCIl7fHyyFQAIAvfNKyfSNYhAkA8ImRY3s1WEQJADDpW0fb38EiVACA0b+2u3ssAIDpBAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEABAsAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAACCBQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECACBYAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYPAQAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAACCBQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECACBYAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEABAsAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAIBgAQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAQLACAYAEAECwAgGABABAsAACCBQAQLAAAggUAQLAAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIACBYAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABABAsAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEAECwAgGABABAsAIBgAQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAEi4cAABAsAACCBQAQLAAAggUAQLAAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIACBYAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABABAsAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEAECwAgGABABAsAIBgAQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAQLACAYAEAECwAgGABABAsAACCBQAQLAAAggUAQLAAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIACBYAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABABAsAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEABAsAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAACCBQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECACBYAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAICb2wQLANBVFpbNwwAA+EgIAECwAAArBIuPhQCAJt5wa2EBAMbHimABALraPSw+FgIA3HQLAPCOYLGyAABNun/FwgIAjI+V/wWLlQUAyD0sAAA9P5rsr/4DAAANWlhECwDQ2evKMx8JiRYA4NRYefYeFtECAJwWK6/cdCtaAIBTYsW3hACA8bHyarBslhYA4NuxYmEBAMbHyk+DxdICAHwtVn67sIgWAOAr3XC86V/+8DwAAJ8aONzDAgCMjpX6/cLyr/8gawsACJWm/7Vm97YAgFh5q+PD/7HWFgAQKk2/h8XaAgBipakLi/tbAECkdJWFxeICAGKlKywsFhcAEChd+XdYLC4AIFaauLA880BYXgDAmND0X7q1vACA62+TFhbLCwCIk+70t4QsLwCw4PX0uMmDbHkBgBu/2d89GQAgVrKwWF4AQJxkYbG8ACBW7u1Y+Em0vgAgTLKweNIBwHUrC4v1BQBhkoXFwQIArj9ZWK500FhdABAnWViucGA5uAAQK1lY/N4LAOKELCwORgBcH7KwOCizvAC4BpCFxQEMAFlY8FsvAHgjmoUFBz2A8zZZWNz3AoA4ycKCFwmA8zBZWLxYsrwAiBMqC4sXFYDzKllYsLwAiBOysOBFCOA8mYUFywuAMCELC/66NIBYIQuLF3HWF0CckIUFL3YA5y+ysPDxF73VBRAnZGHBPS8AYoUsLFheAIFCFhacRACcZ8jCgm8aAeIEsrDgpAM4b5CFBScfywsgTsjCgpMU4DxAFhawvADihCwsOKkBXteQhQW/8QIIFLKwgJMf+CVsyMKC1QXwhgKysOAkCVhTyMICvmUE3iRAFhacVAGvK7KwgOUFxAlkYQFArEAWFqwu4HUBWVjAyRoc/5CFBX5/0ra4IFAgCwv4XQkQK5CFBawuIFLIwgJO+mAphCws4BtGIKohCwu4SOA4hCws4C9Ig0CBLCzgYoLjC8jCAr5hhECBLCzgggOOHcjCAu5zQaRAFhbARQnHBWRhAfe5IFCALCzgwoXnHLKwAO5zQaRAFhZwccPzCWRhAasLAgWysACIFSALC/hmEUIFsrAALo6eDyALC2BxESlAFhZw8cTjDVlYAIuLSAGysAAurh5PwMICFheRAmRhAVx8PV5AFhZwEc7aIlIgCwvgwuwxAbKwAO5vESpAFhZw0fb/DWRhAdzfIlSALCyAi7lYgSwsgLVFpABZWAAXeoAsLMCdv00ktiALC4BYAbKwAO5tESpAFhZAGABZWABri4ACsrAA1haxAmRhAeauLUIFyMICTI4IsQIIFmBsTGxiBRAsgAUEyD0sgPtaBBCQhQW439oiVgDBAoyOFrECCBZgdLSIFUCwAKOjRawAggUYHS1iBRAswOhoESuAYAFGR4tYAd7mD8tk7wW+vubEAAAAAElFTkSuQmCC");
+  --futExactShield:url("card-mask.png");
   width:min(100%,334px)!important;
   max-width:334px!important;
   aspect-ratio:556/886!important;
@@ -1896,6 +1904,25 @@ body.cardHallMode .logoSub{
 }
 @media(max-width:360px){
   .futFlag{font-size:30px!important}
+}
+
+/* Performance: Karten isolieren und teure Filter reduzieren */
+.futCard{
+  contain:layout paint!important;
+  will-change:auto!important;
+  box-shadow:0 14px 28px rgba(0,0,0,.34),inset 0 0 22px rgba(255,255,255,.14)!important;
+}
+.futCard:hover{
+  filter:none!important;
+}
+.futPhoto,
+.futPhotoPlaceholder{
+  filter:none!important;
+}
+.homeChampionSlot,
+.hofBelt,
+.homeClickCard{
+  contain:layout paint!important;
 }
 
 /* Handy-Fix Hall of Fame: Champion-Felder bleiben innerhalb des Rahmens */
@@ -3472,20 +3499,29 @@ function migrateOldPlayersToGlobal(){
  var arr=globalPlayers();
  globalData.players=arr.slice();
  if(globalRef){globalRef.set({players:arr},{merge:true}).catch(function(e){console.log('Spieler-Migration fehlgeschlagen',e);});}
- if(d){d.players=arr.slice();}
+  if(d){d.players=arr.slice();}
+}
+var renderAllTimer=null;
+function scheduleRenderAll(){
+ if(renderAllTimer)return;
+ renderAllTimer=setTimeout(function(){
+  renderAllTimer=null;
+  fill();
+  renderAll();
+ },45);
 }
 function initGlobalData(){
  globalRef=db.collection('rumliLeague').doc('globalPlayers');
  globalRef.onSnapshot(function(doc){
   if(doc.exists){globalData=doc.data()||{}; if(!Array.isArray(globalData.deletedPlayers))globalData.deletedPlayers=[]; if(!globalData.playerMeta)globalData.playerMeta={};}else{globalData={players:null,deletedPlayers:[],playerMeta:{}};}
   migrateOldPlayersToGlobal();
-  fill();renderAll();
+  scheduleRenderAll();
  });
- db.collection('rumliLeague').doc('main').onSnapshot(function(doc){allLeagueData.airhockey=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
- db.collection('rumliLeague').doc('fifa').onSnapshot(function(doc){allLeagueData.fifa=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
- db.collection('rumliLeague').doc('dart').onSnapshot(function(doc){allLeagueData.dart=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.dart._league='dart';migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
- db.collection('rumliLeague').doc('hotel').onSnapshot(function(doc){allLeagueData.hotel=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.hotel._league='hotel';migrateOldPlayersToGlobal();fill();renderAll();renderGlobalProfiles();});
- db.collection('rumliLeague').doc('poker').onSnapshot(function(doc){pokerData=doc.exists?(doc.data()||{players:[],pokerGames:[],pendingPokerGames:[]}):{players:[],pokerGames:[],pendingPokerGames:[]};pokerData.pokerGames=[];pokerData.pokerTournaments=[];pokerData.pendingPokerGames=[];allLeagueData.poker=pokerData;migrateOldPlayersToGlobal();try{db.collection('rumliLeague').doc('poker').set({pokerGames:[],pokerTournaments:[],pendingPokerGames:[]},{merge:true}).catch(function(){});}catch(e){}renderPokerPage();renderHallOfFame();});
+  db.collection('rumliLeague').doc('main').onSnapshot(function(doc){allLeagueData.airhockey=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();scheduleRenderAll();});
+  db.collection('rumliLeague').doc('fifa').onSnapshot(function(doc){allLeagueData.fifa=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();scheduleRenderAll();});
+  db.collection('rumliLeague').doc('dart').onSnapshot(function(doc){allLeagueData.dart=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.dart._league='dart';migrateOldPlayersToGlobal();scheduleRenderAll();});
+  db.collection('rumliLeague').doc('hotel').onSnapshot(function(doc){allLeagueData.hotel=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.hotel._league='hotel';migrateOldPlayersToGlobal();scheduleRenderAll();});
+  db.collection('rumliLeague').doc('poker').onSnapshot(function(doc){pokerData=doc.exists?(doc.data()||{players:[],pokerGames:[],pendingPokerGames:[]}):{players:[],pokerGames:[],pendingPokerGames:[]};pokerData.pokerGames=[];pokerData.pokerTournaments=[];pokerData.pendingPokerGames=[];allLeagueData.poker=pokerData;migrateOldPlayersToGlobal();scheduleRenderAll();});
 }
 var d = freshData();
 var selectedProfilePlayer = "";
