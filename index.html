@@ -92,6 +92,8 @@ button.danger{background:#ef4444;color:#fff}
 
 
 .menuToggle{position:fixed;top:10px;right:10px;width:auto;padding:8px 12px;z-index:30;background:#fbbf24;color:#111827;border:none;border-radius:8px;font-size:22px;line-height:1}
+.menuBarrier{display:none;position:fixed;inset:0;z-index:28;background:rgba(0,0,0,.28);backdrop-filter:blur(1px)}
+body.menuOpen .menuBarrier{display:block}
 .adminMenu{display:none;position:fixed;top:58px;right:10px;z-index:29;background:#101c30;border:1px solid #2b4264;border-radius:14px;padding:8px;width:230px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
 .adminMenu.show{display:block}
 .adminMenu button{width:100%;font-size:14px;padding:10px 12px;margin:4px 0;background:#1b2d49;color:#fff;border:1px solid #2b4264;text-align:left}
@@ -1643,7 +1645,7 @@ body.cardHallMode .logoSub{
 
 /* 1:1 Schildform aus der gesendeten Referenzkarte */
 .futCard{
-  --futExactShield:url("card-mask.png");
+  --futExactShield:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAiwAAAN2CAYAAADaFdLMAAAQGklEQVR42u3dwZKiWBRF0Q3B//+yNa1BVYRmqlx4a807ulsRtkc0t8fjEQDAZIeHAG5n9Xchm0MABAtwfohsouTXwSZqQLAAH15CxMp5j73QAcECLo5c9rkUMiBYQIhwm2NB2IBgAUHC5Y8pQQOCBQQJggYECwgTcA8NCBYQJfCD41/MIFhApMClXifiBcECggQsMSBYcEIFvvnaEzAIFhAm4AZfECwIFMASg2ABcQIIGAQLIgUQMCBYECfAiecLEYNgQaQAlzmfCBcEC+IE8E0k7mP3ECBWAOchsrDgpADg3hcEC0IFcO8LggWBAuCr0wgWRAqAv0iNYBEpAOIFwYJIARAvCBYECoD7XgQLQgXAN44QLIgUAB8bkV+6FSsAOO9mYcELBcC9LggWLw4A3OuCYBEpALjXRbAgVACsLggWkQKA1UWwIFQAsLoIFpECgNWF/A6LWAHAdSELCw5GACwuWVgudgCKFQC8yc3C4mADwOKCYBEqAPhmkWARKgAgXHIPi1gBwHUnC4sDBgCsLVlYAAAECwAgWAAABAsAgGABgHwBRLAAAAgWAECwAAAIlnxmCAAIFgBAsAAACBYAQLCQ+1cAQLAAAAgWAECwAAC5VUGwAAAIFhULgOuTYAEAECwAgGDJ3AYACBYAwBtrwQIACBbVCgCuV4IFAECwqFUAECwAgDfaggUAECwqFQBcvwSLJxsAECwA4I23YAEARItg8QQDAKsHi1gBAMECAHgjLlg8qQCw6PXNwgIACBb1CQCuc4LFkwgAD8HiyQMA1z3B4kkDANYLFrECQFYWwQIAiBbB4kkCANfDuwaLWAGAm14Xd08KAIgWweLJAADXycWDRawAwALXy92DDwCiRbB40AHA9XPBYBErALDYdfTwAAPAstGyZWERKwDg+rpOsIgVAFj8OrsPfwDFCgCIlpH3sIgUAHBfS5MXFrECAD7haOrCIlQAwOLS5IVFrACA+1uauLCIFAC4ZrRsqywsYgUALC5NXFhECgBYXEYGi0gBAPEyMlhECgCIl7fHyyFQAIAvfNKyfSNYhAkA8ImRY3s1WEQJADDpW0fb38EiVACA0b+2u3ssAIDpBAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEABAsAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAACCBQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECACBYAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYPAQAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAACCBQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECACBYAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEABAsAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAIBgAQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAQLACAYAEAECwAgGABABAsAACCBQAQLAAAggUAQLAAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIACBYAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABABAsAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEAECwAgGABABAsAIBgAQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAEi4cAABAsAACCBQAQLAAAggUAQLAAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIACBYAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABABAsAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEAECwAgGABABAsAIBgAQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAQLACAYAEAECwAgGABABAsAACCBQAQLAAAggUAQLAAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIACBYAAMECACBYAADBAgAgWAAABAsAIFgAAAQLACBYAAAECwCAYAEABAsAgGABABAsAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAADBAgAgWAAABAsAIFgAAAQLAIBgAQAECwCAYAEABAsAgGABABAsAIBgAQAQLAAAggUAECwAAIIFABAsAACCBQBAsAAAggUAQLAAAAgWAECwAAAIFgBAsAAACBYAAMECAAgWAADBAgAgWAAAwQIAIFgAAMECACBYAAAECwAgWAAABAsAgGABAAQLAIBgAQAECwCAYAEAECwAgGABABAsAACCBQAQLAAAggUAECwAAIIFAECwAACCBQBAsAAACBYAQLAAAAgWAECwAAAIFgAAwQIACBYAAMECACBYAADBAgAgWAAAwQIAIFgAAAQLACBYAAAECwCAYAEABAsAgGABAAQLAIBgAQAQLACAYAEAECwAAIIFABAsAACCBQAQLAAAggUAQLAAAIIFAECwAAAIFgBAsAAACBYAQLAAAAgWAADBAgAIFgAAwQIAIFgAAMECACBYAICb2wQLANBVFpbNwwAA+EgIAECwAAArBIuPhQCAJt5wa2EBAMbHimABALraPSw+FgIA3HQLAPCOYLGyAABNun/FwgIAjI+V/wWLlQUAyD0sAAA9P5rsr/4DAAANWlhECwDQ2evKMx8JiRYA4NRYefYeFtECAJwWK6/cdCtaAIBTYsW3hACA8bHyarBslhYA4NuxYmEBAMbHyk+DxdICAHwtVn67sIgWAOAr3XC86V/+8DwAAJ8aONzDAgCMjpX6/cLyr/8gawsACJWm/7Vm97YAgFh5q+PD/7HWFgAQKk2/h8XaAgBipakLi/tbAECkdJWFxeICAGKlKywsFhcAEChd+XdYLC4AIFaauLA880BYXgDAmND0X7q1vACA62+TFhbLCwCIk+70t4QsLwCw4PX0uMmDbHkBgBu/2d89GQAgVrKwWF4AQJxkYbG8ACBW7u1Y+Em0vgAgTLKweNIBwHUrC4v1BQBhkoXFwQIArj9ZWK500FhdABAnWViucGA5uAAQK1lY/N4LAOKELCwORgBcH7KwOCizvAC4BpCFxQEMAFlY8FsvAHgjmoUFBz2A8zZZWNz3AoA4ycKCFwmA8zBZWLxYsrwAiBMqC4sXFYDzKllYsLwAiBOysOBFCOA8mYUFywuAMCELC/66NIBYIQuLF3HWF0CckIUFL3YA5y+ysPDxF73VBRAnZGHBPS8AYoUsLFheAIFCFhacRACcZ8jCgm8aAeIEsrDgpAM4b5CFBScfywsgTsjCgpMU4DxAFhawvADihCwsOKkBXteQhQW/8QIIFLKwgJMf+CVsyMKC1QXwhgKysOAkCVhTyMICvmUE3iRAFhacVAGvK7KwgOUFxAlkYQFArEAWFqwu4HUBWVjAyRoc/5CFBX5/0ra4IFAgCwv4XQkQK5CFBawuIFLIwgJO+mAphCws4BtGIKohCwu4SOA4hCws4C9Ig0CBLCzgYoLjC8jCAr5hhECBLCzgggOOHcjCAu5zQaRAFhbARQnHBWRhAfe5IFCALCzgwoXnHLKwAO5zQaRAFhZwccPzCWRhAasLAgWysACIFSALC/hmEUIFsrAALo6eDyALC2BxESlAFhZw8cTjDVlYAIuLSAGysAAurh5PwMICFheRAmRhAVx8PV5AFhZwEc7aIlIgCwvgwuwxAbKwAO5vESpAFhZw0fb/DWRhAdzfIlSALCyAi7lYgSwsgLVFpABZWAAXeoAsLMCdv00ktiALC4BYAbKwAO5tESpAFhZAGABZWABri4ACsrAA1haxAmRhAeauLUIFyMICTI4IsQIIFmBsTGxiBRAsgAUEyD0sgPtaBBCQhQW439oiVgDBAoyOFrECCBZgdLSIFUCwAKOjRawAggUYHS1iBRAswOhoESuAYAFGR4tYAd7mD8tk7wW+vubEAAAAAElFTkSuQmCC");
   width:min(100%,334px)!important;
   max-width:334px!important;
   aspect-ratio:556/886!important;
@@ -3086,6 +3088,7 @@ body.pokerMode #pokerDashView .note{
 <button id="menuToggle" class="menuToggle" aria-label="Menü">☰</button>
 
 </header>
+<div id="menuBarrier" class="menuBarrier"></div>
 
 <div id="loginModal" class="loginModal">
  <div class="loginBox">
@@ -3521,7 +3524,7 @@ function initGlobalData(){
   db.collection('rumliLeague').doc('fifa').onSnapshot(function(doc){allLeagueData.fifa=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();scheduleRenderAll();});
   db.collection('rumliLeague').doc('dart').onSnapshot(function(doc){allLeagueData.dart=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.dart._league='dart';migrateOldPlayersToGlobal();scheduleRenderAll();});
   db.collection('rumliLeague').doc('hotel').onSnapshot(function(doc){allLeagueData.hotel=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.hotel._league='hotel';migrateOldPlayersToGlobal();scheduleRenderAll();});
-  db.collection('rumliLeague').doc('poker').onSnapshot(function(doc){pokerData=doc.exists?(doc.data()||{players:[],pokerGames:[],pendingPokerGames:[]}):{players:[],pokerGames:[],pendingPokerGames:[]};pokerData.pokerGames=[];pokerData.pokerTournaments=[];pokerData.pendingPokerGames=[];allLeagueData.poker=pokerData;migrateOldPlayersToGlobal();scheduleRenderAll();});
+  db.collection('rumliLeague').doc('poker').onSnapshot(function(doc){pokerData=doc.exists?(doc.data()||{players:[],pokerGames:[],pendingPokerGames:[]}):{players:[],pokerGames:[],pendingPokerGames:[]};if(!Array.isArray(pokerData.pokerGames))pokerData.pokerGames=Array.isArray(pokerData.pokerTournaments)?pokerData.pokerTournaments:[];if(!Array.isArray(pokerData.pendingPokerGames))pokerData.pendingPokerGames=[];delete pokerData.pokerTournaments;allLeagueData.poker=pokerData;migrateOldPlayersToGlobal();scheduleRenderAll();});
 }
 var d = freshData();
 var selectedProfilePlayer = "";
@@ -4530,9 +4533,8 @@ function pokerGamePoints(row){
 }
 function pokerTournamentYear(t){return dt(t.date||today()).getFullYear();}
 function allPokerGamesForCards(){
- var out=[], seen={}, clean=(window.pokerCleanData&&window.pokerCleanData.games)||[], stored=[], cardStored=[], i,g,id;
+ var out=[], seen={}, clean=(window.pokerCleanData&&window.pokerCleanData.games)||[], stored=[], i,g,id;
  try{stored=(JSON.parse(localStorage.getItem('rumliPokerNew')||'{"games":[]}').games)||[];}catch(e){stored=[];}
- try{cardStored=JSON.parse(localStorage.getItem('rumliPokerCardGames')||'[]')||[];}catch(e){cardStored=[];}
  function add(game){
   if(!game)return;
   id=String(game.id||((game.date||'')+'|'+(game.name||'')+'|'+JSON.stringify(game.results||[])));
@@ -4541,7 +4543,6 @@ function allPokerGamesForCards(){
  }
  for(i=0;i<clean.length;i++)add(clean[i]);
  for(i=0;i<stored.length;i++)add(stored[i]);
- for(i=0;i<cardStored.length;i++)add(cardStored[i]);
  return out;
 }
 function pokerStatsAll(includeCurrentYear){
@@ -4900,11 +4901,17 @@ function updateMenuVisibility(){
 function toggleMenu(){
  updateMenuVisibility();
  var m=E('adminMenu');
- if(m){m.className=m.className.indexOf('show')>=0?'adminMenu':'adminMenu show';}
+ var open=m && m.className.indexOf('show')>=0;
+ if(open){closeMenu();return;}
+ if(m){m.className='adminMenu show';}
+ document.body.classList.add('menuOpen');
+ if(E('menuToggle'))E('menuToggle').setAttribute('aria-expanded','true');
 }
 function closeMenu(){
  var m=E('adminMenu');
  if(m){m.className='adminMenu';}
+ document.body.classList.remove('menuOpen');
+ if(E('menuToggle'))E('menuToggle').setAttribute('aria-expanded','false');
 }
 
 
@@ -5203,6 +5210,8 @@ E('nmBallon').onclick=function(){show('year');closeMenu();};
 
 E('nmHistory').onclick=function(){show('history');closeMenu();};
 E('menuToggle').onclick=function(){toggleMenu();};
+if(E('menuBarrier'))E('menuBarrier').onclick=function(ev){ev.preventDefault();ev.stopPropagation();closeMenu();};
+document.addEventListener('keydown',function(ev){if(ev.key==='Escape')closeMenu();});
 E('menuLogin').onclick=function(){closeMenu();var lm=document.getElementById('loginModal');var pp=document.getElementById('popupPassword');if(lm&&pp){lm.style.display='flex';pp.value='';setTimeout(function(){pp.focus();},50);}};
 
 E('dashBallonCard').onclick=function(){show('ballon')};
@@ -5574,11 +5583,47 @@ window.addEventListener('load',function(){
   }
   window.pokerPlayerList=pokerPlayers;
 
+  function syncPokerLegacyData(x){
+    if(!x)x={games:[],pending:[]};
+    if(!Array.isArray(x.games))x.games=[];
+    if(!Array.isArray(x.pending))x.pending=[];
+    pokerData={
+      players:pokerPlayers(),
+      pokerGames:x.games.slice(),
+      pendingPokerGames:x.pending.slice()
+    };
+    allLeagueData.poker=pokerData;
+  }
+  function takeOldPokerCardGames(){
+    var old=[];
+    try{old=JSON.parse(localStorage.getItem('rumliPokerCardGames')||'[]')||[];}catch(e){old=[];}
+    try{localStorage.removeItem('rumliPokerCardGames');}catch(e){}
+    return Array.isArray(old)?old:[];
+  }
+
   function loadPoker(){
     try{
       var x=window.pokerCleanData||JSON.parse(localStorage.getItem('rumliPokerNew')||'{"games":[],"pending":[]}')||{games:[],pending:[]};
+      var oldCardGames=[];
       if(!Array.isArray(x.games))x.games=[];
       if(!Array.isArray(x.pending))x.pending=[];
+      oldCardGames=takeOldPokerCardGames();
+      if(oldCardGames.length){
+        x=mergePokerData(x,{games:oldCardGames,pending:[]});
+      }
+      if(window.pokerData){
+        var beforeMerge=JSON.stringify(x);
+        x=mergePokerData(x,{
+          games:(Array.isArray(pokerData.pokerGames)?pokerData.pokerGames:pokerData.pokerTournaments)||[],
+          pending:Array.isArray(pokerData.pendingPokerGames)?pokerData.pendingPokerGames:[]
+        });
+        window.pokerCleanData=x;
+        if(JSON.stringify(x)!==beforeMerge){
+          localStorage.setItem('rumliPokerNew',JSON.stringify(x));
+        }
+      }
+      syncPokerLegacyData(x);
+      localStorage.setItem('rumliPokerNew',JSON.stringify(x));
       return x;
     }catch(e){return {games:[],pending:[]};}
   }
@@ -5588,7 +5633,8 @@ window.addEventListener('load',function(){
     if(!Array.isArray(x.pending))x.pending=[];
     window.pokerCleanData=x;
     localStorage.setItem('rumliPokerNew',JSON.stringify(x));
-    localStorage.setItem('rumliPokerCardGames',JSON.stringify(x.games));
+    try{localStorage.removeItem('rumliPokerCardGames');}catch(e){}
+    syncPokerLegacyData(x);
     try{if(typeof db!=='undefined'&&db.collection){db.collection('rumliLeague').doc('poker_new').set(x,{merge:true}).catch(function(){});}}catch(e){}
   }
   function refreshCardsAfterPoker(){
@@ -5603,6 +5649,10 @@ window.addEventListener('load',function(){
     try{
       db.collection('rumliLeague').doc('poker_new').onSnapshot(function(doc){
         var local=JSON.parse(localStorage.getItem('rumliPokerNew')||'{"games":[],"pending":[]}')||{games:[],pending:[]};
+        var oldCardGames=takeOldPokerCardGames();
+        if(!Array.isArray(local.games))local.games=[];
+        if(!Array.isArray(local.pending))local.pending=[];
+        if(oldCardGames.length)local=mergePokerData(local,{games:oldCardGames,pending:[]});
         var remote=doc&&doc.exists?(doc.data()||{}):null;
         if(remote){
           if(!Array.isArray(remote.games))remote.games=[];
@@ -5610,7 +5660,7 @@ window.addEventListener('load',function(){
           remote=mergePokerData(remote,local);
           window.pokerCleanData=remote;
           localStorage.setItem('rumliPokerNew',JSON.stringify(remote));
-          localStorage.setItem('rumliPokerCardGames',JSON.stringify(remote.games||[]));
+          syncPokerLegacyData(remote);
           if(JSON.stringify(remote)!==JSON.stringify(doc.data()||{})){db.collection('rumliLeague').doc('poker_new').set(remote,{merge:true}).catch(function(){});}
           if(typeof renderGlobalProfiles==='function')renderGlobalProfiles();
           if(typeof renderHallOfFame==='function')renderHallOfFame();
@@ -5650,10 +5700,12 @@ window.addEventListener('load',function(){
   window.pokerStatsAll=function(includeCurrentYear){
     return rows(includeCurrentYear?null:function(g){return pokerSeasonIsComplete(pokerSeasonKeyForDate(g.date||today()));});
   };
+  pokerStatsAll=window.pokerStatsAll;
   window.pokerChampion=function(){
     var r=window.pokerStatsAll(false).filter(function(x){return x.points>0;});
     return r[0]||null;
   };
+  pokerChampion=window.pokerChampion;
 
   function rankingList(r){
     r=(r||[]).filter(function(x){return x.points>0;});
