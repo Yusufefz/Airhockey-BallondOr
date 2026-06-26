@@ -3543,10 +3543,8 @@ function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'
 
 function playerLink(name){return '<span class="playerLink" data-profile="'+esc(name)+'">'+esc(name)+'</span>';}
 function gameWinner(g){
- if(g.hotelGame){
-   var line='',hps=g.players||[];
-   for(var hri=0;hri<hps.length;hri++){line+=(hri===0?'🥇 ':hri===1?'🥈 ':hri===2?'🥉 ':'4. ')+playerLink(hps[hri])+' · '+hotelPointsByPlace(hri+1)+' Pkt<br>';}
-   o+='<div class="item"><b>'+esc(g.date)+'</b> · Hotel<br>'+line+'<span class="note">Sieger: '+esc(hps[0]||'-')+'</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
+  if(g.hotelGame){
+   return Array.isArray(g.players)?(g.players[0]||''):(g.a||'');
   }else if(g.bestOf3){return bo3Winner(g)||'';}
  if(g.sa>g.sb)return g.a;
  if(g.sb>g.sa)return g.b;
@@ -4534,7 +4532,7 @@ function pokerGamePoints(row){
 function pokerTournamentYear(t){return dt(t.date||today()).getFullYear();}
 function allPokerGamesForCards(){
  var out=[], seen={}, clean=(window.pokerCleanData&&window.pokerCleanData.games)||[], stored=[], i,g,id;
- try{stored=(JSON.parse(localStorage.getItem('rumliPokerNew')||'{"games":[]}').games)||[];}catch(e){stored=[];}
+ try{stored=(JSON.parse(localStorage.getItem('rumliPokerClean')||'{"games":[]}').games)||[];}catch(e){stored=[];}
  function add(game){
   if(!game)return;
   id=String(game.id||((game.date||'')+'|'+(game.name||'')+'|'+JSON.stringify(game.results||[])));
@@ -5583,59 +5581,21 @@ window.addEventListener('load',function(){
   }
   window.pokerPlayerList=pokerPlayers;
 
-  function syncPokerLegacyData(x){
-    if(!x)x={games:[],pending:[]};
-    if(!Array.isArray(x.games))x.games=[];
-    if(!Array.isArray(x.pending))x.pending=[];
-    pokerData={
-      players:pokerPlayers(),
-      pokerGames:x.games.slice(),
-      pendingPokerGames:x.pending.slice()
-    };
-    allLeagueData.poker=pokerData;
-  }
-  function takeOldPokerCardGames(){
-    var old=[];
-    try{old=JSON.parse(localStorage.getItem('rumliPokerCardGames')||'[]')||[];}catch(e){old=[];}
-    try{localStorage.removeItem('rumliPokerCardGames');}catch(e){}
-    return Array.isArray(old)?old:[];
-  }
-
   function loadPoker(){
-    try{
-      var x=window.pokerCleanData||JSON.parse(localStorage.getItem('rumliPokerNew')||'{"games":[],"pending":[]}')||{games:[],pending:[]};
-      var oldCardGames=[];
-      if(!Array.isArray(x.games))x.games=[];
-      if(!Array.isArray(x.pending))x.pending=[];
-      oldCardGames=takeOldPokerCardGames();
-      if(oldCardGames.length){
-        x=mergePokerData(x,{games:oldCardGames,pending:[]});
-      }
-      if(window.pokerData){
-        var beforeMerge=JSON.stringify(x);
-        x=mergePokerData(x,{
-          games:(Array.isArray(pokerData.pokerGames)?pokerData.pokerGames:pokerData.pokerTournaments)||[],
-          pending:Array.isArray(pokerData.pendingPokerGames)?pokerData.pendingPokerGames:[]
-        });
-        window.pokerCleanData=x;
-        if(JSON.stringify(x)!==beforeMerge){
-          localStorage.setItem('rumliPokerNew',JSON.stringify(x));
-        }
-      }
-      syncPokerLegacyData(x);
-      localStorage.setItem('rumliPokerNew',JSON.stringify(x));
-      return x;
-    }catch(e){return {games:[],pending:[]};}
+    var stored={games:[],pending:[]}, x={games:[],pending:[]};
+    try{stored=JSON.parse(localStorage.getItem('rumliPokerClean')||'{"games":[],"pending":[]}')||stored;}catch(e){}
+    x=mergePokerData(stored,window.pokerCleanData||{games:[],pending:[]});
+    window.pokerCleanData=x;
+    try{localStorage.setItem('rumliPokerClean',JSON.stringify(x));}catch(e){}
+    return x;
   }
   function savePoker(x){
     if(!x)x={games:[],pending:[]};
     if(!Array.isArray(x.games))x.games=[];
     if(!Array.isArray(x.pending))x.pending=[];
     window.pokerCleanData=x;
-    localStorage.setItem('rumliPokerNew',JSON.stringify(x));
-    try{localStorage.removeItem('rumliPokerCardGames');}catch(e){}
-    syncPokerLegacyData(x);
-    try{if(typeof db!=='undefined'&&db.collection){db.collection('rumliLeague').doc('poker_new').set(x,{merge:true}).catch(function(){});}}catch(e){}
+    try{localStorage.setItem('rumliPokerClean',JSON.stringify(x));}catch(e){}
+    try{if(typeof db!=='undefined'&&db.collection){db.collection('rumliLeague').doc('poker').set({version:3,players:pokerPlayers(),games:x.games,pending:x.pending}).catch(function(e){alert('Poker konnte nicht online gespeichert werden: '+(e.message||e));});}}catch(e){}
   }
   function refreshCardsAfterPoker(){
     if(typeof renderGlobalProfiles==='function')renderGlobalProfiles();
@@ -5647,21 +5607,18 @@ window.addEventListener('load',function(){
     if(typeof db==='undefined'||!db.collection)return;
     window.pokerCleanSyncStarted=true;
     try{
-      db.collection('rumliLeague').doc('poker_new').onSnapshot(function(doc){
-        var local=JSON.parse(localStorage.getItem('rumliPokerNew')||'{"games":[],"pending":[]}')||{games:[],pending:[]};
-        var oldCardGames=takeOldPokerCardGames();
+      db.collection('rumliLeague').doc('poker').onSnapshot(function(doc){
+        var local=JSON.parse(localStorage.getItem('rumliPokerClean')||'{"games":[],"pending":[]}')||{games:[],pending:[]};
         if(!Array.isArray(local.games))local.games=[];
         if(!Array.isArray(local.pending))local.pending=[];
-        if(oldCardGames.length)local=mergePokerData(local,{games:oldCardGames,pending:[]});
         var remote=doc&&doc.exists?(doc.data()||{}):null;
         if(remote){
           if(!Array.isArray(remote.games))remote.games=[];
           if(!Array.isArray(remote.pending))remote.pending=[];
           remote=mergePokerData(remote,local);
           window.pokerCleanData=remote;
-          localStorage.setItem('rumliPokerNew',JSON.stringify(remote));
-          syncPokerLegacyData(remote);
-          if(JSON.stringify(remote)!==JSON.stringify(doc.data()||{})){db.collection('rumliLeague').doc('poker_new').set(remote,{merge:true}).catch(function(){});}
+          localStorage.setItem('rumliPokerClean',JSON.stringify(remote));
+          if((doc.data()||{}).version!==3){db.collection('rumliLeague').doc('poker').set({version:3,players:pokerPlayers(),games:remote.games,pending:remote.pending}).catch(function(){});}
           if(typeof renderGlobalProfiles==='function')renderGlobalProfiles();
           if(typeof renderHallOfFame==='function')renderHallOfFame();
           if(typeof renderHome==='function')renderHome();
@@ -5789,7 +5746,7 @@ window.addEventListener('load',function(){
       '<div class="card homeClickCard" data-pv="month" style="cursor:pointer"><h2>Chip Leader</h2><p class="note">Top 3 des aktuellen Monats</p><div>'+podiumList(rows(function(g){return String(g.date||'').slice(0,7)===ym;}))+'</div></div>'+
       '<div class="card homeClickCard" data-pv="year" style="cursor:pointer"><h2>Ballon d’Or</h2><p class="note">Aktueller Tabellenführer</p><div>'+leaderCard(rows(function(g){return pokerSeasonKeyForDate(g.date||today())===pokerCurrentSeasonKey();}))+'</div></div>'+
       '<div class="card cardInfluenceBox"><h2>🎴 Kartenbewertung</h2><p class="note">So beeinflusst Poker die Player Cards.</p>'+influenceHtml()+'</div>'+
-      '<div class="card homeClickCard" data-pv="history" style="cursor:pointer;grid-column:1/-1"><h2>Letztes Spiel</h2><p class="note">Klick zur Historie</p><div>'+lastGame()+'</div></div>';
+      '<div class="card homeClickCard" data-pv="history" style="cursor:pointer"><h2>Letztes Spiel</h2><p class="note">Klick zur Historie</p><div>'+lastGame()+'</div></div>';
     bindPokerInner();
   }
 
