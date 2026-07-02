@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rümli League</title>
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,7 +14,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <style>
 body{margin:0;background:#081225;color:#fff;font-family:Arial,sans-serif;font-size:16px}
-header{background:#020617;padding:14px;border-bottom:1px solid #2b4264;position:sticky;top:0;z-index:5}
+header{background:#020617;padding:calc(14px + env(safe-area-inset-top,0px)) 14px 14px;border-bottom:1px solid #2b4264;position:sticky;top:0;z-index:5}
 h1{font-size:20px;margin:0}main{padding:10px 10px 80px;max-width:720px;margin:auto}
 .card{background:#101c30;border:1px solid #2b4264;border-radius:16px;padding:12px;margin-bottom:12px}
 label{display:block;color:#b6c3d8;font-size:12px;margin:8px 0 4px}
@@ -91,10 +91,14 @@ button.danger{background:#ef4444;color:#fff}
 .loginBox h2{margin-top:0}
 
 
-.menuToggle{position:fixed;top:10px;right:10px;width:auto;padding:8px 12px;z-index:30;background:#fbbf24;color:#111827;border:none;border-radius:8px;font-size:22px;line-height:1}
+.menuToggle{position:fixed;top:calc(7px + env(safe-area-inset-top,0px));right:10px;width:44px;height:44px;padding:0;z-index:30;background:#fbbf24;color:#111827;border:none;border-radius:8px;font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center}
+.cardsShortcut{display:none;position:fixed;top:calc(7px + env(safe-area-inset-top,0px));right:62px;z-index:30;width:44px;height:44px;padding:0;border:1px solid rgba(255,196,46,.9);border-radius:8px;overflow:hidden;background:#242424;box-shadow:0 0 12px rgba(255,184,0,.45)}
+.cardsShortcut img{display:block;width:100%;height:100%;object-fit:cover}
+body.homeScreenMode .cardsShortcut{display:block}
+.cardsShortcut:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .menuBarrier{display:none;position:fixed;inset:0;z-index:28;background:rgba(0,0,0,.28);backdrop-filter:blur(1px)}
 body.menuOpen .menuBarrier{display:block}
-.adminMenu{display:none;position:fixed;top:58px;right:10px;z-index:29;background:#101c30;border:1px solid #2b4264;border-radius:14px;padding:8px;width:230px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.adminMenu{display:none;position:fixed;top:calc(58px + env(safe-area-inset-top,0px));right:10px;z-index:29;background:#101c30;border:1px solid #2b4264;border-radius:14px;padding:8px;width:230px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
 .adminMenu.show{display:block}
 .adminMenu button{width:100%;font-size:14px;padding:10px 12px;margin:4px 0;background:#1b2d49;color:#fff;border:1px solid #2b4264;text-align:left}
 .adminMenu button.on{background:#fbbf24;color:#111827}
@@ -2643,6 +2647,7 @@ body.pokerMode #pokerDashView .note{
  <div class="logoMain">Rümli</div>
  <div class="logoSub">LEAGUE</div>
 </div>
+<button id="cardsShortcut" class="cardsShortcut" type="button" aria-label="Karten öffnen" title="Karten"><img alt="" src="data:image/png;base64,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"></button>
 <button id="menuToggle" class="menuToggle" aria-label="Menü">☰</button>
 
 </header>
@@ -2671,7 +2676,6 @@ body.pokerMode #pokerDashView .note{
 
 <div id="adminMenu" class="adminMenu">
  <button id="amGlobalPlayers" class="adminOnly homeOnly">Spieler</button>
- <button id="amGlobalProfiles" class="adminOnly homeOnly">Karten</button>
  <button id="amHallOfFame" class="adminOnly homeOnly">Hall of Fame</button>
 
 <button id="amPokerDashboard" class="adminOnly pokerOnly">Poker Dashboard</button>
@@ -2697,7 +2701,6 @@ body.pokerMode #pokerDashView .note{
  <button id="amHistoryAdmin" class="adminOnly leagueOnly">Historie</button>
  <button id="menuLogout" class="danger adminOnly">Logout</button>
 
- <button id="nmGlobalProfiles" class="normalOnly homeOnly">Karten</button>
  <button id="nmHallOfFame" class="normalOnly homeOnly">Hall of Fame</button>
 
 <button id="nmPokerDashboard" class="normalOnly pokerOnly">Poker Dashboard</button>
@@ -3288,6 +3291,7 @@ function saveData(){
 }
 function num(id){var x=parseInt(E(id).value,10);return isNaN(x)||x<0?0:x;}
 function today(){var x=new Date();var m=x.getTimezoneOffset();x=new Date(x.getTime()-m*60000);return x.toISOString().slice(0,10);}
+function dateLabel(value){var m=String(value||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?m[3]+'.'+m[2]+'.'+m[1]:(value||'');}
 function dt(s){return new Date((s||today())+'T00:00:00');}
 function mname(m){return ['','Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'][m];}
 function lastSundayOfMonth(y,m){
@@ -3415,7 +3419,7 @@ function hotelPlayerBallonPoints(g,p){
 function isDartData(){return (d&&d._league==='dart')||currentLeague==='dart';}
 function dartPlayerPoints(g,p){
  if(!g||g.bestOf3)return 0;
- if(g.hotelGame){var hline='',hps=g.players||[];for(var hx=0;hx<hps.length;hx++){hline+=(hx===0?'🥇 ':hx===1?'🥈 ':hx===2?'🥉 ':'4. ')+esc(hps[hx])+' · '+hotelPointsByPlace(hx+1)+' Pkt<br>';}o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Hotel<br><span class="note">'+hline+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';}
+ if(g.hotelGame){var hline='',hps=g.players||[];for(var hx=0;hx<hps.length;hx++){hline+=(hx===0?'🥇 ':hx===1?'🥈 ':hx===2?'🥉 ':'4. ')+esc(hps[hx])+' · '+hotelPointsByPlace(hx+1)+' Pkt<br>';}o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Hotel<br><span class="note">'+hline+esc(dateLabel(g.date||''))+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';}
    else if(g.dartLive){
   var order=g.finishOrder||[], bulls=g.bulls||{}, base=0;
   if(order[0]===p)base=3; else if(order[1]===p)base=2;
@@ -3563,9 +3567,9 @@ function deleteGlobalPlayerByName(name){
 function renderHist(){
  var o='',i,g,w;for(i=d.games.length-1;i>=0;i--){g=d.games[i];w=g.sa>g.sb?g.a:g.b;if(g.bestOf3){
    var bw=bo3Winner(g);
-   o+='<div class="item"><b>'+esc(g.date)+'</b> · Best of 3<br>'+playerLink(g.a)+' vs '+playerLink(g.b)+'<br><span class="note">Sieger: '+esc(bw||'offen')+' · +12 Ballon d’Or Punkte</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
+   o+='<div class="item"><b>'+esc(dateLabel(g.date))+'</b> · Best of 3<br>'+playerLink(g.a)+' vs '+playerLink(g.b)+'<br><span class="note">Sieger: '+esc(bw||'offen')+' · +12 Ballon d’Or Punkte</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
   }else{
-   o+='<div class="item"><b>'+esc(g.date)+'</b><br>'+playerLink(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+playerLink(g.b)+'<br><span class="note">'+(currentLeague==='dart'?'Dart-Punkte: '+dartPlayerPoints(g,g.a)+' : '+dartPlayerPoints(g,g.b)+' · Bullseyes: '+(g.bullA||0)+' : '+(g.bullB||0):'Sieger: '+esc(w))+'</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
+   o+='<div class="item"><b>'+esc(dateLabel(g.date))+'</b><br>'+playerLink(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+playerLink(g.b)+'<br><span class="note">'+(currentLeague==='dart'?'Dart-Punkte: '+dartPlayerPoints(g,g.a)+' : '+dartPlayerPoints(g,g.b)+' · Bullseyes: '+(g.bullA||0)+' : '+(g.bullB||0):'Sieger: '+esc(w))+'</span>'+(isAdmin?'<button class="secondary del" data-i="'+i+'">löschen</button>':'')+'</div>';
   }}E('hist').innerHTML=o||'<p class="note">Noch keine Spiele.</p>';
 }
 
@@ -3641,7 +3645,7 @@ function matchHtml(ti,ri,mi,match,isAdminView){
 function renderBracket(t,ti){
  if(!t){return '<h2>Turnierbaum</h2><p class="note">Noch kein Turnier erstellt.</p>';}
  propagate(t);
- var size=nextPowerOfTwo((t.players||[]).length),out='<h2>'+esc(t.name||'Turnier')+'</h2><p class="tourMeta">'+esc(t.date||'')+' · '+(t.players?t.players.length:0)+' Spieler</p><div class="bracketWrap"><div class="bracketBoard">',r,m;
+ var size=nextPowerOfTwo((t.players||[]).length),out='<h2>'+esc(t.name||'Turnier')+'</h2><p class="tourMeta">'+esc(dateLabel(t.date||''))+' · '+(t.players?t.players.length:0)+' Spieler</p><div class="bracketWrap"><div class="bracketBoard">',r,m;
  for(r=0;r<t.rounds.length;r++){
   out+='<div class="roundCol"><h3>'+roundName(r,t.rounds.length,size)+'</h3>';
   for(m=0;m<t.rounds[r].length;m++){out+=matchHtml(ti,r,m,t.rounds[r][m],isAdmin);}
@@ -3659,7 +3663,7 @@ function renderTournament(){
  var o='',i,t;
  for(i=d.tournaments.length-1;i>=0;i--){
   t=d.tournaments[i];propagate(t);
-  o+='<div class="item"><b>'+esc(t.date||'')+' · '+esc(t.name||'Turnier')+'</b><br>'+
+  o+='<div class="item"><b>'+esc(dateLabel(t.date||''))+' · '+esc(t.name||'Turnier')+'</b><br>'+
      'Spieler: '+(t.players?t.players.length:0)+'<br>'+
      '🥇 '+esc(t.first||'-')+' <span class="note">(+10)</span><br>'+
      '🥈 '+esc(t.second||'-')+' <span class="note">(+5)</span><br>'+
@@ -3712,13 +3716,13 @@ function renderHome(){
  E('homeChampions').innerHTML=o||'<p class="note">Noch keine Champions.</p>';
  var lg=d.games&&d.games.length?d.games[d.games.length-1]:null;
  if(lg){
-  if(lg.hotelGame){var hps=lg.players||[];E('homeLastMatch').innerHTML='<div class="currentTournamentTitle">🏨 '+esc(hps[0]||'-')+' gewinnt Hotel</div><div class="currentTournamentMeta">'+esc(lg.date||'')+' · 10–6–3–1 Punkte</div>';}
+  if(lg.hotelGame){var hps=lg.players||[];E('homeLastMatch').innerHTML='<div class="currentTournamentTitle">🏨 '+esc(hps[0]||'-')+' gewinnt Hotel</div><div class="currentTournamentMeta">'+esc(dateLabel(lg.date||''))+' · 10–6–3–1 Punkte</div>';}
   else if(lg.bestOf3){
    var bwin=bo3Winner(lg);
-   E('homeLastMatch').innerHTML='<div class="currentTournamentTitle">Best of 3: '+esc(lg.a)+' vs '+esc(lg.b)+'</div><div class="currentTournamentMeta">'+esc(lg.date||'')+' · Sieger: '+esc(bwin||'offen')+' · +12 Ballon d’Or</div>';
+   E('homeLastMatch').innerHTML='<div class="currentTournamentTitle">Best of 3: '+esc(lg.a)+' vs '+esc(lg.b)+'</div><div class="currentTournamentMeta">'+esc(dateLabel(lg.date||''))+' · Sieger: '+esc(bwin||'offen')+' · +12 Ballon d’Or</div>';
   }else{
    var win=lg.sa>lg.sb?lg.a:(lg.sb>lg.sa?lg.b:'Unentschieden');
-   E('homeLastMatch').innerHTML='<div class="currentTournamentTitle">'+esc(lg.a)+' '+lg.sa+':'+lg.sb+' '+esc(lg.b)+'</div><div class="currentTournamentMeta">'+esc(lg.date||'')+' · Sieger: '+esc(win)+'</div>';
+   E('homeLastMatch').innerHTML='<div class="currentTournamentTitle">'+esc(lg.a)+' '+lg.sa+':'+lg.sb+' '+esc(lg.b)+'</div><div class="currentTournamentMeta">'+esc(dateLabel(lg.date||''))+' · Sieger: '+esc(win)+'</div>';
   }
  }else{
   E('homeLastMatch').innerHTML='<p class="note">Noch kein Match gespielt.</p>';
@@ -3900,31 +3904,31 @@ function savePlayerMeta(name,nationValue,photo){
  var parts=String(nationValue||'🇨🇭 Schweiz').split(' '), flag=parts.shift()||'🇨🇭', nation=parts.join(' ')||'Schweiz';
  var old=getPlayerMeta(name);
  globalData.playerMeta[metaKey(name)]={nation:nation,flag:flag,photo:(photo===undefined?old.photo:photo)};
- globalRef.set({playerMeta:globalData.playerMeta},{merge:true}).then(function(){renderGlobalProfiles();renderHallOfFame();}).catch(function(e){alert('Karte konnte nicht gespeichert werden: '+(e.message||e));});
+ return globalRef.set({playerMeta:globalData.playerMeta},{merge:true}).then(function(){renderGlobalProfiles();renderHallOfFame();}).catch(function(e){alert('Karte konnte nicht gespeichert werden: '+(e.message||e));});
 }
-function resizeImageFile(file,cb){
+function resizeImageFile(file,cb,onError){
  var reader=new FileReader();
  reader.onload=function(ev){
-  var originalData=ev.target.result;
-  var img=new Image();
-  img.onload=function(){
-   var max=720,w=img.width,h=img.height,scale=Math.min(1,max/Math.max(w,h));
-   var canvas=document.createElement('canvas');
-   canvas.width=Math.max(1,Math.round(w*scale));
-   canvas.height=Math.max(1,Math.round(h*scale));
-   var ctx=canvas.getContext('2d');
-   ctx.clearRect(0,0,canvas.width,canvas.height);
-   ctx.drawImage(img,0,0,canvas.width,canvas.height);
-   /* PNG statt JPEG: Transparenz bleibt erhalten. Wichtig für freigestellte iPhone/PNG-Bilder. */
-   cb(canvas.toDataURL('image/png'));
+   var img=new Image();
+   img.onload=function(){
+    var max=480,w=img.width,h=img.height,scale=Math.min(1,max/Math.max(w,h));
+    var canvas=document.createElement('canvas');
+    canvas.width=Math.max(1,Math.round(w*scale));
+    canvas.height=Math.max(1,Math.round(h*scale));
+    var ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    var data=canvas.toDataURL('image/webp',.78);
+    if(!data||data.indexOf('data:image/webp')!==0)data=canvas.toDataURL('image/jpeg',.8);
+    cb(data);
+   };
+   img.onerror=function(){
+    if(onError)onError('Dieses Bildformat kann der Browser nicht lesen. Bitte PNG, JPG oder WebP verwenden.');
+   };
+   img.src=ev.target.result;
   };
-  img.onerror=function(){
-   /* Falls ein iPhone-HEIC im Browser nicht dekodiert werden kann, speichern wir die Originaldatei. */
-   cb(originalData);
-  };
-  img.src=originalData;
- };
- reader.readAsDataURL(file);
+  reader.onerror=function(){if(onError)onError('Das Bild konnte nicht geöffnet werden.');};
+  reader.readAsDataURL(file);
 }
 function playerPhotoHtml(meta){
  return '<div class="futPhoto">'+(meta.photo?'<img src="'+esc(meta.photo)+'" alt="Spielerbild">':'<div class="futPhotoPlaceholder">👤</div>')+'</div>';
@@ -4078,14 +4082,14 @@ function renderPending(){
   if(g.bestOf3){
    var pr='';
    for(var px=0;px<(g.rounds||[]).length;px++){pr+='Spiel '+(px+1)+': '+g.rounds[px].sa+':'+g.rounds[px].sb+'<br>';}
-   o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Best of 3 · '+playerLink(g.a)+' vs '+playerLink(g.b)+'<br>'+pr+'<span class="note">'+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
+   o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Best of 3 · '+playerLink(g.a)+' vs '+playerLink(g.b)+'<br>'+pr+'<span class="note">'+esc(dateLabel(g.date||''))+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
   }else{
    if(g.dartLive){
     var order=g.finishOrder||[], bulls=g.bulls||{}, players=g.players||[], line='';
     for(var dpi3=0;dpi3<players.length;dpi3++){line+=esc(players[dpi3])+': '+dartPlayerPoints(g,players[dpi3])+' Pkt · Bullseyes '+((bulls[players[dpi3]]||0))+'<br>';}
-    o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Dart Live · <b>1.</b> '+esc(order[0]||'-')+' · <b>2.</b> '+esc(order[1]||'-')+'<br><span class="note">'+line+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
+    o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>Dart Live · <b>1.</b> '+esc(order[0]||'-')+' · <b>2.</b> '+esc(order[1]||'-')+'<br><span class="note">'+line+esc(dateLabel(g.date||''))+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
    }else{
-    o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>'+playerLink(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+playerLink(g.b)+'<br><span class="note">'+(currentLeague==='dart'?'Bullseyes: '+(g.bullA||0)+' : '+(g.bullB||0)+' · ':'')+esc(g.date||'')+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
+    o+='<div class="item"><b>Gemeldet von: '+esc(g.reporter||'-')+'</b><br>'+playerLink(g.a)+' <b>'+g.sa+':'+g.sb+'</b> '+playerLink(g.b)+'<br><span class="note">'+(currentLeague==='dart'?'Bullseyes: '+(g.bullA||0)+' : '+(g.bullB||0)+' · ':'')+esc(dateLabel(g.date||''))+'</span><br><button class="secondary approveGame" data-i="'+i+'">✅ Bestätigen</button><button class="danger rejectGame" data-i="'+i+'">❌ Ablehnen</button></div>';
    }
   }
  }
@@ -4201,8 +4205,6 @@ function show(p){
  E('tg').className=p=='game'?'on':'';E('tb').className=p=='ballon'?'on':'';E('ty').className=p=='year'?'on':'';E('tp').className=p=='players'?'on':'';E('th').className=p=='history'?'on':'';
  updateMenuVisibility();
  if(E('amGlobalPlayers'))E('amGlobalPlayers').className='adminOnly homeOnly '+(p=='players'?'on':'');
- if(E('amGlobalProfiles'))E('amGlobalProfiles').className='adminOnly homeOnly '+(p=='globalProfiles'?'on':'');
- if(E('nmGlobalProfiles'))E('nmGlobalProfiles').className='normalOnly homeOnly '+(p=='globalProfiles'?'on':'');
  if(E('amHallOfFame'))E('amHallOfFame').className='adminOnly homeOnly '+(p=='hallOfFame'?'on':'');
  if(E('nmHallOfFame'))E('nmHallOfFame').className='normalOnly homeOnly '+(p=='hallOfFame'?'on':'');
  if(E('amDashboard'))E('amDashboard').className='adminOnly leagueOnly '+(p=='home'?'on':'');
@@ -4412,8 +4414,7 @@ if(E('backToGameSelect')){E('backToGameSelect').onclick=function(){if(window.sho
 if(E('pickHallOfFame')){E('pickHallOfFame').onclick=function(){show('hallOfFame');};}
 if(E('pickGlobalProfiles')){E('pickGlobalProfiles').onclick=function(){selectedProfilePlayer='';show('globalProfiles');};}
 if(E('amGlobalPlayers'))E('amGlobalPlayers').onclick=function(){show('players');closeMenu();};
-if(E('amGlobalProfiles'))E('amGlobalProfiles').onclick=function(){selectedProfilePlayer='';show('globalProfiles');closeMenu();};
-if(E('nmGlobalProfiles'))E('nmGlobalProfiles').onclick=function(){selectedProfilePlayer='';show('globalProfiles');closeMenu();};
+ if(E('cardsShortcut'))E('cardsShortcut').onclick=function(){selectedProfilePlayer='';show('globalProfiles');closeMenu();};
 if(E('amHallOfFame'))E('amHallOfFame').onclick=function(){show('hallOfFame');closeMenu();};
 if(E('nmHallOfFame'))E('nmHallOfFame').onclick=function(){show('hallOfFame');closeMenu();};
 if(E('amDashboard'))E('amDashboard').onclick=function(){show('home');closeMenu();};
@@ -4457,7 +4458,7 @@ E('saveRewards').onclick=function(){
 E('month').onchange=renderBallon;E('myear').oninput=renderBallon;E('year').oninput=renderYear;E('year').onchange=renderYear;
 E('addp').onclick=function(){var p=cleanPlayerName(E('newp').value);if(!p)return;var gp=globalPlayers();for(var gi=0;gi<gp.length;gi++){if(gp[gi].toLowerCase()===p.toLowerCase()){alert('Diesen Spieler gibt es schon.');return;}}var nextPlayers=mergePlayerLists(gp,[p]);globalData.players=nextPlayers;E('newp').value='';saveGlobalPlayers(nextPlayers);fill();renderAll();};
 E('wipe').onclick=function(){if(confirm('Alles löschen?')){d={players:[],games:[],pendingGames:[],tournaments:[],settings:{news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}}};saveData();fill();show('game');}};
-E('export').onclick=function(){var o='Datum,Spieler A,Goals A,Spieler B,Goals B,Sieger\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[g.date,g.a,g.bestOf3?'BO3':g.sa,g.b,g.bestOf3?'BO3':g.sb,g.bestOf3?bo3Winner(g):(g.sa>g.sb?g.a:g.b)].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(currentLeague==='fifa'?'fifa':(currentLeague==='dart'?'dart':(currentLeague==='hotel'?'hotel':'airhockey')))+'.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
+E('export').onclick=function(){var o='Datum,Spieler A,Goals A,Spieler B,Goals B,Sieger\n',i,g;for(i=0;i<d.games.length;i++){g=d.games[i];o+=[dateLabel(g.date),g.a,g.bestOf3?'BO3':g.sa,g.b,g.bestOf3?'BO3':g.sb,g.bestOf3?bo3Winner(g):(g.sa>g.sb?g.a:g.b)].join(',')+'\n';}var blob=new Blob([o],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(currentLeague==='fifa'?'fifa':(currentLeague==='dart'?'dart':(currentLeague==='hotel'?'hotel':'airhockey')))+'.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);};
 
 E('adminLoginBtn').onclick=function(){
  if(E('adminpass').value===ADMIN_PASSWORD){
@@ -4520,7 +4521,13 @@ document.addEventListener('click',function(ev){
  if(removeBtn){savePlayerMeta(name,nation,'');return;}
  var fileInput=E('cardPhotoFile');
  if(fileInput&&fileInput.files&&fileInput.files[0]){
-  resizeImageFile(fileInput.files[0],function(dataUrl){savePlayerMeta(name,nation,dataUrl);});
+  saveBtn.disabled=true;saveBtn.innerHTML='Bild wird gespeichert...';
+  resizeImageFile(fileInput.files[0],function(dataUrl){
+   var saving=savePlayerMeta(name,nation,dataUrl);
+   if(saving&&saving.finally)saving.finally(function(){if(document.body.contains(saveBtn)){saveBtn.disabled=false;saveBtn.innerHTML='Karte speichern';}});
+  },function(message){
+   saveBtn.disabled=false;saveBtn.innerHTML='Karte speichern';alert(message);
+  });
  }else{
   savePlayerMeta(name,nation,undefined);
  }
@@ -4890,6 +4897,17 @@ window.addEventListener('load',function(){
       return '<div class="champItem"><div><span class="champYear">#'+(i+1)+'</span> · <b>'+esc(x.name)+'</b><br><span class="note">'+x.played+' Spiele · '+x.wins+' Siege · '+x.rounds+' Runden · '+x.allIns+' All-In</span></div><div>'+x.points+' Pkt</div></div>';
     }).join('');
   }
+  function pokerBallonTable(r){
+    r=(r||[]).filter(function(x){return x.points>0;});
+    if(!r.length)return '<p class="note">Keine Daten.</p>';
+    var o='<table><tr><th>#</th><th>Spieler</th><th class="right">Pkt</th><th class="right">Zum Überholen</th><th class="right">Win</th><th class="right">Lose</th><th class="right">Runden</th></tr>';
+    r.forEach(function(x,i){
+      var need=i===0?'Leader':((r[i-1].points-x.points)+1);
+      var name=typeof playerLink==='function'?playerLink(x.name):esc(x.name);
+      o+='<tr><td>'+(i+1)+'</td><td><b>'+name+'</b></td><td class="right"><b>'+x.points+'</b></td><td class="right">'+need+'</td><td class="right">'+x.wins+'</td><td class="right">'+Math.max(0,x.played-x.wins)+'</td><td class="right">'+x.rounds+'</td></tr>';
+    });
+    return o+'</table>';
+  }
   function podiumList(r){
     r=(r||[]).filter(function(x){return x.points>0;});
     function box(rank,cls,medal){
@@ -4903,6 +4921,18 @@ window.addEventListener('load',function(){
     if(!r.length)return '<p class="note">Noch keine Poker-Punkte in dieser Season.</p>';
     var x=r[0];
     return '<div class="champItem"><div><span class="champYear">#1</span> · <b>'+esc(x.name)+'</b><br><span class="note">'+x.played+' Spiele · '+x.wins+' Siege · '+x.rounds+' Runden · '+x.allIns+' All-In</span></div><div>'+x.points+' Pkt</div></div>';
+  }
+  function pokerChampionHistory(){
+    var keys={}, list=[];
+    loadPoker().games.forEach(function(g){keys[pokerSeasonKeyForDate(g.date||today())]=true;});
+    Object.keys(keys).forEach(function(key){
+      var ranking=rows(function(g){return pokerSeasonKeyForDate(g.date||today())===key;}).filter(function(x){return x.points>0;});
+      if(ranking[0])list.push({season:key,label:pokerSeasonLabel(key),name:ranking[0].name,points:ranking[0].points});
+    });
+    list.sort(function(a,b){return pokerSeasonBounds(b.season).start-pokerSeasonBounds(a.season).start;});
+    return list.length?list.map(function(x){
+      return '<div class="champItem"><div><span class="champYear">'+esc(x.label)+'</span> · <b>'+esc(x.name)+'</b></div><div>'+x.points+' Pkt</div></div>';
+    }).join(''):'<p class="note">Noch keine Champions.</p>';
   }
   function monthOverviewTable(year){
     var o='<table><thead><tr><th>Monat</th><th>Chip Leader</th><th>Poker-Pkt</th></tr></thead><tbody>';
@@ -4963,7 +4993,7 @@ window.addEventListener('load',function(){
     var ym=today().slice(0,7);
     dash.innerHTML=
       '<div class="card homeClickCard" data-pv="month" style="cursor:pointer"><h2>Chip Leader</h2><p class="note">Top 3 des aktuellen Monats</p><div>'+podiumList(rows(function(g){return String(g.date||'').slice(0,7)===ym;}))+'</div></div>'+
-      '<div class="card homeClickCard" data-pv="year" style="cursor:pointer"><h2>Ballon d’Or</h2><p class="note">Aktueller Tabellenführer</p><div>'+leaderCard(rows(function(g){return pokerSeasonKeyForDate(g.date||today())===pokerCurrentSeasonKey();}))+'</div></div>'+
+      '<div class="card homeClickCard" data-pv="year" style="cursor:pointer"><h2>Ballon d’Or</h2><p class="note">Runden, Spielsieg und All-In</p><div>'+pokerChampionHistory()+'</div></div>'+
       '<div class="card cardInfluenceBox"><h2>🎴 Kartenbewertung</h2><p class="note">So beeinflusst Poker die Player Cards.</p>'+influenceHtml()+'</div>'+
       '<div class="card homeClickCard" data-pv="history" style="cursor:pointer"><h2>Letztes Spiel</h2><p class="note">Klick zur Historie</p><div>'+lastGame()+'</div></div>';
     bindPokerInner();
@@ -4998,13 +5028,13 @@ window.addEventListener('load',function(){
     var sk=pokerCurrentSeasonKey();
     view.className='';view.style.display='block';
     view.innerHTML='<button class="secondary pokerBackBtn" data-pv="dash">← Zurück zum Dashboard</button>'+
-      '<div class="card"><h2>Ballon d’Or Kandidaten '+pokerSeasonLabel(sk)+'</h2><p class="note">Ballon d’Or: Poker-Season aus Runden, Spielsieg und All-In-Bonus. Eine neue Season startet jeweils bei der Zeitumstellung.</p>'+
-      '<label>Season</label><select id="pokerBallonYear">'+pokerSeasonOptionsHtml(sk)+'</select>'+
-      '<div id="pokerBallonRows"></div></div>';
+      '<div class="card"><h2 id="pokerBallonTitle">Ballon d’Or Kandidaten '+pokerSeasonLabel(sk)+'</h2><p class="note">Ballon d’Or: Gewonnene Runde = 1, Spielsieg = 10 und All-In-Sieg = 5 Punkte. Eine neue Season startet jeweils bei der Zeitumstellung.</p>'+
+      '<label>Season</label><select id="pokerBallonYear">'+pokerSeasonOptionsHtml(sk)+'</select></div>'+
+      '<div class="card"><div id="pokerBallonRows"></div></div>';
     function update(){
       sk=E('pokerBallonYear').value||pokerCurrentSeasonKey();
-      view.querySelector('h2').innerHTML='Ballon d’Or Kandidaten '+pokerSeasonLabel(sk);
-      E('pokerBallonRows').innerHTML=rankingList(rows(function(g){return pokerSeasonKeyForDate(g.date||today())===sk;}));
+      E('pokerBallonTitle').innerHTML='Ballon d’Or Kandidaten '+pokerSeasonLabel(sk);
+      E('pokerBallonRows').innerHTML=pokerBallonTable(rows(function(g){return pokerSeasonKeyForDate(g.date||today())===sk;}));
     }
     E('pokerBallonYear').onchange=update;update();bindPokerInner();
   }
@@ -5142,6 +5172,7 @@ window.addEventListener('load',function(){
   function bindPokerInner(){
     var root=E('pokerPage');if(!root)return;
     root.querySelectorAll('[data-pv]').forEach(function(el){el.onclick=function(){showPokerView(el.getAttribute('data-pv'));};});
+    root.querySelectorAll('[data-poker-profile]').forEach(function(el){el.onclick=function(){window.selectedPokerStatsPlayer=el.getAttribute('data-poker-profile')||'';renderStats();};});
     root.querySelectorAll('.pokerStatsBack').forEach(function(b){b.onclick=function(){window.selectedPokerStatsPlayer='';renderStats();};});
     root.querySelectorAll('.pokerApprove').forEach(function(b){b.onclick=function(){var data=loadPoker(),id=b.getAttribute('data-id'),idx=data.pending.findIndex(function(g){return String(g.id)===String(id);});if(idx>=0){data.games.push(data.pending[idx]);data.pending.splice(idx,1);savePoker(data);refreshCardsAfterPoker();if(typeof renderAll==='function')renderAll();showPokerView('pending');}};});
     root.querySelectorAll('.pokerReject').forEach(function(b){b.onclick=function(){var data=loadPoker(),id=b.getAttribute('data-id'),idx=data.pending.findIndex(function(g){return String(g.id)===String(id);});if(idx>=0&&confirm('Ablehnen?')){data.pending.splice(idx,1);savePoker(data);showPokerView('pending');}};});
