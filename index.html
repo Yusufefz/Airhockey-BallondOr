@@ -3886,9 +3886,12 @@ function playerRatings(s){
 }
 function metaKey(name){return cleanPlayerName(name).toLowerCase();}
 function defaultPlayerMeta(name){return {nation:'Schweiz',flag:'🇨🇭',photo:''};}
+function localPlayerMeta(){
+ try{return JSON.parse(localStorage.getItem('rumliCardMeta')||'{}')||{};}catch(e){return {};}
+}
 function getPlayerMeta(name){
  if(!globalData.playerMeta)globalData.playerMeta={};
- var m=globalData.playerMeta[metaKey(name)]||{};
+ var key=metaKey(name), local=localPlayerMeta(), m=Object.assign({},globalData.playerMeta[key]||{},local[key]||{});
  var dft=defaultPlayerMeta(name);
  return {nation:m.nation||dft.nation,flag:m.flag||dft.flag,photo:m.photo||''};
 }
@@ -3903,23 +3906,27 @@ function savePlayerMeta(name,nationValue,photo){
  if(!globalData.playerMeta)globalData.playerMeta={};
  var parts=String(nationValue||'🇨🇭 Schweiz').split(' '), flag=parts.shift()||'🇨🇭', nation=parts.join(' ')||'Schweiz';
  var old=getPlayerMeta(name);
- globalData.playerMeta[metaKey(name)]={nation:nation,flag:flag,photo:(photo===undefined?old.photo:photo)};
- return globalRef.set({playerMeta:globalData.playerMeta},{merge:true}).then(function(){renderGlobalProfiles();renderHallOfFame();}).catch(function(e){alert('Karte konnte nicht gespeichert werden: '+(e.message||e));});
+ var key=metaKey(name), next={nation:nation,flag:flag,photo:(photo===undefined?old.photo:photo)}, local=localPlayerMeta();
+ globalData.playerMeta[key]=next;
+ local[key]=next;
+ try{localStorage.setItem('rumliCardMeta',JSON.stringify(local));}catch(e){alert('Das Bild ist noch zu groß für den Gerätespeicher. Bitte ein kleineres Bild wählen.');}
+ renderGlobalProfiles();renderHallOfFame();
+ return globalRef.set({playerMeta:globalData.playerMeta},{merge:true}).catch(function(e){console.log('Karte nur lokal gespeichert:',e);});
 }
 function resizeImageFile(file,cb,onError){
  var reader=new FileReader();
  reader.onload=function(ev){
    var img=new Image();
    img.onload=function(){
-    var max=480,w=img.width,h=img.height,scale=Math.min(1,max/Math.max(w,h));
+    var max=320,w=img.width,h=img.height,scale=Math.min(1,max/Math.max(w,h));
     var canvas=document.createElement('canvas');
     canvas.width=Math.max(1,Math.round(w*scale));
     canvas.height=Math.max(1,Math.round(h*scale));
     var ctx=canvas.getContext('2d');
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.drawImage(img,0,0,canvas.width,canvas.height);
-    var data=canvas.toDataURL('image/webp',.78);
-    if(!data||data.indexOf('data:image/webp')!==0)data=canvas.toDataURL('image/jpeg',.8);
+    var data=canvas.toDataURL('image/webp',.68);
+    if(!data||data.indexOf('data:image/webp')!==0)data=canvas.toDataURL('image/jpeg',.72);
     cb(data);
    };
    img.onerror=function(){
