@@ -2454,14 +2454,14 @@ body.homeScreenMode .homeHofTitle{
   0%{opacity:0;transform:scale(1.8)}
   15%{opacity:1}
   65%{opacity:1;transform:scale(1.8)}
-  100%{opacity:1;transform:translate(calc(-50vw + 78px),calc(-50vh + 32px)) scale(.52)}
+  100%{opacity:1;transform:translate(calc(-50vw + 78px),calc(-50vh + 50px + env(safe-area-inset-top,0px))) scale(.52)}
 }
 @media(max-width:420px){
   @keyframes introMoveHome{
     0%{opacity:0;transform:scale(1.8)}
     15%{opacity:1}
     65%{opacity:1;transform:scale(1.8)}
-    100%{opacity:1;transform:translate(calc(-50vw + 68px),calc(-50vh + 31px)) scale(.50)}
+    100%{opacity:1;transform:translate(calc(-50vw + 68px),calc(-50vh + 48px + env(safe-area-inset-top,0px))) scale(.50)}
   }
 }
 
