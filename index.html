@@ -4012,6 +4012,35 @@ function savePlayerMeta(name,nationValue,photo,iconMode){
   alert('Das Bild konnte nicht gespeichert werden: '+(e.message||e));return false;
  });
 }
+function removeSolidImageBackground(ctx,w,h){
+ var image=ctx.getImageData(0,0,w,h),p=image.data,corners=[0,w-1,(h-1)*w,h*w-1],r=0,g=0,b=0,i,idx;
+ for(i=0;i<corners.length;i++){idx=corners[i]*4;r+=p[idx];g+=p[idx+1];b+=p[idx+2];}
+ r/=corners.length;g/=corners.length;b/=corners.length;
+ var spread=0,dr,dg,db;
+ for(i=0;i<corners.length;i++){
+  idx=corners[i]*4;dr=p[idx]-r;dg=p[idx+1]-g;db=p[idx+2]-b;
+  spread=Math.max(spread,Math.sqrt(dr*dr+dg*dg+db*db));
+ }
+ if(spread>85)return false;
+ var total=w*h,seen=new Uint8Array(total),queue=new Int32Array(total),head=0,tail=0,x,y,n,distance;
+ function add(pixel){
+  if(pixel<0||pixel>=total||seen[pixel])return;
+  idx=pixel*4;dr=p[idx]-r;dg=p[idx+1]-g;db=p[idx+2]-b;
+  distance=Math.sqrt(dr*dr+dg*dg+db*db);
+  if(distance>92)return;
+  seen[pixel]=1;queue[tail++]=pixel;
+  p[idx+3]=distance<48?0:Math.round(255*(distance-48)/44);
+ }
+ for(x=0;x<w;x++){add(x);add((h-1)*w+x);}
+ for(y=1;y<h-1;y++){add(y*w);add(y*w+w-1);}
+ while(head<tail){
+  n=queue[head++];x=n%w;y=(n/w)|0;
+  if(x>0)add(n-1);if(x<w-1)add(n+1);if(y>0)add(n-w);if(y<h-1)add(n+w);
+ }
+ if(!tail)return false;
+ ctx.putImageData(image,0,0);
+ return true;
+}
 function resizeImageFile(file,cb,onError){
  if(!file){if(onError)onError('Bitte zuerst ein Bild auswählen.');return;}
  if(file.size>15*1024*1024){if(onError)onError('Das Bild ist zu groß. Bitte ein Bild unter 15 MB verwenden.');return;}
@@ -4036,6 +4065,7 @@ function resizeImageFile(file,cb,onError){
     var ctx=canvas.getContext('2d');
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    removeSolidImageBackground(ctx,canvas.width,canvas.height);
     var pixels=ctx.getImageData(0,0,canvas.width,canvas.height).data,hasTransparency=false,i;
     for(i=3;i<pixels.length;i+=4){
      if(pixels[i]<250){hasTransparency=true;break;}
