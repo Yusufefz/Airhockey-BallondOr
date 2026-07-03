@@ -4030,10 +4030,10 @@ function resizeImageFile(file,cb,onError){
  var fileName=String(file.name||'').toLowerCase(),fileType=String(file.type||'').toLowerCase();
  if(fileType.indexOf('heic')>=0||fileType.indexOf('heif')>=0||/\.(heic|heif)$/.test(fileName)){
   if(typeof window.heic2any!=='function'){if(onError)onError('Der iPhone-Bildkonverter ist noch nicht geladen. Bitte Internet prüfen und die Seite neu laden.');return;}
-  window.heic2any({blob:file,toType:'image/jpeg',quality:.72}).then(function(converted){
+  window.heic2any({blob:file,toType:'image/png'}).then(function(converted){
    if(Array.isArray(converted))converted=converted[0];
-   var jpeg=new File([converted],fileName.replace(/\.(heic|heif)$/i,'.jpg')||'spielerbild.jpg',{type:'image/jpeg'});
-   resizeImageFile(jpeg,cb,onError);
+   var png=new File([converted],fileName.replace(/\.(heic|heif)$/i,'.png')||'spielerbild.png',{type:'image/png'});
+   resizeImageFile(png,cb,onError);
   }).catch(function(e){if(onError)onError('Das HEIC-Bild konnte nicht umgewandelt werden. Bitte das Foto als JPG oder PNG exportieren.');});
   return;
  }
