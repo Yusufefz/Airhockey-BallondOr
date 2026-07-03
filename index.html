@@ -4036,8 +4036,17 @@ function resizeImageFile(file,cb,onError){
     var ctx=canvas.getContext('2d');
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.drawImage(img,0,0,canvas.width,canvas.height);
-    var data=canvas.toDataURL('image/webp',.58);
-    if(!data||data.indexOf('data:image/webp')!==0)data=canvas.toDataURL('image/jpeg',.62);
+    var pixels=ctx.getImageData(0,0,canvas.width,canvas.height).data,hasTransparency=false,i;
+    for(i=3;i<pixels.length;i+=4){
+     if(pixels[i]<250){hasTransparency=true;break;}
+    }
+    var data;
+    if(hasTransparency){
+     data=canvas.toDataURL('image/png');
+    }else{
+     data=canvas.toDataURL('image/webp',.58);
+     if(!data||data.indexOf('data:image/webp')!==0)data=canvas.toDataURL('image/jpeg',.62);
+    }
     cb(data);
    };
    img.onerror=function(){
