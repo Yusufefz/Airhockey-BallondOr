@@ -2785,6 +2785,76 @@ body.pokerV2Mode #pokerV2Page table,body.pokerV2Mode #pokerV2Page th,body.pokerV
   background:var(--futLower)!important;
   box-shadow:0 260px 0 260px var(--futLower)!important;
 }
+.futCard.tierGold .futName,
+.futCard.tierSilver .futName,
+.futCard.tierBronze .futName{
+  border-top:0!important;
+  border-bottom:0!important;
+  padding-bottom:8px!important;
+  margin-bottom:7px!important;
+}
+.futCard.tierGold .futName:after,
+.futCard.tierSilver .futName:after,
+.futCard.tierBronze .futName:after,
+.futCard.tierIcon .futName:after{
+  content:""!important;
+  position:absolute!important;
+  left:12%!important;
+  right:12%!important;
+  bottom:0!important;
+  height:1px!important;
+  background:rgba(58,34,11,.42)!important;
+  pointer-events:none!important;
+}
+.futCard.tierIcon .futName{
+  border-top:0!important;
+  border-bottom:0!important;
+}
+.futCard.tierIcon .futAttr span:first-child{
+  font-size:21px!important;
+}
+.futCard.tierIcon .futAttr span:last-child{
+  font-size:27px!important;
+}
+@media(max-width:560px){
+  .futCard.tierIcon .futAttr span:first-child{font-size:19px!important}
+  .futCard.tierIcon .futAttr span:last-child{font-size:24px!important}
+}
+.futCard.tierIcon .futName:after,
+.futCard.tierIcon .futRatings:before,
+.futCard.tierIcon .futRatings:after{
+  display:none!important;
+}
+.futCard.tierGold .futRatings,
+.futCard.tierSilver .futRatings,
+.futCard.tierBronze .futRatings{
+  margin-top:5px!important;
+  padding-bottom:9px!important;
+}
+.futCard.tierGold .futRatings:before,
+.futCard.tierSilver .futRatings:before,
+.futCard.tierBronze .futRatings:before,
+.futCard.tierIcon .futRatings:before{
+  bottom:13px!important;
+}
+.futCard.tierGold .futRatings:after,
+.futCard.tierSilver .futRatings:after,
+.futCard.tierBronze .futRatings:after,
+.futCard.tierIcon .futRatings:after{
+  content:""!important;
+  position:absolute!important;
+  left:42%!important;
+  right:42%!important;
+  bottom:0!important;
+  height:1px!important;
+  background:rgba(58,34,11,.42)!important;
+  pointer-events:none!important;
+}
+.futCard.tierGold .futSmall,
+.futCard.tierSilver .futSmall,
+.futCard.tierBronze .futSmall{
+  margin-top:9px!important;
+}
 .futCard.tierGold .futRatings,
 .futCard.tierGold .futSmall,
 .futCard.tierSilver .futRatings,
@@ -4138,7 +4208,7 @@ function playerCardHtml(name,clickable,infoEnabled,statsOverride){
    attrHtml('DEF',r.def)+ 
    attrHtml('CON',r.con)+ 
    attrHtml('DOM',r.dom)+ 
-  '</div><div class="futSmall">'+(s.isIcon?'⭐ ICON · ':'')+'🏆 '+s.titles+' Titel</div></div>';
+  '</div><div class="futSmall">🏆 '+s.titles+'</div></div>';
 }
 function cardHistorySeasonKeys(){
  var keys={},sources=[allLeagueData.airhockey,allLeagueData.fifa,allLeagueData.dart,allLeagueData.hotel],i,j,data,games;
