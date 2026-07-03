@@ -3033,7 +3033,8 @@ var currentPage='gameSelect';
 var currentLeague='airhockey';
 var leagueNames={airhockey:'Air Hockey',fifa:'FIFA',dart:'Dart',hotel:'Hotel'};
 var activeUnsub=null;
-var allLeagueData={airhockey:null,fifa:null,dart:null,hotel:null};var globalData={players:null,deletedPlayers:[],playerMeta:{}};
+var allLeagueData={airhockey:null,fifa:null,dart:null,hotel:null};
+var globalData={players:null,deletedPlayers:[],playerMeta:{}};
 var globalRef=null;
 
 var firebaseConfig = {
@@ -3048,7 +3049,8 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
-var leagueRef = db.collection("rumliLeague").doc("main");
+var leagueRef = db.collection("rumliLeague").doc("main");
+
 function freshData(){return {players:[],games:[],pendingGames:[],tournaments:[],settings:{news:'',rewards:{top1:'',top2:'',top3:'',ballon:''}}};}
 function cleanPlayerName(x){return String(x||'').replace(/^\s+|\s+$/g,'');}
 function isDeletedPlayerName(name){
@@ -3084,7 +3086,8 @@ function syncPlayersToLeagueDocs(arr){
  db.collection('rumliLeague').doc('main').set({players:arr},{merge:true}).catch(function(e){console.log('Air Hockey Spieler sync fehlgeschlagen',e);});
  db.collection('rumliLeague').doc('fifa').set({players:arr},{merge:true}).catch(function(e){console.log('FIFA Spieler sync fehlgeschlagen',e);});
  db.collection('rumliLeague').doc('dart').set({players:arr},{merge:true}).catch(function(e){console.log('Dart Spieler sync fehlgeschlagen',e);});
- db.collection('rumliLeague').doc('hotel').set({players:arr},{merge:true}).catch(function(e){console.log('Hotel Spieler sync fehlgeschlagen',e);});}
+ db.collection('rumliLeague').doc('hotel').set({players:arr},{merge:true}).catch(function(e){console.log('Hotel Spieler sync fehlgeschlagen',e);});
+}
 function saveGlobalPlayers(nextPlayers){
  if(!globalRef){globalRef=db.collection('rumliLeague').doc('globalPlayers');}
  var arr=Array.isArray(nextPlayers)?mergePlayerLists(nextPlayers):globalPlayers();
@@ -3122,9 +3125,11 @@ function initGlobalData(){
   db.collection('rumliLeague').doc('main').onSnapshot(function(doc){allLeagueData.airhockey=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();scheduleRenderAll();});
   db.collection('rumliLeague').doc('fifa').onSnapshot(function(doc){allLeagueData.fifa=doc.exists?(doc.data()||freshData()):freshData();migrateOldPlayersToGlobal();scheduleRenderAll();});
   db.collection('rumliLeague').doc('dart').onSnapshot(function(doc){allLeagueData.dart=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.dart._league='dart';migrateOldPlayersToGlobal();scheduleRenderAll();});
-  db.collection('rumliLeague').doc('hotel').onSnapshot(function(doc){allLeagueData.hotel=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.hotel._league='hotel';migrateOldPlayersToGlobal();scheduleRenderAll();});}
+  db.collection('rumliLeague').doc('hotel').onSnapshot(function(doc){allLeagueData.hotel=doc.exists?(doc.data()||freshData()):freshData();allLeagueData.hotel._league='hotel';migrateOldPlayersToGlobal();scheduleRenderAll();});
+}
 var d = freshData();
-var selectedProfilePlayer = "";
+var selectedProfilePlayer = "";
+
 function cleanData(){
  d.players=globalPlayers();
  if(!d.games){d.games=[];} if(!d.pendingGames){d.pendingGames=[];}
@@ -4495,7 +4500,9 @@ E('save').onclick=saveGame;
 if(E('logoHome')){E('logoHome').onclick=function(){if(window.show)window.show('gameSelect');};}
 if(E('pickAirHockey')){E('pickAirHockey').onclick=function(){switchLeague('airhockey');};}
 if(E('pickFifa')){E('pickFifa').onclick=function(){switchLeague('fifa');};
-if(E('pickHotel'))E('pickHotel').onclick=function(){switchLeague('hotel');};}if(E('pickDart')){E('pickDart').onclick=function(){switchLeague('dart');};}var soonGames=document.querySelectorAll('.soonGame');
+if(E('pickHotel'))E('pickHotel').onclick=function(){switchLeague('hotel');};}
+if(E('pickDart')){E('pickDart').onclick=function(){switchLeague('dart');};}
+var soonGames=document.querySelectorAll('.soonGame');
 for(var sg=0;sg<soonGames.length;sg++){soonGames[sg].onclick=function(){if(E('constructionTitle'))E('constructionTitle').innerHTML=this.getAttribute('data-game')+' ist in Arbeit';if(window.show)window.show('construction');};}
 if(E('backToGameSelect')){E('backToGameSelect').onclick=function(){if(window.show)window.show('gameSelect');};}
 if(E('pickHallOfFame')){E('pickHallOfFame').onclick=function(){show('hallOfFame');};}
@@ -4944,3 +4951,4 @@ window.addEventListener('load',function(){
 </script>
 </body>
 </html>
+
