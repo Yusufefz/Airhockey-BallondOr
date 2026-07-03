@@ -2772,24 +2772,18 @@ body.pokerV2Mode #pokerV2Page table,body.pokerV2Mode #pokerV2Page th,body.pokerV
 .futCard.tierGold{--futLower:#ddc15e}
 .futCard.tierSilver{--futLower:#c5c5c5}
 .futCard.tierBronze{--futLower:#dda77d}
+.futCard.tierGold,
+.futCard.tierSilver,
+.futCard.tierBronze{
+  box-shadow:0 14px 28px rgba(0,0,0,.34)!important;
+}
 .futCard.tierGold .futName,
 .futCard.tierSilver .futName,
 .futCard.tierBronze .futName{
   position:relative!important;
   z-index:3!important;
-}
-.futCard.tierGold .futName:before,
-.futCard.tierSilver .futName:before,
-.futCard.tierBronze .futName:before{
-  content:""!important;
-  position:absolute!important;
-  z-index:-1!important;
-  top:0!important;
-  left:-90px!important;
-  width:calc(100% + 180px)!important;
-  height:420px!important;
   background:var(--futLower)!important;
-  pointer-events:none!important;
+  box-shadow:0 260px 0 260px var(--futLower)!important;
 }
 .futCard.tierGold .futRatings,
 .futCard.tierGold .futSmall,
