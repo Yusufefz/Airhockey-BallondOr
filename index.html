@@ -4076,14 +4076,14 @@ function playerRatings(s,cutoff){
    st=typeof window.pokerV2PlayerStats==='function'?window.pokerV2PlayerStats(name,cutoff):{played:0,wins:0,points:0,rounds:0,allIns:0,titles:0};
    games=st.played||0;if(!games)return 0;
    winr=(st.wins||0)/games;ptsg=(st.points||0)/games;
-   return games*5+(st.points||0)*1.2+(st.rounds||0)*2+(st.allIns||0)*5+winr*45+ptsg*3+(st.titles||0)*35;
+   return games*1.5+(st.points||0)*.35+(st.rounds||0)*1.2+(st.allIns||0)*4+winr*70+ptsg*8+(st.titles||0)*30;
   }
   st=calcLeagueStatsFor(name,mode,cutoff);games=st.played||0;
   if(!games)return 0;
   winr=(st.wins||0)/games;gfpg=(st.gf||0)/games;gapg=(st.ga||0)/games;diff=gfpg-gapg;ptsg=(st.points||0)/games;
-  if(mode==='dart')return games*5+(st.points||0)*1.15+ptsg*4+winr*45+(st.titles||0)*35;
-  if(mode==='hotel')return games*5+ptsg*6+winr*45+Math.max(0,diff)*8+(st.titles||0)*35;
-  return games*5+gfpg*8+Math.max(0,diff)*10+winr*45+(st.titles||0)*35;
+  if(mode==='dart')return games*1.5+(st.points||0)*.4+ptsg*10+winr*70+(st.titles||0)*30;
+  if(mode==='hotel')return games*1.5+ptsg*10+winr*70+Math.max(-3,Math.min(3,diff))*12+(st.titles||0)*30;
+  return games*1.5+gfpg*12+Math.max(-3,Math.min(3,diff))*16+winr*70+(st.titles||0)*30;
  }
  function normMode(name,mode){
   var max=0,own=rawModeScore(name,mode),j;
@@ -4099,7 +4099,11 @@ function playerRatings(s,cutoff){
   var a=calcLeagueStatsFor(name,'airhockey',cutoff),f=calcLeagueStatsFor(name,'fifa',cutoff),da=calcLeagueStatsFor(name,'dart',cutoff),h=calcLeagueStatsFor(name,'hotel',cutoff),p=typeof window.pokerV2PlayerStats==='function'?window.pokerV2PlayerStats(name,cutoff):{titles:0};
   return (a.titles||0)+(f.titles||0)+(da.titles||0)+(h.titles||0)+(p.titles||0);
  }
- function ratingFrom(v){return clampRating(40+v*59);}
+ function ratingFrom(v){
+  var rating=40+Math.pow(Math.max(0,Math.min(1,v)),.70)*59;
+  if(rating>89)rating=89+10*Math.pow(Math.max(0,(rating-92)/7),1.6);
+  return clampRating(rating);
+ }
  var act=ratingFrom(weighted(s.name,'act')),off=ratingFrom(weighted(s.name,'off')),tec=ratingFrom(weighted(s.name,'tec')),def=ratingFrom(weighted(s.name,'def')),con=ratingFrom(weighted(s.name,'con'));
  var domBase=weighted(s.name,'dom'),titleBonus=Math.min(0.22,titlesFor(s.name)*0.055),dom=ratingFrom(Math.min(1,domBase+titleBonus));
  var ovr=clampRating((act*.10+off*.20+tec*.15+def*.20+con*.20+dom*.15));
