@@ -4071,28 +4071,68 @@ function clampRating(x){x=Math.round(x);return Math.max(40,Math.min(99,x));}
 function playerRatings(s,cutoff){
  var gp=globalPlayers(),i;
  function rawModeScore(name,mode){
-  var st,games,winr,gfpg,gapg,diff,ptsg;
+  var st,games,winr,gfpg,gapg,diff,ptsg,trust,formTrust;
   if(mode==='pokerV2'){
    st=typeof window.pokerV2PlayerStats==='function'?window.pokerV2PlayerStats(name,cutoff):{played:0,wins:0,points:0,rounds:0,allIns:0,titles:0};
    games=st.played||0;if(!games)return 0;
+   trust=Math.min(1,games/8);formTrust=.45+.55*trust;
    winr=(st.wins||0)/games;ptsg=(st.points||0)/games;
-   return games*1.5+(st.points||0)*.35+(st.rounds||0)*1.2+(st.allIns||0)*4+winr*70+ptsg*8+(st.titles||0)*30;
+   return games*1.5+(st.points||0)*.35+(st.rounds||0)*1.2+(st.allIns||0)*4+(winr*70+ptsg*8)*formTrust+(st.titles||0)*36;
   }
   st=calcLeagueStatsFor(name,mode,cutoff);games=st.played||0;
   if(!games)return 0;
+  trust=Math.min(1,games/8);formTrust=.45+.55*trust;
   winr=(st.wins||0)/games;gfpg=(st.gf||0)/games;gapg=(st.ga||0)/games;diff=gfpg-gapg;ptsg=(st.points||0)/games;
-  if(mode==='dart')return games*1.5+(st.points||0)*.4+ptsg*10+winr*70+(st.titles||0)*30;
-  if(mode==='hotel')return games*1.5+ptsg*10+winr*70+Math.max(-3,Math.min(3,diff))*12+(st.titles||0)*30;
-  return games*1.5+gfpg*12+Math.max(-3,Math.min(3,diff))*16+winr*70+(st.titles||0)*30;
+  if(mode==='dart')return games*1.5+(st.points||0)*.4+(ptsg*10+winr*70)*formTrust+(st.titles||0)*36;
+  if(mode==='hotel')return games*1.5+(ptsg*10+winr*70+Math.max(-3,Math.min(3,diff))*12)*formTrust+(st.titles||0)*36;
+  return games*1.5+(gfpg*12+Math.max(-3,Math.min(3,diff))*16+winr*70)*formTrust+(st.titles||0)*36;
+ }
+ function seasonCardPoints(name,mode){
+  if(cutoff||mode==='pokerV2')return 0;
+  var data=leagueDataFor(mode), key=currentSeasonKey(), games=(data&&data.games)||[], tours=(data&&data.tournaments)||[], score=0,i,g,w,own,opp,ps,idx;
+  for(i=0;i<games.length;i++){
+   g=games[i]; if(!g||seasonKeyForDate(g.date)!==key)continue;
+   if(g.hotelGame&&Array.isArray(g.players)){idx=g.players.indexOf(name); if(idx>=0)score+=hotelBallonPointsByPlace(idx+1); continue;}
+   if(g.dartLive&&Array.isArray(g.players)){if(g.players.indexOf(name)>=0)score+=dartPlayerPoints(g,name); continue;}
+   if(g.a!==name&&g.b!==name)continue;
+   if(g.bestOf3){w=bo3Winner(g); if(w===name)score+=12; continue;}
+   own=(g.a===name)?g.sa:g.sb; opp=(g.a===name)?g.sb:g.sa;
+   if(own>opp)score+=3; else if(own===opp)score+=1;
+  }
+  for(i=0;i<tours.length;i++){
+   if(!tours[i]||seasonKeyForDate(tours[i].date)!==key)continue;
+   if(tours[i].first===name)score+=10;
+   if(tours[i].second===name)score+=5;
+   if(tours[i].third===name)score+=3;
+  }
+  return score;
+ }
+ function currentStandingBonus(name,mode,attr){
+  var own=seasonCardPoints(name,mode), best=0, second=0, third=0, j, val, bonus=0;
+  if(!own)return 0;
+  for(j=0;j<gp.length;j++){
+   val=seasonCardPoints(gp[j],mode);
+   if(val>best){third=second;second=best;best=val;}
+   else if(val>second){third=second;second=val;}
+   else if(val>third){third=val;}
+  }
+  if(own===best)bonus=.12; else if(own===second)bonus=.075; else if(own===third)bonus=.04;
+  return attr==='dom'?bonus:(attr==='con'?bonus*.75:bonus*.45);
  }
  function normMode(name,mode){
-  var max=0,own=rawModeScore(name,mode),j;
-  for(j=0;j<gp.length;j++)max=Math.max(max,rawModeScore(gp[j],mode));
-  return max?Math.max(0,Math.min(1,own/max)):0;
+  var own=rawModeScore(name,mode);
+  if(!own)return 0;
+  var target={fifa:150,airhockey:140,dart:135,pokerV2:145,hotel:135}[mode]||140;
+  return Math.max(0,Math.min(1,1-Math.exp(-own/target)));
  }
  function weighted(name,attr){
-  var modes=['fifa','airhockey','dart','pokerV2','hotel'],sum=0,wsum=0,j,m,w;
-  for(j=0;j<modes.length;j++){m=modes[j];w=(CARD_MODE_IMPACT[m]&&CARD_MODE_IMPACT[m][attr])||0;if(w){sum+=normMode(name,m)*w;wsum+=w;}}
+  var modes=['fifa','airhockey','dart','pokerV2','hotel'],sum=0,wsum=0,j,m,w,own,playedModes=0,totalRaw=0;
+  for(j=0;j<modes.length;j++){
+   m=modes[j];w=(CARD_MODE_IMPACT[m]&&CARD_MODE_IMPACT[m][attr])||0;own=rawModeScore(name,m);
+   if(w&&own>0){sum+=(Math.min(1,normMode(name,m)+currentStandingBonus(name,m,attr)))*w;wsum+=w;playedModes++;totalRaw+=own;}
+  }
+  if(wsum&&playedModes===1)sum+=0.04*wsum;
+  if(wsum&&totalRaw<45)sum*=0.86;
   return wsum?sum/wsum:0;
  }
  function titlesFor(name){
@@ -4100,8 +4140,8 @@ function playerRatings(s,cutoff){
   return (a.titles||0)+(f.titles||0)+(da.titles||0)+(h.titles||0)+(p.titles||0);
  }
  function ratingFrom(v){
-  var rating=40+Math.pow(Math.max(0,Math.min(1,v)),.70)*59;
-  if(rating>89)rating=89+10*Math.pow(Math.max(0,(rating-92)/7),1.6);
+  var rating=40+Math.pow(Math.max(0,Math.min(1,v)),.66)*59;
+  if(rating>89)rating=89+10*Math.pow(Math.max(0,(rating-89)/10),1.85);
   return clampRating(rating);
  }
  var act=ratingFrom(weighted(s.name,'act')),off=ratingFrom(weighted(s.name,'off')),tec=ratingFrom(weighted(s.name,'tec')),def=ratingFrom(weighted(s.name,'def')),con=ratingFrom(weighted(s.name,'con'));
