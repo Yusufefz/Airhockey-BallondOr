@@ -13,7 +13,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <style>
-body{margin:0;background:#081225;color:#fff;font-family:Arial,sans-serif;font-size:16px}
+html{min-height:100%;background:#101716}
+body{margin:0;min-height:100vh;background:#081225;color:#fff;font-family:Arial,sans-serif;font-size:16px}
 header{background:#020617;padding:calc(14px + env(safe-area-inset-top,0px)) 14px 14px;border-bottom:1px solid #2b4264;position:sticky;top:0;z-index:5}
 h1{font-size:20px;margin:0}main{padding:10px 10px 80px;max-width:720px;margin:auto}
 .card{background:#101c30;border:1px solid #2b4264;border-radius:16px;padding:12px;margin-bottom:12px}
@@ -2254,6 +2255,9 @@ body.fifaMode .box{
 .influenceStat{background:rgba(0,0,0,.18);border:1px solid rgba(244,238,180,.38);border-radius:12px;padding:10px}
 .influenceStat b{display:block;font-size:17px;color:#f4df75;margin-bottom:2px}
 .influenceStat span{display:block;font-size:13px;line-height:1.35;color:rgba(244,238,180,.9)}
+.recordStat .recordLabel{font-size:11px;text-transform:uppercase;letter-spacing:.7px;opacity:.78}
+.recordStat .recordValue{font-size:18px;margin:4px 0 2px;color:#f4df75;overflow-wrap:anywhere}
+.recordStat .recordMeta{font-size:12px;opacity:.82}
 .influenceStars{display:block;margin-top:5px;letter-spacing:1px;color:#f4df75;font-weight:bold}
 .influenceSmall{font-size:11px;opacity:.82;line-height:1.25;margin-top:3px}
 .influenceLegend{margin-top:10px;font-size:12px;line-height:1.35;color:rgba(244,238,180,.84)}
@@ -3190,8 +3194,8 @@ body.pokerV2Mode #pokerV2Page table,body.pokerV2Mode #pokerV2Page th,body.pokerV
    <div id="homeChampions"></div>
   </div>
   <div class="card cardInfluenceBox" id="dashCardInfluence">
-   <h2>🎴 Kartenbewertung</h2>
-   <p class="note">So beeinflusst dieser Modus die Player Cards.</p>
+   <h2>Spielmodus-Rekorde</h2>
+   <p class="note">Die Bestwerte aus allen gespeicherten Spielen.</p>
    <div id="cardInfluenceDash"></div>
   </div>
 
@@ -4854,15 +4858,15 @@ function renderHomeHallOfFame(best,airChamp,fifaChamp){
  if(!E('homeHallOfFameView'))return;
  var o='';
  o+=championSlotHtml(leagueChampionTitleHtml(),best,'goat');
- o+=championSlotHtml('🏒 Air Hockey Champion',airChamp?airChamp.name:'','');
- o+=championSlotHtml('⚽ FIFA Champion',fifaChamp?fifaChamp.name:'','');
- var dartChamp=championForLeague('dart'); o+=championSlotHtml('🎯 Dart Champion',dartChamp?dartChamp.name:'','');
- var pokerChamp=typeof window.pokerV2Champion==='function'?window.pokerV2Champion():null;o+=championSlotHtml('♠️ Poker Champion',pokerChamp?pokerChamp.name:'','');
- var hotelChamp=championForLeague('hotel'); o+=championSlotHtml('🏨 Hotel Champion',hotelChamp?hotelChamp.name:'','');
+ o+=championSlotHtml('Air Hockey Champion',airChamp?airChamp.name:'','');
+ o+=championSlotHtml('FIFA Champion',fifaChamp?fifaChamp.name:'','');
+ var dartChamp=championForLeague('dart'); o+=championSlotHtml('Dart Champion',dartChamp?dartChamp.name:'','');
+ var pokerChamp=typeof window.pokerV2Champion==='function'?window.pokerV2Champion():null;o+=championSlotHtml('Poker Champion',pokerChamp?pokerChamp.name:'','');
+ var hotelChamp=championForLeague('hotel'); o+=championSlotHtml('Hotel Champion',hotelChamp?hotelChamp.name:'','');
  E('homeHallOfFameView').innerHTML=o;
 }
 function renderHallOfFame(){
- var games=[{key:'airhockey',label:'🏒 Air Hockey Champion'},{key:'fifa',label:'⚽ FIFA Champion'},{key:'dart',label:'🎯 Dart Champion'},{key:'pokerV2',label:'♠️ Poker Champion'},{key:'hotel',label:'🏨 Hotel Champion'}],o='<div class="hofGrid">',i,c,st;
+ var games=[{key:'airhockey',label:'Air Hockey Champion'},{key:'fifa',label:'FIFA Champion'},{key:'dart',label:'Dart Champion'},{key:'pokerV2',label:'Poker Champion'},{key:'hotel',label:'Hotel Champion'}],o='<div class="hofGrid">',i,c,st;
  var names=globalPlayers(), best=null,bs=null,airChamp=championForLeague('airhockey'),fifaChamp=championForLeague('fifa');
  for(i=0;i<names.length;i++){st=calcGlobalStats(names[i]); if(st.titles>0 && (!best||st.titles>bs.titles||(st.titles===bs.titles&&st.wins>bs.wins)||(st.titles===bs.titles&&st.wins===bs.wins&&st.played>bs.played))){best=names[i];bs=st;}}
  renderHomeHallOfFame(best,airChamp,fifaChamp);
@@ -4969,20 +4973,12 @@ function renderPending(){
 
 
 var CARD_MODE_IMPACT={
- fifa:{icon:'⚽',name:'FIFA',riv:4,ver:3,clu:5,con:4,dom:5,form:5},
- airhockey:{icon:'🏒',name:'Air Hockey',riv:5,ver:3,clu:5,con:4,dom:5,form:5},
- dart:{icon:'🎯',name:'Dart',riv:3,ver:3,clu:5,con:5,dom:4,form:5},
- pokerV2:{icon:'♠️',name:'Poker',riv:4,ver:3,clu:5,con:5,dom:4,form:5},
- hotel:{icon:'🏨',name:'Hotel',riv:4,ver:3,clu:4,con:4,dom:4,form:5}
+ fifa:{icon:'⚽',name:'FIFA',riv:5,ver:5,clu:5,con:5,dom:5,form:5},
+ airhockey:{icon:'🏒',name:'Air Hockey',riv:5,ver:5,clu:5,con:5,dom:5,form:5},
+ dart:{icon:'🎯',name:'Dart',riv:5,ver:5,clu:5,con:5,dom:5,form:5},
+ pokerV2:{icon:'♠️',name:'Poker',riv:5,ver:5,clu:5,con:5,dom:5,form:5},
+ hotel:{icon:'🏨',name:'Hotel',riv:5,ver:5,clu:5,con:5,dom:5,form:5}
 };
-Object.keys(CARD_MODE_IMPACT).forEach(function(mode){
- CARD_MODE_IMPACT[mode].riv=5;
- CARD_MODE_IMPACT[mode].ver=5;
- CARD_MODE_IMPACT[mode].clu=5;
- CARD_MODE_IMPACT[mode].con=5;
- CARD_MODE_IMPACT[mode].dom=5;
- CARD_MODE_IMPACT[mode].form=5;
-});
 var CARD_ATTR_LABELS={
  riv:'Rivalitätsfaktor',
  ver:'Vielseitigkeit',
@@ -5002,8 +4998,36 @@ function cardInfluenceHTML(mode){
  return html;
 }
 function renderCardInfluenceBoxes(){
- if(E('cardInfluenceDash'))E('cardInfluenceDash').innerHTML=cardInfluenceHTML(currentLeague);
- if(E('p2CardInfluence'))E('p2CardInfluence').innerHTML=cardInfluenceHTML('pokerV2');
+ if(E('cardInfluenceDash'))E('cardInfluenceDash').innerHTML=leagueRecordsHTML(currentLeague);
+}
+function leagueRecordsHTML(mode){
+ var data=leagueDataFor(mode)||{},games=(data.games||[]).slice().sort(function(a,b){return String(a.date||'').localeCompare(String(b.date||''));});
+ var rows={},biggest=null,i,j,g,players,winner,sa,sb,margin;
+ function row(name){name=cleanPlayerName(name);var key=name.toLowerCase();if(!rows[key])rows[key]={name:name,played:0,wins:0,current:0,best:0};return rows[key];}
+ for(i=0;i<games.length;i++){
+  g=games[i];if(!g)continue;players=[];winner='';margin=-1;
+  if(g.hotelGame&&Array.isArray(g.players)){players=g.players.slice();winner=players[0]||'';}
+  else if(g.dartLive&&Array.isArray(g.players)){players=g.players.slice();winner=(g.finishOrder&&g.finishOrder[0])||players[0]||'';}
+  else if(g.a||g.b){players=[g.a,g.b].filter(Boolean);winner=g.bestOf3?bo3Winner(g):((+g.sa)> (+g.sb)?g.a:((+g.sb)>(+g.sa)?g.b:''));sa=parseFloat(g.sa);sb=parseFloat(g.sb);if(isFinite(sa)&&isFinite(sb)&&winner)margin=Math.abs(sa-sb);}
+  for(j=0;j<players.length;j++){
+   var r=row(players[j]);r.played++;
+   if(winner&&samePlayerName(players[j],winner)){r.wins++;r.current++;r.best=Math.max(r.best,r.current);}else r.current=0;
+  }
+  if(winner){
+   var detail=margin>=0?String(Math.max(sa,sb))+' : '+String(Math.min(sa,sb)):'1. Platz';
+   if(!biggest||margin>biggest.margin)biggest={name:cleanPlayerName(winner),margin:margin,detail:detail};
+  }
+ }
+ var list=Object.keys(rows).map(function(k){return rows[k];});
+ function bestBy(key){return list.slice().sort(function(a,b){return b[key]-a[key]||a.name.localeCompare(b.name);})[0]||null;}
+ var wins=bestBy('wins'),streak=bestBy('best'),active=bestBy('played');
+ function block(label,value,meta){return '<div class="influenceStat recordStat"><span class="recordLabel">'+label+'</span><b class="recordValue">'+esc(value||'-')+'</b><span class="recordMeta">'+esc(meta||'Noch keine Spiele')+'</span></div>';}
+ return '<div class="influenceGrid">'+
+  block('Meiste Siege',wins&&wins.wins?wins.name:'-',wins&&wins.wins?wins.wins+' Siege':'Noch keine Spiele')+
+  block('Längste Siegesserie',streak&&streak.best?streak.name:'-',streak&&streak.best?streak.best+' Siege in Folge':'Noch keine Serie')+
+  block('Höchster Sieg',biggest?biggest.name:'-',biggest?biggest.detail:'Noch kein Sieg')+
+  block('Aktivster Spieler',active&&active.played?active.name:'-',active&&active.played?active.played+' Spiele':'Noch keine Spiele')+
+  '</div>';
 }
 
 function renderTotwPage(){
@@ -5020,7 +5044,7 @@ function renderTotwPage(){
  view.innerHTML=html||'<div class="totwPageEmpty">Für die letzte Woche gibt es noch kein Team of the Week.</div>';
 }
 function renderAll(){
- var jobs=[['Liga',updateLeagueLabels],['Eingabe',sync],['Offene Spiele',renderPending],['Tabelle',renderBallon],['Jahreswertung',renderYear],['Spieler',renderPlayers],['Resultate',renderHist],['Dashboard',renderHome],['Profile',renderProfile],['Karten',renderGlobalProfiles],['Hall of Fame',renderHallOfFame],['Team of the Week',renderTotwPage],['Karten-Einfluss',renderCardInfluenceBoxes]],errors=[],i;
+ var jobs=[['Liga',updateLeagueLabels],['Eingabe',sync],['Offene Spiele',renderPending],['Tabelle',renderBallon],['Jahreswertung',renderYear],['Spieler',renderPlayers],['Resultate',renderHist],['Dashboard',renderHome],['Profile',renderProfile],['Karten',renderGlobalProfiles],['Hall of Fame',renderHallOfFame],['Team of the Week',renderTotwPage],['Rekorde',renderCardInfluenceBoxes]],errors=[],i;
  for(i=0;i<jobs.length;i++){try{jobs[i][1]();}catch(e){errors.push(jobs[i][0]+': '+(e&&e.message?e.message:e));console.error(jobs[i][0],e);}}
  if(typeof window.renderPokerV2==='function'){try{window.renderPokerV2();}catch(e){errors.push('Poker: '+(e&&e.message?e.message:e));console.error('Poker',e);}}
  try{updateLeagueLabels();}catch(e){}
@@ -5083,6 +5107,18 @@ document.addEventListener('click',function(ev){
  if(el){tapEffect(el);}
 });
 
+function updateOverscrollBackground(page){
+ var color='#425454';
+ if(page==='gameSelect'||page==='construction')color='#101716';
+ else if(page==='pokerV2Page')color='#07110d';
+ else if(page==='globalProfiles'||page==='hallOfFame'||page==='totwPage')color='#031611';
+ else if(currentLeague==='fifa')color='#05070d';
+ else if(currentLeague==='hotel')color='#2b1712';
+ else if(currentLeague==='dart')color='#18321f';
+ document.documentElement.style.backgroundColor=color;
+ document.body.style.backgroundColor=color;
+}
+
 
 function show(p,options){
  options=options||{};
@@ -5091,6 +5127,7 @@ function show(p,options){
  currentPage=p; document.body.classList.toggle('homeScreenMode',p==='gameSelect'); document.body.classList.toggle('cardHallMode',p==='globalProfiles'||p==='hallOfFame'||p==='totwPage');document.body.classList.toggle('pokerV2Mode',p==='pokerV2Page'); document.body.classList.toggle('dartMode',currentLeague==='dart'&&p!=='gameSelect'&&p!=='pokerV2Page'&&p!=='globalProfiles'&&p!=='hallOfFame'&&p!=='totwPage'); document.body.classList.toggle('fifaMode',currentLeague==='fifa'&&p!=='gameSelect'&&p!=='pokerV2Page'&&p!=='globalProfiles'&&p!=='hallOfFame'&&p!=='totwPage'); document.body.classList.toggle('hotelMode',currentLeague==='hotel'&&p!=='gameSelect'&&p!=='pokerV2Page'&&p!=='globalProfiles'&&p!=='hallOfFame'&&p!=='totwPage');
  var tabsEl=document.querySelector('.tabs');if(tabsEl){tabsEl.style.display=(p==='gameSelect'||p==='construction'||p==='pokerV2Page'||isAdmin)?'none':'grid';}
  if(!isAdmin && (p=='players' || p=='pending')){alert('Bitte zuerst über den Login-Button anmelden.'); p='home';currentPage=p;}
+ updateOverscrollBackground(p);
  if(!options.fromHistory&&previousPage&&previousPage!==p){
   pageHistory.push(previousPage);
   if(pageHistory.length>30)pageHistory.shift();
@@ -5136,7 +5173,7 @@ function goToPreviousPage(){
 }
 
 (function enableSwipeBack(){
- var startX=0,startY=0,startTime=0,tracking=false,swipeEl=null,lastDx=0;
+ var startX=0,startY=0,startTime=0,tracking=false,swipeLocked=false,swipeEl=null,lastDx=0;
  function blocksSwipe(target){
   if(!target||!target.closest)return false;
   if(target.closest('input,select,textarea,[data-no-swipe]'))return true;
@@ -5146,13 +5183,18 @@ function goToPreviousPage(){
  }
  document.addEventListener('touchstart',function(ev){
   if(ev.touches.length!==1||blocksSwipe(ev.target)){tracking=false;return;}
-  var t=ev.touches[0];startX=t.clientX;startY=t.clientY;startTime=Date.now();tracking=true;lastDx=0;
+  var t=ev.touches[0];startX=t.clientX;startY=t.clientY;startTime=Date.now();tracking=true;swipeLocked=false;lastDx=0;
   swipeEl=document.querySelector('main>div:not(.hide)');
  },{passive:true});
  document.addEventListener('touchmove',function(ev){
   if(!tracking||!swipeEl||ev.touches.length!==1)return;
   var t=ev.touches[0],dx=t.clientX-startX,dy=Math.abs(t.clientY-startY);
-  if(dx<=0||dy>Math.max(34,dx*.8))return;
+  if(!swipeLocked){
+   if(dy>=12&&dy>Math.abs(dx)){tracking=false;swipeEl=null;return;}
+   if(dx<14||dx<=dy*1.25)return;
+   swipeLocked=true;
+  }
+  if(dx<=0)return;
   lastDx=dx;ev.preventDefault();swipeEl.classList.add('swipeTracking');swipeEl.style.transition='none';
   swipeEl.style.transform='translate3d('+Math.min(86,dx*.46)+'px,0,0)';swipeEl.style.opacity=String(Math.max(.82,1-dx/900));
  },{passive:false});
@@ -5166,9 +5208,9 @@ function goToPreviousPage(){
    if(!complete){swipeEl.style.transform='translate3d(0,0,0)';swipeEl.style.opacity='1';}
    var old=swipeEl;setTimeout(function(){old.classList.remove('swipeTracking');old.style.transition='';old.style.transform='';old.style.opacity='';},220);
   }
-  if(complete)goToPreviousPage();swipeEl=null;lastDx=0;
+  if(complete)goToPreviousPage();swipeEl=null;swipeLocked=false;lastDx=0;
  },{passive:true});
- document.addEventListener('touchcancel',function(){if(swipeEl){swipeEl.classList.remove('swipeTracking');swipeEl.style.transition='';swipeEl.style.transform='';swipeEl.style.opacity='';}tracking=false;swipeEl=null;lastDx=0;},{passive:true});
+ document.addEventListener('touchcancel',function(){if(swipeEl){swipeEl.classList.remove('swipeTracking');swipeEl.style.transition='';swipeEl.style.transform='';swipeEl.style.opacity='';}tracking=false;swipeLocked=false;swipeEl=null;lastDx=0;},{passive:true});
 })();
 
 var dartState={start:501,players:[],scores:[],active:0,finishOrder:[],bulls:{},last:null,history:[],mod:1,dartsInTurn:0};
@@ -5736,13 +5778,27 @@ window.addEventListener('load',function(){
   E('p2Content').innerHTML='<div class="homeGrid">'+
    '<div class="card homeClickCard p2Card" data-p2-jump="month"><h2>Chip Leader</h2><p class="note">Top 3 des aktuellen Monats</p><div class="podium">'+pbox(2,'second','🥈')+pbox(1,'first','🥇')+pbox(3,'third','🥉')+'</div></div>'+
    '<div class="card homeClickCard p2Card" data-p2-jump="ranking"><h2>Ballon d’Or</h2><p class="note">Poker Champions</p><div class="champList">'+(champions||'<p class="note">Noch keine Champions.</p>')+'</div></div>'+
-   '<div class="card cardInfluenceBox p2Card"><h2>🎴 Kartenbewertung</h2><p class="note">So beeinflusst Poker die Player Cards.</p><div id="p2CardInfluence"></div></div>'+
+   '<div class="card cardInfluenceBox p2Card"><h2>Spielmodus-Rekorde</h2><p class="note">Die Bestwerte aus allen gespeicherten Poker-Spielen.</p><div id="p2CardInfluence"></div></div>'+
    '<div class="card homeClickCard currentTournamentCard p2Card" data-p2-jump="history"><h2>Letztes Spiel</h2><p class="note">Klick zur Historie</p><div>'+lastGame()+'</div></div>'+
    '</div>';
   E('p2Content').querySelectorAll('[data-p2-jump]').forEach(function(x){x.onclick=function(){setView(x.getAttribute('data-p2-jump'));};});
   renderInfluence();
  }
- function renderInfluence(){var box=E('p2CardInfluence');if(box)box.innerHTML='<div class="influenceGrid"><div class="influenceStat"><b>Rivalitätsfaktor</b><span class="influenceStars">++++</span></div><div class="influenceStat"><b>Vielseitigkeit</b><span class="influenceStars">+++</span></div><div class="influenceStat"><b>Clutch</b><span class="influenceStars">+++++</span></div><div class="influenceStat"><b>Konstanz</b><span class="influenceStars">+++++</span></div><div class="influenceStat"><b>Dominanz</b><span class="influenceStars">++++</span></div><div class="influenceStat"><b>Form</b><span class="influenceStars">+++++</span></div></div><div class="influenceLegend"><b>Poker</b></div>';}
+ function renderInfluence(){
+  var box=E('p2CardInfluence');if(!box)return;
+  var rows={},biggest=null,games=data.games.slice().sort(function(a,b){return String(a.date||'').localeCompare(String(b.date||''));});
+  function row(name){var key=String(name||'').toLowerCase();if(!rows[key])rows[key]={name:name,played:0,wins:0,current:0,best:0};return rows[key];}
+  games.forEach(function(g){
+   var ranked=(g.results||[]).slice().sort(function(a,b){return resultPoints(b)-resultPoints(a);}),winner=null;
+   ranked.forEach(function(result){var r=row(result.player);r.played++;if(result.winner){winner=result;r.wins++;r.current++;r.best=Math.max(r.best,r.current);}else r.current=0;});
+   if(winner){var lead=resultPoints(winner)-(ranked[1]?resultPoints(ranked[1]):0);if(!biggest||lead>biggest.lead)biggest={name:winner.player,lead:lead,points:resultPoints(winner)};}
+  });
+  var list=Object.keys(rows).map(function(k){return rows[k];});
+  function bestBy(key){return list.slice().sort(function(a,b){return b[key]-a[key]||String(a.name).localeCompare(String(b.name));})[0]||null;}
+  var wins=bestBy('wins'),streak=bestBy('best'),active=bestBy('played');
+  function block(label,value,meta){return '<div class="influenceStat recordStat"><span class="recordLabel">'+label+'</span><b class="recordValue">'+esc(value||'-')+'</b><span class="recordMeta">'+esc(meta||'Noch keine Spiele')+'</span></div>';}
+  box.innerHTML='<div class="influenceGrid">'+block('Meiste Siege',wins&&wins.wins?wins.name:'-',wins&&wins.wins?wins.wins+' Siege':'Noch keine Spiele')+block('Längste Siegesserie',streak&&streak.best?streak.name:'-',streak&&streak.best?streak.best+' Siege in Folge':'Noch keine Serie')+block('Höchster Sieg',biggest?biggest.name:'-',biggest?biggest.points+' Punkte · +'+biggest.lead+' Vorsprung':'Noch kein Sieg')+block('Aktivster Spieler',active&&active.played?active.name:'-',active&&active.played?active.played+' Spiele':'Noch keine Spiele')+'</div>';
+ }
  function playerOptions(selected){return allPlayers().map(function(n){return '<option value="'+esc(n)+'" '+(n===selected?'selected':'')+'>'+esc(n)+'</option>';}).join('');}
  function buildLive(){
   var count=Math.max(2,Math.min(8,parseInt((E('p2Count')||{}).value||2,10)||2));live=Array.from({length:count},function(_,i){return {player:allPlayers()[i]||'',rounds:0,winner:false,allIn:false};});renderSeats();
